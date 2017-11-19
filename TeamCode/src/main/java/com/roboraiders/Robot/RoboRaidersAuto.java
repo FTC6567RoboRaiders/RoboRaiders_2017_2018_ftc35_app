@@ -171,10 +171,12 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         double COUNTS = bot.calculateCOUNTS(distance); //COUNTS is now equal to the value calculated
 
-        bot.resetEncoders(); //resets encoders
+        //bot.resetEncoders(); //resets encoders
         bot.runWithEncoders(); //sets the mode back to run with encoder
 
         if (direction.equals("forward")) { //if the desired direction is forward
+
+            COUNTS = COUNTS + bot.getEncoderCount();
 
             bot.setDriveMotorPower(power, power, power, power); //start driving forward
 
@@ -190,6 +192,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         }
         else if (direction.equals("backward")) { //if the desired direction is backward
 
+            COUNTS = bot.getEncoderCount() - COUNTS;
+
             bot.setDriveMotorPower(-power, -power, -power, -power); //start driving backward
 
             while (bot.getEncoderCount() > COUNTS && opModeIsActive()) { //while the current count is
@@ -203,6 +207,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             bot.setDriveMotorPower(0, 0, 0, 0); //stop the robot
         }
         else if (direction.equals("right")) { //if the desired direction is right
+
+            COUNTS = COUNTS + bot.getEncoderCount();
 
             bot.setDriveMotorPower(power, -power, -power, power); //start strafing right
 
@@ -218,6 +224,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         }
         else if (direction.equals("left")) { //if the desired direction is left
 
+            COUNTS = bot.getEncoderCount() - COUNTS;
+
             bot.setDriveMotorPower(-power, power, power, -power); //start strafing left
 
             while (bot.getEncoderCount() > COUNTS && opModeIsActive()) { //while the current count is
@@ -231,7 +239,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
         }
 
-        bot.runWithoutEncoders(); //sets the mode back to run without encoder
+        //bot.runWithoutEncoders(); //sets the mode back to run without encoder
     }
 
     /**

@@ -231,10 +231,8 @@ public class Robot {
 
     public int getEncoderCount() {
 
-        return Math.abs(motorFrontLeft.getCurrentPosition());
-
+        return Math.abs(motorFrontRight.getCurrentPosition());
     }
-
 
     /**
      * This method will return COUNTS after it is calculated from distance
@@ -248,7 +246,7 @@ public class Robot {
         double COUNTS;
 
         int DIAMETER = 4; //diameter of wheel
-        double GEAR_RATIO = 2.0/3.0; //gear ratio
+        double GEAR_RATIO = (2.0/3.0); //gear ratio
         int PULSES = 1120; //encoder counts in one revolution
         double CIRCUMFERENCE = Math.PI * DIAMETER; //gives you circumference
         double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO; //gives the rotations
@@ -259,10 +257,10 @@ public class Robot {
 
     /**
      * This method will return the current distance of the distance sensor from an object
-     * in centimeters
+     * in inches
      *
      * @return distanceSensor.getDistance(DistanceUnit.CM) - the current distance of the
-     * distance sensor from an object in centimeters
+     * distance sensor from an object in inches
      */
     public double getDistance() {
 
