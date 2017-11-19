@@ -178,12 +178,10 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             bot.setDriveMotorPower(power, power, power, power); //start driving forward
 
-            while (/*bot.getEncoderCount() < COUNTS && */opModeIsActive()) { //while the current count is
+            while (bot.getEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
                 //still less than the desired count and the opMode has not been stopped
 
                 telemetry.addData("COUNTS", COUNTS);
-
-                telemetry.addData("Power", bot.motorFrontLeft.getPower());
                 telemetry.addData("Encoder Count", bot.getEncoderCount());
                 telemetry.update();
             }
@@ -198,8 +196,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 //still greater than the desired count and the opMode has not been stopped
 
                 telemetry.addData("COUNTS", COUNTS);
-
-                telemetry.addData("Power", bot.motorFrontLeft.getPower());
                 telemetry.addData("Encoder Count", bot.getEncoderCount());
                 telemetry.update();
             }
@@ -214,8 +210,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 //still less than the desired count and the opMode has not been stopped
 
                 telemetry.addData("COUNTS", COUNTS);
-
-                telemetry.addData("Power", bot.motorFrontLeft.getPower());
                 telemetry.addData("Encoder Count", bot.getEncoderCount());
                 telemetry.update();
             }
@@ -230,8 +224,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 //still greater than the desired count and the opMode has not been stopped
 
                 telemetry.addData("COUNTS", COUNTS);
-
-                telemetry.addData("Power", bot.motorFrontLeft.getPower());
                 telemetry.addData("Encoder Count", bot.getEncoderCount());
                 telemetry.update();
             }

@@ -242,7 +242,7 @@ public class Robot {
         double COUNTS;
 
         int DIAMETER = 4; //diameter of wheel
-        int GEAR_RATIO = 1; //gear ratio
+        float GEAR_RATIO = 2/3; //gear ratio
         int PULSES = 1120; //encoder counts in one revolution
         double CIRCUMFERENCE = Math.PI * DIAMETER; //gives you circumference
         double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO; //gives the rotations
