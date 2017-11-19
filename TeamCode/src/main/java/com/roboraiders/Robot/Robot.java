@@ -196,7 +196,7 @@ public class Robot {
      * @return averageCount - average encoder count (throws out high and low values and calculates
      * using middle two)
      */
-    public int getEncoderCount() {
+    public int getSortedEncoders() {
 
         int[] encoderArray = new int[4];
 
@@ -229,6 +229,12 @@ public class Robot {
         return averageCount;
     }
 
+    public int getEncoderCount() {
+
+        return Math.abs(motorFrontLeft.getCurrentPosition());
+
+    }
+
 
     /**
      * This method will return COUNTS after it is calculated from distance
@@ -242,7 +248,7 @@ public class Robot {
         double COUNTS;
 
         int DIAMETER = 4; //diameter of wheel
-        float GEAR_RATIO = 2/3; //gear ratio
+        double GEAR_RATIO = 2.0/3.0; //gear ratio
         int PULSES = 1120; //encoder counts in one revolution
         double CIRCUMFERENCE = Math.PI * DIAMETER; //gives you circumference
         double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO; //gives the rotations
