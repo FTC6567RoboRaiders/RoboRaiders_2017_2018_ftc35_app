@@ -20,6 +20,8 @@ public class JewelFarBlue extends RoboRaidersAuto {
 
         robot.initialize(hardwareMap);
         vuforiaInitialization(hardwareMap);
+        telemetry.addData("Initialized", true);
+        telemetry.update();
 
         robot.setServoPosition(0.1);
 

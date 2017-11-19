@@ -17,8 +17,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
     public VuforiaLocalizer vuforia;
     public VuforiaTrackable relicTemplate;
-    //public boolean currStateTouch = false;
-    //public boolean prevStateTouch = false;
     public boolean currStateDistance = false;
     public boolean prevStateDistance = false;
 
@@ -171,14 +169,12 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      */
     public void encodersMove(Robot bot, int distance, double power, String direction) { //sets the parameters
 
-        bot.runWithEncoders(); //set the mode of the drive train motors to run with encoder
-
         double COUNTS = bot.calculateCOUNTS(distance); //COUNTS is now equal to the value calculated
 
-        if (direction.equals("forward")) { //if the desired direction is forward
+        bot.resetEncoders(); //resets encoders
+        bot.runWithEncoders(); //sets the mode back to run with encoder
 
-            COUNTS = COUNTS + Math.abs(bot.getEncoderCount()); //add desired counts to
-                                                               //current counts to drive forward
+        if (direction.equals("forward")) { //if the desired direction is forward
 
             bot.setDriveMotorPower(power, power, power, power); //start driving forward
 
@@ -199,9 +195,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         }
         else if (direction.equals("backward")) { //if the desired direction is backward
 
-            COUNTS = Math.abs(bot.getEncoderCount()) - COUNTS; //subtract desired counts from
-            //current counts to drive backward
-
             bot.setDriveMotorPower(-power, -power, -power, -power); //start driving backward
 
             while (bot.getEncoderCount() > COUNTS && opModeIsActive()) { //while the current count is
@@ -220,9 +213,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             bot.setDriveMotorPower(0, 0, 0, 0); //stop the robot
         }
         else if (direction.equals("right")) { //if the desired direction is right
-
-            COUNTS = COUNTS + Math.abs(bot.getEncoderCount()); //add desired counts to
-            //current counts to strafe right
 
             bot.setDriveMotorPower(power, -power, -power, power); //start strafing right
 
@@ -243,9 +233,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         }
         else if (direction.equals("left")) { //if the desired direction is left
 
-            COUNTS = Math.abs(bot.getEncoderCount()) - COUNTS; //subtract desired counts from
-            //current counts to strafe left
-
             bot.setDriveMotorPower(-power, power, power, -power); //start strafing left
 
             while (bot.getEncoderCount() > COUNTS && opModeIsActive()) { //while the current count is
@@ -263,58 +250,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
         }
+
+        bot.runWithoutEncoders(); //sets the mode back to run without encoder
     }
-
-    /**
-     * This method will strafe the robot right until the touch sensor has detected the robot has
-     * passed a certain number of dividers
-     *
-     * @param bot the bot currently being worked on
-     * @param dividersTarget the desired number of dividers to pass
-     * @param power the desired power the wheel motors will run at
-     */
-    /*public void touchSensorCount(Robot bot, int dividersTarget, double power) { //establishes parameters for method
-        //and the opMode has not been stopped
-
-        int dividersTouch = 0; //counts the number of times that the robot hits the divider with the touch sensor
-
-        bot.setDriveMotorPower(-power, power, power, -power); //robot is moving left at whatever power is specified
-
-        while (dividersTouch < dividersTarget && opModeIsActive()) { //while the robot has not yet hit the specified number of dividers
-            //and the opMode has not been stopped
-
-            currStateTouch = bot.getTouchState(); //currStateTouch is set equal to the returned value in getTouchState
-
-            if (bot.getTouchState()) { //a true is returned from getTouchState() means that the
-                //button is not being pressed
-
-                telemetry.addData("Digital Touch", "Is Not Pressed");
-                telemetry.update();
-            }
-            else { //a false returned from getTouchState() means that the button is being pressed
-
-                telemetry.addData("Digital Touch", "Is Pressed");
-                telemetry.update();
-            }
-
-            if (!currStateTouch && currStateTouch != prevStateTouch) { //if the robot is touching the divider
-                //(if the current state is true and the current
-                //state is not equal to the previous state)
-                //Anyway, if the touch sensor is just starting to be pressed:
-
-                dividersTouch++; //add 1 to the current "dividersTouch" variable
-                prevStateTouch = currStateTouch; //now the previous state is the same as the current state
-            }
-            else if (currStateTouch && currStateTouch != prevStateTouch) { //if the touch
-                //sensor is just starting to not be pressed:
-
-                prevStateTouch = currStateTouch; //now the previous state equals the current state,
-                //don't change anything to the "dividersTouch" variable
-            }
-        }
-
-        bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
-    }*/
 
     /**
      * This method will strafe the robot right until the distance sensor has detected the robot has

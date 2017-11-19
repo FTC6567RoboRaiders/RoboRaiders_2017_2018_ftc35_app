@@ -6,7 +6,7 @@ import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 /**
- * Created by Alex and J-Dawg on 11/8/17.
+ * Created by Alex (and a little bit J-Dawg) on 11/8/17.
  */
 
 @Autonomous
@@ -20,6 +20,8 @@ public class JewelCloseBlue extends RoboRaidersAuto {
 
         robot.initialize(hardwareMap);
         vuforiaInitialization(hardwareMap);
+        telemetry.addData("Initialized", true);
+        telemetry.update();
 
         robot.setServoPosition(0.1);
 

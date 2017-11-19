@@ -3,7 +3,6 @@ package com.roboraiders.Robot;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -13,8 +12,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-
-
 
 /**
  * This is NOT an Op Mode.
@@ -52,7 +49,6 @@ public class Robot {
     public ColorSensor colorSensor;
     public DistanceSensor distanceSensor;
     public BNO055IMU imu;
-    //public DigitalChannel digitalTouch;
 
     /* Local OpMode Members */
     public HardwareMap hwMap =  null;
@@ -117,8 +113,6 @@ public class Robot {
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.mode = BNO055IMU.SensorMode.IMU;
         imu.initialize(parameters);
-        //digitalTouch = hwMap.get(DigitalChannel.class, "sensor_touch");
-        //digitalTouch.setMode(DigitalChannel.Mode.INPUT);
     }
 
     /** setDriveMotorPower sets the power for the drive motors
@@ -185,6 +179,17 @@ public class Robot {
     }
 
     /**
+     * This method will set the mode of all of the drive train motors to run without encoder
+     */
+    public void runWithoutEncoders() {
+
+        motorFrontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorFrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorBackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
+    /**
      * When strafing and using this method, the caller must call resetEncoders to reset the
      * encoder count to 0 (see above).
      *
@@ -245,16 +250,6 @@ public class Robot {
 
         return COUNTS;
     }
-
-    /**
-     * This method will return the current state of the touch sensor
-     *
-     * @return digitalTouch.getState() - the current state of the touch sensor
-     */
-    /*public boolean getTouchState() {
-
-        return digitalTouch.getState();
-    }*/
 
     /**
      * This method will return the current distance of the distance sensor from an object
