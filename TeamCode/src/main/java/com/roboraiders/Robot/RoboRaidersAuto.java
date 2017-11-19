@@ -63,7 +63,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 imuTurn(bot, 25, 0.25, "left"); //pivot left
                 Thread.sleep(500);
 
-                bot.setServoPosition(0.4); //raise arm to vertical
+                bot.setServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
                 imuTurn(bot, 25, 0.25, "right"); //pivot right to original position
@@ -78,7 +78,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 imuTurn(bot, 25, 0.25, "right"); //pivot right
                 Thread.sleep(500);
 
-                bot.setServoPosition(0.4); //raise arm to vertical
+                bot.setServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
                 imuTurn(bot, 25, 0.25, "left"); //pivot left to original position
@@ -99,7 +99,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 imuTurn(bot, 25, 0.25, "left"); //pivot left
                 Thread.sleep(500);
 
-                bot.setServoPosition(0.4); //raise arm to vertical
+                bot.setServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
                 imuTurn(bot, 25, 0.25, "right"); //pivot right to original position
@@ -114,7 +114,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 imuTurn(bot, 25, 0.25, "right"); //pivot right
                 Thread.sleep(500);
 
-                bot.setServoPosition(0.4); //raise arm to vertical
+                bot.setServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
                 imuTurn(bot, 25, 0.25, "left"); //pivot left to original position
@@ -178,16 +178,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             bot.setDriveMotorPower(power, power, power, power); //start driving forward
 
-            while (bot.getEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
+            while (/*bot.getEncoderCount() < COUNTS && */opModeIsActive()) { //while the current count is
                 //still less than the desired count and the opMode has not been stopped
 
-                telemetry.addData("COUNTS", COUNTS); //shows counts on phone
-                telemetry.update(); //continuously updates the counts
+                telemetry.addData("COUNTS", COUNTS);
 
-                telemetry.addData("Front Left", bot.motorFrontLeft.getCurrentPosition());
-                telemetry.addData("Front Right", bot.motorFrontRight.getCurrentPosition());
-                telemetry.addData("Back Left", bot.motorBackLeft.getCurrentPosition());
-                telemetry.addData("Back Right", bot.motorBackRight.getCurrentPosition());
+                telemetry.addData("Power", bot.motorFrontLeft.getPower());
+                telemetry.addData("Encoder Count", bot.getEncoderCount());
                 telemetry.update();
             }
 
@@ -200,13 +197,10 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             while (bot.getEncoderCount() > COUNTS && opModeIsActive()) { //while the current count is
                 //still greater than the desired count and the opMode has not been stopped
 
-                telemetry.addData("COUNTS", COUNTS); //shows counts on phone
-                telemetry.update(); //continuously updates the counts
+                telemetry.addData("COUNTS", COUNTS);
 
-                telemetry.addData("Front Left", bot.motorFrontLeft.getCurrentPosition());
-                telemetry.addData("Front Right", bot.motorFrontRight.getCurrentPosition());
-                telemetry.addData("Back Left", bot.motorBackLeft.getCurrentPosition());
-                telemetry.addData("Back Right", bot.motorBackRight.getCurrentPosition());
+                telemetry.addData("Power", bot.motorFrontLeft.getPower());
+                telemetry.addData("Encoder Count", bot.getEncoderCount());
                 telemetry.update();
             }
 
@@ -219,13 +213,10 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             while (bot.getEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
                 //still less than the desired count and the opMode has not been stopped
 
-                telemetry.addData("COUNTS", COUNTS); //shows counts on phone
-                telemetry.update(); //continuously updates the counts
+                telemetry.addData("COUNTS", COUNTS);
 
-                telemetry.addData("Front Left", bot.motorFrontLeft.getCurrentPosition());
-                telemetry.addData("Front Right", bot.motorFrontRight.getCurrentPosition());
-                telemetry.addData("Back Left", bot.motorBackLeft.getCurrentPosition());
-                telemetry.addData("Back Right", bot.motorBackRight.getCurrentPosition());
+                telemetry.addData("Power", bot.motorFrontLeft.getPower());
+                telemetry.addData("Encoder Count", bot.getEncoderCount());
                 telemetry.update();
             }
 
@@ -238,13 +229,10 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             while (bot.getEncoderCount() > COUNTS && opModeIsActive()) { //while the current count is
                 //still greater than the desired count and the opMode has not been stopped
 
-                telemetry.addData("COUNTS", COUNTS); //shows counts on phone
-                telemetry.update(); //continuously updates the counts
+                telemetry.addData("COUNTS", COUNTS);
 
-                telemetry.addData("Front Left", bot.motorFrontLeft.getCurrentPosition());
-                telemetry.addData("Front Right", bot.motorFrontRight.getCurrentPosition());
-                telemetry.addData("Back Left", bot.motorBackLeft.getCurrentPosition());
-                telemetry.addData("Back Right", bot.motorBackRight.getCurrentPosition());
+                telemetry.addData("Power", bot.motorFrontLeft.getPower());
+                telemetry.addData("Encoder Count", bot.getEncoderCount());
                 telemetry.update();
             }
 
