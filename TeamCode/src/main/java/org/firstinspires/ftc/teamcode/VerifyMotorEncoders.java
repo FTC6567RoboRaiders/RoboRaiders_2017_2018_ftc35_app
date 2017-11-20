@@ -74,14 +74,14 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
 
             // Log the encoder count for each of the motors
             if( itsTimeToLog ) {
-                Log.d("ECD","********************************************************");
-                Log.d("ECD","Start of Encoder Counts for Drive Motors");
-                Log.d("ECD",String.format("motorFrontLeft:  %s", encoderArray[0]));
-                Log.d("ECD",String.format("motorFrontRight: %s", encoderArray[1]));
-                Log.d("ECD",String.format("motorBackLeft:   %s", encoderArray[2]));
-                Log.d("ECD",String.format("motorBackRight:  %s", encoderArray[3]));
-                Log.d("ECD","End of Encoder Counts for Drive Motors");
-                Log.d("ECD","********************************************************");
+                Log.d("VME","********************************************************");
+                Log.d("VME","Start of Encoder Counts for Drive Motors");
+                Log.d("VME",String.format("motorFrontLeft:  %s", encoderArray[0]));
+                Log.d("VME",String.format("motorFrontRight: %s", encoderArray[1]));
+                Log.d("VME",String.format("motorBackLeft:   %s", encoderArray[2]));
+                Log.d("VME",String.format("motorBackRight:  %s", encoderArray[3]));
+                Log.d("VME","End of Encoder Counts for Drive Motors");
+                Log.d("VME","********************************************************");
 
                 telemetry.addLine().addData("motorFrontLeft:  ", encoderArray[0]);
                 telemetry.addLine().addData("motorFrontRight: ", encoderArray[1]);
