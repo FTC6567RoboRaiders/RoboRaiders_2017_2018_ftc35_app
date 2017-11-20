@@ -56,10 +56,10 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
 
         while(opModeIsActive()) {
 
-            currentTimeStamp = System.currentTimeMillis();   //* get the current time stamp
+            currentTimeStamp = System.currentTimeMillis();   // get the current time stamp
 
 
-            robot.setDriveMotorPower(0.5, 0.5, 0.5, 0.5);    //* run the motors at 1/2 speed, don't need fast and furious part 2
+            robot.setDriveMotorPower(0.5, 0.5, 0.5, 0.5);    // run the motors at 1/2 speed, don't need fast and furious part 2
 
 
             // store the current encoder counts (positions) for the drive motors
@@ -96,11 +96,15 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
                 telemetry.addLine().addData("motorBackLeft:   ", encoderArray[2]);
                 telemetry.addLine().addData("motorBackRight:  ", encoderArray[3]);
                 telemetry.update();
-            }
-        }
 
+            } // if( itsTimeToLog )
+
+        } // while(opModeIsActive())
+
+        robot.setDriveMotorPower(0, 0, 0, 0);                 // stop the robot
         robot.resetEncoders();                                // stop and reset the encoders
-    }
+
+    } // public void runOpMode() throws InterruptedException
 
     /**
      * Will determine when the log should be updated with new data.  The previous time is subtracted
@@ -127,7 +131,7 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
             return false;
         }
 
-    }
+    } // private boolean timeToLog()
 
 
 }
