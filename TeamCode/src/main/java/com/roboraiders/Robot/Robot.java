@@ -196,7 +196,7 @@ public class Robot {
      * @return averageCount - average encoder count (throws out high and low values and calculates
      * using middle two)
      */
-    public int getSortedEncoders() {
+    public int getSortedEncoderCount() {
 
         int[] encoderArray = new int[4];
 
@@ -229,9 +229,15 @@ public class Robot {
         return averageCount;
     }
 
+    /**
+     * This method will return the absolute value of the current encoder count of the front left motor.
+     *
+     * @return Math.abs(motorFrontLeft.getCurrentPosition()) - the absolute value of the current
+     * encoder count of the front left motor
+     */
     public int getEncoderCount() {
 
-        return Math.abs(motorFrontRight.getCurrentPosition());
+        return Math.abs(motorFrontLeft.getCurrentPosition());
     }
 
     /**
@@ -291,9 +297,9 @@ public class Robot {
     }
 
     /**
-     * This method sets the servo position
+     * This method sets the servo position to the desired position.
      *
-     * @param servoPosition the current position of the servo
+     * @param servoPosition the desired position of the servo
      */
     public void setServoPosition(double servoPosition) {
 
@@ -301,9 +307,9 @@ public class Robot {
     }
 
     /**
-     * This method gets and returns the servo position
+     * This method returns the current position of the servo.
      *
-     * @return the current position of the servo
+     * @return servoJewel.getPosition() - the current position of the servo
      */
     public double getServoPosition() {
 

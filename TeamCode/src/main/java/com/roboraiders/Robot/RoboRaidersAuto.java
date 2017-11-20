@@ -169,22 +169,20 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      */
     public void encodersMove(Robot bot, int distance, double power, String direction) { //sets the parameters
 
-        double COUNTS = bot.calculateCOUNTS(distance); //COUNTS is now equal to the value calculated
-
-        //bot.resetEncoders(); //resets encoders
+        bot.resetEncoders(); //resets encoders
         bot.runWithEncoders(); //sets the mode back to run with encoder
+
+        double COUNTS = bot.calculateCOUNTS(distance); //COUNTS is now equal to the value calculated
 
         if (direction.equals("forward")) { //if the desired direction is forward
 
-            COUNTS = COUNTS + bot.getEncoderCount();
-
             bot.setDriveMotorPower(power, power, power, power); //start driving forward
 
-            while (bot.getEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
+            while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
                 //still less than the desired count and the opMode has not been stopped
 
                 telemetry.addData("COUNTS", COUNTS);
-                telemetry.addData("Encoder Count", bot.getEncoderCount());
+                telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
                 telemetry.update();
             }
 
@@ -192,15 +190,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         }
         else if (direction.equals("backward")) { //if the desired direction is backward
 
-            COUNTS = bot.getEncoderCount() - COUNTS;
-
             bot.setDriveMotorPower(-power, -power, -power, -power); //start driving backward
 
-            while (bot.getEncoderCount() > COUNTS && opModeIsActive()) { //while the current count is
+            while (bot.getSortedEncoderCount() > COUNTS && opModeIsActive()) { //while the current count is
                 //still greater than the desired count and the opMode has not been stopped
 
                 telemetry.addData("COUNTS", COUNTS);
-                telemetry.addData("Encoder Count", bot.getEncoderCount());
+                telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
                 telemetry.update();
             }
 
@@ -208,15 +204,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         }
         else if (direction.equals("right")) { //if the desired direction is right
 
-            COUNTS = COUNTS + bot.getEncoderCount();
-
             bot.setDriveMotorPower(power, -power, -power, power); //start strafing right
 
-            while (bot.getEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
+            while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
                 //still less than the desired count and the opMode has not been stopped
 
                 telemetry.addData("COUNTS", COUNTS);
-                telemetry.addData("Encoder Count", bot.getEncoderCount());
+                telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
                 telemetry.update();
             }
 
@@ -224,22 +218,20 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         }
         else if (direction.equals("left")) { //if the desired direction is left
 
-            COUNTS = bot.getEncoderCount() - COUNTS;
-
             bot.setDriveMotorPower(-power, power, power, -power); //start strafing left
 
-            while (bot.getEncoderCount() > COUNTS && opModeIsActive()) { //while the current count is
+            while (bot.getSortedEncoderCount() > COUNTS && opModeIsActive()) { //while the current count is
                 //still greater than the desired count and the opMode has not been stopped
 
                 telemetry.addData("COUNTS", COUNTS);
-                telemetry.addData("Encoder Count", bot.getEncoderCount());
+                telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
                 telemetry.update();
             }
 
             bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
         }
 
-        //bot.runWithoutEncoders(); //sets the mode back to run without encoder
+        bot.runWithoutEncoders(); //sets the mode back to run without encoder
     }
 
     /**
