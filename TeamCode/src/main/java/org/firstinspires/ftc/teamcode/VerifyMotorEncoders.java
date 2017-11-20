@@ -9,8 +9,8 @@ import com.roboraiders.Robot.Robot;
 @Autonomous(name = "Verify the Motor Encoders", group = "Verify")
 
 /**
- * This class will verify that the encoders are working properly by running with encoders
- * and then output the encoder counts to the phone and log.
+ * This class will verify that the drive motor encoders are working properly by running with encoders
+ * and then outputting the encoder counts to the phone and log.
  *
  * Created by SteveKocik on 11/20/2017.
  */
