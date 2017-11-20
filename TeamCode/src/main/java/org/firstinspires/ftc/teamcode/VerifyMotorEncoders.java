@@ -25,7 +25,7 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
     //  - pastTimeStamp    - is the time stamp that the log was last updated, initially it is set to 0,
     //                     and is only updated when the log is updated
     //
-    //  - LOG_INTERVAL     - the amount of time per each log updated, initially set to 1/4 of a
+    //  - LOG_INTERVAL     - the amount of time per each log updated, initially set to 1/2 of a
     //                     second, this value is in milliseconds (1/2 of sec = 500 milliseconds)
 
     private long currentTimeStamp;
