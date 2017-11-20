@@ -19,8 +19,8 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
 
     // The following variables are used to control how often telemetry data is written to the log
     //
-    //  - currentTimeStamp - is the current time stamp, this is updated every time the loop() method is
-    //                     called
+    //  - currentTimeStamp - is the current time stamp, this is updated every time within the
+    //                     while(opModeIsActive()) loop
     //
     //  - pastTimeStamp    - is the time stamp that the log was last updated, initially it is set to 0,
     //                     and is only updated when the log is updated
@@ -42,9 +42,10 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
     public void runOpMode() throws InterruptedException {
 
         robot.initialize(hardwareMap);
+        pastTimeStamp = 0;
 
         // Write message to log indicating that teleop program is initialized
-        Log.d("INIT","VerifyMotorEncoders Initialization Complete");
+        Log.d("VME","VerifyMotorEncoders Initialization Complete");
 
         telemetry.addData("Initialized", true);
         telemetry.update();
@@ -58,9 +59,7 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
 
             currentTimeStamp = System.currentTimeMillis();   // get the current time stamp
 
-
             robot.setDriveMotorPower(0.5, 0.5, 0.5, 0.5);    // run the motors at 1/2 speed, don't need fast and furious part 2
-
 
             // store the current encoder counts (positions) for the drive motors
             encoderArray[0] = robot.motorFrontLeft.getCurrentPosition();
