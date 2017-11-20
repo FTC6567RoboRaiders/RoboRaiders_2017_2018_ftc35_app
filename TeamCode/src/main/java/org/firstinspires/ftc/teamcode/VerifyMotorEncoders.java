@@ -74,6 +74,12 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
 
             // Log the encoder count for each of the motors
             if( itsTimeToLog ) {
+
+                // Log is an Android class that is used for sending log output to the log file
+                // on the Android phone (in this case the Robot Controller).  There
+                // are several methods that Log supports.  The d method is for logging
+                // debug information.  More information can be found at:
+                // https://developer.android.com/reference/android/util/Log.html
                 Log.d("VME","********************************************************");
                 Log.d("VME","Start of Encoder Counts for Drive Motors");
                 Log.d("VME",String.format("motorFrontLeft:  %s", encoderArray[0]));
@@ -83,6 +89,8 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
                 Log.d("VME","End of Encoder Counts for Drive Motors");
                 Log.d("VME","********************************************************");
 
+                // Update the driver station display with the same information as has been
+                // captured to the log file.
                 telemetry.addLine().addData("motorFrontLeft:  ", encoderArray[0]);
                 telemetry.addLine().addData("motorFrontRight: ", encoderArray[1]);
                 telemetry.addLine().addData("motorBackLeft:   ", encoderArray[2]);
