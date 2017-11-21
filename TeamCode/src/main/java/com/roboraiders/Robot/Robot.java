@@ -79,10 +79,10 @@ public class Robot {
         hwMap = ahwMap;
 
         // Define and initialize motors
-        motorFrontLeft = hwMap.get(DcMotor.class, "left_Front");
+        motorFrontLeft  = hwMap.get(DcMotor.class, "left_Front");
         motorFrontRight = hwMap.get(DcMotor.class, "right_Front");
-        motorBackLeft = hwMap.get(DcMotor.class, "left_Back");
-        motorBackRight = hwMap.get(DcMotor.class, "right_Back");
+        motorBackLeft   = hwMap.get(DcMotor.class, "left_Back");
+        motorBackRight  = hwMap.get(DcMotor.class, "right_Back");
 
         // Defines the directions the motors will spin
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
