@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
@@ -16,7 +17,7 @@ import com.roboraiders.Robot.Robot;
  * Created by SteveKocik on 11/20/2017.
  */
 
-public class HubBot2VeriifyEncoders extends RoboRaidersAuto {
+public class HubBot2VeriifyEncoders extends LinearOpMode {
 
     // The following variables are used to control how often telemetry data is written to the log
     //
@@ -43,17 +44,23 @@ public class HubBot2VeriifyEncoders extends RoboRaidersAuto {
     public void runOpMode() throws InterruptedException {
 
         motorBackRight = hardwareMap.get(DcMotor.class, "right_Back");
+
+        telemetry.addLine().addData("Initialized:", false);
+        telemetry.addLine().addData("motorBackRight:  ", encoderCount);
+        telemetry.addLine().addData("EncMode: ", motorBackRight.getMode());
+        telemetry.addLine().addData("isPID: ",motorBackRight.getMode().isPIDMode());
+        telemetry.addLine().addData("PortNumber: ",motorBackRight.getPortNumber());
+        telemetry.addLine().addData("Power: ",motorBackRight.getPower());
+
         motorBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorBackRight.setPower(0);
+        motorBackRight.setPower(0.0);
         motorBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         pastTimeStamp = 0;
 
-        // Write message to log indicating that teleop program is initialized
-        Log.d("VME","VerifyMotorEncoders Initialization Complete");
-
-        telemetry.addData("Initialized", true);
+        telemetry.addLine().addData("Initialized", true);
         telemetry.update();
 
         waitForStart();
@@ -76,9 +83,11 @@ public class HubBot2VeriifyEncoders extends RoboRaidersAuto {
                 // Update the driver station display with the same information as has been
                 // captured to the log file.
 
-                telemetry.addLine().addData("motorBackRight:  ", encoderCount).addData("EncMode: ", motorBackRight.getMode());
-
-
+                telemetry.addLine().addData("motorBackRight:  ", encoderCount);
+                telemetry.addLine().addData("EncMode: ", motorBackRight.getMode());
+                telemetry.addLine().addData("isPID: ",motorBackRight.getMode().isPIDMode());
+                telemetry.addLine().addData("PortNumber: ",motorBackRight.getPortNumber());
+                telemetry.addLine().addData("Power: ",motorBackRight.getPower());
                 telemetry.update();
 
             } // if( itsTimeToLog )
