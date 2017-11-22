@@ -14,6 +14,8 @@ import com.roboraiders.Robot.Robot;
  * This class will verify that the drive motor encoders are working properly by running with encoders
  * and then outputting the encoder counts to the phone and log.
  *
+ * made some updates so Alex can verify her android studio installation is right....
+ *
  * Created by SteveKocik on 11/20/2017.
  */
 
