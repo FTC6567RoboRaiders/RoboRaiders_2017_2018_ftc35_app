@@ -19,11 +19,10 @@ public class JewelCloseRed extends RoboRaidersAuto {
     public void runOpMode() throws InterruptedException {
 
         robot.initialize(hardwareMap);
+        robot.initializeServos();
         vuforiaInitialization(hardwareMap);
         telemetry.addData("Initialized", true);
         telemetry.update();
-
-        robot.setServoPosition(0.1);
 
         waitForStart();
 

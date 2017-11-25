@@ -19,9 +19,10 @@ public class CryptoboxFarBlue extends RoboRaidersAuto {
     public void runOpMode() throws InterruptedException {
 
         robot.initialize(hardwareMap);
+        robot.initializeServos();
         vuforiaInitialization(hardwareMap);
-
-        robot.setServoPosition(0.1);
+        telemetry.addData("Initialized", true);
+        telemetry.update();
 
         waitForStart();
 

@@ -23,6 +23,7 @@ public class CryptoboxAutonomous extends RoboRaidersAuto {
     public void runOpMode() throws InterruptedException {
 
         robot.initialize(hardwareMap); //sets parameters for initialize sequence
+        robot.initializeServos();
         vuforiaInitialization(hardwareMap);
 
         waitForStart();

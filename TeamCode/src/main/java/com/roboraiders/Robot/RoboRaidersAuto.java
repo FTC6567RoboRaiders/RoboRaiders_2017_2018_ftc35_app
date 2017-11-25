@@ -63,7 +63,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 imuTurn(bot, 25, 0.25, "left"); //pivot left
                 Thread.sleep(500);
 
-                bot.setServoPosition(0.1); //move arm back to initialization position
+                bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
                 imuTurn(bot, 25, 0.25, "right"); //pivot right to original position
@@ -78,7 +78,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 imuTurn(bot, 25, 0.25, "right"); //pivot right
                 Thread.sleep(500);
 
-                bot.setServoPosition(0.1); //move arm back to initialization position
+                bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
                 imuTurn(bot, 25, 0.25, "left"); //pivot left to original position
@@ -99,7 +99,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 imuTurn(bot, 25, 0.25, "left"); //pivot left
                 Thread.sleep(500);
 
-                bot.setServoPosition(0.1); //move arm back to initialization position
+                bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
                 imuTurn(bot, 25, 0.25, "right"); //pivot right to original position
@@ -114,7 +114,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 imuTurn(bot, 25, 0.25, "right"); //pivot right
                 Thread.sleep(500);
 
-                bot.setServoPosition(0.1); //move arm back to initialization position
+                bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
                 imuTurn(bot, 25, 0.25, "left"); //pivot left to original position
@@ -330,13 +330,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      */
     public void lowerArm(Robot bot, double finalServoPosition) throws InterruptedException {
 
-        double servoPosition = bot.getServoPosition(); //sets getPosition() to servoPosition
+        double servoPosition = bot.getJewelServoPosition(); //sets getPosition() to servoPosition
 
         while (servoPosition < finalServoPosition && opModeIsActive()) { //while the op mode is active and while the servo position variable is less
             //than 0.99
 
             servoPosition = servoPosition + 0.05;          //add 0.05 to the current servoPosition variable
-            bot.setServoPosition(servoPosition);
+            bot.setJewelServoPosition(servoPosition);
             Thread.sleep(75);                              //wait 0.02 seconds (20 milliseconds)
         }
 

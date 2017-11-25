@@ -19,9 +19,8 @@ public class JewelAutonomous extends RoboRaidersAuto {
     public void runOpMode() throws InterruptedException {
 
         robot.initialize(hardwareMap);
+        robot.initializeServos();
         vuforiaInitialization(hardwareMap);
-
-        robot.setServoPosition(0.4);
 
         waitForStart();
 

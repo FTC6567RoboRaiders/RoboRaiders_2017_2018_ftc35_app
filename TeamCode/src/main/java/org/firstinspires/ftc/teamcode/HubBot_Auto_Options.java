@@ -145,7 +145,7 @@ public class HubBot_Auto_Options extends LinearOpMode {
 
         // Balancing Stone Selection
         telemetry.addLine(bsTitle);
-        telemetry.addLine("Press B for Near or X for Away");
+        telemetry.addLine("Press B for Close or X for Far");
         telemetry.update();
 
         gamepad1.reset();                                             // reset the gamepad to initial state
@@ -160,16 +160,16 @@ public class HubBot_Auto_Options extends LinearOpMode {
             cur_B_ButtonState = gamepad1.b;                           // get the current state of button b
             cur_X_ButtonState = gamepad1.x;                           // get the current state of button x
 
-            if (cur_B_ButtonState) {                                  // when the "b" button on the gamepad is pressed set alliance to RED
+            if (cur_B_ButtonState) {                                  // when the "b" button on the gamepad is pressed set balancing stone to close
                 if (!prev_B_ButtonState) {                            // when the previous "b" button was NOT pushed
-                    bsSelection = bsOptions[0];                       // set balance stone selection to Near
+                    bsSelection = bsOptions[0];                       // set balance stone selection to close
                     prev_B_ButtonState = true;                        // indicate that the previous B button state is PUSHED
                 }
             }
 
-            else if (cur_X_ButtonState) {                             // when the "X" button on the gamepad is pressed set the alliance to BLUE
+            else if (cur_X_ButtonState) {                             // when the "X" button on the gamepad is pressed set balancing stone to far
                 if (!prev_X_ButtonState) {                            // when the previous "x" button was NOT pushed
-                    bsSelection = bsOptions[1];                       // set balance stone selection to Away
+                    bsSelection = bsOptions[1];                       // set balance stone selection to far
                     prev_X_ButtonState = true;                        // indicate that the previous X button state is PUSHED
                 }
             }
@@ -208,16 +208,16 @@ public class HubBot_Auto_Options extends LinearOpMode {
             cur_B_ButtonState = gamepad1.b;                           // get the current state of button b
             cur_X_ButtonState = gamepad1.x;                           // get the current state of button x
 
-            if (cur_B_ButtonState) {                                  // when the "b" button on the gamepad is pressed set alliance to RED
+            if (cur_B_ButtonState) {                                  // when the "b" button on the gamepad is pressed set choice to no
                 if (!prev_B_ButtonState) {                            // when the previous "b" button was NOT pushed
-                    jewelSelection = yesNoOptions[0];                       // set balance stone selection to Near
+                    jewelSelection = yesNoOptions[0];                 // set choice to no
                     prev_B_ButtonState = true;                        // indicate that the previous B button state is PUSHED
                 }
             }
 
-            else  if (cur_X_ButtonState) {                            // when the "X" button on the gamepad is pressed set the alliance to BLUE
+            else  if (cur_X_ButtonState) {                            // when the "X" button on the gamepad is pressed set choice to yes
                 if (!prev_X_ButtonState) {                            // when the previous "x" button was NOT pushed
-                    jewelSelection = yesNoOptions[1];                       // set balance stone selection to Away
+                    jewelSelection = yesNoOptions[1];                 // set choice to yes
                     prev_X_ButtonState = true;                        // indicate that the previous X button state is PUSHED
                 }
             }
@@ -256,16 +256,16 @@ public class HubBot_Auto_Options extends LinearOpMode {
             cur_B_ButtonState = gamepad1.b;                           // get the current state of button b
             cur_X_ButtonState = gamepad1.x;                           // get the current state of button x
 
-            if (cur_B_ButtonState) {                                  // when the "b" button on the gamepad is pressed set alliance to RED
+            if (cur_B_ButtonState) {                                  // when the "b" button on the gamepad is pressed set choice to no
                 if (!prev_B_ButtonState) {                            // when the previous "b" button was NOT pushed
-                    parkSelection = yesNoOptions[0];                  // set balance stone selection to Near
+                    parkSelection = yesNoOptions[0];                  // set choice to no
                     prev_B_ButtonState = true;                        // indicate that the previous B button state is PUSHED
                 }
             }
 
-            else  if (cur_X_ButtonState) {                            // when the "X" button on the gamepad is pressed set the alliance to BLUE
+            else  if (cur_X_ButtonState) {                            // when the "X" button on the gamepad is pressed set choice to yes
                 if (!prev_X_ButtonState) {                            // when the previous "x" button was NOT pushed
-                    parkSelection = yesNoOptions[1];                  // set balance stone selection to Away
+                    parkSelection = yesNoOptions[1];                  // set choice to yes
                     prev_X_ButtonState = true;                        // indicate that the previous X button state is PUSHED
                 }
             }
