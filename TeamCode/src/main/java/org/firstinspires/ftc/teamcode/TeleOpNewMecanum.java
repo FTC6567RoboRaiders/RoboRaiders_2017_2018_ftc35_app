@@ -20,15 +20,15 @@ public class TeleOpNewMecanum extends OpMode {
     float RightBack;  // Power for right back motor
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
-    float Across;     // Power for relic across motor
-    float Down;       // Power for relic down CR servo
+    //float Across;     // Power for relic across motor
+    //float Down;       // Power for relic down CR servo
     float maxpwr;     // Maximum power of the four motors
     boolean nudging = false;
     int nudgeCount = 0;
-    public boolean currStateY = false;
+    /*public boolean currStateY = false;
     public boolean prevStateY = false;
     public boolean currStateA = false;
-    public boolean prevStateA = false;
+    public boolean prevStateA = false;*/
 
     @Override
     public void init() {
@@ -104,7 +104,13 @@ public class TeleOpNewMecanum extends OpMode {
         }
 
         // "Glyph In/Out" functionality
-        if (gamepad2.x) {
+        if (gamepad2.right_bumper) {
+
+
+        }
+
+        // "Glyph In/Out" functionality
+        /*if (gamepad2.x) {
 
             robot.glyphIn();
         }
@@ -161,7 +167,7 @@ public class TeleOpNewMecanum extends OpMode {
         else {
 
             robot.gripperClose();
-        }
+        }*/
     }
 
     @Override

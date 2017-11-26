@@ -3,11 +3,13 @@ package org.firstinspires.ftc.teamcode;
 import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 @Autonomous(name = "Verify the Motor Encoders", group = "Verify")
+@Disabled
 
 /**
  * This class will verify that the drive motor encoders are working properly by running with encoders

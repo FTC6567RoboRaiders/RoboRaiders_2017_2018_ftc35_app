@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.View;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 /**
@@ -17,6 +18,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
  **/
 
 @Autonomous(name = "HubBot: Autonomous Options", group = "Auto")
+@Disabled
 
 public class HubBot_Auto_Options extends LinearOpMode {
 

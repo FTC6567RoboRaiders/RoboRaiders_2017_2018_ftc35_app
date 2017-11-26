@@ -9,6 +9,7 @@ import com.roboraiders.Robot.Robot;
  */
 
 @Autonomous
+@Disabled
 
 public class robotMoveRight extends RoboRaidersAuto {
 

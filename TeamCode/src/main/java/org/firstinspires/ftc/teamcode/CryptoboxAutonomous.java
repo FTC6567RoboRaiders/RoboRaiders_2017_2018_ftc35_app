@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  */
 
 @Autonomous
-//@Disabled
+@Disabled
 
 public class CryptoboxAutonomous extends RoboRaidersAuto {
 

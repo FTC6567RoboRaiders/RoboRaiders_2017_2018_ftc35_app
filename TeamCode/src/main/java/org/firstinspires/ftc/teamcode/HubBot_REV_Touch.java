@@ -46,6 +46,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
  */
 
 @Autonomous(name = "HubBot: REV Digital Touch", group = "Sensor")
+@Disabled
 
 public class HubBot_REV_Touch extends LinearOpMode {
     /**
