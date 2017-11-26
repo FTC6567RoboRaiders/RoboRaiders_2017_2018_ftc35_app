@@ -25,6 +25,10 @@ public class TeleOpNewMecanum extends OpMode {
     float maxpwr;     // Maximum power of the four motors
     boolean nudging = false;
     int nudgeCount = 0;
+    public boolean currStateRightBumper = false;
+    public boolean prevStateRightBumper = false;
+    public boolean currStateLeftBumper = false;
+    public boolean prevStateLeftBumper = false;
     /*public boolean currStateY = false;
     public boolean prevStateY = false;
     public boolean currStateA = false;
@@ -103,14 +107,28 @@ public class TeleOpNewMecanum extends OpMode {
             nudgeCount = 0; // ...and nudgeCount is reset to 0."
         }
 
-        // "Arms Close/Rest" functionality
-        if (gamepad2.right_bumper) {
+        // "Arms Open" functionality
+        currStateRightBumper = gamepad2.right_bumper;
+        if (currStateRightBumper && currStateRightBumper != prevStateRightBumper) {
+
+            robot.armsOpen();
+            prevStateRightBumper = currStateRightBumper;
+        }
+        else if (!currStateRightBumper && currStateRightBumper != prevStateRightBumper) {
+
+            prevStateRightBumper = currStateRightBumper;
+        }
+
+        // "Arms Close" functionality
+        currStateLeftBumper = gamepad2.left_bumper;
+        if (currStateLeftBumper && currStateLeftBumper != prevStateLeftBumper) {
 
             robot.armsClose();
+            prevStateLeftBumper = currStateLeftBumper;
         }
-        else {
+        else if (!currStateLeftBumper && currStateLeftBumper != prevStateLeftBumper) {
 
-            robot.armsRest();
+            prevStateLeftBumper = currStateLeftBumper;
         }
 
         // "Wheels In/Out/Rest" functionality

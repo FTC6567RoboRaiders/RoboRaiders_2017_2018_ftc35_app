@@ -158,8 +158,8 @@ public class Robot {
     public void initializeServos() {
 
         servoJewel.setPosition(0.1);
-        servoArmLeft.setPosition(0.1);
-        servoArmRight.setPosition(0.9);
+        servoArmLeft.setPosition(1.0);
+        servoArmRight.setPosition(0.0);
         //servoRelicGripper.setPosition(0.3);
     }
 
@@ -191,13 +191,13 @@ public class Robot {
         //servoRelicDown.setPower(down);
     }
 
-    public void armsClose() {
+    public void armsOpen() {
 
-        servoArmLeft.setPosition(0.3);
-        servoArmRight.setPosition(0.7);
+        servoArmLeft.setPosition(0.0);
+        servoArmRight.setPosition(1.0);
     }
 
-    public void armsRest() {
+    public void armsClose() {
 
         servoArmLeft.setPosition(0.8);
         servoArmRight.setPosition(0.2);
@@ -205,14 +205,14 @@ public class Robot {
 
     public void wheelsIn() {
 
-        servoWheelLeft.setPower(0.5);
-        servoWheelRight.setPower(-0.5);
+        servoWheelLeft.setPower(-1.0);
+        servoWheelRight.setPower(1.0);
     }
 
     public void wheelsOut() {
 
-        servoWheelLeft.setPower(-0.5);
-        servoWheelRight.setPower(0.5);
+        servoWheelLeft.setPower(1.0);
+        servoWheelRight.setPower(-1.0);
     }
 
     public void wheelsRest() {
