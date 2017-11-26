@@ -153,30 +153,45 @@ public class Robot {
         motorBackRight.setPower(rightBack);
     }
 
+    /**
+     * This method will open the servo arms
+     */
     public void armsOpen() {
 
         servoArmLeft.setPosition(0.0);
         servoArmRight.setPosition(1.0);
     }
 
+    /**
+     * This method will close the servo arms
+     */
     public void armsClose() {
 
         servoArmLeft.setPosition(0.8);
         servoArmRight.setPosition(0.2);
     }
 
+    /**
+     * This method will spin the servo wheels in
+     */
     public void wheelsIn() {
 
         servoWheelLeft.setPower(-1.0);
         servoWheelRight.setPower(1.0);
     }
 
+    /**
+     * This method will spin the servo wheels out
+     */
     public void wheelsOut() {
 
         servoWheelLeft.setPower(1.0);
         servoWheelRight.setPower(-1.0);
     }
 
+    /**
+     * This method will stop the servo wheels from spinning
+     */
     public void wheelsRest() {
 
         servoWheelLeft.setPower(0.0);
