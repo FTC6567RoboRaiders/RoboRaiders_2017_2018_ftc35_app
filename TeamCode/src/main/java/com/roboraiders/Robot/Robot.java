@@ -191,105 +191,135 @@ public class Robot {
         //servoRelicDown.setPower(down);
     }
 
+    public void armsClose() {
+
+        servoArmLeft.setPosition(0.3);
+        servoArmRight.setPosition(0.7);
+    }
+
+    public void armsRest() {
+
+        servoArmLeft.setPosition(0.8);
+        servoArmRight.setPosition(0.2);
+    }
+
+    public void wheelsIn() {
+
+        servoWheelLeft.setPower(0.5);
+        servoWheelRight.setPower(-0.5);
+    }
+
+    public void wheelsOut() {
+
+        servoWheelLeft.setPower(-0.5);
+        servoWheelRight.setPower(0.5);
+    }
+
+    public void wheelsRest() {
+
+        servoWheelLeft.setPower(0.0);
+        servoWheelRight.setPower(0.0);
+    }
+
     /**
      * This method will pull a glyph in using the glyph intake assembly
      */
-    public void glyphIn() {
+    /*public void glyphIn() {
 
         servoWheelLeft.setPower(0.5);
         servoWheelRight.setPower(-0.5);
         servoArmLeft.setPosition(0.3);
         servoArmRight.setPosition(0.7);
         //motorGlyphIn.setPower(0.5);
-    }
+    }*/
 
     /**
      * This method will push a glyph out from the omni wheel assembly
      */
-    public void glyphOut() {
+    /*public void glyphOut() {
 
         servoWheelLeft.setPower(-0.5);
         servoWheelRight.setPower(0.5);
         servoArmLeft.setPosition(0.3);
         servoArmRight.setPosition(0.7);
         //motorGlyphIn.setPower(-0.5);
-    }
+    }*/
 
     /**
      * This method will set the glyph intake assembly to its resting phase
      */
-    public void glyphRest() {
+    /*public void glyphRest() {
 
         servoWheelLeft.setPower(0.0);
         servoWheelRight.setPower(0.0);
-        servoArmLeft.setPosition(0.3);
-        servoArmRight.setPosition(0.7);
+        servoArmLeft.setPosition(0.8);
+        servoArmRight.setPosition(0.2);
         //motorGlyphIn.setPower(0.0);
-    }
+    }*/
 
     /**
      * This method will raise a glyph in the omni wheel assembly
      */
-    public void glyphUp() {
+    /*public void glyphUp() {
 
         resetEncoders();
         runWithEncoders();
 
         double COUNTS = calculateCOUNTS(10);
 
-        //motorGlyphUpLeft.setPower(0.5);
-        //motorGlyphUpRight.setPower(0.5);
+        motorGlyphUpLeft.setPower(0.5);
+        motorGlyphUpRight.setPower(0.5);
 
-        /*while (getGlyphUpEncoderCount() < COUNTS) {
+        while (getGlyphUpEncoderCount() < COUNTS) {
 
 
-        }*/
+        }
 
-        //motorGlyphUpLeft.setPower(0.0);
-        //motorGlyphUpRight.setPower(0.0);
+        motorGlyphUpLeft.setPower(0.0);
+        motorGlyphUpRight.setPower(0.0);
 
         runWithoutEncoders();
-    }
+    }*/
 
     /**
      * This method will lower a glyph in the omni wheel assembly
      */
-    public void glyphDown() {
+    /*public void glyphDown() {
 
         resetEncoders();
         runWithEncoders();
 
         double COUNTS = calculateCOUNTS(10);
 
-        //motorGlyphUpLeft.setPower(-0.5);
-        //motorGlyphUpRight.setPower(-0.5);
+        motorGlyphUpLeft.setPower(-0.5);
+        motorGlyphUpRight.setPower(-0.5);
 
-        /*while (getGlyphUpEncoderCount() > COUNTS) {
+        while (getGlyphUpEncoderCount() > COUNTS) {
 
 
-        }*/
+        }
 
-        //motorGlyphUpLeft.setPower(0.0);
-        //motorGlyphUpRight.setPower(0.0);
+        motorGlyphUpLeft.setPower(0.0);
+        motorGlyphUpRight.setPower(0.0);
 
         runWithoutEncoders();
-    }
+    }*/
 
     /**
      * This method will open the gripper servo
      */
-    public void gripperOpen() {
+    /*public void gripperOpen() {
 
-        //servoRelicGripper.setPosition(0.7);
-    }
+        servoRelicGripper.setPosition(0.7);
+    }*/
 
     /**
      * This method will close the gripper servo
      */
-    public void gripperClose() {
+    /*public void gripperClose() {
 
-        //servoRelicGripper.setPosition(0.3);
-    }
+        servoRelicGripper.setPosition(0.3);
+    }*/
 
     /**
      * This method will reset the IMU

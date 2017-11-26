@@ -103,10 +103,28 @@ public class TeleOpNewMecanum extends OpMode {
             nudgeCount = 0; // ...and nudgeCount is reset to 0."
         }
 
-        // "Glyph In/Out" functionality
+        // "Arms Close/Rest" functionality
         if (gamepad2.right_bumper) {
 
+            robot.armsClose();
+        }
+        else {
 
+            robot.armsRest();
+        }
+
+        // "Wheels In/Out/Rest" functionality
+        if (gamepad2.x) {
+
+            robot.wheelsIn();
+        }
+        else if (gamepad2.b) {
+
+            robot.wheelsOut();
+        }
+        else {
+
+            robot.wheelsRest();
         }
 
         // "Glyph In/Out" functionality
