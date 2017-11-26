@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.Range;
 import com.roboraiders.Robot.Robot;
 
 /**
@@ -20,8 +19,6 @@ public class TeleOpNewMecanum extends OpMode {
     float RightBack;  // Power for right back motor
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
-    //float Across;     // Power for relic across motor
-    //float Down;       // Power for relic down CR servo
     float maxpwr;     // Maximum power of the four motors
     boolean nudging = false;
     int nudgeCount = 0;
@@ -29,10 +26,6 @@ public class TeleOpNewMecanum extends OpMode {
     public boolean prevStateRightBumper = false;
     public boolean currStateLeftBumper = false;
     public boolean prevStateLeftBumper = false;
-    /*public boolean currStateY = false;
-    public boolean prevStateY = false;
-    public boolean currStateA = false;
-    public boolean prevStateA = false;*/
 
     @Override
     public void init() {
@@ -144,66 +137,6 @@ public class TeleOpNewMecanum extends OpMode {
 
             robot.wheelsRest();
         }
-
-        // "Glyph In/Out" functionality
-        /*if (gamepad2.x) {
-
-            robot.glyphIn();
-        }
-        else if (gamepad2.b) {
-
-            robot.glyphOut();
-        }
-        else {
-            
-            robot.glyphRest();
-        }
-        
-        // "Glyph Up" functionality
-        currStateY = gamepad2.y;
-        if (currStateY && currStateY != prevStateY) {
-
-            robot.glyphUp();
-            prevStateY = currStateY;
-        }
-        else if (!currStateY && currStateY != prevStateY) {
-
-            prevStateY = currStateY;
-        }
-
-        // "Glyph Down" functionality
-        currStateA = gamepad2.a;
-        if (currStateA && currStateA != prevStateA) {
-
-            robot.glyphDown();
-            prevStateA = currStateA;
-        }
-        else if (!currStateA && currStateA != prevStateA) {
-
-            prevStateA = currStateA;
-        }
-
-        // "Relic Across/Down" functionality
-        Across = gamepad2.right_stick_y;
-        Down = gamepad2.left_stick_y;
-
-        Across = Range.clip(Across, -1, 1);
-        Down = Range.clip(Down, -1, 1);
-
-        Across = (float) scaleInput(Across);
-        Down = (float) scaleInput(Down);
-
-        robot.setRelicAttachmentsPower(Across, Down);
-
-        // "Relic Gripper Open/Close" functionality
-        if (gamepad2.right_bumper) {
-
-            robot.gripperOpen();
-        }
-        else {
-
-            robot.gripperClose();
-        }*/
     }
 
     @Override
