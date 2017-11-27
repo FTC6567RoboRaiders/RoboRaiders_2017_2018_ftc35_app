@@ -163,12 +163,21 @@ public class Robot {
     }
 
     /**
-     * This method will close the servo arms
+     * This method will close the servo arms to capture a glyph
+     */
+    public void armsGlyph() {
+
+        servoArmLeft.setPosition(0.7);
+        servoArmRight.setPosition(0.3);
+    }
+
+    /**
+     * This method will close the servo arms all of the way
      */
     public void armsClose() {
 
-        servoArmLeft.setPosition(0.8);
-        servoArmRight.setPosition(0.2);
+        servoArmLeft.setPosition(1.0);
+        servoArmRight.setPosition(0.0);
     }
 
     /**

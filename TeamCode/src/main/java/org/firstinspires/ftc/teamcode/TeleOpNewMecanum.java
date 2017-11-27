@@ -26,6 +26,8 @@ public class TeleOpNewMecanum extends OpMode {
     public boolean prevStateRightBumper = false;
     public boolean currStateLeftBumper = false;
     public boolean prevStateLeftBumper = false;
+    public boolean currStateA = false;
+    public boolean prevStateA = false;
 
     @Override
     public void init() {
@@ -112,16 +114,28 @@ public class TeleOpNewMecanum extends OpMode {
             prevStateRightBumper = currStateRightBumper;
         }
 
-        // "Arms Close" functionality
+        // "Arms Glyph" functionality
         currStateLeftBumper = gamepad2.left_bumper;
         if (currStateLeftBumper && currStateLeftBumper != prevStateLeftBumper) {
 
-            robot.armsClose();
+            robot.armsGlyph();
             prevStateLeftBumper = currStateLeftBumper;
         }
         else if (!currStateLeftBumper && currStateLeftBumper != prevStateLeftBumper) {
 
             prevStateLeftBumper = currStateLeftBumper;
+        }
+
+        // "Arms Close" functionality
+        currStateA = gamepad2.a;
+        if (currStateA && currStateA != prevStateA) {
+
+            robot.armsClose();
+            prevStateA = currStateA;
+        }
+        else if (!currStateA && currStateA != prevStateA) {
+
+            prevStateA = currStateA;
         }
 
         // "Wheels In/Out/Rest" functionality
