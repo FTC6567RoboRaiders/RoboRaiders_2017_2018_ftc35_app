@@ -10,7 +10,7 @@ import com.roboraiders.Robot.Robot;
 
 @TeleOp
 
-public class TeleOpNewMecanum extends OpMode {
+public class IndieTeleOpMecanum extends OpMode {
 
     public Robot robot = new Robot();
 
