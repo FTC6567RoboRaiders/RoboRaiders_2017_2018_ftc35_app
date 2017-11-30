@@ -192,7 +192,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             bot.setDriveMotorPower(-power, -power, -power, -power); //start driving backward
 
-            while (bot.getSortedEncoderCount() > COUNTS && opModeIsActive()) { //while the current count is
+            while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
                 //still greater than the desired count and the opMode has not been stopped
 
                 telemetry.addData("COUNTS", COUNTS);
@@ -220,7 +220,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             bot.setDriveMotorPower(-power, power, power, -power); //start strafing left
 
-            while (bot.getSortedEncoderCount() > COUNTS && opModeIsActive()) { //while the current count is
+            while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
                 //still greater than the desired count and the opMode has not been stopped
 
                 telemetry.addData("COUNTS", COUNTS);
