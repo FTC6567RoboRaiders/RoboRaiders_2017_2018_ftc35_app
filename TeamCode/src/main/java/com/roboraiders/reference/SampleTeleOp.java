@@ -14,6 +14,7 @@ import com.qualcomm.robotcore.util.Range;
 // in the drop down list on the Driver Station phone to be chosen to run.
 //@Disabled // This line temporarily takes this op mode off of the drop down list until it is
 // commented out.
+@Disabled
 
 public class SampleTeleOp extends OpMode { // This line establishes the name of the op mode and
     // extends the header file "OpMode" in order to create a teleop op mode.
