@@ -53,7 +53,7 @@ public class Robot {
     public CRServo servoWheelRight = null;
 
     public ColorSensor colorSensor;
-    public DistanceSensor distanceSensor;
+    //public DistanceSensor distanceSensor;
     public BNO055IMU imu;
 
     /* Local OpMode Members */
@@ -120,7 +120,7 @@ public class Robot {
 
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
-        distanceSensor = hwMap.get(DistanceSensor.class, "sensor_distance");
+        //distanceSensor = hwMap.get(DistanceSensor.class, "sensor_distance");
         imu = hwMap.get(BNO055IMU.class, "imu");
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.mode = BNO055IMU.SensorMode.IMU;
@@ -343,10 +343,10 @@ public class Robot {
      * @return distanceSensor.getDistance(DistanceUnit.CM) - the current distance of the
      * distance sensor from an object in inches
      */
-    public double getDistance() {
+    /*public double getDistance() {
 
         return distanceSensor.getDistance(DistanceUnit.CM);
-    }
+    }*/
 
     /**
      * This method will return the color sensor reading of the selected color

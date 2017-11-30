@@ -28,10 +28,10 @@ public class JewelFarBlue extends RoboRaidersAuto {
         lowerArm(robot, 0.99);
         selectJewel(robot, "blue");
 
-        encodersMove(robot, 16, 0.5, "forward");
+        encodersMove(robot, 24, 0.5, "forward");
         Thread.sleep(500);
 
-        encodersMove(robot, 12, 0.5, "right");
+        encodersMove(robot, 18, 0.5, "right");
         Thread.sleep(500);
     }
 }

@@ -246,7 +246,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public void distanceSensorCount(Robot bot, int dividersTarget, double power, int desiredDistance) { //establishes
         //parameters for method
 
-        double dividersDistance = 0; //counts the number of times that the robot hits the divider with the distance sensor
+        /*double dividersDistance = 0; //counts the number of times that the robot hits the divider with the distance sensor
 
         bot.setDriveMotorPower(-power, power, power, -power); //robot is moving left at whatever power is specified
 
@@ -288,7 +288,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             }
         }
 
-        bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
+        bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot*/
     }
 
     /**
