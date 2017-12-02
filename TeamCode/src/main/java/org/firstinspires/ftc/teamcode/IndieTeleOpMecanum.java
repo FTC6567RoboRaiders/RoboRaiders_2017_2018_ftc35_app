@@ -22,12 +22,12 @@ public class IndieTeleOpMecanum extends OpMode {
     float maxpwr;     // Maximum power of the four motors
     boolean nudging = false;
     int nudgeCount = 0;
-    public boolean currStateRightBumper = false;
-    public boolean prevStateRightBumper = false;
-    public boolean currStateLeftBumper = false;
-    public boolean prevStateLeftBumper = false;
+    public boolean currStateX = false;
+    public boolean prevStateX = false;
     public boolean currStateA = false;
     public boolean prevStateA = false;
+    public boolean currStateB = false;
+    public boolean prevStateB = false;
 
     @Override
     public void init() {
@@ -103,34 +103,22 @@ public class IndieTeleOpMecanum extends OpMode {
         }
 
         // "Arms Open" functionality
-        currStateRightBumper = gamepad2.right_bumper;
-        if (currStateRightBumper && currStateRightBumper != prevStateRightBumper) {
+        currStateB = gamepad2.b;
+        if (currStateB && currStateB != prevStateB) {
 
             robot.armsOpen();
-            prevStateRightBumper = currStateRightBumper;
+            prevStateB = currStateB;
         }
-        else if (!currStateRightBumper && currStateRightBumper != prevStateRightBumper) {
+        else if (!currStateB && currStateB != prevStateB) {
 
-            prevStateRightBumper = currStateRightBumper;
+            prevStateB = currStateB;
         }
 
         // "Arms Glyph" functionality
-        currStateLeftBumper = gamepad2.left_bumper;
-        if (currStateLeftBumper && currStateLeftBumper != prevStateLeftBumper) {
-
-            robot.armsGlyph();
-            prevStateLeftBumper = currStateLeftBumper;
-        }
-        else if (!currStateLeftBumper && currStateLeftBumper != prevStateLeftBumper) {
-
-            prevStateLeftBumper = currStateLeftBumper;
-        }
-
-        // "Arms Close" functionality
         currStateA = gamepad2.a;
         if (currStateA && currStateA != prevStateA) {
 
-            robot.armsClose();
+            robot.armsGlyph();
             prevStateA = currStateA;
         }
         else if (!currStateA && currStateA != prevStateA) {
@@ -138,12 +126,24 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateA = currStateA;
         }
 
+        // "Arms Close" functionality
+        currStateX = gamepad2.x;
+        if (currStateX && currStateX != prevStateX) {
+
+            robot.armsClose();
+            prevStateX = currStateX;
+        }
+        else if (!currStateX && currStateX != prevStateX) {
+
+            prevStateX = currStateX;
+        }
+
         // "Wheels In/Out/Rest" functionality
-        if (gamepad2.x) {
+        if (gamepad2.left_bumper) {
 
             robot.wheelsIn();
         }
-        else if (gamepad2.b) {
+        else if (gamepad2.right_bumper) {
 
             robot.wheelsOut();
         }
