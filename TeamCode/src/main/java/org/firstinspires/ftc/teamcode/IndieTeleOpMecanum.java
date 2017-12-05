@@ -65,7 +65,7 @@ public class IndieTeleOpMecanum extends OpMode {
         LeftFront = (float) scaleInput(LeftFront);
         RightFront = (float) scaleInput(RightFront);
 
-        robot.setDriveMotorPower(LeftFront/2, RightFront/2, LeftBack/2, RightBack/2);
+        robot.setDriveMotorPower(LeftFront * 0.75, RightFront * 0.75, LeftBack * 0.75, RightBack * 0.75);
 
         // "Nudging" functionality
         if (gamepad1.dpad_up || gamepad1.dpad_down || gamepad1.dpad_left || gamepad1.dpad_right) { // "If any
