@@ -343,7 +343,19 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         Thread.sleep(250);
     }
 
-    public void version2(Robot bot) throws InterruptedException {
-
+    /**
+     * This method opens the arms, backs up 4 inches, closes arms, moves forward 5 inches to push glyph in column,
+     * and moves backwards 1 inch to stay in the safe zone but not be touching the glyph. This is also steps 3-7
+     * of the pseudocode for Version 2 of autonomous we developed on Dec. 6th, 2017.
+     *
+     * @param bot
+     * @throws InterruptedException
+     */
+    public void placeGlyph (Robot bot) throws InterruptedException {
+        bot.armsOpen();
+        encodersMove(bot, 4, 0.5, "backwards");
+        bot.armsClose();
+        encodersMove(bot, 5, 0.5, "forward");
+        encodersMove(bot, 1, 0.5, "backward");
     }
 }
