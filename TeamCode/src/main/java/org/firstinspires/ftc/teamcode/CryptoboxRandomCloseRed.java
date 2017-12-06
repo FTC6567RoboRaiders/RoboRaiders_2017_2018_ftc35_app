@@ -12,7 +12,7 @@ import com.roboraiders.Robot.Robot;
 @Autonomous
 @Disabled
 
-public class CryptoboxFarBlue extends RoboRaidersAuto {
+public class CryptoboxRandomCloseRed extends RoboRaidersAuto {
 
     public Robot robot = new Robot();
 
@@ -28,12 +28,15 @@ public class CryptoboxFarBlue extends RoboRaidersAuto {
         waitForStart();
 
         lowerArm(robot, 0.99);
-        selectJewel(robot, "blue");
+        selectJewel(robot, "red");
 
-        encodersMove(robot, 16, 0.5, "forward");
+        encodersMove(robot, 20, 0.5, "backward");
         Thread.sleep(500);
 
-        encodersMove(robot, 12, 0.5, "right");
+        imuTurn(robot, 90, 0.5, "left");
+        Thread.sleep(500);
+
+        encodersMove(robot, 3, 0.5, "forward");
         Thread.sleep(500);
     }
 }
