@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.CryptoboxRandom;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -12,7 +12,7 @@ import com.roboraiders.Robot.Robot;
 @Autonomous
 @Disabled
 
-public class CryptoboxRandomCloseBlue extends RoboRaidersAuto {
+public class CryptoboxRandomFarBlue extends RoboRaidersAuto {
 
     public Robot robot = new Robot();
 
@@ -30,19 +30,10 @@ public class CryptoboxRandomCloseBlue extends RoboRaidersAuto {
         lowerArm(robot, 0.99);
         selectJewel(robot, "blue");
 
-        encodersMove(robot, 24, 0.5, "forward");
+        encodersMove(robot, 16, 0.5, "forward");
         Thread.sleep(500);
 
-        imuTurn(robot, 90, 0.5, "left");
-        Thread.sleep(500);
-
-        encodersMove(robot, 3, 0.5, "forward");
-        Thread.sleep(500);
-
-        distanceSensorCount(robot, 2, 0.3, 18);
-        Thread.sleep(500);
-
-        encodersMove(robot, 1, 0.3, "right");
+        encodersMove(robot, 12, 0.5, "right");
         Thread.sleep(500);
     }
 }

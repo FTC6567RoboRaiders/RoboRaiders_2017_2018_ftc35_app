@@ -18,7 +18,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
  **/
 
 @Autonomous(name = "HubBot: Autonomous Options", group = "Auto")
-@Disabled
 
 public class HubBot_Auto_Options extends LinearOpMode {
 
