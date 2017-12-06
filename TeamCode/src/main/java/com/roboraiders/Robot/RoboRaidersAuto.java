@@ -148,7 +148,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         imuTurn(bot, 90, 0.5, "left");
         Thread.sleep(250);
 
-        //placeGlyph();
+        placeGlyph(bot);
         Thread.sleep(250);
     }
 
@@ -373,15 +373,24 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      * and moves backwards 1 inch to stay in the safe zone but not be touching the glyph. This is also steps 3-7
      * of the pseudocode for Version 2 of autonomous we developed on Dec. 6th, 2017.
      *
-     *
-     * @param bot
+     * @param bot - the bot currently being worked on
      * @throws InterruptedException
      */
-    public void placeGlyph (Robot bot) throws InterruptedException {
+    public void placeGlyph(Robot bot) throws InterruptedException {
+
         bot.armsOpen();
+        Thread.sleep(250);
+
         encodersMove(bot, 4, 0.5, "backwards");
+        Thread.sleep(250);
+
         bot.armsClose();
+        Thread.sleep(250);
+
         encodersMove(bot, 5, 0.5, "forward");
+        Thread.sleep(250);
+
         encodersMove(bot, 1, 0.5, "backward");
+        Thread.sleep(250);
     }
 }
