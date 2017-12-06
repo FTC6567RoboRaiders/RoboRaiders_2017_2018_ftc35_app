@@ -1,5 +1,6 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.roboraiders.Robot.Robot;
@@ -9,8 +10,9 @@ import com.roboraiders.Robot.Robot;
  */
 
 @TeleOp
+@Disabled
 
-public class  IndieTeleOpMecanum extends OpMode {
+public class TeleOpNewMecanumTank extends OpMode {
 
     public Robot robot = new Robot();
 
@@ -19,15 +21,8 @@ public class  IndieTeleOpMecanum extends OpMode {
     float RightBack;  // Power for right back motor
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
+
     float maxpwr;     // Maximum power of the four motors
-    boolean nudging = false;
-    int nudgeCount = 0;
-    public boolean currStateRightBumper = false;
-    public boolean prevStateRightBumper = false;
-    public boolean currStateLeftBumper = false;
-    public boolean prevStateLeftBumper = false;
-    public boolean currStateA = false;
-    public boolean prevStateA = false;
 
     @Override
     public void init() {
@@ -35,23 +30,27 @@ public class  IndieTeleOpMecanum extends OpMode {
         robot.initialize(hardwareMap);
 
         telemetry.addData("Initialized", true);
-        telemetry.update();
-    }
-
-    @Override
-    public void start() {
-
-        robot.initializeServos();
+        telemetry.update() ;
     }
 
     @Override
     public void loop() {
 
-        // "Mecanum Drive" functionality
-        LeftBack = -gamepad1.left_stick_y - gamepad1.left_stick_x + gamepad1.right_stick_x;
-        RightBack = -gamepad1.left_stick_y + gamepad1.left_stick_x - gamepad1.right_stick_x;
-        LeftFront = -gamepad1.left_stick_y + gamepad1.left_stick_x + gamepad1.right_stick_x;
-        RightFront = -gamepad1.left_stick_y - gamepad1.left_stick_x - gamepad1.right_stick_x;
+        /*----------------------------------------------------------------------*/
+        /* For tank drive mecanum, the left and right joystick in the y-axis    */
+        /* direction on gamepad 1 control the left and right side motors        */
+        /* respectively.  The left joystick in the x-axis controls the strafing */
+        /* motion of the robot                                                  */
+        /*                                                                      */
+        /* GAMEPAD1                                                             */
+        /* Left Joystick  - y-axis forward/backward motion of the left wheels   */
+        /* Left Joystick  - x-axis strafing left or right                       */
+        /* Right Joystick - y-axis forward/backward motion of the right wheels  */
+        /*----------------------------------------------------------------------*/
+        LeftBack = gamepad1.left_stick_y + gamepad1.left_stick_x;
+        RightBack = gamepad1.right_stick_y - gamepad1.left_stick_x;
+        LeftFront = gamepad1.left_stick_y - gamepad1.left_stick_x;
+        RightFront = gamepad1.right_stick_y + gamepad1.left_stick_x;
 
         maxpwr = findMaxPower(LeftBack, LeftFront, RightBack, RightFront);
 
@@ -66,91 +65,6 @@ public class  IndieTeleOpMecanum extends OpMode {
         RightFront = (float) scaleInput(RightFront);
 
         robot.setDriveMotorPower(LeftFront/2, RightFront/2, LeftBack/2, RightBack/2);
-
-        // "Nudging" functionality
-        if (gamepad1.dpad_up || gamepad1.dpad_down || gamepad1.dpad_left || gamepad1.dpad_right) { // "If any
-            // of the dpad buttons are pressed on the
-            // first controller...
-
-            if (!nudging) { // ...if nudging is false (the robot is still being nudged)...
-
-                if (gamepad1.dpad_up) robot.setDriveMotorPower(0.5, 0.5, 0.5 ,0.5); // ...if 'up' was pressed, the robot moves forward...
-
-                else if (gamepad1.dpad_down) robot.setDriveMotorPower(-0.5, -0.5, -0.5, -0.5); // ...else if 'down' was pressed, the robot
-                    // moves backward...
-
-                else if (gamepad1.dpad_left) robot.setDriveMotorPower(-0.6, 0.6, 0.6, -0.6); // ...else if 'left' was pressed, the robot
-                    // strafes left...
-
-                else if (gamepad1.dpad_right) robot.setDriveMotorPower(0.6, -0.6, -0.6, 0.6); // ...else if 'right' was pressed, the robot
-                    // strafes right...
-            }
-
-            nudgeCount++; // ...after this one loop cycle, the number of the nudgeCount goes up by one...
-
-            if (nudgeCount > 5) { // ...if the number of the nudgeCount goes above 5...
-
-                nudging = true; // ...nudging is true, so the robot cannot nudge anymore. This allows for 5 loop cycles
-                // of movement...
-            }
-        }
-        else { // ...else if nudging is true (the robot is no longer being nudged)...
-
-            nudging = false; // ...nudging is returned to false, which allows nudging again if any of the dpad buttons
-            // are pressed on the first controller...
-
-            nudgeCount = 0; // ...and nudgeCount is reset to 0."
-        }
-
-        // "Arms Open" functionality
-        currStateRightBumper = gamepad2.right_bumper;
-        if (currStateRightBumper && currStateRightBumper != prevStateRightBumper) {
-
-            robot.armsOpen();
-            prevStateRightBumper = currStateRightBumper;
-        }
-        else if (!currStateRightBumper && currStateRightBumper != prevStateRightBumper) {
-
-            prevStateRightBumper = currStateRightBumper;
-        }
-
-        // "Arms Glyph" functionality
-        currStateLeftBumper = gamepad2.left_bumper;
-        if (currStateLeftBumper && currStateLeftBumper != prevStateLeftBumper) {
-
-            robot.armsGlyph();
-            prevStateLeftBumper = currStateLeftBumper;
-        }
-        else if (!currStateLeftBumper && currStateLeftBumper != prevStateLeftBumper) {
-
-            prevStateLeftBumper = currStateLeftBumper;
-        }
-
-        // "Arms Close" functionality
-        currStateA = gamepad2.a;
-        if (currStateA && currStateA != prevStateA) {
-
-            robot.armsClose();
-            prevStateA = currStateA;
-        }
-        else if (!currStateA && currStateA != prevStateA) {
-
-            prevStateA = currStateA;
-        }
-
-        // "Wheels In/Out/Rest" functionality
-        if (gamepad2.x) {
-
-            robot.wheelsIn();
-        }
-        else if (gamepad2.b) {
-
-            robot.wheelsOut();
-        }
-        else {
-
-            robot.wheelsRest();
-        }
     }
 
     @Override
@@ -264,15 +178,6 @@ public class  IndieTeleOpMecanum extends OpMode {
 
         float maxpwrA = Math.max(Math.abs(pwr1), Math.abs(pwr2));
         float maxpwrB = Math.max (Math.abs(pwr3), Math.abs(pwr4));
-        float maxpwr = Math.max(Math.abs(maxpwrA), Math.abs(maxpwrB));
-
-         if (maxpwr > 1.0) {
-
-             return maxpwr;
-         }
-         else {
-
-             return 1;
-         }
+        return Math.max(Math.abs(maxpwrA), Math.abs(maxpwrB));
     }
 }
