@@ -6,7 +6,7 @@ import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 /**
- * Created by Alex (and a little bit J-Dawg) on 11/8/17.
+ * Created by Katelin Zichittella on 12/6/17.
  */
 
 @Autonomous
@@ -34,5 +34,16 @@ public class CryptoboxVuforiaFarBlue extends RoboRaidersAuto {
 
         getRelicRecoveryVuMark();
         Thread.sleep(250);
+
+        encodersMove(robot, 5, 0.5, "forward");
+        Thread.sleep(250);
+
+        imuTurn(robot, 90, 0.5, "right");
+        Thread.sleep(250);
+
+        encodersMove(robot, 5, 0.5, "forward");
+        Thread.sleep(250);
+
+        selectColumn(robot, "blue", pictograph);
     }
 }
