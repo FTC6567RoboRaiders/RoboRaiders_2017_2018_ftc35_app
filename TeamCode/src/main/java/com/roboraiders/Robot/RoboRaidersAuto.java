@@ -123,6 +123,35 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         }
     }
 
+    public void selectColumn(Robot bot, String pictograph) throws InterruptedException {
+
+        if (pictograph.equals("LEFT")) {
+
+            encodersMove(bot, 5, 0.5, "forward");
+            Thread.sleep(250);
+        }
+        else if (pictograph.equals("CENTER")) {
+
+            encodersMove(bot, 10, 0.5, "forward");
+            Thread.sleep(250);
+        }
+        else if (pictograph.equals("RIGHT")) {
+
+            encodersMove(bot, 15, 0.5, "forward");
+            Thread.sleep(250);
+        }
+        else if (pictograph.equals("UNKNOWN")) {
+
+            Thread.sleep(15000);
+        }
+
+        imuTurn(bot, 90, 0.5, "left");
+        Thread.sleep(250);
+
+        //placeGlyph();
+        Thread.sleep(250);
+    }
+
     /**
      * This method will turn the robot right or left a certain angle measure using the IMU
      *
@@ -292,11 +321,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     }
 
     /**
-     * This method will return the name of the pictograph the robot sees
-     *
-     * @return pictograph - the name of the pictograph the robot sees
+     * This method will determine the name of the pictograph the robot sees
      */
-    public String getRelicRecoveryVuMark() {
+    public void getRelicRecoveryVuMark() {
 
         String pictograph;
         RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
@@ -317,8 +344,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             pictograph = "UNKNOWN";
         }
-
-        return pictograph;
     }
 
     /**
