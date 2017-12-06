@@ -342,4 +342,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         Thread.sleep(250);
     }
+
+    public void version2(Robot bot) throws InterruptedException {
+
+    }
 }
