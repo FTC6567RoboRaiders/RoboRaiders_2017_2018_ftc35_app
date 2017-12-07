@@ -44,5 +44,6 @@ public class CryptoboxRandomCloseBlue extends RoboRaidersAuto {
 
         encodersMove(robot, 1, 0.3, "right");
         Thread.sleep(500);
+
     }
 }
