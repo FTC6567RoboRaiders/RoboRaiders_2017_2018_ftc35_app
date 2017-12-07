@@ -19,6 +19,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public VuforiaTrackable relicTemplate;
     public boolean currStateDistance = false;
     public boolean prevStateDistance = false;
+    public String pictograph = "UNKNOWN";
 
     /**
      * This method will initialize Vuforia in autonomous op modes
@@ -121,6 +122,70 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 Thread.sleep(500);
             }
         }
+    }
+
+    /**
+     * This method directs the robot to place the glyph in the key column
+     *
+     * @param bot           the bot currently being worked on
+     * @param allianceColor the color of your alliance
+     * @param pictograph    the name of the pictograph as determined by getRelicRecoveryVuMark()
+     * @throws InterruptedException
+     */
+    public void selectColumn(Robot bot, String allianceColor, String pictograph) throws InterruptedException {
+
+        if (allianceColor.equals("red")) { //if we are on the red side
+
+            if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
+
+                encodersMove(bot, 15, 0.5, "backward"); //move backward 15 inches until in front of the left column
+                Thread.sleep(250);
+            }
+            else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
+
+                encodersMove(bot, 10, 0.5, "backward"); //move backward 10 inches until in front of the center column
+                Thread.sleep(250);
+            }
+            else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
+
+                encodersMove(bot, 5, 0.5, "backward"); //move backward 5 inches until in front of the right column
+                Thread.sleep(250);
+            }
+            else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
+
+                encodersMove(bot, 10, 0.5, "backward"); //move backward 10 inches until in front of the center column (default)
+                Thread.sleep(250);
+            }
+        }
+        else if (allianceColor.equals("blue")) { //else if we are on the blue side
+
+            if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
+
+                encodersMove(bot, 5, 0.5, "forward"); //move forward 5 inches until in front of the left column
+                Thread.sleep(250);
+            }
+            else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
+
+                encodersMove(bot, 10, 0.5, "forward"); //move forward 10 inches until in front of the center column
+                Thread.sleep(250);
+            }
+            else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
+
+                encodersMove(bot, 15, 0.5, "forward"); //move forward 15 inches until in front of the right column
+                Thread.sleep(250);
+            }
+            else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
+
+                encodersMove(bot, 10, 0.5, "forward"); //move forward 10 inches until in front of the center column (default)
+                Thread.sleep(250);
+            }
+        }
+
+        imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
+        Thread.sleep(250);
+
+        placeGlyph(bot); //run the method placeGlyph
+        Thread.sleep(250);
     }
 
     /**
@@ -292,33 +357,29 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     }
 
     /**
-     * This method will return the name of the pictograph the robot sees
-     *
-     * @return pictograph - the name of the pictograph the robot sees
+     * This method will determine the name of the pictograph the robot sees
      */
-    public String getRelicRecoveryVuMark() {
+    public void getRelicRecoveryVuMark() {
 
-        String pictograph;
-        RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+        RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate); //the variable vuMark is now the name of
+        //the pictograph the robot currently sees
 
-        if (vuMark.equals(RelicRecoveryVuMark.LEFT)) {
+        if (vuMark.equals(RelicRecoveryVuMark.LEFT)) { //if vuMark is left
 
-            pictograph = "LEFT";
+            pictograph = "LEFT"; //pictograph is set equal to left
         }
-        else if (vuMark.equals(RelicRecoveryVuMark.CENTER)) {
+        else if (vuMark.equals(RelicRecoveryVuMark.CENTER)) { //else if vuMark is center
 
-            pictograph = "CENTER";
+            pictograph = "CENTER"; //pictograph is set equal to center
         }
-        else if (vuMark.equals(RelicRecoveryVuMark.RIGHT)) {
+        else if (vuMark.equals(RelicRecoveryVuMark.RIGHT)) { //else if vuMark is right
 
-            pictograph = "RIGHT";
+            pictograph = "RIGHT"; //pictograph is set equal to right
         }
-        else {
+        else { //else if the robot cannot determine the name of the pictograph
 
-            pictograph = "UNKNOWN";
+            pictograph = "UNKNOWN"; //pictograph is set equal to unknown
         }
-
-        return pictograph;
     }
 
     /**
@@ -348,15 +409,24 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      * and moves backwards 1 inch to stay in the safe zone but not be touching the glyph. This is also steps 3-7
      * of the pseudocode for Version 2 of autonomous we developed on Dec. 6th, 2017.
      *
-     *
-     * @param bot
+     * @param bot - the bot currently being worked on
      * @throws InterruptedException
      */
-    public void placeGlyph (Robot bot) throws InterruptedException {
+    public void placeGlyph(Robot bot) throws InterruptedException {
+
         bot.armsOpen();
+        Thread.sleep(250);
+
         encodersMove(bot, 4, 0.5, "backwards");
+        Thread.sleep(250);
+
         bot.armsClose();
+        Thread.sleep(250);
+
         encodersMove(bot, 5, 0.5, "forward");
+        Thread.sleep(250);
+
         encodersMove(bot, 1, 0.5, "backward");
+        Thread.sleep(250);
     }
 }

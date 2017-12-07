@@ -21,7 +21,7 @@ import com.roboraiders.Robot.Robot;
  * Created by SteveKocik on 11/20/2017.
  */
 
-public class HubBot2VeriifyEncoders extends LinearOpMode {
+public class HubBot2VerifyEncoders extends LinearOpMode {
 
     // The following variables are used to control how often telemetry data is written to the log
     //
