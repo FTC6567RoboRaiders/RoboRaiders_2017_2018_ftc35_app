@@ -409,6 +409,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      * and moves backwards 1 inch to stay in the safe zone but not be touching the glyph. This is also steps 3-7
      * of the pseudocode for Version 2 of autonomous we developed on Dec. 6th, 2017.
      *
+     *
      * @param bot - the bot currently being worked on
      * @throws InterruptedException
      */
