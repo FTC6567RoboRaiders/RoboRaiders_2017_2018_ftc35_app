@@ -10,7 +10,6 @@ import com.roboraiders.Robot.Robot;
  */
 
 @Autonomous
-//@Disabled
 
 public class CryptoboxRandomCloseRed extends RoboRaidersAuto {
 
@@ -27,16 +26,16 @@ public class CryptoboxRandomCloseRed extends RoboRaidersAuto {
 
         waitForStart();
 
-        lowerArm(robot, 0.99);
+        lowerArm(robot, 0.99); //jewel is selected
         selectJewel(robot, "red");
 
         encodersMove(robot, 32, 0.5, "backward");
         Thread.sleep(500);
 
-        imuTurn(robot, 90, 0.5, "left");
+        imuTurn(robot, 90, 0.5, "left"); //robot turns so glyph collector faces cryptobox
         Thread.sleep(500);
 
-        placeGlyph(robot);
+        placeGlyph(robot); //robot places glyph
         Thread.sleep(500);
     }
 }
