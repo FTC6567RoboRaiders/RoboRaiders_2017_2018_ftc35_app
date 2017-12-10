@@ -284,11 +284,6 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
 
         waitForStart();
 
-        // Loop and update the dashboard
-        while (opModeIsActive()) {
-
-            telemetry.update();
-        }
 
         // Change the background color back to white
         relativeLayout.post(new Runnable() {
@@ -300,6 +295,7 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
 
         if (jewelSelection.equals("Yes")) {
 
+            lowerArm(robot, 0.99);
             selectJewel(robot, allianceSelection);
 
         } else if (jewelSelection.equals("No")) {
