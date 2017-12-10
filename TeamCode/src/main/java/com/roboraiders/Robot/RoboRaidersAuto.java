@@ -408,28 +408,28 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     }
 
     /**
-     * This method opens the arms, backs up 4 inches, closes arms, moves forward 5 inches to push glyph in column,
-     * and moves backwards 1 inch to stay in the safe zone but not be touching the glyph. This is also steps 3-7
+     * This method places a glyph in the cryptobox. This is also steps 3-7
      * of the pseudocode for Version 2 of autonomous we developed on Dec. 6th, 2017.
+     *
      *
      * @param bot - the bot currently being worked on
      * @throws InterruptedException
      */
     public void placeGlyph(Robot bot) throws InterruptedException {
 
-        bot.armsOpen();
+        bot.armsOpen();  //arms open to drop glyph
         Thread.sleep(250);
 
-        encodersMove(bot, 4, 0.5, "backwards");
+        encodersMove(bot, 4, 0.5, "backwards"); //backs up 4"
         Thread.sleep(250);
 
-        bot.armsClose();
+        bot.armsClose(); //closes arms
         Thread.sleep(250);
 
-        encodersMove(bot, 5, 0.5, "forward");
+        encodersMove(bot, 5, 0.5, "forward"); //moves forward 5" to push glyph into column
         Thread.sleep(250);
 
-        encodersMove(bot, 1, 0.5, "backward");
+        encodersMove(bot, 1, 0.5, "backward"); //moves backwards 1" to stay in the safe zone but not be touching a glyph
         Thread.sleep(250);
     }
 }
