@@ -305,5 +305,45 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
         } else if (jewelSelection.equals("No")) {
 
         }
+        if (parkSelection.equals("Yes")) {
+            if (allianceSelection.equals("blue") && bsSelection.equals("Close")){
+                encodersMove(robot, 20, 0.5, "forward");
+                Thread.sleep(500);
+
+                imuTurn(robot, 90, 0.5, "left");
+                Thread.sleep(500);
+            }
+            if (allianceSelection.equals("blue") && bsSelection.equals("Far")){
+                encodersMove(robot, 16, 0.5, "forward");
+                Thread.sleep(500);
+
+                encodersMove(robot, 12, 0.5, "right");
+                Thread.sleep(500);
+            }
+            if (allianceSelection.equals("red") && bsSelection.equals("Close")){
+                encodersMove(robot, 20, 0.5, "backward");
+                Thread.sleep(500);
+
+                imuTurn(robot, 90, 0.5, "left");
+                Thread.sleep(500);
+
+                encodersMove(robot, 3, 0.5, "forward");
+                Thread.sleep(500);
+            }
+            if (allianceSelection.equals("red") && bsSelection.equals("Far")){
+                encodersMove(robot, 16, 0.5, "backward");
+                Thread.sleep(500);
+
+                encodersMove(robot, 12, 0.5, "right");
+                Thread.sleep(500);
+
+                imuTurn(robot, 180, 0.5, "right");
+                Thread.sleep(500);
+            }
+        }
+        else if (parkSelection.equals("No")){
+
+        }
     }
-}
+
+    }
