@@ -20,7 +20,6 @@ public class CryptoboxRandomCloseBlue extends RoboRaidersAuto {
 
         robot.initialize(hardwareMap);
         robot.initializeServos();
-        vuforiaInitialization(hardwareMap);
         telemetry.addData("Initialized", true);
         telemetry.update();
 
@@ -29,10 +28,13 @@ public class CryptoboxRandomCloseBlue extends RoboRaidersAuto {
         lowerArm(robot, 0.99); //jewel is selected
         selectJewel(robot, "blue");
 
-        encodersMove(robot, 32, 0.5, "forward");
+        encodersMove(robot, 29, 0.5, "forward");
         Thread.sleep(500);
 
-        imuTurn(robot, 90, 0.5, "left"); //robot turns so glyoh collector is facing cryptobox
+        imuTurn(robot, 93, 0.5, "left"); //robot turns so glyoh collector is facing cryptobox
+        Thread.sleep(500);
+
+        encodersMove(robot, 2, 0.5, "left");
         Thread.sleep(500);
 
         placeGlyph(robot); //robot places glyph

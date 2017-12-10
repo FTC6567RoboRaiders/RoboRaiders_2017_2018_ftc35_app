@@ -418,18 +418,18 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public void placeGlyph(Robot bot) throws InterruptedException {
 
         bot.armsOpen();  //arms open to drop glyph
-        Thread.sleep(250);
+        Thread.sleep(500);
 
         encodersMove(bot, 4, 0.5, "backwards"); //backs up 4"
-        Thread.sleep(250);
+        Thread.sleep(1000);
 
         bot.armsClose(); //closes arms
-        Thread.sleep(250);
+        Thread.sleep(500);
 
         encodersMove(bot, 5, 0.5, "forward"); //moves forward 5" to push glyph into column
-        Thread.sleep(250);
+        Thread.sleep(500);
 
         encodersMove(bot, 1, 0.5, "backward"); //moves backwards 1" to stay in the safe zone but not be touching a glyph
-        Thread.sleep(250);
+        Thread.sleep(500);
     }
 }
