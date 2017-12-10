@@ -10,7 +10,6 @@ import com.roboraiders.Robot.Robot;
  */
 
 @Autonomous
-@Disabled
 
 public class CryptoboxRandomFarRed extends RoboRaidersAuto {
 

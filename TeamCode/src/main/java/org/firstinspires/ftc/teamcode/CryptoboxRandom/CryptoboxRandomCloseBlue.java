@@ -10,7 +10,6 @@ import com.roboraiders.Robot.Robot;
  */
 
 @Autonomous
-@Disabled
 
 public class CryptoboxRandomCloseBlue extends RoboRaidersAuto {
 
@@ -34,9 +33,6 @@ public class CryptoboxRandomCloseBlue extends RoboRaidersAuto {
         Thread.sleep(500);
 
         imuTurn(robot, 90, 0.5, "left");
-        Thread.sleep(500);
-
-        encodersMove(robot, 3, 0.5, "forward");
         Thread.sleep(500);
 
         placeGlyph(robot);
