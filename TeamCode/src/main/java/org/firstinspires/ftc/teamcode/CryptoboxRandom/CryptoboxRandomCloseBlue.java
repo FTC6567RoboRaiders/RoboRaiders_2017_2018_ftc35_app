@@ -6,7 +6,7 @@ import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 /**
- * Created by Katelin Zichittella on 11/15/17.
+ * Created by Katelin Zichittella and Alex Snyder on 11/15/17.
  */
 
 @Autonomous
