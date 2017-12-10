@@ -286,7 +286,6 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
 
         waitForStart();
 
-
         // Change the background color back to white
         relativeLayout.post(new Runnable() {
             public void run() {
