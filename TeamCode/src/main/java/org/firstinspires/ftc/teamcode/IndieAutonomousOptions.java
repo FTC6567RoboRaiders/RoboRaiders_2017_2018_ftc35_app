@@ -8,18 +8,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
-/**
- * {@link HubBot_Auto_Options} prototype for autonomous selection of options, things
- * like alliance, how many glyphs to obtain and place, location, etc....
- *
- * more later....
- *
- *
- **/
+@Autonomous
 
-@Autonomous(name = "HubBot: Autonomous Options", group = "Auto")
-
-public class HubBot_Auto_Options extends RoboRaidersAuto {
+public class IndieAutonomousOptions extends RoboRaidersAuto {
 
     public Robot robot = new Robot();
 
