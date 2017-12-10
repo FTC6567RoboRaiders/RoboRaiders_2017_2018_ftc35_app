@@ -28,13 +28,13 @@ public class CryptoboxRandomFarRed extends RoboRaidersAuto {
         lowerArm(robot, 0.99); //robot selects jewel
         selectJewel(robot, "red");
 
-        encodersMove(robot, 22, 0.5, "backward");
+        encodersMove(robot, 19, 0.5, "backward");
         Thread.sleep(500);
 
-        encodersMove(robot, 18, 0.5, "right");
+        encodersMove(robot, 20, 0.5, "right");
         Thread.sleep(500);
 
-        imuTurn(robot, 180, 0.5, "right");
+        imuTurn(robot, 183, 0.5, "right");
         Thread.sleep(500);
 
         placeGlyph(robot);
