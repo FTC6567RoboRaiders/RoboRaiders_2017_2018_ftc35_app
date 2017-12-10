@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Jewel;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -11,7 +11,7 @@ import com.roboraiders.Robot.Robot;
 
 @Autonomous
 
-public class JewelCloseRed extends RoboRaidersAuto {
+public class JewelFarRed extends RoboRaidersAuto {
 
     public Robot robot = new Robot();
 
@@ -28,13 +28,10 @@ public class JewelCloseRed extends RoboRaidersAuto {
         lowerArm(robot, 0.99);
         selectJewel(robot, "red");
 
-        encodersMove(robot, 32, 0.5, "backward");
+        encodersMove(robot, 22, 0.5, "backward");
         Thread.sleep(500);
 
-        imuTurn(robot, 90, 0.5, "left");
-        Thread.sleep(500);
-
-        encodersMove(robot, 2, 0.5, "forward");
+        encodersMove(robot, 18, 0.5, "right");
         Thread.sleep(500);
     }
 }

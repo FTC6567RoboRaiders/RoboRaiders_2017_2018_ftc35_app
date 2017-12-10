@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.CryptoboxRandom;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -6,13 +6,12 @@ import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 /**
- * Created by Alex Snyder on 12/6/17.
+ * Created by Alex (and a little bit J-Dawg) on 11/8/17.
  */
 
 @Autonomous
-//@Disabled
 
-public class CryptoboxRandomFarBlue extends RoboRaidersAuto {
+public class JewelFarBlue extends RoboRaidersAuto {
 
     public Robot robot = new Robot();
 
@@ -21,7 +20,6 @@ public class CryptoboxRandomFarBlue extends RoboRaidersAuto {
 
         robot.initialize(hardwareMap);
         robot.initializeServos();
-        vuforiaInitialization(hardwareMap);
         telemetry.addData("Initialized", true);
         telemetry.update();
 
@@ -34,9 +32,6 @@ public class CryptoboxRandomFarBlue extends RoboRaidersAuto {
         Thread.sleep(500);
 
         encodersMove(robot, 18, 0.5, "right");
-        Thread.sleep(500);
-
-        placeGlyph(robot);
         Thread.sleep(500);
     }
 }

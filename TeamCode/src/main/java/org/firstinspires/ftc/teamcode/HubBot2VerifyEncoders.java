@@ -1,24 +1,27 @@
-package org.firstinspires.ftc.teamcode.TestPrograms;
+package org.firstinspires.ftc.teamcode;
 
 import android.util.Log;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
-@Autonomous(name = "Verify the Motor Encoders", group = "Verify")
-//@Disabled
+@Autonomous(name = "HubBot2 Verify the Motor Encoders", group = "Verify")
+
 
 /**
  * This class will verify that the drive motor encoders are working properly by running with encoders
  * and then outputting the encoder counts to the phone and log.
  *
+ * made some updates so Alex can verify her android studio installation is right....
+ *
  * Created by SteveKocik on 11/20/2017.
  */
 
-public class VerifyMotorEncoders extends RoboRaidersAuto {
+public class HubBot2VerifyEncoders extends LinearOpMode {
 
     // The following variables are used to control how often telemetry data is written to the log
     //
@@ -31,31 +34,38 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
     //  - LOG_INTERVAL     - the amount of time per each log updated, initially set to 1/2 of a
     //                     second, this value is in milliseconds (1/2 of sec = 500 milliseconds)
 
+    public DcMotor motorBackRight = null;
+
     private long currentTimeStamp;
     private long pastTimeStamp;
     private static final long LOG_INTERVAL = 500;
     private boolean itsTimeToLog;
-    private int[] encoderArray = new int[4];
-    private DcMotor.RunMode[] modeArray = new DcMotor.RunMode[4];
+    int encoderCount;
 
-
-    public Robot robot = new Robot();
 
 
     @Override
     public void runOpMode() throws InterruptedException {
 
-        robot.initialize(hardwareMap);
+        motorBackRight = hardwareMap.get(DcMotor.class, "right_Back");
+
+        telemetry.addLine().addData("Initialized:", false);
+        telemetry.addLine().addData("motorBackRight:  ", encoderCount);
+        telemetry.addLine().addData("EncMode: ", motorBackRight.getMode());
+        telemetry.addLine().addData("isPID: ",motorBackRight.getMode().isPIDMode());
+        telemetry.addLine().addData("PortNumber: ",motorBackRight.getPortNumber());
+        telemetry.addLine().addData("Power: ",motorBackRight.getPower());
+
+        motorBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorBackRight.setPower(0.0);
+        motorBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         pastTimeStamp = 0;
 
-        // Write message to log indicating that teleop program is initialized
-        Log.d("VME","VerifyMotorEncoders Initialization Complete");
-
-        telemetry.addData("Initialized", true);
+        telemetry.addLine().addData("Initialized", true);
         telemetry.update();
-
-        robot.resetEncoders();                                // resets encoders
-        robot.runWithEncoders();                              // set motors to RUN_WITH_ENCODERS
 
         waitForStart();
 
@@ -63,19 +73,9 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
 
             currentTimeStamp = System.currentTimeMillis();   // get the current time stamp
 
-            robot.setDriveMotorPower(0.5, 0.5, 0.5, 0.5);    // run the motors at 1/2 speed, don't need fast and furious part 2
-
+            motorBackRight.setPower(0.5);
             // store the current encoder counts (positions) for the drive motors
-            encoderArray[0] = robot.motorFrontLeft.getCurrentPosition();
-            encoderArray[1] = robot.motorFrontRight.getCurrentPosition();
-            encoderArray[2] = robot.motorBackLeft.getCurrentPosition();
-            encoderArray[3] = robot.motorBackRight.getCurrentPosition();
-
-            modeArray[0] = robot.motorFrontLeft.getMode();
-            modeArray[1] = robot.motorFrontRight.getMode();
-            modeArray[2] = robot.motorBackLeft.getMode();
-            modeArray[3] = robot.motorBackRight.getMode();
-
+            encoderCount = motorBackRight.getCurrentPosition();
 
             // The method timeToLog() will determine if the logging interval has expired from the
             // last time
@@ -84,36 +84,22 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
             // Log the encoder count for each of the motors
             if( itsTimeToLog ) {
 
-                // Log is an Android class that is used for sending log output to the log file
-                // on the Android phone (in this case the Robot Controller).  There
-                // are several methods that Log supports.  The d method is for logging
-                // debug information.  More information can be found at:
-                // https://developer.android.com/reference/android/util/Log.html
-                Log.d("VME","********************************************************");
-                Log.d("VME","Start of Encoder Counts for Drive Motors");
-                Log.d("VME",String.format("motorFrontLeft:  %s", encoderArray[0]));
-                Log.d("VME",String.format("motorFrontRight: %s", encoderArray[1]));
-                Log.d("VME",String.format("motorBackLeft:   %s", encoderArray[2]));
-                Log.d("VME",String.format("motorBackRight:  %s", encoderArray[3]));
-                Log.d("VME","End of Encoder Counts for Drive Motors");
-                Log.d("VME","********************************************************");
-
                 // Update the driver station display with the same information as has been
                 // captured to the log file.
-                telemetry.addLine().addData("motorFrontLeft:  ", encoderArray[0]).addData("EncMode: ", modeArray[0]);
-                telemetry.addLine().addData("motorFrontRight: ", encoderArray[1]).addData("EncMode: ", modeArray[1]);
-                telemetry.addLine().addData("motorBackLeft:   ", encoderArray[2]).addData("EncMode: ", modeArray[2]);
-                telemetry.addLine().addData("motorBackRight:  ", encoderArray[3]).addData("EncMode: ", modeArray[3]);
 
-
+                telemetry.addLine().addData("motorBackRight:  ", encoderCount);
+                telemetry.addLine().addData("EncMode: ", motorBackRight.getMode());
+                telemetry.addLine().addData("isPID: ",motorBackRight.getMode().isPIDMode());
+                telemetry.addLine().addData("PortNumber: ",motorBackRight.getPortNumber());
+                telemetry.addLine().addData("Power: ",motorBackRight.getPower());
                 telemetry.update();
 
             } // if( itsTimeToLog )
 
         } // while(opModeIsActive())
 
-        robot.setDriveMotorPower(0, 0, 0, 0);                 // stop the robot
-        robot.resetEncoders();                                // stop and reset the encoders
+        motorBackRight.setPower(0);                 // stop the robot
+        motorBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);      // stop and reset the encoders
 
     } // public void runOpMode() throws InterruptedException
 

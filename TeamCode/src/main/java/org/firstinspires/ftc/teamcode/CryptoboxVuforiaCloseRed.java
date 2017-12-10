@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.CryptoboxRandom;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -6,13 +6,12 @@ import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 /**
- * Created by Alex Snyder on 12/6/17.
+ * Created by Katelin Zichittella on 12/6/17.
  */
 
 @Autonomous
-//@Disabled
 
-public class CryptoboxRandomCloseRed extends RoboRaidersAuto {
+public class CryptoboxVuforiaCloseRed extends RoboRaidersAuto {
 
     public Robot robot = new Robot();
 
@@ -20,8 +19,8 @@ public class CryptoboxRandomCloseRed extends RoboRaidersAuto {
     public void runOpMode() throws InterruptedException {
 
         robot.initialize(hardwareMap);
-        robot.initializeServos();
         vuforiaInitialization(hardwareMap);
+        robot.initializeServos();
         telemetry.addData("Initialized", true);
         telemetry.update();
 
@@ -30,13 +29,15 @@ public class CryptoboxRandomCloseRed extends RoboRaidersAuto {
         lowerArm(robot, 0.99);
         selectJewel(robot, "red");
 
-        encodersMove(robot, 32, 0.5, "backward");
-        Thread.sleep(500);
+        encodersMove(robot, 10, 0.5, "backward");
+        Thread.sleep(250);
 
-        imuTurn(robot, 90, 0.5, "left");
-        Thread.sleep(500);
+        getRelicRecoveryVuMark();
+        Thread.sleep(250);
 
-        placeGlyph(robot);
-        Thread.sleep(500);
+        encodersMove(robot, 5, 0.5, "backward");
+        Thread.sleep(250);
+
+        selectColumn(robot, "red", pictograph);
     }
 }

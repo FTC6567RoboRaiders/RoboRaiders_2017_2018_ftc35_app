@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TestPrograms;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -11,7 +11,7 @@ import com.roboraiders.Robot.Robot;
 @Autonomous
 @Disabled
 
-public class robotMoveForward extends RoboRaidersAuto {
+public class robotMoveRight extends RoboRaidersAuto {
 
     public Robot robot = new Robot();
 
@@ -22,7 +22,7 @@ public class robotMoveForward extends RoboRaidersAuto {
 
         while(opModeIsActive()) {
 
-            robot.setDriveMotorPower(1.0, 1.0, 1.0, 1.0);
+            robot.setDriveMotorPower(1.0, -1.0, 1.0, -1.0);
         }
     }
 

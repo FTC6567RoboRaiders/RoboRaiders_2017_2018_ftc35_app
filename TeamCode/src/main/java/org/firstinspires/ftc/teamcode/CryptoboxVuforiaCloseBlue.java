@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.CryptoboxVuforia;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -11,7 +11,7 @@ import com.roboraiders.Robot.Robot;
 
 @Autonomous
 
-public class CryptoboxVuforiaFarBlue extends RoboRaidersAuto {
+public class CryptoboxVuforiaCloseBlue extends RoboRaidersAuto {
 
     public Robot robot = new Robot();
 
@@ -33,12 +33,6 @@ public class CryptoboxVuforiaFarBlue extends RoboRaidersAuto {
         Thread.sleep(250);
 
         getRelicRecoveryVuMark();
-        Thread.sleep(250);
-
-        encodersMove(robot, 5, 0.5, "forward");
-        Thread.sleep(250);
-
-        imuTurn(robot, 90, 0.5, "right");
         Thread.sleep(250);
 
         encodersMove(robot, 5, 0.5, "forward");

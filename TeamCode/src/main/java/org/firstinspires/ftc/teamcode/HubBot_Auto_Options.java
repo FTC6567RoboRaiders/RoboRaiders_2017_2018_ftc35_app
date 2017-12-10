@@ -1,11 +1,10 @@
-package org.firstinspires.ftc.teamcode.HubBot;
+package org.firstinspires.ftc.teamcode;
 
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.View;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
