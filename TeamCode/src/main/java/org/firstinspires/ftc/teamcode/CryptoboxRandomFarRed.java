@@ -10,7 +10,6 @@ import com.roboraiders.Robot.Robot;
  */
 
 @Autonomous
-//@Disabled
 
 public class CryptoboxRandomFarRed extends RoboRaidersAuto {
 
@@ -27,7 +26,7 @@ public class CryptoboxRandomFarRed extends RoboRaidersAuto {
 
         waitForStart();
 
-        lowerArm(robot, 0.99);
+        lowerArm(robot, 0.99); //robot selects jewel
         selectJewel(robot, "red");
 
         encodersMove(robot, 22, 0.5, "backward");
