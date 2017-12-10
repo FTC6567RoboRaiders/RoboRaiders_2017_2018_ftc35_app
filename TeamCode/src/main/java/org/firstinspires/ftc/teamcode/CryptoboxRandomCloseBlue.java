@@ -37,9 +37,5 @@ public class CryptoboxRandomCloseBlue extends RoboRaidersAuto {
 
         placeGlyph(robot); //robot places glyph
         Thread.sleep(500);
-
-        encodersMove(robot, 1, 0.3, "right");
-        Thread.sleep(500);
-
     }
 }

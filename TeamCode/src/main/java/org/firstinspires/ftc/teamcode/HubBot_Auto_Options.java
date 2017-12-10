@@ -23,7 +23,6 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
 
     public Robot robot = new Robot();
 
-
     View relativeLayout;
 
     // Set up strings for alliance selection
@@ -31,12 +30,13 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
     String[] allianceOptions = new String[] {"red", "blue"};          // The options for this selection
     String allianceSelection;                                         // The alliance selection
 
-    // Set up strings for balance stone selection
+    // Set up strings for balancing stone selection
     String bsTitle = "Balancing Stone Selection";
-    String[] bsOptions = new String[] {"Close", "Far"};
+    String[] bsOptions = new String[] {"close", "far"};
     String bsSelection;
 
-    String[] yesNoOptions = new String[] {"No", "Yes"};
+    // yes/no Options
+    String[] yesNoOptions = new String[] {"no", "yes"};
 
     // Set up strings for jewel selection
     String jewelTitle = "Jewel Selection";
@@ -57,10 +57,11 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
     //----------------------------------------------------------------------------------------------
 
     @Override public void runOpMode() throws InterruptedException {
+
         robot.initialize(hardwareMap);
         robot.initializeServos();
-
-
+        telemetry.addData("Initialized", true);
+        telemetry.update();
 
         // Get a reference to the RelativeLayout so we can later change the background
         // color of the Robot Controller app to match the alliance selection
@@ -99,6 +100,7 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
              |      TRUE          | -OR- |     TRUE           | TRUE   |   FALSE     |
              +--------------------+------+--------------------+--------+-------------+
          */
+
         while (!(prev_B_ButtonState | prev_X_ButtonState)) {
 
             cur_B_ButtonState = gamepad1.b;                           // get the current state of button b
@@ -121,7 +123,7 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
             // thinks is going on here...more investigation is needed
         }
 
-        telemetry.addLine().addData("Alliance Selection: ", allianceSelection);
+        telemetry.addLine().addData("Alliance Selection", allianceSelection);
         telemetry.update();
 
         // Change the background color to match the alliance selection
@@ -149,7 +151,7 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
 
         // Balancing Stone Selection
         telemetry.addLine(bsTitle);
-        telemetry.addLine("Press B for Near or X for Away");
+        telemetry.addLine("Press B for Close or X for Far");
         telemetry.update();
 
         gamepad1.reset();                                             // reset the gamepad to initial state
@@ -181,7 +183,7 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
             // thinks is going on here...more investigation is needed
         }
 
-        telemetry.addLine().addData("Balancing Stone Selection: ", bsSelection);
+        telemetry.addLine().addData("Balancing Stone Selection", bsSelection);
         telemetry.update();
 
         try {
@@ -226,7 +228,7 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
             // thinks is going on here...more investigation is needed
         }
 
-        telemetry.addLine().addData("Jewel Selection: ", jewelSelection);
+        telemetry.addLine().addData("Jewel Selection", jewelSelection);
         telemetry.update();
 
         try {
@@ -271,7 +273,7 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
             // thinks is going on here...more investigation is needed
         }
 
-        telemetry.addLine().addData("Park Selection: ", parkSelection);
+        telemetry.addLine().addData("Park Selection", parkSelection);
         telemetry.update();
 
         try {
@@ -298,52 +300,59 @@ public class HubBot_Auto_Options extends RoboRaidersAuto {
             }
         });
 
-        if (jewelSelection.equals("Yes")) {
+        // Jewel
+        if (jewelSelection.equals("yes")) {
 
             selectJewel(robot, allianceSelection);
-
-        } else if (jewelSelection.equals("No")) {
+        }
+        else if (jewelSelection.equals("no")) {
 
         }
-        if (parkSelection.equals("Yes")) {
-            if (allianceSelection.equals("blue") && bsSelection.equals("Close")){
-                encodersMove(robot, 20, 0.5, "forward");
-                Thread.sleep(500);
+        
+        // Park
+        if (parkSelection.equals("yes")) {
+            
+            if (allianceSelection.equals("blue") && bsSelection.equals("close")) {
 
-                imuTurn(robot, 90, 0.5, "left");
-                Thread.sleep(500);
-            }
-            if (allianceSelection.equals("blue") && bsSelection.equals("Far")){
-                encodersMove(robot, 16, 0.5, "forward");
-                Thread.sleep(500);
-
-                encodersMove(robot, 12, 0.5, "right");
-                Thread.sleep(500);
-            }
-            if (allianceSelection.equals("red") && bsSelection.equals("Close")){
-                encodersMove(robot, 20, 0.5, "backward");
+                encodersMove(robot, 32, 0.5, "forward");
                 Thread.sleep(500);
 
                 imuTurn(robot, 90, 0.5, "left");
                 Thread.sleep(500);
 
-                encodersMove(robot, 3, 0.5, "forward");
+                encodersMove(robot, 2, 0.5, "forward");
                 Thread.sleep(500);
             }
-            if (allianceSelection.equals("red") && bsSelection.equals("Far")){
-                encodersMove(robot, 16, 0.5, "backward");
+            else if (allianceSelection.equals("blue") && bsSelection.equals("far")) {
+
+                encodersMove(robot, 22, 0.5, "forward");
                 Thread.sleep(500);
 
-                encodersMove(robot, 12, 0.5, "right");
+                encodersMove(robot, 18, 0.5, "right");
+                Thread.sleep(500);
+            }
+            else if (allianceSelection.equals("red") && bsSelection.equals("close")) {
+
+                encodersMove(robot, 32, 0.5, "backward");
                 Thread.sleep(500);
 
-                imuTurn(robot, 180, 0.5, "right");
+                imuTurn(robot, 90, 0.5, "left");
+                Thread.sleep(500);
+
+                encodersMove(robot, 2, 0.5, "forward");
+                Thread.sleep(500);
+            }
+            else if (allianceSelection.equals("red") && bsSelection.equals("far")) {
+
+                encodersMove(robot, 22, 0.5, "backward");
+                Thread.sleep(500);
+
+                encodersMove(robot, 18, 0.5, "right");
                 Thread.sleep(500);
             }
         }
-        else if (parkSelection.equals("No")){
+        else if (parkSelection.equals("no")){
 
         }
     }
-
-    }
+}
