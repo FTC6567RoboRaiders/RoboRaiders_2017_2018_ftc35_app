@@ -25,7 +25,7 @@ public class CryptoboxRandomFarRed extends RoboRaidersAuto {
 
         waitForStart();
 
-        lowerArm(robot, 0.99); //robot selects jewel
+        lowerArm(robot, 0.99); //jewel is selected
         selectJewel(robot, "red");
 
         encodersMove(robot, 22, 0.5, "backward");
