@@ -61,13 +61,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                imuTurn(bot, 25, 0.25, "left"); //pivot left
+                imuTurn(bot, 26, 0.25, "left"); //pivot left
                 Thread.sleep(500);
 
                 bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
-                imuTurn(bot, 25, 0.25, "right"); //pivot right to original position
+                imuTurn(bot, 26, 0.25, "right"); //pivot right to original position
                 Thread.sleep(500);
             }
             else { //the ball on the right is blue
@@ -76,13 +76,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                imuTurn(bot, 25, 0.25, "right"); //pivot right
+                imuTurn(bot, 26, 0.25, "right"); //pivot right
                 Thread.sleep(500);
 
                 bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
-                imuTurn(bot, 25, 0.25, "left"); //pivot left to original position
+                imuTurn(bot, 26, 0.25, "left"); //pivot left to original position
                 Thread.sleep(500);
             }
         }
@@ -97,13 +97,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                imuTurn(bot, 25, 0.25, "left"); //pivot left
+                imuTurn(bot, 26, 0.25, "left"); //pivot left
                 Thread.sleep(500);
 
                 bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
-                imuTurn(bot, 25, 0.25, "right"); //pivot right to original position
+                imuTurn(bot, 26, 0.25, "right"); //pivot right to original position
                 Thread.sleep(500);
             }
             else { //the ball on the right is blue
@@ -112,13 +112,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                imuTurn(bot, 25, 0.25, "right"); //pivot right
+                imuTurn(bot, 26, 0.25, "right"); //pivot right
                 Thread.sleep(500);
 
                 bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
-                imuTurn(bot, 25, 0.25, "left"); //pivot left to original position
+                imuTurn(bot, 26, 0.25, "left"); //pivot left to original position
                 Thread.sleep(500);
             }
         }
@@ -380,6 +380,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             pictograph = "UNKNOWN"; //pictograph is set equal to unknown
         }
+
+        telemetry.addData("Pictograph", pictograph);
+        telemetry.update();
     }
 
     /**

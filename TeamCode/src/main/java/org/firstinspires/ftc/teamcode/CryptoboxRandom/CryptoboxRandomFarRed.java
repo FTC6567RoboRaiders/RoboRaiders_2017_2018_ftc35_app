@@ -6,11 +6,11 @@ import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 /**
- * Created by Katelin Zichittella on 11/15/17.
+ * Created by Alex Snyder on 12/6/17.
  */
 
 @Autonomous
-@Disabled
+//@Disabled
 
 public class CryptoboxRandomFarRed extends RoboRaidersAuto {
 
