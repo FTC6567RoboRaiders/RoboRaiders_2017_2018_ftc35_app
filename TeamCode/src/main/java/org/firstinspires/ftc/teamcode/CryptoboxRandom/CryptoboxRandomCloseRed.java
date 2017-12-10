@@ -36,6 +36,9 @@ public class CryptoboxRandomCloseRed extends RoboRaidersAuto {
         imuTurn(robot, 90, 0.5, "left");
         Thread.sleep(500);
 
+        placeGlyph(robot);
+        Thread.sleep(500);
+
         encodersMove(robot, 3, 0.5, "forward");
         Thread.sleep(500);
     }
