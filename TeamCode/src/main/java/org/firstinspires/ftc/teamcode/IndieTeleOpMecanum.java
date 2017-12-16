@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.Range;
 import com.roboraiders.Robot.Robot;
 
 /**
@@ -19,6 +20,7 @@ public class IndieTeleOpMecanum extends OpMode {
     float RightBack;  // Power for right back motor
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
+    float relic;      // Power for relic motor
     float maxpwr;     // Maximum power of the four motors
     boolean nudging = false;
     int nudgeCount = 0;
@@ -26,8 +28,16 @@ public class IndieTeleOpMecanum extends OpMode {
     public boolean prevStateRightBumper = false;
     public boolean currStateLeftBumper = false;
     public boolean prevStateLeftBumper = false;
+    public boolean currStateDpadDown = false;
+    public boolean prevStateDpadDown = false;
+    public boolean currStateY = false;
+    public boolean prevStateY = false;
     public boolean currStateA = false;
     public boolean prevStateA = false;
+    public boolean currStateDpadLeft = false;
+    public boolean prevStateDpadLeft = false;
+    public boolean currStateDpadRight = false;
+    public boolean prevStateDpadRight = false;
 
     @Override
     public void init() {
@@ -65,7 +75,7 @@ public class IndieTeleOpMecanum extends OpMode {
         LeftFront = (float) scaleInput(LeftFront);
         RightFront = (float) scaleInput(RightFront);
 
-        robot.setDriveMotorPower(LeftFront/2, RightFront/2, LeftBack/2, RightBack/2);
+        robot.setDriveMotorPower(LeftFront * 0.75, RightFront * 0.75, LeftBack * 0.75, RightBack * 0.75);
 
         // "Nudging" functionality
         if (gamepad1.dpad_up || gamepad1.dpad_down || gamepad1.dpad_left || gamepad1.dpad_right) { // "If any
@@ -127,10 +137,48 @@ public class IndieTeleOpMecanum extends OpMode {
         }
 
         // "Arms Close" functionality
+        currStateDpadDown = gamepad2.dpad_down;
+        if (currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
+
+            robot.armsClose();
+            prevStateDpadDown = currStateDpadDown;
+        }
+        else if (!currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
+
+            prevStateDpadDown = currStateDpadDown;
+        }
+
+        // "Glyph In/Out/Rest" functionality
+        if (gamepad2.x) {
+
+            robot.glyphIn();
+        }
+        else if (gamepad2.b) {
+
+            robot.glyphOut();
+        }
+        else {
+
+            robot.glyphRest();
+        }
+        
+        // "Glyph Up" functionality
+        currStateY = gamepad2.y;
+        if (currStateY && currStateY != prevStateY) {
+
+            robot.glyphUp();
+            prevStateY = currStateY;
+        }
+        else if (!currStateY && currStateY != prevStateY) {
+
+            prevStateY = currStateY;
+        }
+
+        // "Glyph Down" functionality
         currStateA = gamepad2.a;
         if (currStateA && currStateA != prevStateA) {
 
-            robot.armsClose();
+            robot.glyphDown();
             prevStateA = currStateA;
         }
         else if (!currStateA && currStateA != prevStateA) {
@@ -138,18 +186,34 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateA = currStateA;
         }
 
-        // "Wheels In/Out/Rest" functionality
-        if (gamepad2.x) {
+        // "Set Relic Motor Power" functionality
+        relic = gamepad2.right_stick_y;
+        relic = Range.clip(relic, -1, 1);
+        relic = (float) scaleInput(relic);
+        robot.setRelicMotorPower(relic * 0.5);
 
-            robot.wheelsIn();
+        // "Relic Gripper Open" functionality
+        currStateDpadLeft = gamepad2.dpad_left;
+        if (currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
+
+            robot.gripperOpen();
+            prevStateDpadLeft = currStateDpadLeft;
         }
-        else if (gamepad2.b) {
+        else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
 
-            robot.wheelsOut();
+            prevStateDpadLeft = currStateDpadLeft;
         }
-        else {
 
-            robot.wheelsRest();
+        // "Relic Gripper Close" functionality
+        currStateDpadRight = gamepad2.dpad_right;
+        if (currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
+
+            robot.gripperClose();
+            prevStateDpadRight = currStateDpadRight;
+        }
+        else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
+
+            prevStateDpadRight = currStateDpadRight;
         }
     }
 

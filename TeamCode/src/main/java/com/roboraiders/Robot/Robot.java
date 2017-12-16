@@ -44,10 +44,15 @@ public class Robot {
     public DcMotor motorFrontRight = null;
     public DcMotor motorBackLeft = null;
     public DcMotor motorBackRight = null;
+    public DcMotor motorRelic = null;
+    public DcMotor motorGlyphUp = null;
+    public DcMotor motorGlyphInLeft = null;
+    public DcMotor motorGlyphInRight = null;
 
     public Servo servoJewel = null;
     public Servo servoArmLeft = null;
     public Servo servoArmRight = null;
+    public Servo servoRelicGripper = null;
 
     public CRServo servoWheelLeft = null;
     public CRServo servoWheelRight = null;
@@ -85,18 +90,30 @@ public class Robot {
         motorFrontRight = hwMap.get(DcMotor.class, "right_Front");
         motorBackLeft = hwMap.get(DcMotor.class, "left_Back");
         motorBackRight = hwMap.get(DcMotor.class, "right_Back");
+        motorRelic = hwMap.get(DcMotor.class, "relic");
+        motorGlyphUp = hwMap.get(DcMotor.class, "glyph_Up");
+        motorGlyphInLeft = hwMap.get(DcMotor.class, "glyph_In_Left");
+        motorGlyphInRight = hwMap.get(DcMotor.class, "glyph_In_Right");
 
         // Defines the directions the motors will spin
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
         motorFrontRight.setDirection(DcMotor.Direction.FORWARD);
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackRight.setDirection(DcMotor.Direction.FORWARD);
+        motorRelic.setDirection(DcMotor.Direction.FORWARD);
+        motorGlyphUp.setDirection(DcMotor.Direction.FORWARD);
+        motorGlyphInLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorGlyphInRight.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
         motorFrontRight.setPower(0);
         motorFrontLeft.setPower(0);
         motorBackRight.setPower(0);
         motorBackLeft.setPower(0);
+        motorRelic.setPower(0);
+        motorGlyphUp.setPower(0);
+        motorGlyphInLeft.setPower(0);
+        motorGlyphInRight.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODER if encoders are installed, and we wouldn't use encoders for teleop, even if we
@@ -104,11 +121,16 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorRelic.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorGlyphUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorGlyphInLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorGlyphInRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize servos
         servoJewel = hwMap.get(Servo.class, "servo_Jewel");
         servoArmLeft = hwMap.get(Servo.class, "servo_Arm_Left");
         servoArmRight = hwMap.get(Servo.class, "servo_Arm_Right");
+        servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
 
         // Define and initialize CR servos
         servoWheelLeft = hwMap.get(CRServo.class, "servo_Wheel_Left");
@@ -135,6 +157,7 @@ public class Robot {
         servoJewel.setPosition(0.1);
         servoArmLeft.setPosition(1.0);
         servoArmRight.setPosition(0.0);
+        servoRelicGripper.setPosition(0.3);
     }
 
     /**
@@ -151,6 +174,49 @@ public class Robot {
         motorFrontRight.setPower(rightFront);
         motorBackLeft.setPower(leftBack);
         motorBackRight.setPower(rightBack);
+    }
+
+    /**
+     * This method will set the power for the relic motor
+     *
+     * @param relic power setting for the relic motor
+     */
+    public void setRelicMotorPower(double relic) {
+
+        motorRelic.setPower(relic);
+    }
+
+    /**
+     * This method will pull a glyph in using the glyph intake assembly
+     */
+    public void glyphIn() {
+
+        servoWheelLeft.setPower(-1.0);
+        servoWheelRight.setPower(1.0);
+        motorGlyphInLeft.setPower(0.75);
+        motorGlyphInRight.setPower(0.75);
+    }
+
+    /**
+     * This method will push a glyph out using the glyph intake assembly
+     */
+    public void glyphOut() {
+
+        servoWheelLeft.setPower(1.0);
+        servoWheelRight.setPower(-1.0);
+        motorGlyphInLeft.setPower(-0.75);
+        motorGlyphInRight.setPower(-0.75);
+    }
+
+    /**
+     * This method will halt movement of the glyph intake assembly
+     */
+    public void glyphRest() {
+
+        servoWheelLeft.setPower(0.0);
+        servoWheelRight.setPower(0.0);
+        motorGlyphInLeft.setPower(0.0);
+        motorGlyphInRight.setPower(0.0);
     }
 
     /**
@@ -181,30 +247,61 @@ public class Robot {
     }
 
     /**
-     * This method will spin the servo wheels in
+     * This method will raise a glyph in the omni wheel assembly
      */
-    public void wheelsIn() {
+    public void glyphUp() {
 
-        servoWheelLeft.setPower(-1.0);
-        servoWheelRight.setPower(1.0);
+        resetEncoders();
+        runWithEncoders();
+
+        double COUNTS = calculateCOUNTS(8);
+
+        motorGlyphUp.setPower(0.5);
+
+        while (getGlyphUpEncoderCount() < COUNTS) {
+
+        }
+
+        motorGlyphUp.setPower(0.0);
+
+        runWithoutEncoders();
     }
 
     /**
-     * This method will spin the servo wheels out
+     * This method will lower a glyph in the omni wheel assembly
      */
-    public void wheelsOut() {
+    public void glyphDown() {
 
-        servoWheelLeft.setPower(1.0);
-        servoWheelRight.setPower(-1.0);
+        resetEncoders();
+        runWithEncoders();
+
+        double COUNTS = calculateCOUNTS(8);
+
+        motorGlyphUp.setPower(-0.5);
+
+        while (getGlyphUpEncoderCount() < COUNTS) {
+
+        }
+
+        motorGlyphUp.setPower(0.0);
+
+        runWithoutEncoders();
     }
 
     /**
-     * This method will stop the servo wheels from spinning
+     * This method will open the gripper servo
      */
-    public void wheelsRest() {
+    public void gripperOpen() {
 
-        servoWheelLeft.setPower(0.0);
-        servoWheelRight.setPower(0.0);
+        servoRelicGripper.setPosition(0.7);
+    }
+
+    /**
+     * This method will close the gripper servo
+     */
+    public void gripperClose() {
+
+        servoRelicGripper.setPosition(0.3);
     }
 
     /**
@@ -240,10 +337,14 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorRelic.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorGlyphUp.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorGlyphInLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorGlyphInRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     /**
-     * This method will set the mode of all of the drive train motors to run using encoder
+     * This method will set the mode of all of the motors to run using encoder
      */
     public void runWithEncoders() {
 
@@ -251,6 +352,10 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motorRelic.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motorGlyphUp.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motorGlyphInLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motorGlyphInRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     /**
@@ -262,6 +367,10 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorRelic.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorGlyphUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorGlyphInLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorGlyphInRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     /**
@@ -313,6 +422,17 @@ public class Robot {
     public int getEncoderCount() {
 
         return Math.abs(motorFrontLeft.getCurrentPosition());
+    }
+
+    /**
+     * This method will return the absolute value of the current encoder count of the glyph up motor
+     *
+     * @return Math.abs(motorGlyphUp.getCurrentPosition()) - the absolute value of the current
+     * encoder count of the glyph up motor
+     */
+    public int getGlyphUpEncoderCount() {
+
+        return Math.abs(motorGlyphUp.getCurrentPosition());
     }
 
     /**
