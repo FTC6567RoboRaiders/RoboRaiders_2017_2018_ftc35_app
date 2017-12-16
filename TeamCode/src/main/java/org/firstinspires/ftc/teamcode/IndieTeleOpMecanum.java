@@ -20,7 +20,7 @@ public class IndieTeleOpMecanum extends OpMode {
     float RightBack;  // Power for right back motor
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
-    float relic;      // Power for relic motor
+    //    float relic;      // Power for relic motor
     float maxpwr;     // Maximum power of the four motors
     boolean nudging = false;
     int nudgeCount = 0;
@@ -187,34 +187,34 @@ public class IndieTeleOpMecanum extends OpMode {
         }
 
         // "Set Relic Motor Power" functionality
-        relic = gamepad2.right_stick_y;
-        relic = Range.clip(relic, -1, 1);
-        relic = (float) scaleInput(relic);
-        robot.setRelicMotorPower(relic * 0.5);
+        //    relic = gamepad2.right_stick_y;
+        //    relic = Range.clip(relic, -1, 1);
+        //    relic = (float) scaleInput(relic);
+        //    robot.setRelicMotorPower(relic * 0.5);
 
         // "Relic Gripper Open" functionality
-        currStateDpadLeft = gamepad2.dpad_left;
-        if (currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
+        //    currStateDpadLeft = gamepad2.dpad_left;
+        //    if (currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
 
-            robot.gripperOpen();
-            prevStateDpadLeft = currStateDpadLeft;
-        }
-        else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
+        //        robot.gripperOpen();
+        //        prevStateDpadLeft = currStateDpadLeft;
+        //   }
+        //    else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
 
-            prevStateDpadLeft = currStateDpadLeft;
-        }
+        //       prevStateDpadLeft = currStateDpadLeft;
+        //   }
 
         // "Relic Gripper Close" functionality
-        currStateDpadRight = gamepad2.dpad_right;
-        if (currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
+        //   currStateDpadRight = gamepad2.dpad_right;
+        //   if (currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
 
-            robot.gripperClose();
-            prevStateDpadRight = currStateDpadRight;
-        }
-        else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
+        //       robot.gripperClose();
+        //       prevStateDpadRight = currStateDpadRight;
+        //   }
+        //   else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
 
-            prevStateDpadRight = currStateDpadRight;
-        }
+        //       prevStateDpadRight = currStateDpadRight;
+        //   }
     }
 
     @Override

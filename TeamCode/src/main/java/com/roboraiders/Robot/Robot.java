@@ -90,7 +90,7 @@ public class Robot {
         motorFrontRight = hwMap.get(DcMotor.class, "right_Front");
         motorBackLeft = hwMap.get(DcMotor.class, "left_Back");
         motorBackRight = hwMap.get(DcMotor.class, "right_Back");
-        motorRelic = hwMap.get(DcMotor.class, "relic");
+      /*  motorRelic = hwMap.get(DcMotor.class, "relic");*/
         motorGlyphUp = hwMap.get(DcMotor.class, "glyph_Up");
         motorGlyphInLeft = hwMap.get(DcMotor.class, "glyph_In_Left");
         motorGlyphInRight = hwMap.get(DcMotor.class, "glyph_In_Right");
@@ -100,7 +100,7 @@ public class Robot {
         motorFrontRight.setDirection(DcMotor.Direction.FORWARD);
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackRight.setDirection(DcMotor.Direction.FORWARD);
-        motorRelic.setDirection(DcMotor.Direction.FORWARD);
+        //   motorRelic.setDirection(DcMotor.Direction.FORWARD);
         motorGlyphUp.setDirection(DcMotor.Direction.FORWARD);
         motorGlyphInLeft.setDirection(DcMotor.Direction.REVERSE);
         motorGlyphInRight.setDirection(DcMotor.Direction.FORWARD);
@@ -110,7 +110,7 @@ public class Robot {
         motorFrontLeft.setPower(0);
         motorBackRight.setPower(0);
         motorBackLeft.setPower(0);
-        motorRelic.setPower(0);
+        //  motorRelic.setPower(0);
         motorGlyphUp.setPower(0);
         motorGlyphInLeft.setPower(0);
         motorGlyphInRight.setPower(0);
@@ -121,7 +121,7 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorRelic.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //  motorRelic.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorGlyphUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorGlyphInLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorGlyphInRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -130,7 +130,7 @@ public class Robot {
         servoJewel = hwMap.get(Servo.class, "servo_Jewel");
         servoArmLeft = hwMap.get(Servo.class, "servo_Arm_Left");
         servoArmRight = hwMap.get(Servo.class, "servo_Arm_Right");
-        servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
+     /*   servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper"); */
 
         // Define and initialize CR servos
         servoWheelLeft = hwMap.get(CRServo.class, "servo_Wheel_Left");
@@ -157,7 +157,7 @@ public class Robot {
         servoJewel.setPosition(0.1);
         servoArmLeft.setPosition(1.0);
         servoArmRight.setPosition(0.0);
-        servoRelicGripper.setPosition(0.3);
+        //    servoRelicGripper.setPosition(0.3);
     }
 
     /**
@@ -337,7 +337,7 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorRelic.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //   motorRelic.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorGlyphUp.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorGlyphInLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorGlyphInRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -352,7 +352,7 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorRelic.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //   motorRelic.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorGlyphUp.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorGlyphInLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorGlyphInRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -367,7 +367,7 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorRelic.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //   motorRelic.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorGlyphUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorGlyphInLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorGlyphInRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
