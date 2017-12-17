@@ -4,6 +4,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -101,8 +102,8 @@ public class Robot {
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackRight.setDirection(DcMotor.Direction.FORWARD);
         //   motorRelic.setDirection(DcMotor.Direction.FORWARD);
-        motorGlyphUp.setDirection(DcMotor.Direction.FORWARD);
-        motorGlyphInLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorGlyphUp.setDirection(DcMotor.Direction.REVERSE);
+        motorGlyphInLeft.setDirection(DcMotor.Direction.FORWARD);
         motorGlyphInRight.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
@@ -186,6 +187,11 @@ public class Robot {
         motorRelic.setPower(relic);
     }
 
+    public void setGlyphUpMotorPower(double glyphUp) {
+
+        motorGlyphUp.setPower(glyphUp);
+    }
+
     /**
      * This method will pull a glyph in using the glyph intake assembly
      */
@@ -193,8 +199,8 @@ public class Robot {
 
         servoWheelLeft.setPower(-1.0);
         servoWheelRight.setPower(1.0);
-        motorGlyphInLeft.setPower(0.75);
-        motorGlyphInRight.setPower(0.75);
+        motorGlyphInLeft.setPower(0.5);
+        motorGlyphInRight.setPower(0.5);
     }
 
     /**
@@ -204,8 +210,8 @@ public class Robot {
 
         servoWheelLeft.setPower(1.0);
         servoWheelRight.setPower(-1.0);
-        motorGlyphInLeft.setPower(-0.75);
-        motorGlyphInRight.setPower(-0.75);
+        motorGlyphInLeft.setPower(-0.5);
+        motorGlyphInRight.setPower(-0.5);
     }
 
     /**
@@ -270,9 +276,9 @@ public class Robot {
     /**
      * This method will lower a glyph in the omni wheel assembly
      */
-    public void glyphDown() {
+    public void glyphDown() throws InterruptedException {
 
-        resetEncoders();
+        /*resetEncoders();
         runWithEncoders();
 
         double COUNTS = calculateCOUNTS(8);
@@ -285,7 +291,12 @@ public class Robot {
 
         motorGlyphUp.setPower(0.0);
 
-        runWithoutEncoders();
+        runWithoutEncoders();*/
+
+        motorGlyphUp.setPower(-0.5);
+        Thread.sleep(800);
+
+        motorGlyphUp.setPower(0.0);
     }
 
     /**
@@ -436,6 +447,18 @@ public class Robot {
     }
 
     /**
+     * This method will return the average encoder count of the two "glyph in" motors
+     *
+     * @return averageCount - the average encoder count of the two "glyph in" motors
+     */
+    public int getGlyphInEncoderCount() {
+
+        int averageCount = (Math.abs(motorGlyphInLeft.getCurrentPosition()) +
+                Math.abs(motorGlyphInRight.getCurrentPosition())) / 2;
+        return averageCount;
+    }
+
+    /**
      * This method will return COUNTS after it is calculated from distance
      *
      * @param distance the desired distance in inches the robot will travel
@@ -509,5 +532,40 @@ public class Robot {
     public double getJewelServoPosition() {
 
         return servoJewel.getPosition();
+    }
+
+    /**
+     * This method lowers and expels a glyph in autonomous
+     *
+     * @throws InterruptedException
+     */
+    public void expelGlyph() throws InterruptedException {
+
+        glyphDown();
+        Thread.sleep(500);
+
+        /*resetEncoders();
+        runWithEncoders();
+
+        double COUNTS = calculateCOUNTS(4);
+
+        motorGlyphInLeft.setPower(-0.5);
+        motorGlyphInRight.setPower(-0.5);
+
+        while (getGlyphInEncoderCount() < COUNTS) {
+
+        }
+
+        motorGlyphInLeft.setPower(0.0);
+        motorGlyphInRight.setPower(0.0);
+
+        runWithoutEncoders();*/
+
+        motorGlyphInLeft.setPower(-0.5);
+        motorGlyphInRight.setPower(-0.5);
+        Thread.sleep(600);
+
+        motorGlyphInLeft.setPower(0.0);
+        motorGlyphInRight.setPower(0.0);
     }
 }

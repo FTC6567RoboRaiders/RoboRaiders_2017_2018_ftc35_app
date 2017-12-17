@@ -12,7 +12,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  */
 
 @Autonomous
-@Disabled
+//@Disabled
 
 public class SensorTest extends RoboRaidersAuto {
 
@@ -46,12 +46,12 @@ public class SensorTest extends RoboRaidersAuto {
             telemetry.addData("Pictograph", pictograph);
             telemetry.addData("IMU Angle", robot.angles.firstAngle);
             telemetry.addData("Touch", robot.digitalTouch.getState());
-            telemetry.update();*/
+            telemetry.update();
 
             imuTurn(robot, 90, 0.5, "left");
             Thread.sleep(1000);
             imuTurn(robot, 90, 0.5, "right");
-            Thread.sleep(1000);
+            Thread.sleep(1000);*/
 
             /*encodersStrafe(robot, 30, 0.25, "left");
             Thread.sleep(1000);
@@ -60,6 +60,29 @@ public class SensorTest extends RoboRaidersAuto {
 
             //touchSensorCount(robot, 2, 0.2);
             //distanceSensorCount(robot, 3, 0.3);
+
+            /*robot.resetEncoders();
+            robot.runWithEncoders();
+
+            double COUNTS = robot.calculateCOUNTS(4);
+
+            robot.motorGlyphInLeft.setPower(-0.5);
+            robot.motorGlyphInRight.setPower(-0.5);
+
+            while (robot.getGlyphInEncoderCount() < COUNTS) {
+
+                telemetry.addData("Average", robot.getGlyphInEncoderCount());
+                telemetry.update();
+            }
+
+            robot.motorGlyphInLeft.setPower(0.0);
+            robot.motorGlyphInRight.setPower(0.0);
+
+            robot.runWithoutEncoders();
+            Thread.sleep(500);*/
+
+            robot.expelGlyph();
+            Thread.sleep(500);
         }
     }
 }

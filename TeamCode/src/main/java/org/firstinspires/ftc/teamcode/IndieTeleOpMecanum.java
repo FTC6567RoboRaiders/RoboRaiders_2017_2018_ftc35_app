@@ -21,6 +21,7 @@ public class IndieTeleOpMecanum extends OpMode {
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
     //    float relic;      // Power for relic motor
+    float glyphUp;
     float maxpwr;     // Maximum power of the four motors
     boolean nudging = false;
     int nudgeCount = 0;
@@ -161,6 +162,11 @@ public class IndieTeleOpMecanum extends OpMode {
 
             robot.glyphRest();
         }
+
+        glyphUp = gamepad2.left_stick_y;
+        glyphUp = Range.clip(glyphUp, -1, 1);
+        glyphUp = (float) scaleInput(glyphUp);
+        robot.setGlyphUpMotorPower(glyphUp * 0.5);
         
         // "Glyph Up" functionality
         currStateY = gamepad2.y;
@@ -178,7 +184,7 @@ public class IndieTeleOpMecanum extends OpMode {
         currStateA = gamepad2.a;
         if (currStateA && currStateA != prevStateA) {
 
-            robot.glyphDown();
+            //robot.glyphDown();
             prevStateA = currStateA;
         }
         else if (!currStateA && currStateA != prevStateA) {
