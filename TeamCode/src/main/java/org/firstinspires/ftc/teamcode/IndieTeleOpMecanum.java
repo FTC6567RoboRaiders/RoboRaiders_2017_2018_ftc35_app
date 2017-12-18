@@ -212,7 +212,7 @@ public class IndieTeleOpMecanum extends OpMode {
         currStateUpDPad = gamepad2.dpad_up;
         if (currStateUpDPad && currStateUpDPad != prevStateUpDPad){
 
-            RoboRaidersTeleOp.encodersRelicOut(robot, 12, .5);
+            encodersRelicOut(robot, 12, .5);
             prevStateUpDPad = currStateUpDPad;
         }
         else if (!currStateUpDPad && currStateUpDPad != prevStateUpDPad){
