@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
+import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 /**
@@ -21,10 +22,14 @@ public class IndieTeleOpMecanum extends OpMode {
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
     //    float relic;      // Power for relic motor
-    float glyphUp;
+    //float glyphUp;
     float maxpwr;     // Maximum power of the four motors
     boolean nudging = false;
     int nudgeCount = 0;
+    public boolean currStateUpDPad = false;
+    public boolean prevStateUpDPad = false;
+    public boolean currStateDownDPad = false;
+    public boolean prevStateDownDPad = false;
     public boolean currStateRightBumper = false;
     public boolean prevStateRightBumper = false;
     public boolean currStateLeftBumper = false;
@@ -163,10 +168,10 @@ public class IndieTeleOpMecanum extends OpMode {
             robot.glyphRest();
         }
 
-        glyphUp = gamepad2.left_stick_y;
+        /*glyphUp = gamepad2.left_stick_y;
         glyphUp = Range.clip(glyphUp, -1, 1);
         glyphUp = (float) scaleInput(glyphUp);
-        robot.setGlyphUpMotorPower(glyphUp * 0.5);
+        robot.setGlyphUpMotorPower(glyphUp * 0.5);*/
         
         // "Glyph Up" functionality
         currStateY = gamepad2.y;
@@ -193,10 +198,35 @@ public class IndieTeleOpMecanum extends OpMode {
         }
 
         // "Set Relic Motor Power" functionality
-        //    relic = gamepad2.right_stick_y;
-        //    relic = Range.clip(relic, -1, 1);
-        //    relic = (float) scaleInput(relic);
-        //    robot.setRelicMotorPower(relic * 0.5);
+
+         //   relic = gamepad2.right_stick_y;
+           // relic = Range.clip(relic, -1, 1);
+          //  relic = (float) scaleInput(relic);
+           // robot.setRelicMotorPower(relic * 0.5);
+
+        //Nick and Jason's Awesome Relic Teleop
+
+
+
+        currStateUpDPad = gamepad2.dpad_up;
+        if (currStateUpDPad && currStateUpDPad != prevStateUpDPad){
+
+            encodersRelicOut(robot, 12, .5);
+            prevStateUpDPad = currStateUpDPad;
+        }
+        else if (!currStateUpDPad && currStateUpDPad != prevStateUpDPad){
+            prevStateUpDPad = currStateUpDPad;
+        }
+
+        currStateDownDPad = gamepad2.dpad_up;
+        if (currStateDownDPad && currStateDownDPad != prevStateDownDPad){
+
+            RoboRaidersAuto.encodersRelicIn(robot, 12, .5);
+            prevStateDownDPad = currStateDownDPad;
+        }
+        else if (!currStateDownDPad && currStateDownDPad != prevStateDownDPad){
+            prevStateDownDPad = currStateDownDPad;
+        }
 
         // "Relic Gripper Open" functionality
         //    currStateDpadLeft = gamepad2.dpad_left;

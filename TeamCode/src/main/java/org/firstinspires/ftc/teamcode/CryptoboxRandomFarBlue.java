@@ -34,7 +34,7 @@ public class CryptoboxRandomFarBlue extends RoboRaidersAuto {
         encodersMove(robot, 18, 0.5, "right"); //robot turns so glyph collector faces cryptobox
         Thread.sleep(500);
 
-        placeGlyph(robot); //robot places glyph
+        //placeGlyph(robot); //robot places glyph
         Thread.sleep(500);
     }
 }

@@ -184,7 +184,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
         Thread.sleep(250);
 
-        placeGlyph(bot); //run the method placeGlyph
+        //placeGlyph(bot); //run the method placeGlyph
         Thread.sleep(250);
     }
 
@@ -415,7 +415,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      * @param bot - the bot currently being worked on
      * @throws InterruptedException
      */
-    public void placeGlyph(Robot bot) throws InterruptedException {
+    /*public void placeGlyph(Robot bot) throws InterruptedException {
 
         bot.armsOpen();  //arms open
         Thread.sleep(500);
@@ -434,14 +434,14 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         encodersMove(bot, 2, 0.5, "backward"); //moves backwards 1" to stay in the safe zone but not be touching a glyph
         Thread.sleep(500);
-    }
+    }*/
 
     /**
      * This method lowers and expels a glyph in autonomous
      *
      * @throws InterruptedException
      */
-    public void expelGlyph(Robot bot) throws InterruptedException {
+    /*public void expelGlyph(Robot bot) throws InterruptedException {
 
         glyphDown(bot);
         Thread.sleep(500);
@@ -464,12 +464,12 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         bot.motorGlyphInRight.setPower(0.0);
 
         bot.runWithoutEncoders();
-    }
+    }*/
 
     /**
      * This method will lower a glyph in the omni wheel assembly
      */
-    public void glyphDown(Robot bot) {
+    /*public void glyphDown(Robot bot) {
 
         bot.resetEncoders();
         bot.runWithEncoders();
@@ -487,5 +487,32 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         bot.motorGlyphUp.setPower(0.0);
 
         bot.runWithoutEncoders();
+    }*/
+    public void encodersRelicOut(Robot bot, int distance, double power) {
+        bot.resetEncoders();
+        bot.runWithEncoders();
+        bot.setRelicMotorPower(power);
+
+        double COUNTS = bot.calculateCOUNTS(distance);
+
+        while (bot.motorRelic.getCurrentPosition() < COUNTS && opModeIsActive()) {
+            telemetry.addData("Counts", COUNTS);
+            telemetry.addData("Encoder Count", bot.motorRelic.getCurrentPosition());
+            telemetry.update();
+        }
+
     }
+    public void encodersRelicIn(Robot bot, int distance, double power) {
+        bot.resetEncoders();
+        bot.runWithEncoders();
+        bot.setRelicMotorPower(-power);
+
+        double COUNTS = bot.calculateCOUNTS(distance);
+
+        while (bot.motorRelic.getCurrentPosition() < COUNTS && opModeIsActive()) {
+            telemetry.addData("Counts", COUNTS);
+            telemetry.addData("Encoder Count", bot.motorRelic.getCurrentPosition());
+            telemetry.update();
+        }}
+
 }
