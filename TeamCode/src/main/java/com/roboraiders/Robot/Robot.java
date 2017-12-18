@@ -102,7 +102,7 @@ public class Robot {
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackRight.setDirection(DcMotor.Direction.FORWARD);
         motorRelic.setDirection(DcMotor.Direction.FORWARD);
-        motorGlyphUp.setDirection(DcMotor.Direction.REVERSE);
+        motorGlyphUp.setDirection(DcMotor.Direction.FORWARD);
         motorGlyphInLeft.setDirection(DcMotor.Direction.FORWARD);
         motorGlyphInRight.setDirection(DcMotor.Direction.FORWARD);
 
@@ -231,6 +231,48 @@ public class Robot {
     }
 
     /**
+     * This method will raise a glyph in the omni wheel assembly
+     */
+    public void glyphUp(Robot bot) {
+
+        bot.resetEncoders();
+        bot.runWithEncoders();
+
+        double COUNTS = bot.calculateCOUNTS(8);
+
+        bot.motorGlyphUp.setPower(0.5);
+
+        while (bot.getGlyphUpEncoderCount() < COUNTS) {
+
+        }
+
+        bot.motorGlyphUp.setPower(0.0);
+
+        bot.runWithoutEncoders();
+    }
+
+    /**
+     * This method will lower a glyph in the omni wheel assembly
+     */
+    public void glyphDown(Robot bot) {
+
+        bot.resetEncoders();
+        bot.runWithEncoders();
+
+        double COUNTS = bot.calculateCOUNTS(8);
+
+        bot.motorGlyphUp.setPower(-0.5);
+
+        while (bot.getGlyphUpEncoderCount() < COUNTS) {
+
+        }
+
+        bot.motorGlyphUp.setPower(0.0);
+
+        bot.runWithoutEncoders();
+    }
+
+    /**
      * This method will open the servo arms
      */
     public void armsOpen() {
@@ -244,8 +286,8 @@ public class Robot {
      */
     public void armsGlyph() {
 
-        servoArmLeft.setPosition(0.7);
-        servoArmRight.setPosition(0.3);
+        servoArmLeft.setPosition(0.6);
+        servoArmRight.setPosition(0.4);
     }
 
     /**
@@ -255,6 +297,34 @@ public class Robot {
 
         servoArmLeft.setPosition(1.0);
         servoArmRight.setPosition(0.0);
+    }
+
+    public void encodersRelicOut(Robot bot, int distance, double power) {
+
+        bot.resetEncoders();
+        bot.runWithEncoders();
+
+        bot.setRelicMotorPower(power);
+
+        double COUNTS = bot.calculateCOUNTS(distance);
+
+        while (bot.motorRelic.getCurrentPosition() < COUNTS) {
+
+        }
+    }
+
+    public void encodersRelicIn(Robot bot, int distance, double power) {
+
+        bot.resetEncoders();
+        bot.runWithEncoders();
+
+        bot.setRelicMotorPower(-power);
+
+        double COUNTS = bot.calculateCOUNTS(distance);
+
+        while (bot.motorRelic.getCurrentPosition() < COUNTS) {
+
+        }
     }
 
     /**

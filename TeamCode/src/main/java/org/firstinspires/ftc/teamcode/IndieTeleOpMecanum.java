@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
-import com.roboraiders.Robot.RoboRaidersTeleOp;
 import com.roboraiders.Robot.Robot;
 
 /**
@@ -11,7 +11,7 @@ import com.roboraiders.Robot.Robot;
 
 @TeleOp
 
-public class IndieTeleOpMecanum extends RoboRaidersTeleOp {
+public class IndieTeleOpMecanum extends OpMode {
 
     public Robot robot = new Robot();
 
@@ -203,7 +203,9 @@ public class IndieTeleOpMecanum extends RoboRaidersTeleOp {
         glyphUp = (float) scaleInput(glyphUp);
         robot.setGlyphUpMotorPower(glyphUp * 0.5);
 
-        /*currStateUpDPad = gamepad2.dpad_up;
+        /*
+        //Alternate "Relic In/Out" functionality
+        currStateUpDPad = gamepad2.dpad_up;
         if (currStateUpDPad && currStateUpDPad != prevStateUpDPad){
 
             encodersRelicOut(robot, 12, 0.5);
