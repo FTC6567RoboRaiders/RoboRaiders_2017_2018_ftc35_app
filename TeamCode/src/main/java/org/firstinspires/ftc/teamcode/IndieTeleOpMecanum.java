@@ -1,9 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
-import com.roboraiders.Robot.RoboRaidersAuto;
+import com.roboraiders.Robot.RoboRaidersTeleOp;
 import com.roboraiders.Robot.Robot;
 
 /**
@@ -12,7 +11,7 @@ import com.roboraiders.Robot.Robot;
 
 @TeleOp
 
-public class IndieTeleOpMecanum extends OpMode {
+public class IndieTeleOpMecanum extends RoboRaidersTeleOp {
 
     public Robot robot = new Robot();
 
@@ -21,8 +20,8 @@ public class IndieTeleOpMecanum extends OpMode {
     float RightBack;  // Power for right back motor
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
-    //    float relic;      // Power for relic motor
-    //float glyphUp;
+    float relic;      // Power for relic motor
+    float glyphUp;    // Power for glyph up motor
     float maxpwr;     // Maximum power of the four motors
     boolean nudging = false;
     int nudgeCount = 0;
@@ -167,17 +166,12 @@ public class IndieTeleOpMecanum extends OpMode {
 
             robot.glyphRest();
         }
-
-        /*glyphUp = gamepad2.left_stick_y;
-        glyphUp = Range.clip(glyphUp, -1, 1);
-        glyphUp = (float) scaleInput(glyphUp);
-        robot.setGlyphUpMotorPower(glyphUp * 0.5);*/
         
         // "Glyph Up" functionality
-        currStateY = gamepad2.y;
+        /*currStateY = gamepad2.y;
         if (currStateY && currStateY != prevStateY) {
 
-            robot.glyphUp();
+            glyphUp(robot);
             prevStateY = currStateY;
         }
         else if (!currStateY && currStateY != prevStateY) {
@@ -189,29 +183,30 @@ public class IndieTeleOpMecanum extends OpMode {
         currStateA = gamepad2.a;
         if (currStateA && currStateA != prevStateA) {
 
-            //robot.glyphDown();
+            glyphDown(robot);
             prevStateA = currStateA;
         }
         else if (!currStateA && currStateA != prevStateA) {
 
             prevStateA = currStateA;
-        }
+        }*/
 
-        // "Set Relic Motor Power" functionality
+        //"Set Relic Motor Power" functionality
+        relic = gamepad2.left_stick_y;
+        relic = Range.clip(relic, -1, 1);
+        relic = (float) scaleInput(relic);
+        robot.setRelicMotorPower(relic * 0.5);
 
-         //   relic = gamepad2.right_stick_y;
-           // relic = Range.clip(relic, -1, 1);
-          //  relic = (float) scaleInput(relic);
-           // robot.setRelicMotorPower(relic * 0.5);
+        //Alternate "Glyph Up/Down functionality
+        glyphUp = gamepad2.right_stick_y;
+        glyphUp = Range.clip(glyphUp, -1, 1);
+        glyphUp = (float) scaleInput(glyphUp);
+        robot.setGlyphUpMotorPower(glyphUp * 0.5);
 
-        //Nick and Jason's Awesome Relic Teleop
-
-
-
-        currStateUpDPad = gamepad2.dpad_up;
+        /*currStateUpDPad = gamepad2.dpad_up;
         if (currStateUpDPad && currStateUpDPad != prevStateUpDPad){
 
-            encodersRelicOut(robot, 12, .5);
+            encodersRelicOut(robot, 12, 0.5);
             prevStateUpDPad = currStateUpDPad;
         }
         else if (!currStateUpDPad && currStateUpDPad != prevStateUpDPad){
@@ -221,12 +216,12 @@ public class IndieTeleOpMecanum extends OpMode {
         currStateDownDPad = gamepad2.dpad_up;
         if (currStateDownDPad && currStateDownDPad != prevStateDownDPad){
 
-            RoboRaidersAuto.encodersRelicIn(robot, 12, .5);
+            encodersRelicIn(robot, 12, 0.5);
             prevStateDownDPad = currStateDownDPad;
         }
         else if (!currStateDownDPad && currStateDownDPad != prevStateDownDPad){
             prevStateDownDPad = currStateDownDPad;
-        }
+        }*/
 
         // "Relic Gripper Open" functionality
         //    currStateDpadLeft = gamepad2.dpad_left;

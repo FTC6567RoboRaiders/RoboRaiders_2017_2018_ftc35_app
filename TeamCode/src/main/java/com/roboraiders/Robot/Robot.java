@@ -131,7 +131,7 @@ public class Robot {
         servoJewel = hwMap.get(Servo.class, "servo_Jewel");
         servoArmLeft = hwMap.get(Servo.class, "servo_Arm_Left");
         servoArmRight = hwMap.get(Servo.class, "servo_Arm_Right");
-     /*   servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper"); */
+        //servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
 
         // Define and initialize CR servos
         servoWheelLeft = hwMap.get(CRServo.class, "servo_Wheel_Left");
@@ -158,7 +158,7 @@ public class Robot {
         servoJewel.setPosition(0.1);
         servoArmLeft.setPosition(1.0);
         servoArmRight.setPosition(0.0);
-        //    servoRelicGripper.setPosition(0.3);
+        //servoRelicGripper.setPosition(0.3);
     }
 
     /**
@@ -169,9 +169,6 @@ public class Robot {
      * @param leftBack power setting for the left back motor
      * @param rightBack power setting for the right back motor
      */
-
-
-
     public void setDriveMotorPower(double leftFront, double rightFront, double leftBack, double rightBack){
 
         motorFrontLeft.setPower(leftFront);
@@ -179,8 +176,6 @@ public class Robot {
         motorBackLeft.setPower(leftBack);
         motorBackRight.setPower(rightBack);
     }
-
-
 
     /**
      * This method will set the power for the relic motor
@@ -192,6 +187,11 @@ public class Robot {
         motorRelic.setPower(relic);
     }
 
+    /**
+     * This method will set the power for the glyphUp motor
+     *
+     * @param glyphUp power setting for the glyphUp motor
+     */
     public void setGlyphUpMotorPower(double glyphUp) {
 
         motorGlyphUp.setPower(glyphUp);
@@ -255,53 +255,6 @@ public class Robot {
 
         servoArmLeft.setPosition(1.0);
         servoArmRight.setPosition(0.0);
-    }
-
-    /**
-     * This method will raise a glyph in the omni wheel assembly
-     */
-    public void glyphUp() {
-
-        resetEncoders();
-        runWithEncoders();
-
-        double COUNTS = calculateCOUNTS(8);
-
-        motorGlyphUp.setPower(0.5);
-
-        while (getGlyphUpEncoderCount() < COUNTS) {
-
-        }
-
-        motorGlyphUp.setPower(0.0);
-
-        runWithoutEncoders();
-    }
-
-    /**
-     * This method will lower a glyph in the omni wheel assembly
-     */
-    public void glyphDown() throws InterruptedException {
-
-        /*resetEncoders();
-        runWithEncoders();
-
-        double COUNTS = calculateCOUNTS(8);
-
-        motorGlyphUp.setPower(-0.5);
-
-        while (getGlyphUpEncoderCount() < COUNTS) {
-
-        }
-
-        motorGlyphUp.setPower(0.0);
-
-        runWithoutEncoders();*/
-
-        motorGlyphUp.setPower(-0.5);
-        Thread.sleep(800);
-
-        motorGlyphUp.setPower(0.0);
     }
 
     /**
@@ -538,41 +491,4 @@ public class Robot {
 
         return servoJewel.getPosition();
     }
-
-    /**
-     * This method lowers and expels a glyph in autonomous
-     *
-     * @throws InterruptedException
-     */
-    public void expelGlyph() throws InterruptedException {
-
-        glyphDown();
-        Thread.sleep(500);
-
-        /*resetEncoders();
-        runWithEncoders();
-
-        double COUNTS = calculateCOUNTS(4);
-
-        motorGlyphInLeft.setPower(-0.5);
-        motorGlyphInRight.setPower(-0.5);
-
-        while (getGlyphInEncoderCount() < COUNTS) {
-
-        }
-
-        motorGlyphInLeft.setPower(0.0);
-        motorGlyphInRight.setPower(0.0);
-
-        runWithoutEncoders();*/
-
-        motorGlyphInLeft.setPower(-0.5);
-        motorGlyphInRight.setPower(-0.5);
-        Thread.sleep(600);
-
-        motorGlyphInLeft.setPower(0.0);
-        motorGlyphInRight.setPower(0.0);
-    }
-
-
 }

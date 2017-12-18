@@ -81,7 +81,7 @@ public class SensorTest extends RoboRaidersAuto {
             robot.runWithoutEncoders();
             Thread.sleep(500);*/
 
-            robot.expelGlyph();
+            //robot.expelGlyph();
             Thread.sleep(500);
         }
     }
