@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
+import com.roboraiders.Robot.RoboRaidersTeleOp;
 
 /**
  * Created by Jason Sember on 9/23/2017.
@@ -211,7 +212,7 @@ public class IndieTeleOpMecanum extends OpMode {
         currStateUpDPad = gamepad2.dpad_up;
         if (currStateUpDPad && currStateUpDPad != prevStateUpDPad){
 
-            encodersRelicOut(robot, 12, .5);
+            RoboRaidersTeleOp.encodersRelicOut(robot, 12, .5);
             prevStateUpDPad = currStateUpDPad;
         }
         else if (!currStateUpDPad && currStateUpDPad != prevStateUpDPad){
@@ -221,7 +222,7 @@ public class IndieTeleOpMecanum extends OpMode {
         currStateDownDPad = gamepad2.dpad_up;
         if (currStateDownDPad && currStateDownDPad != prevStateDownDPad){
 
-            RoboRaidersAuto.encodersRelicIn(robot, 12, .5);
+            RoboRaidersTeleOp.encodersRelicIn(robot, 12, .5);
             prevStateDownDPad = currStateDownDPad;
         }
         else if (!currStateDownDPad && currStateDownDPad != prevStateDownDPad){

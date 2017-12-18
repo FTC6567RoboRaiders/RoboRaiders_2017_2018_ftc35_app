@@ -488,31 +488,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         bot.runWithoutEncoders();
     }*/
-    public void encodersRelicOut(Robot bot, int distance, double power) {
-        bot.resetEncoders();
-        bot.runWithEncoders();
-        bot.setRelicMotorPower(power);
 
-        double COUNTS = bot.calculateCOUNTS(distance);
-
-        while (bot.motorRelic.getCurrentPosition() < COUNTS && opModeIsActive()) {
-            telemetry.addData("Counts", COUNTS);
-            telemetry.addData("Encoder Count", bot.motorRelic.getCurrentPosition());
-            telemetry.update();
-        }
-
-    }
-    public void encodersRelicIn(Robot bot, int distance, double power) {
-        bot.resetEncoders();
-        bot.runWithEncoders();
-        bot.setRelicMotorPower(-power);
-
-        double COUNTS = bot.calculateCOUNTS(distance);
-
-        while (bot.motorRelic.getCurrentPosition() < COUNTS && opModeIsActive()) {
-            telemetry.addData("Counts", COUNTS);
-            telemetry.addData("Encoder Count", bot.motorRelic.getCurrentPosition());
-            telemetry.update();
-        }}
 
 }
