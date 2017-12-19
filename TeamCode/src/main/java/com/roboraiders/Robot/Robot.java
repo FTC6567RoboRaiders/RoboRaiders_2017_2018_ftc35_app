@@ -161,6 +161,7 @@ public class Robot {
         servoArmRight.setPosition(0.0);
         servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
+
     }
 
     /**
