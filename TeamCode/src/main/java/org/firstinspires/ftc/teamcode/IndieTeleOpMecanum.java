@@ -25,16 +25,16 @@ public class IndieTeleOpMecanum extends OpMode {
     float maxpwr;     // Maximum power of the four motors
     boolean nudging = false;
     int nudgeCount = 0;
-    public boolean currStateUpDPad = false;
-    public boolean prevStateUpDPad = false;
-    public boolean currStateDownDPad = false;
-    public boolean prevStateDownDPad = false;
+    public boolean currStateDpadUp = false;
+    public boolean prevStateDpadUp = false;
+    public boolean currStateDpadDown = false;
+    public boolean prevStateDpadDown = false;
     public boolean currStateRightBumper = false;
     public boolean prevStateRightBumper = false;
     public boolean currStateLeftBumper = false;
     public boolean prevStateLeftBumper = false;
-    public boolean currStateDpadDown = false;
-    public boolean prevStateDpadDown = false;
+    public boolean currStateLeftTrigger = false;
+    public boolean prevStateLeftTrigger = false;
     public boolean currStateY = false;
     public boolean prevStateY = false;
     public boolean currStateA = false;
@@ -142,15 +142,22 @@ public class IndieTeleOpMecanum extends OpMode {
         }
 
         // "Arms Close" functionality
-        currStateDpadDown = gamepad2.dpad_down;
-        if (currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
+        if (gamepad2.left_trigger > 0.5) {
+
+            currStateLeftTrigger = true;
+        }
+        else {
+
+            currStateLeftTrigger = false;
+        }
+        if (currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
 
             robot.armsClose();
-            prevStateDpadDown = currStateDpadDown;
+            prevStateLeftTrigger = currStateLeftTrigger;
         }
-        else if (!currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
+        else if (!currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
 
-            prevStateDpadDown = currStateDpadDown;
+            prevStateLeftTrigger = currStateLeftTrigger;
         }
 
         // "Glyph In/Out/Rest" functionality
@@ -166,7 +173,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
             robot.glyphRest();
         }
-        
+
         // "Glyph Up" functionality
         /*currStateY = gamepad2.y;
         if (currStateY && currStateY != prevStateY) {
@@ -191,63 +198,88 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateA = currStateA;
         }*/
 
-        //"Set Relic Motor Power" functionality
+        // "Set Relic Motor Power" functionality
         relic = gamepad2.left_stick_y;
         relic = Range.clip(relic, -1, 1);
         relic = (float) scaleInput(relic);
         robot.setRelicMotorPower(relic * 0.5);
 
-        //Alternate "Glyph Up/Down functionality
+        // Alternate "Glyph Up/Down functionality
         glyphUp = gamepad2.right_stick_y;
         glyphUp = Range.clip(glyphUp, -1, 1);
         glyphUp = (float) scaleInput(glyphUp);
         robot.setGlyphUpMotorPower(glyphUp * 0.5);
 
         /*
-        //Alternate "Relic In/Out" functionality
-        currStateUpDPad = gamepad2.dpad_up;
-        if (currStateUpDPad && currStateUpDPad != prevStateUpDPad){
+        // Alternate "Relic Out" functionality
+        currStateDpadUp = gamepad2.dpad_up;
+        if (currStateDpadUp && currStateDpadUp != prevStateDpadUp){
 
-            encodersRelicOut(robot, 12, 0.5);
-            prevStateUpDPad = currStateUpDPad;
+            encodersRelicOut(robot);
+            prevStateDpadUp = currStateDpadUp;
         }
-        else if (!currStateUpDPad && currStateUpDPad != prevStateUpDPad){
-            prevStateUpDPad = currStateUpDPad;
+        else if (!currStateDpadUp && currStateDpadUp != prevStateDpadUp){
+            prevStateDpadUp = currStateDpadUp;
         }
 
-        currStateDownDPad = gamepad2.dpad_up;
-        if (currStateDownDPad && currStateDownDPad != prevStateDownDPad){
+        // Alternate "Relic Out" functionality
+        currStateDpadDown = gamepad2.dpad_down;
+        if (currStateDpadDown && currStateDpadDown != prevStateDpadDown){
 
-            encodersRelicIn(robot, 12, 0.5);
-            prevStateDownDPad = currStateDownDPad;
+            encodersRelicIn(robot);
+            prevStateDpadDown = currStateDpadDown;
         }
-        else if (!currStateDownDPad && currStateDownDPad != prevStateDownDPad){
-            prevStateDownDPad = currStateDownDPad;
+        else if (!currStateDpadDown && currStateDpadDown != prevStateDpadDown){
+            prevStateDpadDown = currStateDpadDown;
         }*/
 
+        // "Relic Wrist Up" functionality
+        currStateDpadUp = gamepad2.dpad_up;
+        if (currStateDpadUp && currStateDpadUp != prevStateDpadUp) {
+
+            robot.wristUp();
+            prevStateDpadUp = currStateDpadUp;
+        }
+        else if (!currStateDpadUp && currStateDpadUp != prevStateDpadUp) {
+
+            prevStateDpadUp = currStateDpadUp;
+        }
+
+        // "Relic Wrist Down" functionality
+        currStateDpadDown = gamepad2.dpad_down;
+        if (currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
+
+            robot.wristDown();
+            prevStateDpadDown = currStateDpadDown;
+        }
+        else if (!currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
+
+            prevStateDpadDown = currStateDpadDown;
+        }
+
         // "Relic Gripper Open" functionality
-        //    currStateDpadLeft = gamepad2.dpad_left;
-        //    if (currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
+        currStateDpadLeft = gamepad2.dpad_left;
+        if (currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
 
-        //        robot.gripperOpen();
-        //        prevStateDpadLeft = currStateDpadLeft;
-        //   }
-        //    else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
+            robot.gripperOpen();
+            prevStateDpadLeft = currStateDpadLeft;
+        }
+        else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
 
-        //       prevStateDpadLeft = currStateDpadLeft;
-        //   }
+            prevStateDpadLeft = currStateDpadLeft;
+        }
 
         // "Relic Gripper Close" functionality
-        //   currStateDpadRight = gamepad2.dpad_right;
-        //   if (currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
+        currStateDpadRight = gamepad2.dpad_right;
+        if (currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
 
-        //       robot.gripperClose();
-        //       prevStateDpadRight = currStateDpadRight;
-        //   }
-        //   else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
+            robot.gripperClose();
+            prevStateDpadRight = currStateDpadRight;
+        }
+        else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
 
-        //       prevStateDpadRight = currStateDpadRight;
-        //   }
+            prevStateDpadRight = currStateDpadRight;
+        }
     }
 
     @Override

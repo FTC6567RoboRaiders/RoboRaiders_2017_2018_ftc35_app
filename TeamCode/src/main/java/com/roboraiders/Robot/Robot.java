@@ -4,7 +4,6 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -53,6 +52,7 @@ public class Robot {
     public Servo servoJewel = null;
     public Servo servoArmLeft = null;
     public Servo servoArmRight = null;
+    public Servo servoRelicWrist = null;
     public Servo servoRelicGripper = null;
 
     public CRServo servoWheelLeft = null;
@@ -131,7 +131,8 @@ public class Robot {
         servoJewel = hwMap.get(Servo.class, "servo_Jewel");
         servoArmLeft = hwMap.get(Servo.class, "servo_Arm_Left");
         servoArmRight = hwMap.get(Servo.class, "servo_Arm_Right");
-        //servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
+        servoRelicWrist = hwMap.get(Servo.class, "servo_Relic_Wrist");
+        servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
 
         // Define and initialize CR servos
         servoWheelLeft = hwMap.get(CRServo.class, "servo_Wheel_Left");
@@ -158,7 +159,8 @@ public class Robot {
         servoJewel.setPosition(0.1);
         servoArmLeft.setPosition(1.0);
         servoArmRight.setPosition(0.0);
-        //servoRelicGripper.setPosition(0.3);
+        servoRelicWrist.setPosition(0.0);
+        servoRelicGripper.setPosition(0.0);
     }
 
     /**
@@ -286,8 +288,8 @@ public class Robot {
      */
     public void armsGlyph() {
 
-        servoArmLeft.setPosition(0.6);
-        servoArmRight.setPosition(0.4);
+        servoArmLeft.setPosition(0.65);
+        servoArmRight.setPosition(0.35);
     }
 
     /**
@@ -299,32 +301,54 @@ public class Robot {
         servoArmRight.setPosition(0.0);
     }
 
-    public void encodersRelicOut(Robot bot, int distance, double power) {
+    /**
+     * This method will extend the relic arm out using encoders
+     */
+    public void encodersRelicOut(Robot bot) {
 
         bot.resetEncoders();
         bot.runWithEncoders();
 
-        bot.setRelicMotorPower(power);
+        bot.setRelicMotorPower(0.5);
 
-        double COUNTS = bot.calculateCOUNTS(distance);
+        double COUNTS = bot.calculateCOUNTS(15);
 
-        while (bot.motorRelic.getCurrentPosition() < COUNTS) {
+        while (Math.abs(bot.motorRelic.getCurrentPosition()) < COUNTS) {
 
         }
     }
 
-    public void encodersRelicIn(Robot bot, int distance, double power) {
+    /**
+     * This method will retract the relic arm in using encoders
+     */
+    public void encodersRelicIn(Robot bot) {
 
         bot.resetEncoders();
         bot.runWithEncoders();
 
-        bot.setRelicMotorPower(-power);
+        bot.setRelicMotorPower(-0.5);
 
-        double COUNTS = bot.calculateCOUNTS(distance);
+        double COUNTS = bot.calculateCOUNTS(15);
 
-        while (bot.motorRelic.getCurrentPosition() < COUNTS) {
+        while (Math.abs(bot.motorRelic.getCurrentPosition()) < COUNTS) {
 
         }
+    }
+
+    /**
+     * This method will raise the wrist servo
+     */
+    public void wristUp() {
+
+        servoRelicWrist.setPosition(0.8);
+    }
+
+    /**
+     * This method will lower thr wrist servo
+     */
+    public void wristDown() {
+
+        servoRelicWrist.setPosition(0.0);
     }
 
     /**
@@ -332,7 +356,7 @@ public class Robot {
      */
     public void gripperOpen() {
 
-        servoRelicGripper.setPosition(0.7);
+        servoRelicGripper.setPosition(0.0);
     }
 
     /**
@@ -340,7 +364,7 @@ public class Robot {
      */
     public void gripperClose() {
 
-        servoRelicGripper.setPosition(0.3);
+        servoRelicGripper.setPosition(0.8);
     }
 
     /**
