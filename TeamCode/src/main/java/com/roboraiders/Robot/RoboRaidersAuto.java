@@ -184,7 +184,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
         Thread.sleep(250);
 
-        placeGlyph(bot); //run the method placeGlyph
+        //placeGlyph(bot); //run the method placeGlyph
         Thread.sleep(250);
     }
 
@@ -417,10 +417,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      */
     public void placeGlyph(Robot bot) throws InterruptedException {
 
-        bot.armsOpen();  //arms open
+        bot.armsGlyph();  //arms open to glyph position
         Thread.sleep(500);
 
-        bot.expelGlyph(); //glyph is expelled
+        bot.expelGlyph(bot); //glyph is expelled
+        Thread.sleep(500);
+
+        bot.armsOpen();  //arms open all of the way
         Thread.sleep(500);
 
         encodersMove(bot, 4, 0.5, "backwards"); //backs up 4"
@@ -435,58 +438,4 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         encodersMove(bot, 2, 0.5, "backward"); //moves backwards 1" to stay in the safe zone but not be touching a glyph
         Thread.sleep(500);
     }
-
-    /**
-     * This method lowers and expels a glyph in autonomous
-     *
-     * @throws InterruptedException
-     */
-    public void expelGlyph(Robot bot) throws InterruptedException {
-
-        glyphDown(bot);
-        Thread.sleep(500);
-
-        bot.resetEncoders();
-        bot.runWithEncoders();
-
-        double COUNTS = bot.calculateCOUNTS(4);
-
-        bot.motorGlyphInLeft.setPower(-0.5);
-        bot.motorGlyphInRight.setPower(-0.5);
-
-        while (bot.getGlyphInEncoderCount() < COUNTS) {
-
-            telemetry.addData("Average", bot.getGlyphInEncoderCount());
-            telemetry.update();
-        }
-
-        bot.motorGlyphInLeft.setPower(0.0);
-        bot.motorGlyphInRight.setPower(0.0);
-
-        bot.runWithoutEncoders();
-    }
-
-    /**
-     * This method will lower a glyph in the omni wheel assembly
-     */
-    public void glyphDown(Robot bot) {
-
-        bot.resetEncoders();
-        bot.runWithEncoders();
-
-        double COUNTS = bot.calculateCOUNTS(8);
-
-        bot.motorGlyphUp.setPower(-0.5);
-
-        while (bot.getGlyphUpEncoderCount() < COUNTS) {
-
-            telemetry.addData("Up", bot.getGlyphUpEncoderCount());
-            telemetry.update();
-        }
-
-        bot.motorGlyphUp.setPower(0.0);
-
-        bot.runWithoutEncoders();
-    }
-
 }

@@ -4,7 +4,6 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -162,7 +161,6 @@ public class Robot {
         servoArmRight.setPosition(0.0);
         servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
-
     }
 
     /**
@@ -237,7 +235,7 @@ public class Robot {
     /**
      * This method will raise a glyph in the omni wheel assembly
      */
-    public void glyphUp(Robot bot) {
+    /*public void glyphUp(Robot bot) {
 
         bot.resetEncoders();
         bot.runWithEncoders();
@@ -253,12 +251,12 @@ public class Robot {
         bot.motorGlyphUp.setPower(0.0);
 
         bot.runWithoutEncoders();
-    }
+    }*/
 
     /**
      * This method will lower a glyph in the omni wheel assembly
      */
-    public void glyphDown(Robot bot) {
+    /*public void glyphDown(Robot bot) {
 
         bot.resetEncoders();
         bot.runWithEncoders();
@@ -274,7 +272,7 @@ public class Robot {
         bot.motorGlyphUp.setPower(0.0);
 
         bot.runWithoutEncoders();
-    }
+    }*/
 
     /**
      * This method will open the servo arms
@@ -306,7 +304,7 @@ public class Robot {
     /**
      * This method will extend the relic arm out using encoders
      */
-    public void encodersRelicOut(Robot bot) {
+    /*public void encodersRelicOut(Robot bot) {
 
         bot.resetEncoders();
         bot.runWithEncoders();
@@ -318,12 +316,12 @@ public class Robot {
         while (Math.abs(bot.motorRelic.getCurrentPosition()) < COUNTS) {
 
         }
-    }
+    }*/
 
     /**
      * This method will retract the relic arm in using encoders
      */
-    public void encodersRelicIn(Robot bot) {
+    /*public void encodersRelicIn(Robot bot) {
 
         bot.resetEncoders();
         bot.runWithEncoders();
@@ -335,7 +333,7 @@ public class Robot {
         while (Math.abs(bot.motorRelic.getCurrentPosition()) < COUNTS) {
 
         }
-    }
+    }*/
 
     /**
      * This method will raise the wrist servo
@@ -593,35 +591,40 @@ public class Robot {
      *
      * @throws InterruptedException
      */
-    public void expelGlyph() throws InterruptedException {
+    public void expelGlyph(Robot bot) throws InterruptedException {
 
-        glyphDown();
-        Thread.sleep(500);
+        bot.resetEncoders();
+        bot.runWithEncoders();
 
-        /*resetEncoders();
-        runWithEncoders();
+        double COUNTS_DOWN = bot.calculateCOUNTS(8);
 
-        double COUNTS = calculateCOUNTS(4);
+        bot.motorGlyphUp.setPower(-0.5);
 
-        motorGlyphInLeft.setPower(-0.5);
-        motorGlyphInRight.setPower(-0.5);
-
-        while (getGlyphInEncoderCount() < COUNTS) {
+        while (bot.getGlyphUpEncoderCount() < COUNTS_DOWN) {
 
         }
 
-        motorGlyphInLeft.setPower(0.0);
-        motorGlyphInRight.setPower(0.0);
+        bot.motorGlyphUp.setPower(0.0);
 
-        runWithoutEncoders();*/
+        bot.runWithoutEncoders();
 
-        motorGlyphInLeft.setPower(-0.5);
-        motorGlyphInRight.setPower(-0.5);
-        Thread.sleep(600);
+        Thread.sleep(1000);
 
-        motorGlyphInLeft.setPower(0.0);
-        motorGlyphInRight.setPower(0.0);
-    }
+        bot.resetEncoders();
+        bot.runWithEncoders();
 
+        double COUNTS_OUT = bot.calculateCOUNTS(4);
+
+        bot.motorGlyphInLeft.setPower(-0.5);
+        bot.motorGlyphInRight.setPower(-0.5);
+
+        while (bot.getGlyphInEncoderCount() < COUNTS_OUT) {
+
+        }
+
+        bot.motorGlyphInLeft.setPower(0.0);
+        bot.motorGlyphInRight.setPower(0.0);
+
+        bot.runWithoutEncoders();
     }
 }
