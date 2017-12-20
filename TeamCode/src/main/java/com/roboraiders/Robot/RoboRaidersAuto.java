@@ -32,7 +32,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         int cameraMonitorViewId = hwMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hwMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
         parameters.vuforiaLicenseKey = "AedUDNP/////AAAAGXH2ZpUID0KanSX9ZSR37LKFSFokxIqmy/g0BNepdA9EepixxnO00qygLnMJq3Fg9gZxnkUJaKgk14/UjhxPWVQIs90ZXJLc21NvQvOeZ3dOogagVP8yFnFQs2xCijGmC/CE30ojlAnbhAhqz1y4tZPW2QkK5Qt0xCakTTSAw3KPQX2mZxX+qMxI2ljrN0eaxaKVnKnAUl8x3naF1mez7f9c8Xdi1O5auL0ePdG6bJhWjEO1YwpSd8WkSzNDEkmw20zpQ7zaOOPw5MeUQUr9vAS0fef0GnLjlS1gb67ajUDlEcbbbIeSrLW/oyRGTil8ueQC2SWafdspSWL3SJNaQKWydies23BxJxM/FoLuYYjx";
-        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.FRONT;
         this.vuforia = ClassFactory.createVuforiaLocalizer(parameters);
         VuforiaTrackables relicTrackables = this.vuforia.loadTrackablesFromAsset("RelicVuMark");
         relicTemplate = relicTrackables.get(0);
@@ -61,13 +61,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                imuTurn(bot, 26, 0.25, "left"); //pivot left
+                imuTurn(bot, 28, 0.25, "left"); //pivot left
                 Thread.sleep(500);
 
                 bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
-                imuTurn(bot, 26, 0.25, "right"); //pivot right to original position
+                imuTurn(bot, 28, 0.25, "right"); //pivot right to original position
                 Thread.sleep(500);
             }
             else { //the ball on the right is blue
@@ -76,13 +76,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                imuTurn(bot, 26, 0.25, "right"); //pivot right
+                imuTurn(bot, 28, 0.25, "right"); //pivot right
                 Thread.sleep(500);
 
                 bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
-                imuTurn(bot, 26, 0.25, "left"); //pivot left to original position
+                imuTurn(bot, 28, 0.25, "left"); //pivot left to original position
                 Thread.sleep(500);
             }
         }
@@ -97,13 +97,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                imuTurn(bot, 26, 0.25, "left"); //pivot left
+                imuTurn(bot, 28, 0.25, "left"); //pivot left
                 Thread.sleep(500);
 
                 bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
-                imuTurn(bot, 26, 0.25, "right"); //pivot right to original position
+                imuTurn(bot, 28, 0.25, "right"); //pivot right to original position
                 Thread.sleep(500);
             }
             else { //the ball on the right is blue
@@ -112,13 +112,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                imuTurn(bot, 26, 0.25, "right"); //pivot right
+                imuTurn(bot, 28, 0.25, "right"); //pivot right
                 Thread.sleep(500);
 
                 bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
-                imuTurn(bot, 26, 0.25, "left"); //pivot left to original position
+                imuTurn(bot, 28, 0.25, "left"); //pivot left to original position
                 Thread.sleep(500);
             }
         }

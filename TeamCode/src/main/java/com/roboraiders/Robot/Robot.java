@@ -157,8 +157,8 @@ public class Robot {
     public void initializeServos() {
 
         servoJewel.setPosition(0.1);
-        servoArmLeft.setPosition(1.0);
-        servoArmRight.setPosition(0.0);
+        servoArmLeft.setPosition(0.8);
+        servoArmRight.setPosition(0.2);
         servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
     }

@@ -29,13 +29,16 @@ public class CryptoboxVuforiaCloseRed extends RoboRaidersAuto {
         lowerArm(robot, 0.99);
         selectJewel(robot, "red");
 
-        encodersMove(robot, 10, 0.5, "backward");
+        encodersMove(robot, 2, 0.5, "backward");
         Thread.sleep(250);
 
         getRelicRecoveryVuMark();
         Thread.sleep(250);
 
-        encodersMove(robot, 5, 0.5, "backward");
+        telemetry.addData("Pictograph", pictograph);
+        telemetry.update();
+
+        encodersMove(robot, 1, 0.5, "backward");
         Thread.sleep(250);
 
         selectColumn(robot, "red", pictograph);
