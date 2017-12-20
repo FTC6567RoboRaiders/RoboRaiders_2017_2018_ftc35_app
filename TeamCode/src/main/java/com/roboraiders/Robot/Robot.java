@@ -161,7 +161,6 @@ public class Robot {
         servoArmRight.setPosition(0.0);
         servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
-
     }
 
     /**
@@ -236,7 +235,7 @@ public class Robot {
     /**
      * This method will raise a glyph in the omni wheel assembly
      */
-    public void glyphUp(Robot bot) {
+    /*public void glyphUp(Robot bot) {
 
         bot.resetEncoders();
         bot.runWithEncoders();
@@ -252,12 +251,12 @@ public class Robot {
         bot.motorGlyphUp.setPower(0.0);
 
         bot.runWithoutEncoders();
-    }
+    }*/
 
     /**
      * This method will lower a glyph in the omni wheel assembly
      */
-    public void glyphDown(Robot bot) {
+    /*public void glyphDown(Robot bot) {
 
         bot.resetEncoders();
         bot.runWithEncoders();
@@ -273,7 +272,7 @@ public class Robot {
         bot.motorGlyphUp.setPower(0.0);
 
         bot.runWithoutEncoders();
-    }
+    }*/
 
     /**
      * This method will open the servo arms
@@ -305,7 +304,7 @@ public class Robot {
     /**
      * This method will extend the relic arm out using encoders
      */
-    public void encodersRelicOut(Robot bot) {
+    /*public void encodersRelicOut(Robot bot) {
 
         bot.resetEncoders();
         bot.runWithEncoders();
@@ -317,12 +316,12 @@ public class Robot {
         while (Math.abs(bot.motorRelic.getCurrentPosition()) < COUNTS) {
 
         }
-    }
+    }*/
 
     /**
      * This method will retract the relic arm in using encoders
      */
-    public void encodersRelicIn(Robot bot) {
+    /*public void encodersRelicIn(Robot bot) {
 
         bot.resetEncoders();
         bot.runWithEncoders();
@@ -334,7 +333,7 @@ public class Robot {
         while (Math.abs(bot.motorRelic.getCurrentPosition()) < COUNTS) {
 
         }
-    }
+    }*/
 
     /**
      * This method will raise the wrist servo
@@ -585,5 +584,47 @@ public class Robot {
     public double getJewelServoPosition() {
 
         return servoJewel.getPosition();
+    }
+
+    /**
+     * This method lowers and expels a glyph in autonomous
+     *
+     * @throws InterruptedException
+     */
+    public void expelGlyph(Robot bot) throws InterruptedException {
+
+        bot.resetEncoders();
+        bot.runWithEncoders();
+
+        double COUNTS_DOWN = bot.calculateCOUNTS(8);
+
+        bot.motorGlyphUp.setPower(-0.5);
+
+        while (bot.getGlyphUpEncoderCount() < COUNTS_DOWN) {
+
+        }
+
+        bot.motorGlyphUp.setPower(0.0);
+
+        bot.runWithoutEncoders();
+
+        Thread.sleep(1000);
+
+        bot.resetEncoders();
+        bot.runWithEncoders();
+
+        double COUNTS_OUT = bot.calculateCOUNTS(4);
+
+        bot.motorGlyphInLeft.setPower(-0.5);
+        bot.motorGlyphInRight.setPower(-0.5);
+
+        while (bot.getGlyphInEncoderCount() < COUNTS_OUT) {
+
+        }
+
+        bot.motorGlyphInLeft.setPower(0.0);
+        bot.motorGlyphInRight.setPower(0.0);
+
+        bot.runWithoutEncoders();
     }
 }

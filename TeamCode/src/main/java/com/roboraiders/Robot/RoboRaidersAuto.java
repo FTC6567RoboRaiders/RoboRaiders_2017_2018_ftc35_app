@@ -406,4 +406,36 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         Thread.sleep(250);
     }
+
+    /**
+     * This method places a glyph in the cryptobox. This is also steps 3-7
+     * of the pseudocode for Version 2 of autonomous we developed on Dec. 6th, 2017.
+     *
+     *
+     * @param bot - the bot currently being worked on
+     * @throws InterruptedException
+     */
+    public void placeGlyph(Robot bot) throws InterruptedException {
+
+        bot.armsGlyph();  //arms open to glyph position
+        Thread.sleep(500);
+
+        bot.expelGlyph(bot); //glyph is expelled
+        Thread.sleep(500);
+
+        bot.armsOpen();  //arms open all of the way
+        Thread.sleep(500);
+
+        encodersMove(bot, 4, 0.5, "backwards"); //backs up 4"
+        Thread.sleep(1000);
+
+        bot.armsClose(); //arms close
+        Thread.sleep(500);
+
+        encodersMove(bot, 5, 0.5, "forward"); //moves forward 5" to push glyph into column
+        Thread.sleep(500);
+
+        encodersMove(bot, 2, 0.5, "backward"); //moves backwards 1" to stay in the safe zone but not be touching a glyph
+        Thread.sleep(500);
+    }
 }
