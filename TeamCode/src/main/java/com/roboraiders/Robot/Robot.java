@@ -4,6 +4,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -585,5 +586,42 @@ public class Robot {
     public double getJewelServoPosition() {
 
         return servoJewel.getPosition();
+    }
+
+    /**
+     * This method lowers and expels a glyph in autonomous
+     *
+     * @throws InterruptedException
+     */
+    public void expelGlyph() throws InterruptedException {
+
+        glyphDown();
+        Thread.sleep(500);
+
+        /*resetEncoders();
+        runWithEncoders();
+
+        double COUNTS = calculateCOUNTS(4);
+
+        motorGlyphInLeft.setPower(-0.5);
+        motorGlyphInRight.setPower(-0.5);
+
+        while (getGlyphInEncoderCount() < COUNTS) {
+
+        }
+
+        motorGlyphInLeft.setPower(0.0);
+        motorGlyphInRight.setPower(0.0);
+
+        runWithoutEncoders();*/
+
+        motorGlyphInLeft.setPower(-0.5);
+        motorGlyphInRight.setPower(-0.5);
+        Thread.sleep(600);
+
+        motorGlyphInLeft.setPower(0.0);
+        motorGlyphInRight.setPower(0.0);
+    }
+
     }
 }
