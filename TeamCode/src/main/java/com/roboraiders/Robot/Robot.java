@@ -58,7 +58,7 @@ public class Robot {
     public CRServo servoWheelRight = null;
 
     public ColorSensor colorSensor;
-    public DistanceSensor distanceSensor;
+    //public DistanceSensor distanceSensor;
     public BNO055IMU imu;
 
     /* Local OpMode Members */
@@ -139,7 +139,7 @@ public class Robot {
 
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
-        distanceSensor = hwMap.get(DistanceSensor.class, "sensor_distance");
+        //distanceSensor = hwMap.get(DistanceSensor.class, "sensor_distance");
         imu = hwMap.get(BNO055IMU.class, "imu");
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.mode = BNO055IMU.SensorMode.IMU;
@@ -154,8 +154,8 @@ public class Robot {
         servoJewel.setPosition(0.1);
         servoArmLeft.setPosition(0.8);
         servoArmRight.setPosition(0.2);
-        servoRelicWrist.setPosition(0.7);
-        servoRelicGripper.setPosition(0.1);
+        servoRelicWrist.setPosition(0.6);
+        servoRelicGripper.setPosition(0.0);
     }
 
     /**
@@ -291,7 +291,7 @@ public class Robot {
      */
     public void wristDown() {
 
-        servoRelicWrist.setPosition(0.8);
+        servoRelicWrist.setPosition(0.6);
     }
 
     /**
@@ -299,7 +299,7 @@ public class Robot {
      */
     public void gripperOpen() {
 
-        servoRelicGripper.setPosition(0.8);
+        servoRelicGripper.setPosition(0.6);
     }
 
     /**
@@ -307,7 +307,7 @@ public class Robot {
      */
     public void gripperClose() {
 
-        servoRelicGripper.setPosition(0.0);
+        servoRelicGripper.setPosition(0.8);
     }
 
     /**
@@ -343,9 +343,6 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorRelic.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorGlyphInLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorGlyphInRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     /**
@@ -357,9 +354,6 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorRelic.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorGlyphInLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorGlyphInRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     /**
@@ -371,9 +365,6 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorRelic.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorGlyphInLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorGlyphInRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     /**
@@ -469,7 +460,7 @@ public class Robot {
      */
     public double getDistance() {
 
-        return distanceSensor.getDistance(DistanceUnit.CM);
+        return 1; //distanceSensor.getDistance(DistanceUnit.CM);
     }
 
     /**
@@ -516,27 +507,18 @@ public class Robot {
     }
 
     /**
-     * This method lowers and expels a glyph in autonomous
+     * This method expels a glyph in autonomous
      *
      * @throws InterruptedException
      */
     public void expelGlyph(Robot bot) throws InterruptedException {
 
-        bot.resetEncoders();
-        bot.runWithEncoders();
-
-        double COUNTS = bot.calculateCOUNTS(2);
-
         bot.motorGlyphInLeft.setPower(-0.5);
         bot.motorGlyphInRight.setPower(-0.5);
 
-        while (bot.getGlyphInEncoderCount() < COUNTS) {
-
-        }
+        Thread.sleep(500);
 
         bot.motorGlyphInLeft.setPower(0.0);
         bot.motorGlyphInRight.setPower(0.0);
-
-        bot.runWithoutEncoders();
     }
 }
