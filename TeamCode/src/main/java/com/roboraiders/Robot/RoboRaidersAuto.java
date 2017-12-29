@@ -184,7 +184,69 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
         Thread.sleep(250);
 
-        //placeGlyph(bot); //run the method placeGlyph
+        encodersMove(bot, 2, 0.5, "backward"); //move backward two inches
+        Thread.sleep(250);
+
+        placeGlyph(bot); //run the method placeGlyph
+        Thread.sleep(250);
+    }
+
+    public void selectColumnDistanceSensor(Robot bot, String allianceColor, String pictograph) throws InterruptedException {
+
+        if (allianceColor.equals("red")) { //if we are on the red side
+
+            if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
+
+                distanceSensorCount(bot, 3, -0.5, 25); //move backward until the robot has passed three dividers
+                Thread.sleep(250);
+            }
+            else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
+
+                distanceSensorCount(bot, 2, -0.5, 25); //move backward until the robot has passed two dividers
+                Thread.sleep(250);
+            }
+            else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
+
+                distanceSensorCount(bot, 1, -0.5, 25); //move backward until the robot has passed one divider
+                Thread.sleep(250);
+            }
+            else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
+
+                distanceSensorCount(bot, 2, -0.5, 25); //move backward until the robot has passed two dividers (default)
+                Thread.sleep(250);
+            }
+        }
+        else if (allianceColor.equals("blue")) { //else if we are on the blue side
+
+            if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
+
+                distanceSensorCount(bot, 1, 0.5, 25); //move forward until the robot has passed one divider
+                Thread.sleep(250);
+            }
+            else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
+
+                distanceSensorCount(bot, 2, 0.5, 25); //move forward until the robot has passed two dividers
+                Thread.sleep(250);
+            }
+            else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
+
+                distanceSensorCount(bot, 3, 0.5, 25); //move forward until the robot has passed three dividers
+                Thread.sleep(250);
+            }
+            else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
+
+                distanceSensorCount(bot, 2, 0.5, 25); //move forward until the robot has passed two dividers (default)
+                Thread.sleep(250);
+            }
+        }
+
+        imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
+        Thread.sleep(250);
+
+        encodersMove(bot, 2, 0.5, "backward"); //move backward two inches
+        Thread.sleep(250);
+
+        placeGlyph(bot); //run the method placeGlyph
         Thread.sleep(250);
     }
 
@@ -300,7 +362,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     }
 
     /**
-     * This method will strafe the robot right until the distance sensor has detected the robot has
+     * This method will have the robot drive until the distance sensor has detected the robot has
      * passed a certain number of dividers
      *
      * @param bot             the bot currently being worked on
@@ -311,9 +373,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public void distanceSensorCount(Robot bot, int dividersTarget, double power, int desiredDistance) { //establishes
         //parameters for method
 
-        /*double dividersDistance = 0; //counts the number of times that the robot hits the divider with the distance sensor
+        double dividersDistance = 0; //counts the number of times that the robot hits the divider with the distance sensor
 
-        bot.setDriveMotorPower(-power, power, power, -power); //robot is moving left at whatever power is specified
+        bot.setDriveMotorPower(power, power, power, power); //robot is moving at whatever power is specified
 
         while (dividersDistance < dividersTarget && opModeIsActive()) { //while the robot has not yet hit the specified number of dividers
             //and the opMode has not been stopped
@@ -345,15 +407,15 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 dividersDistance++; //add 1 to the current "dividersDistance" variable
                 prevStateDistance = currStateDistance; //now the previous state is the same as the current state
             }
-            else if (!currStateDistance && currStateDistance != prevStateDistance) { //if the touch sensor
-                //is just starting to not be pressed:
+            else if (!currStateDistance && currStateDistance != prevStateDistance) { //if the robot is no
+                //longer seeing the divider
 
                 prevStateDistance = currStateDistance; //now the previous state equals the current state,
                 //don't change anything to the "dividersDistance" variable
             }
         }
 
-        bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot*/
+        bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
     }
 
     /**
@@ -411,31 +473,24 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      * This method places a glyph in the cryptobox. This is also steps 3-7
      * of the pseudocode for Version 2 of autonomous we developed on Dec. 6th, 2017.
      *
-     *
      * @param bot - the bot currently being worked on
      * @throws InterruptedException
      */
     public void placeGlyph(Robot bot) throws InterruptedException {
 
-        bot.armsGlyph();  //arms open to glyph position
+        bot.armsOpen();  //arms open all of the way
         Thread.sleep(500);
 
         bot.expelGlyph(bot); //glyph is expelled
         Thread.sleep(500);
 
-        bot.armsOpen();  //arms open all of the way
-        Thread.sleep(500);
-
-        encodersMove(bot, 4, 0.5, "backwards"); //backs up 4"
+        encodersMove(bot, 4, 0.5, "forward"); //moves four inches forward
         Thread.sleep(1000);
 
+        encodersMove(bot, 6, 0.5, "backward"); //moves six inches backward
+        Thread.sleep(500);
+
         bot.armsClose(); //arms close
-        Thread.sleep(500);
-
-        encodersMove(bot, 5, 0.5, "forward"); //moves forward 5" to push glyph into column
-        Thread.sleep(500);
-
-        encodersMove(bot, 2, 0.5, "backward"); //moves backwards 1" to stay in the safe zone but not be touching a glyph
         Thread.sleep(500);
     }
 }

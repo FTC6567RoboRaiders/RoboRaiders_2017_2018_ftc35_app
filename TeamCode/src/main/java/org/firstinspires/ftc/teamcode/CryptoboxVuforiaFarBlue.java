@@ -44,6 +44,6 @@ public class CryptoboxVuforiaFarBlue extends RoboRaidersAuto {
         encodersMove(robot, 5, 0.5, "forward");
         Thread.sleep(250);
 
-        selectColumn(robot, "blue", pictograph);
+        selectColumnDistanceSensor(robot, "blue", pictograph);
     }
 }

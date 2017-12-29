@@ -21,7 +21,6 @@ public class IndieTeleOpMecanum extends OpMode {
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
     float relic;      // Power for relic motor
-    float glyphUp;    // Power for glyph up motor
     float maxpwr;     // Maximum power of the four motors
     boolean nudging = false;
     int nudgeCount = 0;
@@ -35,10 +34,6 @@ public class IndieTeleOpMecanum extends OpMode {
     public boolean prevStateLeftBumper = false;
     public boolean currStateLeftTrigger = false;
     public boolean prevStateLeftTrigger = false;
-    public boolean currStateY = false;
-    public boolean prevStateY = false;
-    public boolean currStateA = false;
-    public boolean prevStateA = false;
     public boolean currStateDpadLeft = false;
     public boolean prevStateDpadLeft = false;
     public boolean currStateDpadRight = false;
@@ -174,41 +169,11 @@ public class IndieTeleOpMecanum extends OpMode {
             robot.glyphRest();
         }
 
-        // "Glyph Up" functionality
-        /*currStateY = gamepad2.y;
-        if (currStateY && currStateY != prevStateY) {
-
-            glyphUp(robot);
-            prevStateY = currStateY;
-        }
-        else if (!currStateY && currStateY != prevStateY) {
-
-            prevStateY = currStateY;
-        }
-
-        // "Glyph Down" functionality
-        currStateA = gamepad2.a;
-        if (currStateA && currStateA != prevStateA) {
-
-            glyphDown(robot);
-            prevStateA = currStateA;
-        }
-        else if (!currStateA && currStateA != prevStateA) {
-
-            prevStateA = currStateA;
-        }*/
-
         // "Set Relic Motor Power" functionality
         relic = gamepad2.left_stick_y;
         relic = Range.clip(relic, -1, 1);
         relic = (float) scaleInput(relic);
         robot.setRelicMotorPower(relic * 0.5);
-
-        // Alternate "Glyph Up/Down functionality
-        glyphUp = gamepad2.right_stick_y;
-        glyphUp = Range.clip(glyphUp, -1, 1);
-        glyphUp = (float) scaleInput(glyphUp);
-        robot.setGlyphUpMotorPower(glyphUp * 0.5);
 
         /*
         // Alternate "Relic Out" functionality
