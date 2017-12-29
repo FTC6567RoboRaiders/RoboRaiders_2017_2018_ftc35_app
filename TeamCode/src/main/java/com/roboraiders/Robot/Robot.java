@@ -289,19 +289,14 @@ public class Robot {
     /**
      * This method will lower thr wrist servo
      */
-    public void wristDown() throws InterruptedException {
+    public void wristDown() {
 
         double wristPosition = servoRelicWrist.getPosition();
 
-        while (wristPosition > 0.0) {
-
+        if (wristPosition > 0.0) {
             wristPosition = wristPosition - 0.05;
             servoRelicWrist.setPosition(wristPosition);
-            Thread.sleep(75);
         }
-
-        Thread.sleep(250);
-
     }
 
     /**

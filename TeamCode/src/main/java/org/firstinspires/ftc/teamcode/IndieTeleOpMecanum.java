@@ -215,6 +215,7 @@ public class IndieTeleOpMecanum extends OpMode {
         if (currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
 
             robot.wristDown();
+
             prevStateDpadDown = currStateDpadDown;
         }
         else if (!currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
