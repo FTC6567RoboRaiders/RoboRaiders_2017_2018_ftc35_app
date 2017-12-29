@@ -152,9 +152,9 @@ public class Robot {
     public void initializeServos() {
 
         servoJewel.setPosition(0.1);
-        servoArmLeft.setPosition(0.8);
-        servoArmRight.setPosition(0.2);
-        servoRelicWrist.setPosition(0.6);
+        servoArmLeft.setPosition(0.95);
+        servoArmRight.setPosition(0.0);
+        servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
     }
 
@@ -223,7 +223,7 @@ public class Robot {
     public void armsOpen() {
 
         servoArmLeft.setPosition(0.0);
-        servoArmRight.setPosition(1.0);
+        servoArmRight.setPosition(0.9);
     }
 
     /**
@@ -231,8 +231,8 @@ public class Robot {
      */
     public void armsGlyph() {
 
-        servoArmLeft.setPosition(0.65);
-        servoArmRight.setPosition(0.35);
+        servoArmLeft.setPosition(0.58);
+        servoArmRight.setPosition(0.22);
     }
 
     /**
@@ -240,7 +240,7 @@ public class Robot {
      */
     public void armsClose() {
 
-        servoArmLeft.setPosition(1.0);
+        servoArmLeft.setPosition(0.95);
         servoArmRight.setPosition(0.0);
     }
 
@@ -283,15 +283,25 @@ public class Robot {
      */
     public void wristUp() {
 
-        servoRelicWrist.setPosition(0.0);
+        servoRelicWrist.setPosition(0.8);
     }
 
     /**
      * This method will lower thr wrist servo
      */
-    public void wristDown() {
+    public void wristDown() throws InterruptedException {
 
-        servoRelicWrist.setPosition(0.6);
+        double wristPosition = servoRelicWrist.getPosition();
+
+        while (wristPosition > 0.0) {
+
+            wristPosition = wristPosition - 0.05;
+            servoRelicWrist.setPosition(wristPosition);
+            Thread.sleep(75);
+        }
+
+        Thread.sleep(250);
+
     }
 
     /**
@@ -307,7 +317,7 @@ public class Robot {
      */
     public void gripperClose() {
 
-        servoRelicGripper.setPosition(0.8);
+        servoRelicGripper.setPosition(1.0);
     }
 
     /**

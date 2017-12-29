@@ -493,4 +493,19 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         bot.armsClose(); //arms close
         Thread.sleep(500);
     }
+
+    public void lowerWrist(Robot bot, double finalServoPosition) throws InterruptedException {
+
+        double servoPosition = bot.getJewelServoPosition(); //sets getPosition() to servoPosition
+
+        while (servoPosition < finalServoPosition && opModeIsActive()) { //while the op mode is active and while the servo position variable is less
+            //than 0.99
+
+            servoPosition = servoPosition + 0.05;          //add 0.05 to the current servoPosition variable
+            bot.setJewelServoPosition(servoPosition);
+            Thread.sleep(75);                              //wait 0.02 seconds (20 milliseconds)
+        }
+
+        Thread.sleep(250);
+    }
 }

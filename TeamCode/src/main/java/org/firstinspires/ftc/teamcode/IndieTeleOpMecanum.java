@@ -222,11 +222,11 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateDpadDown = currStateDpadDown;
         }
 
-        // "Relic Gripper Open" functionality
+        // "Relic Gripper Close" functionality
         currStateDpadLeft = gamepad2.dpad_left;
         if (currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
 
-            robot.gripperOpen();
+            robot.gripperClose();
             prevStateDpadLeft = currStateDpadLeft;
         }
         else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
@@ -234,11 +234,11 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateDpadLeft = currStateDpadLeft;
         }
 
-        // "Relic Gripper Close" functionality
+        // "Relic Gripper Open" functionality
         currStateDpadRight = gamepad2.dpad_right;
         if (currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
 
-            robot.gripperClose();
+            robot.gripperOpen();
             prevStateDpadRight = currStateDpadRight;
         }
         else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
