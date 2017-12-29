@@ -154,8 +154,8 @@ public class Robot {
         servoJewel.setPosition(0.1);
         servoArmLeft.setPosition(0.8);
         servoArmRight.setPosition(0.2);
-        servoRelicWrist.setPosition(0.8);
-        servoRelicGripper.setPosition(0.8);
+        servoRelicWrist.setPosition(0.7);
+        servoRelicGripper.setPosition(0.1);
     }
 
     /**
