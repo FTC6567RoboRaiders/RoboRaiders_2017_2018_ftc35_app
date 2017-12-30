@@ -10,6 +10,7 @@ import com.roboraiders.Robot.Robot;
  */
 
 @Autonomous
+@Disabled
 
 public class CryptoboxVuforiaCloseBlue extends RoboRaidersAuto {
 
