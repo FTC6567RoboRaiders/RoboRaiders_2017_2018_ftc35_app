@@ -463,7 +463,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             servoPosition = servoPosition + 0.05;          //add 0.05 to the current servoPosition variable
             bot.setJewelServoPosition(servoPosition);
-            Thread.sleep(75);                              //wait 0.02 seconds (20 milliseconds)
+            Thread.sleep(75);                              //wait 0.075 seconds (75 milliseconds)
         }
 
         Thread.sleep(250);
@@ -478,8 +478,14 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      */
     public void placeGlyph(Robot bot) throws InterruptedException {
 
+        encodersMove(bot, 2, 0.5, "backward"); //robot moves two inches backward
+        Thread.sleep(500);
+
         bot.armsOpen();  //arms open all of the way
         Thread.sleep(500);
+
+        encodersMove(bot, 2, 0.5, "forward"); //moves two inches forward
+        Thread.sleep(1000);
 
         bot.expelGlyph(bot); //glyph is expelled
         Thread.sleep(500);
@@ -492,20 +498,5 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         bot.armsClose(); //arms close
         Thread.sleep(500);
-    }
-
-    public void lowerWrist(Robot bot, double finalServoPosition) throws InterruptedException {
-
-        double servoPosition = bot.getJewelServoPosition(); //sets getPosition() to servoPosition
-
-        while (servoPosition < finalServoPosition && opModeIsActive()) { //while the op mode is active and while the servo position variable is less
-            //than 0.99
-
-            servoPosition = servoPosition + 0.05;          //add 0.05 to the current servoPosition variable
-            bot.setJewelServoPosition(servoPosition);
-            Thread.sleep(75);                              //wait 0.02 seconds (20 milliseconds)
-        }
-
-        Thread.sleep(250);
     }
 }
