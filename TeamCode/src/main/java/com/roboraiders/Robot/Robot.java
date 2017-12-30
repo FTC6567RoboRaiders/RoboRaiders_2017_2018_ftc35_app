@@ -518,10 +518,10 @@ public class Robot {
      */
     public void expelGlyph(Robot bot) throws InterruptedException {
 
-        bot.motorGlyphInLeft.setPower(-0.5);
-        bot.motorGlyphInRight.setPower(-0.5);
+        bot.motorGlyphInLeft.setPower(-0.75);
+        bot.motorGlyphInRight.setPower(-0.75);
 
-        Thread.sleep(500);
+        Thread.sleep(1000);
 
         bot.motorGlyphInLeft.setPower(0.0);
         bot.motorGlyphInRight.setPower(0.0);

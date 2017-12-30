@@ -20,6 +20,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public boolean currStateDistance = false;
     public boolean prevStateDistance = false;
     public String pictograph = "UNKNOWN";
+    public boolean blue;
+    public boolean red;
 
     /**
      * This method will initialize Vuforia in autonomous op modes
@@ -57,6 +59,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             if (bot.getColorIntensity("red") > bot.getColorIntensity("blue"))  { //if the ball on the right is red
 
+                red = false;
+
                 telemetry.addLine().addData("Red", bot.getColorIntensity("red"));
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
@@ -71,6 +75,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 Thread.sleep(500);
             }
             else { //the ball on the right is blue
+
+                red = true;
 
                 telemetry.addLine().addData("Red", bot.getColorIntensity("red"));
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
@@ -93,6 +99,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             if (bot.getColorIntensity("blue") > bot.getColorIntensity("red")) { //if the ball on the right is blue
 
+                blue = true;
+
                 telemetry.addLine().addData("Red", bot.getColorIntensity("red"));
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
@@ -106,7 +114,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 imuTurn(bot, 30, 0.25, "right"); //pivot right to original position
                 Thread.sleep(500);
             }
-            else { //the ball on the right is blue
+            else { //the ball on the left is blue
+
+                blue = false;
 
                 telemetry.addLine().addData("Red", bot.getColorIntensity("red"));
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
@@ -478,22 +488,22 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      */
     public void placeGlyph(Robot bot) throws InterruptedException {
 
-        encodersMove(bot, 2, 0.5, "backward"); //robot moves two inches backward
-        Thread.sleep(500);
-
-        bot.armsOpen();  //arms open all of the way
-        Thread.sleep(500);
-
-        encodersMove(bot, 2, 0.5, "forward"); //moves two inches forward
+        encodersMove(bot, 1, 0.5, "forward"); //moves one inch forward
         Thread.sleep(1000);
 
         bot.expelGlyph(bot); //glyph is expelled
         Thread.sleep(500);
 
-        encodersMove(bot, 4, 0.5, "backward"); //moves four inches backward
+        encodersMove(bot, 3, 0.5, "backward"); //moves three inches backward
         Thread.sleep(500);
 
-        bot.armsClose(); //arms close
+        imuTurn(bot, 180, 0.5, "right"); //turn 180 degrees right
+        Thread.sleep(500);
+
+        encodersMove(bot, 5, 0.5, "backward"); //moves five inches backward
+        Thread.sleep(500);
+
+        encodersMove(bot, 1, 0.5, "forward"); //moves one inch forward
         Thread.sleep(500);
     }
 }
