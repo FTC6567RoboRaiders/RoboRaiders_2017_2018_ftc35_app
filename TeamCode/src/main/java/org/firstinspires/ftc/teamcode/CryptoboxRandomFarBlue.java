@@ -30,16 +30,16 @@ public class CryptoboxRandomFarBlue extends RoboRaidersAuto {
 
         if (blue) { //if ball on the right is blue
 
-            encodersMove(robot, 23, 0.5, "forward"); //drive a little farther forward
+            encodersMove(robot, 23, 0.5, "forward"); //drive forward
             Thread.sleep(500);
         }
         else {
 
-            encodersMove(robot, 22, 0.5, "forward"); //drive forward
+            encodersMove(robot, 22, 0.5, "forward"); //do not drive as far forward
             Thread.sleep(500);
         }
 
-        encodersMove(robot, 18, 0.5, "right"); //robot strafes right until in front of cryptobox
+        encodersMove(robot, 13, 0.5, "right"); //robot strafes right until in front of cryptobox
         Thread.sleep(500);
 
         placeGlyph(robot); //robot places glyph
