@@ -28,10 +28,10 @@ public class CryptoboxRandomCloseBlue extends RoboRaidersAuto {
         lowerArm(robot, 0.99); //jewel is selected
         selectJewel(robot, "blue");
 
-        encodersMove(robot, 27, 0.5, "forward");
+        encodersMove(robot, 28, 0.5, "forward");
         Thread.sleep(500);
 
-        imuTurn(robot, 93, 0.5, "left"); //robot turns so glyph collector faces cryptobox
+        imuTurn(robot, 95, 0.5, "left"); //robot turns so glyph collector faces cryptobox
         Thread.sleep(500);
 
         placeGlyph(robot); //robot places glyph`
