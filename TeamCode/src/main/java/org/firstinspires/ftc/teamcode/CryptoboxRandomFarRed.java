@@ -30,7 +30,7 @@ public class CryptoboxRandomFarRed extends RoboRaidersAuto {
 
         if (red) { //if ball on the right is red
 
-            encodersMove(robot, 22, 0.5, "backward"); //drive a little farther backward
+            encodersMove(robot, 22, 0.5, "backward"); //do not drive as far backward
             Thread.sleep(500);
         }
         else {
@@ -45,6 +45,6 @@ public class CryptoboxRandomFarRed extends RoboRaidersAuto {
         placeGlyph(robot); //robot places glyph
         Thread.sleep(500);
 
-        //19, 10
+        //19, 10 -- previous encoder values
     }
 }
