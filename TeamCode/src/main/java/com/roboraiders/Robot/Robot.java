@@ -294,7 +294,7 @@ public class Robot {
         double wristPosition = servoRelicWrist.getPosition();
 
         if (wristPosition > 0.0) {
-            wristPosition = wristPosition - 0.05;
+            wristPosition = wristPosition - 0.15;
             servoRelicWrist.setPosition(wristPosition);
         }
     }
