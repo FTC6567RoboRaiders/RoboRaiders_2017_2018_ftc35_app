@@ -24,6 +24,8 @@ public class IndieTeleOpMecanum extends OpMode {
     float maxpwr;     // Maximum power of the four motors
     boolean nudging = false;
     int nudgeCount = 0;
+    boolean wristNudging = false;
+    int wristNudgeCount = 0;
     public boolean currStateDpadUp = false;
     public boolean prevStateDpadUp = false;
     public boolean currStateDpadDown = false;
@@ -211,7 +213,7 @@ public class IndieTeleOpMecanum extends OpMode {
         }
 
         // "Relic Wrist Down" functionality
-        currStateDpadDown = gamepad2.dpad_down;
+        /*currStateDpadDown = gamepad2.dpad_down;
         if (currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
 
             robot.wristDown();
@@ -220,6 +222,27 @@ public class IndieTeleOpMecanum extends OpMode {
         else if (!currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
 
             prevStateDpadDown = currStateDpadDown;
+        }*/
+
+        // "Wrist Nudging" functionality
+        if (gamepad2.dpad_down) {
+
+            if (!wristNudging) {
+
+                robot.wristDown();
+            }
+
+            wristNudgeCount++;
+
+            if (wristNudgeCount > 80) {
+
+                wristNudging = true;
+            }
+        }
+        else {
+
+            wristNudging = false;
+            wristNudgeCount = 0;
         }
 
         // "Relic Gripper Close" functionality
