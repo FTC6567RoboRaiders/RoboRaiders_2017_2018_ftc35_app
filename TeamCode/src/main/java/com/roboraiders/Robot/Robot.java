@@ -287,14 +287,19 @@ public class Robot {
     }
 
     /**
-     * This method will lower thr wrist servo
+     * This method will set the position of the wrist servo
      */
-    public void wristDown() {
+    public void setWristPosition(double wristPosition) {
 
-        double wristPosition = servoRelicWrist.getPosition();
-
-        wristPosition = wristPosition - 0.01;
         servoRelicWrist.setPosition(wristPosition);
+    }
+
+    /**
+     * This method will return the position of the wrist servo
+     */
+    public double getWristPosition() {
+
+        return servoRelicWrist.getPosition();
     }
 
     /**
