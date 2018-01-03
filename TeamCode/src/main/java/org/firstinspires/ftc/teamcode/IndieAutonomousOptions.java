@@ -272,6 +272,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
             // the state of the prev variables...not sure what java/android
             // thinks is going on here...more investigation is needed
         }
+
         soIdx++; // incrementing index
         selectedOptions[soIdx][0] = "Park";
         selectedOptions[soIdx][1] = parkSelection;
@@ -286,8 +287,8 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
             e.printStackTrace();
         }
         for (int i = 0; i <= soIdx; i++) {
-            telemetry.addLine().addData(selectedOptions[i][0],selectedOptions[i][1]);
 
+            telemetry.addLine().addData(selectedOptions[i][0],selectedOptions[i][1]);
         }
         waitForStart();
 
@@ -354,10 +355,8 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         else if (parkSelection.equals("no")){
 
         }
-
-
-        }
     }
+}
 
 
 
