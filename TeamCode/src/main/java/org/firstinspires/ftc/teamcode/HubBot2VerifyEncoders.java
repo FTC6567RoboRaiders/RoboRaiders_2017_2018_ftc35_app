@@ -10,6 +10,7 @@ import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 @Autonomous(name = "HubBot2 Verify the Motor Encoders", group = "Verify")
+@Disabled
 
 
 /**
