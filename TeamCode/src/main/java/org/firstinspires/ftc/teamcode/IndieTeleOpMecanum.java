@@ -21,10 +21,10 @@ public class IndieTeleOpMecanum extends OpMode {
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
     float relic;      // Power for relic motor
-    float glyphUp;    // Power for glyph up motor
     float maxpwr;     // Maximum power of the four motors
     boolean nudging = false;
     int nudgeCount = 0;
+    double wristPosition = 0;
     public boolean currStateDpadUp = false;
     public boolean prevStateDpadUp = false;
     public boolean currStateDpadDown = false;
@@ -35,10 +35,6 @@ public class IndieTeleOpMecanum extends OpMode {
     public boolean prevStateLeftBumper = false;
     public boolean currStateLeftTrigger = false;
     public boolean prevStateLeftTrigger = false;
-    public boolean currStateY = false;
-    public boolean prevStateY = false;
-    public boolean currStateA = false;
-    public boolean prevStateA = false;
     public boolean currStateDpadLeft = false;
     public boolean prevStateDpadLeft = false;
     public boolean currStateDpadRight = false;
@@ -174,41 +170,11 @@ public class IndieTeleOpMecanum extends OpMode {
             robot.glyphRest();
         }
 
-        // "Glyph Up" functionality
-        /*currStateY = gamepad2.y;
-        if (currStateY && currStateY != prevStateY) {
-
-            glyphUp(robot);
-            prevStateY = currStateY;
-        }
-        else if (!currStateY && currStateY != prevStateY) {
-
-            prevStateY = currStateY;
-        }
-
-        // "Glyph Down" functionality
-        currStateA = gamepad2.a;
-        if (currStateA && currStateA != prevStateA) {
-
-            glyphDown(robot);
-            prevStateA = currStateA;
-        }
-        else if (!currStateA && currStateA != prevStateA) {
-
-            prevStateA = currStateA;
-        }*/
-
         // "Set Relic Motor Power" functionality
         relic = gamepad2.left_stick_y;
         relic = Range.clip(relic, -1, 1);
         relic = (float) scaleInput(relic);
         robot.setRelicMotorPower(relic * 0.5);
-
-        // Alternate "Glyph Up/Down functionality
-        glyphUp = gamepad2.right_stick_y;
-        glyphUp = Range.clip(glyphUp, -1, 1);
-        glyphUp = (float) scaleInput(glyphUp);
-        robot.setGlyphUpMotorPower(glyphUp * 0.5);
 
         /*
         // Alternate "Relic Out" functionality
@@ -246,7 +212,7 @@ public class IndieTeleOpMecanum extends OpMode {
         }
 
         // "Relic Wrist Down" functionality
-        currStateDpadDown = gamepad2.dpad_down;
+        /*currStateDpadDown = gamepad2.dpad_down;
         if (currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
 
             robot.wristDown();
@@ -255,13 +221,21 @@ public class IndieTeleOpMecanum extends OpMode {
         else if (!currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
 
             prevStateDpadDown = currStateDpadDown;
-        }
+        }*/
 
-        // "Relic Gripper Open" functionality
+        // Alternate "Relic Wrist Down" functionality
+        if (gamepad2.dpad_down) {
+
+            wristPosition = robot.getWristPosition();
+            wristPosition -= 0.01;
+        }
+        robot.setWristPosition(wristPosition);
+
+        // "Relic Gripper Close" functionality
         currStateDpadLeft = gamepad2.dpad_left;
         if (currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
 
-            robot.gripperOpen();
+            robot.gripperClose();
             prevStateDpadLeft = currStateDpadLeft;
         }
         else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
@@ -269,11 +243,11 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateDpadLeft = currStateDpadLeft;
         }
 
-        // "Relic Gripper Close" functionality
+        // "Relic Gripper Open" functionality
         currStateDpadRight = gamepad2.dpad_right;
         if (currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
 
-            robot.gripperClose();
+            robot.gripperOpen();
             prevStateDpadRight = currStateDpadRight;
         }
         else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {

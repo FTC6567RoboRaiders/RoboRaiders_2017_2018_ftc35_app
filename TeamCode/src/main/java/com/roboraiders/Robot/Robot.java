@@ -45,7 +45,6 @@ public class Robot {
     public DcMotor motorBackLeft = null;
     public DcMotor motorBackRight = null;
     public DcMotor motorRelic = null;
-    public DcMotor motorGlyphUp = null;
     public DcMotor motorGlyphInLeft = null;
     public DcMotor motorGlyphInRight = null;
 
@@ -92,7 +91,6 @@ public class Robot {
         motorBackLeft = hwMap.get(DcMotor.class, "left_Back");
         motorBackRight = hwMap.get(DcMotor.class, "right_Back");
         motorRelic = hwMap.get(DcMotor.class, "relic");
-        motorGlyphUp = hwMap.get(DcMotor.class, "glyph_Up");
         motorGlyphInLeft = hwMap.get(DcMotor.class, "glyph_In_Left");
         motorGlyphInRight = hwMap.get(DcMotor.class, "glyph_In_Right");
 
@@ -102,7 +100,6 @@ public class Robot {
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackRight.setDirection(DcMotor.Direction.FORWARD);
         motorRelic.setDirection(DcMotor.Direction.FORWARD);
-        motorGlyphUp.setDirection(DcMotor.Direction.FORWARD);
         motorGlyphInLeft.setDirection(DcMotor.Direction.FORWARD);
         motorGlyphInRight.setDirection(DcMotor.Direction.FORWARD);
 
@@ -112,7 +109,6 @@ public class Robot {
         motorBackRight.setPower(0);
         motorBackLeft.setPower(0);
         motorRelic.setPower(0);
-        motorGlyphUp.setPower(0);
         motorGlyphInLeft.setPower(0);
         motorGlyphInRight.setPower(0);
 
@@ -123,7 +119,6 @@ public class Robot {
         motorBackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorRelic.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorGlyphUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorGlyphInLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorGlyphInRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
@@ -157,7 +152,7 @@ public class Robot {
     public void initializeServos() {
 
         servoJewel.setPosition(0.1);
-        servoArmLeft.setPosition(1.0);
+        servoArmLeft.setPosition(0.95);
         servoArmRight.setPosition(0.0);
         servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
@@ -187,16 +182,6 @@ public class Robot {
     public void setRelicMotorPower(double relic) {
 
         motorRelic.setPower(relic);
-    }
-
-    /**
-     * This method will set the power for the glyphUp motor
-     *
-     * @param glyphUp power setting for the glyphUp motor
-     */
-    public void setGlyphUpMotorPower(double glyphUp) {
-
-        motorGlyphUp.setPower(glyphUp);
     }
 
     /**
@@ -233,54 +218,12 @@ public class Robot {
     }
 
     /**
-     * This method will raise a glyph in the omni wheel assembly
-     */
-    /*public void glyphUp(Robot bot) {
-
-        bot.resetEncoders();
-        bot.runWithEncoders();
-
-        double COUNTS = bot.calculateCOUNTS(8);
-
-        bot.motorGlyphUp.setPower(0.5);
-
-        while (bot.getGlyphUpEncoderCount() < COUNTS) {
-
-        }
-
-        bot.motorGlyphUp.setPower(0.0);
-
-        bot.runWithoutEncoders();
-    }*/
-
-    /**
-     * This method will lower a glyph in the omni wheel assembly
-     */
-    /*public void glyphDown(Robot bot) {
-
-        bot.resetEncoders();
-        bot.runWithEncoders();
-
-        double COUNTS = bot.calculateCOUNTS(8);
-
-        bot.motorGlyphUp.setPower(-0.5);
-
-        while (bot.getGlyphUpEncoderCount() < COUNTS) {
-
-        }
-
-        bot.motorGlyphUp.setPower(0.0);
-
-        bot.runWithoutEncoders();
-    }*/
-
-    /**
      * This method will open the servo arms
      */
     public void armsOpen() {
 
         servoArmLeft.setPosition(0.0);
-        servoArmRight.setPosition(1.0);
+        servoArmRight.setPosition(0.9);
     }
 
     /**
@@ -288,8 +231,8 @@ public class Robot {
      */
     public void armsGlyph() {
 
-        servoArmLeft.setPosition(0.65);
-        servoArmRight.setPosition(0.35);
+        servoArmLeft.setPosition(0.58);
+        servoArmRight.setPosition(0.22);
     }
 
     /**
@@ -297,7 +240,7 @@ public class Robot {
      */
     public void armsClose() {
 
-        servoArmLeft.setPosition(1.0);
+        servoArmLeft.setPosition(0.95);
         servoArmRight.setPosition(0.0);
     }
 
@@ -344,11 +287,19 @@ public class Robot {
     }
 
     /**
-     * This method will lower thr wrist servo
+     * This method will set the position of the wrist servo
      */
-    public void wristDown() {
+    public void setWristPosition(double wristPosition) {
 
-        servoRelicWrist.setPosition(0.0);
+        servoRelicWrist.setPosition(wristPosition);
+    }
+
+    /**
+     * This method will return the position of the wrist servo
+     */
+    public double getWristPosition() {
+
+        return servoRelicWrist.getPosition();
     }
 
     /**
@@ -356,7 +307,7 @@ public class Robot {
      */
     public void gripperOpen() {
 
-        servoRelicGripper.setPosition(0.0);
+        servoRelicGripper.setPosition(0.6);
     }
 
     /**
@@ -364,7 +315,7 @@ public class Robot {
      */
     public void gripperClose() {
 
-        servoRelicGripper.setPosition(0.8);
+        servoRelicGripper.setPosition(1.0);
     }
 
     /**
@@ -400,10 +351,6 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorRelic.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorGlyphUp.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorGlyphInLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorGlyphInRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     /**
@@ -415,10 +362,6 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorRelic.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorGlyphUp.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorGlyphInLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorGlyphInRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     /**
@@ -430,10 +373,6 @@ public class Robot {
         motorFrontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorRelic.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorGlyphUp.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorGlyphInLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorGlyphInRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     /**
@@ -488,17 +427,6 @@ public class Robot {
     }
 
     /**
-     * This method will return the absolute value of the current encoder count of the glyph up motor
-     *
-     * @return Math.abs(motorGlyphUp.getCurrentPosition()) - the absolute value of the current
-     * encoder count of the glyph up motor
-     */
-    public int getGlyphUpEncoderCount() {
-
-        return Math.abs(motorGlyphUp.getCurrentPosition());
-    }
-
-    /**
      * This method will return the average encoder count of the two "glyph in" motors
      *
      * @return averageCount - the average encoder count of the two "glyph in" motors
@@ -538,10 +466,10 @@ public class Robot {
      * @return distanceSensor.getDistance(DistanceUnit.CM) - the current distance of the
      * distance sensor from an object in inches
      */
-    /*public double getDistance() {
+    public double getDistance() {
 
-        return distanceSensor.getDistance(DistanceUnit.CM);
-    }*/
+        return 1; //distanceSensor.getDistance(DistanceUnit.CM);
+    }
 
     /**
      * This method will return the color sensor reading of the selected color
@@ -587,44 +515,18 @@ public class Robot {
     }
 
     /**
-     * This method lowers and expels a glyph in autonomous
+     * This method expels a glyph in autonomous
      *
      * @throws InterruptedException
      */
     public void expelGlyph(Robot bot) throws InterruptedException {
 
-        bot.resetEncoders();
-        bot.runWithEncoders();
-
-        double COUNTS_DOWN = bot.calculateCOUNTS(8);
-
-        bot.motorGlyphUp.setPower(-0.5);
-
-        while (bot.getGlyphUpEncoderCount() < COUNTS_DOWN) {
-
-        }
-
-        bot.motorGlyphUp.setPower(0.0);
-
-        bot.runWithoutEncoders();
+        bot.motorGlyphInLeft.setPower(-0.75);
+        bot.motorGlyphInRight.setPower(-0.75);
 
         Thread.sleep(1000);
 
-        bot.resetEncoders();
-        bot.runWithEncoders();
-
-        double COUNTS_OUT = bot.calculateCOUNTS(4);
-
-        bot.motorGlyphInLeft.setPower(-0.5);
-        bot.motorGlyphInRight.setPower(-0.5);
-
-        while (bot.getGlyphInEncoderCount() < COUNTS_OUT) {
-
-        }
-
         bot.motorGlyphInLeft.setPower(0.0);
         bot.motorGlyphInRight.setPower(0.0);
-
-        bot.runWithoutEncoders();
     }
 }

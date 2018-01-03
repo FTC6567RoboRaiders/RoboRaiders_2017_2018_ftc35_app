@@ -28,13 +28,21 @@ public class CryptoboxRandomFarBlue extends RoboRaidersAuto {
         lowerArm(robot, 0.99); //jewel is selected
         selectJewel(robot, "blue");
 
-        encodersMove(robot, 22, 0.5, "forward");
+        if (blue) { //if ball on the right is blue
+
+            encodersMove(robot, 23, 0.5, "forward"); //drive forward
+            Thread.sleep(500);
+        }
+        else {
+
+            encodersMove(robot, 22, 0.5, "forward"); //do not drive as far forward
+            Thread.sleep(500);
+        }
+
+        encodersMove(robot, 13, 0.5, "right"); //robot strafes right until in front of cryptobox
         Thread.sleep(500);
 
-        encodersMove(robot, 18, 0.5, "right"); //robot turns so glyph collector faces cryptobox
-        Thread.sleep(500);
-
-        //placeGlyph(robot); //robot places glyph
+        placeGlyph(robot); //robot places glyph
         Thread.sleep(500);
     }
 }
