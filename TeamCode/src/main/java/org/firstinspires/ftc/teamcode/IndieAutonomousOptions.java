@@ -13,6 +13,8 @@ import com.roboraiders.Robot.Robot;
 public class IndieAutonomousOptions extends RoboRaidersAuto {
 
     public Robot robot = new Robot();
+    private String [][] selectedOptions;
+    int soIdx;
 
     View relativeLayout;
 
@@ -22,7 +24,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
     String allianceSelection;                                         // The alliance selection
 
     // Set up strings for balancing stone selection
-    String bsTitle = "Balancing Stone Selection";
+    String  bsTitle = "Balancing Stone Selection";
     String[] bsOptions = new String[] {"close", "far"};
     String bsSelection;
 
@@ -114,6 +116,9 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
             // thinks is going on here...more investigation is needed
         }
 
+        soIdx = 0;
+        selectedOptions[soIdx][0]= "Alliance";
+        selectedOptions[soIdx][1]= allianceSelection;
         telemetry.addLine().addData("Alliance Selection", allianceSelection);
         telemetry.update();
 
@@ -173,7 +178,9 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
             // the state of the prev variables...not sure what java/android
             // thinks is going on here...more investigation is needed
         }
-
+        soIdx++; // incrementing index
+        selectedOptions[soIdx][0] = "B.S Location";
+        selectedOptions[soIdx][1] = bsSelection;
         telemetry.addLine().addData("Balancing Stone Selection", bsSelection);
         telemetry.update();
 
@@ -218,7 +225,9 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
             // the state of the prev variables...not sure what java/android
             // thinks is going on here...more investigation is needed
         }
-
+        soIdx++; // incrementing index
+        selectedOptions[soIdx][0] = "Hit Jewel";
+        selectedOptions[soIdx][1] = jewelSelection;
         telemetry.addLine().addData("Jewel Selection", jewelSelection);
         telemetry.update();
 
@@ -263,7 +272,9 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
             // the state of the prev variables...not sure what java/android
             // thinks is going on here...more investigation is needed
         }
-
+        soIdx++; // incrementing index
+        selectedOptions[soIdx][0] = "Park";
+        selectedOptions[soIdx][1] = parkSelection;
         telemetry.addLine().addData("Park Selection", parkSelection);
         telemetry.update();
 
@@ -274,7 +285,10 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
             e.printStackTrace();
         }
+        for (int i = 0; i <= soIdx; i++) {
+            telemetry.addLine().addData(selectedOptions[i][0],selectedOptions[i][1]);
 
+        }
         waitForStart();
 
         // Change the background color back to white
@@ -340,5 +354,11 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         else if (parkSelection.equals("no")){
 
         }
+
+
+        }
     }
-}
+
+
+
+
