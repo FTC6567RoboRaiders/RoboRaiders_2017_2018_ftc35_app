@@ -5,17 +5,15 @@ import android.graphics.Color;
 import android.view.View;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 @Autonomous
-@Disabled
 
 public class IndieAutonomousOptions extends RoboRaidersAuto {
 
-    public Robot robot = new Robot();
-    private String [][] selectedOptions;
+    //    public Robot robot = new Robot();
+    private String[][] selectedOptions = new String[4][2];
     int soIdx;
 
     View relativeLayout;
@@ -53,8 +51,8 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
     @Override public void runOpMode() throws InterruptedException {
 
-        robot.initialize(hardwareMap);
-        robot.initializeServos();
+        //robot.initialize(hardwareMap);
+        //robot.initializeServos();
         telemetry.addData("Initialized", true);
         telemetry.update();
 
@@ -119,8 +117,8 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         }
 
         soIdx = 0;
-        selectedOptions[soIdx][0]= "Alliance";
-        selectedOptions[soIdx][1]= allianceSelection;
+        selectedOptions[soIdx][0] = "Alliance: ";
+        selectedOptions[soIdx][1] = allianceSelection;
         telemetry.addLine().addData("Alliance Selection", allianceSelection);
         telemetry.update();
 
@@ -270,7 +268,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
                 }
             }
 
-            telemetry.update();                                       // so when this line is removed we get a problem with
+            // telemetry.update();                                       // so when this line is removed we get a problem with
             // the state of the prev variables...not sure what java/android
             // thinks is going on here...more investigation is needed
         }
@@ -281,6 +279,8 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         telemetry.addLine().addData("Park Selection", parkSelection);
         telemetry.update();
 
+        gamepad1.reset();
+
         try {
 
             Thread.sleep(1000);
@@ -288,10 +288,13 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
             e.printStackTrace();
         }
-        for (int i = 0; i <= soIdx; i++) {
 
-            telemetry.addLine().addData(selectedOptions[i][0],selectedOptions[i][1]);
+        for (int i = 0; i <= soIdx; i++) {
+            telemetry.addLine().addData(selectedOptions[i][0], selectedOptions[i][1]);
         }
+        telemetry.update();
+
+
         waitForStart();
 
         // Change the background color back to white
@@ -301,9 +304,11 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
                 relativeLayout.setBackgroundColor(Color.WHITE);
             }
         });
+    }
+}
 
         // Jewel
-        if (jewelSelection.equals("yes")) {
+ /*       if (jewelSelection.equals("yes")) {
 
             lowerArm(robot, 0.99);
             selectJewel(robot, allianceSelection);
@@ -357,8 +362,10 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         else if (parkSelection.equals("no")){
 
         }
-    }
-}
+
+
+        } */
+
 
 
 
