@@ -33,24 +33,15 @@ public class CryptoboxVuforiaFarRed extends RoboRaidersAuto {
         getRelicRecoveryVuMark();
         Thread.sleep(250);
 
-        telemetry.addData("Pictograph", pictograph);
-        telemetry.update();
-
-        encodersMove(robot, 23, 0.5, "backward"); //drive backward
-        Thread.sleep(500);
+        encodersMove(robot, 20, 0.5, "backward");
+        Thread.sleep(250);
 
         imuTurn(robot, 90, 0.5, "left");
         Thread.sleep(250);
 
-        //selectColumn(robot, "red", "far", pictograph); //select column based on encoder readouts
+        encodersMove(robot, 5, 0.5, "backward");
+        Thread.sleep(250);
 
-        selectColumnDistanceSensor(robot, "red", pictograph); //this selects the key column using the distance sensor
-
-        imuTurn(robot, 182, 0.5, "left"); //robot turns 180 degrees left
-        Thread.sleep(500);
-
-        placeGlyph(robot); //robot places glyph in selected column
-        Thread.sleep(500);
-
+        selectColumnDistanceSensor(robot, "red", pictograph);
     }
 }
