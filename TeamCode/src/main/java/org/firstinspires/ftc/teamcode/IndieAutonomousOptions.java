@@ -5,41 +5,39 @@ import android.graphics.Color;
 import android.view.View;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 @Autonomous
-@Disabled
 
 public class IndieAutonomousOptions extends RoboRaidersAuto {
 
-    public Robot robot = new Robot();
-    private String [][] selectedOptions;
-    int soIdx;
+    //    public Robot robot = new Robot();
+    private String[][] selectedOptions = new String[4][2];
+    // int soIdx;
 
     View relativeLayout;
 
     // Set up strings for alliance selection
-    String allianceTitle = "Alliance Selection";                      // The title of this selection
-    String[] allianceOptions = new String[] {"red", "blue"};          // The options for this selection
+   // String allianceTitle = "Alliance Selection";                      // The title of this selection
+   // String[] allianceOptions = new String[]{"red", "blue"};          // The options for this selection
     String allianceSelection;                                         // The alliance selection
 
-    // Set up strings for balancing stone selection
-    String  bsTitle = "Balancing Stone Selection";
-    String[] bsOptions = new String[] {"close", "far"};
-    String bsSelection;
+    /* Set up strings for balancing stone selection
+    String bsTitle = "Balancing Stone Selection";
+    String[] bsOptions = new String[]{"close", "far"};
+    String bsSelection;*/
 
     // yes/no Options
-    String[] yesNoOptions = new String[] {"no", "yes"};
+    String[] yesNoOptions = new String[]{"no", "yes"};
 
-    // Set up strings for jewel selection
+    /* Set up strings for jewel selection
     String jewelTitle = "Jewel Selection";
     String jewelSelection;
 
     // Set up strings for park selection
     String parkTitle = "Park Selection";
-    String parkSelection;
+    String parkSelection;*/
 
     boolean cur_B_ButtonState;                                        // "b" button current state
     boolean cur_X_ButtonState;                                        // "x" button current state
@@ -51,10 +49,11 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
     // Main logic
     //----------------------------------------------------------------------------------------------
 
-    @Override public void runOpMode() throws InterruptedException {
+    @Override
+    public void runOpMode() throws InterruptedException {
 
-        robot.initialize(hardwareMap);
-        robot.initializeServos();
+        //robot.initialize(hardwareMap);
+        //robot.initializeServos();
         telemetry.addData("Initialized", true);
         telemetry.update();
 
@@ -63,7 +62,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         int relativeLayoutId = hardwareMap.appContext.getResources().getIdentifier("RelativeLayout", "id", hardwareMap.appContext.getPackageName());
         relativeLayout = ((Activity) hardwareMap.appContext).findViewById(relativeLayoutId);
 
-        // Alliance Selection
+        /* Alliance Selection
         telemetry.addLine(allianceTitle);
         telemetry.addLine("Press B for Red or X for Blue");
         telemetry.update();
@@ -73,179 +72,83 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         /*
         Default the previous button states for the "B" and "X" button to indicate that the
         buttons were not pushed.
-         */
+
         prev_X_ButtonState = false;
         prev_B_ButtonState = false;
         cur_B_ButtonState = false;
         cur_X_ButtonState = false;
 
-        // loop until either the "b" button or the "x" button is pressed
-        // the logic here says OR the previous button states and when they are both false continue
-        // here is a table of how this works
-        /*
-             +--------------------+------+--------------------+--------+-------------+
-             | prev_B_ButtonState | -OR- | prev_X_ButtonState | Result | Neg. Result |
-             +--------------------+------+--------------------+--------+-------------+
-             |      FALSE         | -OR- |     FALSE          | FALSE  |   TRUE      |
-             +--------------------+------+--------------------+--------+-------------+
-             |      FALSE         | -OR- |     TRUE           | TRUE   |   FALSE     |
-             +--------------------+------+--------------------+--------+-------------+
-             |      TRUE          | -OR- |     FALSE          | TRUE   |   FALSE     |
-             +--------------------+------+--------------------+--------+-------------+
-             |      TRUE          | -OR- |     TRUE           | TRUE   |   FALSE     |
-             +--------------------+------+--------------------+--------+-------------+
-         */
+        */
 
-        while (!(prev_B_ButtonState | prev_X_ButtonState)) {
 
-            cur_B_ButtonState = gamepad1.b;                           // get the current state of button b
-            cur_X_ButtonState = gamepad1.x;                           // get the current state of button x
 
-            if (cur_B_ButtonState) {                                  // when the "b" button on the gamepad is pressed set alliance to RED
-                if (!prev_B_ButtonState) {                            // when the previous "b" button was NOT pushed
-                    allianceSelection = allianceOptions[0];           // set alliance selection to RED
-                    prev_B_ButtonState = true;                        // indicate that the previous B button state is PUSHED
-                }
-            } else if (cur_X_ButtonState) {                             // when the "X" button on the gamepad is pressed set the alliance to BLUE
-                if (!prev_X_ButtonState) {                            // when the previous "x" button was NOT pushed
-                    allianceSelection = allianceOptions[1];           // set alliance selection to BLUE
-                    prev_X_ButtonState = true;                        // indicate that the previous X button state is PUSHED
-                }
-            }
 
-            telemetry.update();                                       // so when this line is removed we get a problem with
-            // the state of the prev variables...not sure what java/android
-            // thinks is going on here...more investigation is needed
+
+
+
+        String allianceSelPrompt = new String("Alliance");
+        final String[] alliancePosResps = new String[]{"red", "blue"};
+
+        String bsSelPrompt = new String("Balancing Stone");
+        String[] bsPosResps = new String[]{"close", "far"};
+
+
+        String jewelSelPrompt = new String("Jewel");
+
+
+        String parkSelPrompt = new String("Park");
+
+
+        configForAuto(allianceSelPrompt, alliancePosResps,0, selectedOptions);
+        configForAuto(bsSelPrompt, bsPosResps, 1, selectedOptions);
+        configForAuto(jewelSelPrompt,yesNoOptions,2, selectedOptions);
+        configForAuto(parkSelPrompt, yesNoOptions,3, selectedOptions);
+
+        //  tell user what s/he has selected
+        for (int i = 0; i <= 3; i++) {
+            telemetry.addLine().addData(selectedOptions[i][0],selectedOptions[i][1]);
         }
+        telemetry.update();
+        waitForStart();
 
-        soIdx = 0;
-        selectedOptions[soIdx][0]= "Alliance";
-        selectedOptions[soIdx][1]= allianceSelection;
-        telemetry.addLine().addData("Alliance Selection", allianceSelection);
+
+    }
+
+
+    /**
+     * @param selPrompt The given configuration prompt
+     * @param PosResps The possible responses to a given configuration prompt
+     * @param selIndex The position within selOptions array in which to store the responses
+     * @param selOptions where to store the configuration prompt and response
+     *
+     * loop until either the "b" button or the "x" button is pressed
+     *
+     *
+     *
+     the logic here says OR the previous button states and when they are both false continue
+     here is a table of how this works
+
+    +--------------------+------+--------------------+--------+-------------+
+    | prev_B_ButtonState | -OR- | prev_X_ButtonState | Result | Neg. Result |
+    +--------------------+------+--------------------+--------+-------------+
+    |      FALSE         | -OR- |     FALSE          | FALSE  |   TRUE      |
+    +--------------------+------+--------------------+--------+-------------+
+    |      FALSE         | -OR- |     TRUE           | TRUE   |   FALSE     |
+    +--------------------+------+--------------------+--------+-------------+
+    |      TRUE          | -OR- |     FALSE          | TRUE   |   FALSE     |
+    +--------------------+------+--------------------+--------+-------------+
+    |      TRUE          | -OR- |     TRUE           | TRUE   |   FALSE     |
+    +--------------------+------+--------------------+--------+-------------+*/
+
+    public void configForAuto(String selPrompt, String[] PosResps, int selIndex, String[][] selOptions) {
+
+        selOptions[selIndex][0] = selPrompt;
+        // Prompt User for Selection
+        telemetry.addLine(selPrompt);
+        telemetry.addLine("Press B for " + PosResps[0] + " or X for " + PosResps[1]);
         telemetry.update();
 
-        // Change the background color to match the alliance selection
-        relativeLayout.post(new Runnable() {
-
-            public void run() {
-
-                if (allianceSelection.equals(allianceOptions[0])) { // alliance selection is RED
-
-                    relativeLayout.setBackgroundColor(Color.RED);
-                } else {                                                // alliance selection is BLUE
-
-                    relativeLayout.setBackgroundColor(Color.BLUE);
-                }
-            }
-        });
-
-        try {
-
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
-        }
-
-        // Balancing Stone Selection
-        telemetry.addLine(bsTitle);
-        telemetry.addLine("Press B for Close or X for Far");
-        telemetry.update();
-
-        gamepad1.reset();                                             // reset the gamepad to initial state
-
-        prev_B_ButtonState = false;
-        prev_X_ButtonState = false;
-        cur_B_ButtonState = false;
-        cur_X_ButtonState = false;
-
-        while (!(prev_B_ButtonState | prev_X_ButtonState)) {
-
-            cur_B_ButtonState = gamepad1.b;                           // get the current state of button b
-            cur_X_ButtonState = gamepad1.x;                           // get the current state of button x
-
-            if (cur_B_ButtonState) {                                  // when the "b" button on the gamepad is pressed set alliance to RED
-                if (!prev_B_ButtonState) {                            // when the previous "b" button was NOT pushed
-                    bsSelection = bsOptions[0];                       // set balance stone selection to Near
-                    prev_B_ButtonState = true;                        // indicate that the previous B button state is PUSHED
-                }
-            } else if (cur_X_ButtonState) {                             // when the "X" button on the gamepad is pressed set the alliance to BLUE
-                if (!prev_X_ButtonState) {                            // when the previous "x" button was NOT pushed
-                    bsSelection = bsOptions[1];                       // set balance stone selection to Away
-                    prev_X_ButtonState = true;                        // indicate that the previous X button state is PUSHED
-                }
-            }
-
-            telemetry.update();                                       // so when this line is removed we get a problem with
-            // the state of the prev variables...not sure what java/android
-            // thinks is going on here...more investigation is needed
-        }
-        soIdx++; // incrementing index
-        selectedOptions[soIdx][0] = "B.S Location";
-        selectedOptions[soIdx][1] = bsSelection;
-        telemetry.addLine().addData("Balancing Stone Selection", bsSelection);
-        telemetry.update();
-
-        try {
-
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
-        }
-
-        // Jewel Selection
-        telemetry.addLine(jewelTitle);
-        telemetry.addLine("Press B for No or X for Yes");
-        telemetry.update();
-
-        gamepad1.reset();                                             // reset the gamepad to initial state
-
-        prev_B_ButtonState = false;
-        prev_X_ButtonState = false;
-        cur_B_ButtonState = false;
-        cur_X_ButtonState = false;
-
-        while (!(prev_B_ButtonState | prev_X_ButtonState)) {
-
-            cur_B_ButtonState = gamepad1.b;                           // get the current state of button b
-            cur_X_ButtonState = gamepad1.x;                           // get the current state of button x
-
-            if (cur_B_ButtonState) {                                  // when the "b" button on the gamepad is pressed set alliance to RED
-                if (!prev_B_ButtonState) {                            // when the previous "b" button was NOT pushed
-                    jewelSelection = yesNoOptions[0];                       // set balance stone selection to Near
-                    prev_B_ButtonState = true;                        // indicate that the previous B button state is PUSHED
-                }
-            } else if (cur_X_ButtonState) {                            // when the "X" button on the gamepad is pressed set the alliance to BLUE
-                if (!prev_X_ButtonState) {                            // when the previous "x" button was NOT pushed
-                    jewelSelection = yesNoOptions[1];                       // set balance stone selection to Away
-                    prev_X_ButtonState = true;                        // indicate that the previous X button state is PUSHED
-                }
-            }
-
-            telemetry.update();                                       // so when this line is removed we get a problem with
-            // the state of the prev variables...not sure what java/android
-            // thinks is going on here...more investigation is needed
-        }
-        soIdx++; // incrementing index
-        selectedOptions[soIdx][0] = "Hit Jewel";
-        selectedOptions[soIdx][1] = jewelSelection;
-        telemetry.addLine().addData("Jewel Selection", jewelSelection);
-        telemetry.update();
-
-        try {
-
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
-        }
-
-        // Park Selection
-        telemetry.addLine(parkTitle);
-        telemetry.addLine("Press B for No or X for Yes");
-        telemetry.update();
-
+        // Let the user Select
         gamepad1.reset();
 
         prev_B_ButtonState = false;
@@ -260,50 +163,30 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
             if (cur_B_ButtonState) {                                  // when the "b" button on the gamepad is pressed set alliance to RED
                 if (!prev_B_ButtonState) {                            // when the previous "b" button was NOT pushed
-                    parkSelection = yesNoOptions[0];                  // set balance stone selection to Near
+                    selOptions[selIndex][1] = PosResps[0];                   // First response was selected, store the response
                     prev_B_ButtonState = true;                        // indicate that the previous B button state is PUSHED
                 }
             } else if (cur_X_ButtonState) {                            // when the "X" button on the gamepad is pressed set the alliance to BLUE
                 if (!prev_X_ButtonState) {                            // when the previous "x" button was NOT pushed
-                    parkSelection = yesNoOptions[1];                  // set balance stone selection to Away
+                    selOptions[selIndex][1] = PosResps[1];                   // Second Response was selected, store the response
                     prev_X_ButtonState = true;                        // indicate that the previous X button state is PUSHED
                 }
             }
 
-            telemetry.update();                                       // so when this line is removed we get a problem with
-            // the state of the prev variables...not sure what java/android
-            // thinks is going on here...more investigation is needed
-        }
-
-        soIdx++; // incrementing index
-        selectedOptions[soIdx][0] = "Park";
-        selectedOptions[soIdx][1] = parkSelection;
-        telemetry.addLine().addData("Park Selection", parkSelection);
-        telemetry.update();
-
-        try {
-
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
-        }
-        for (int i = 0; i <= soIdx; i++) {
-
-            telemetry.addLine().addData(selectedOptions[i][0],selectedOptions[i][1]);
-        }
-        waitForStart();
-
-        // Change the background color back to white
-        relativeLayout.post(new Runnable() {
-            public void run() {
-
-                relativeLayout.setBackgroundColor(Color.WHITE);
+            //wait a second
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        });
+        }
+    }
+
+
+}
 
         // Jewel
-        if (jewelSelection.equals("yes")) {
+ /*       if (jewelSelection.equals("yes")) {
 
             lowerArm(robot, 0.99);
             selectJewel(robot, allianceSelection);
@@ -357,8 +240,10 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         else if (parkSelection.equals("no")){
 
         }
-    }
-}
+
+
+        } */
+
 
 
 

@@ -65,14 +65,15 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                imuTurn(bot, 30, 0.25, "left"); //pivot left
+                bot.setElbowServoPosition(1.0);
+                Thread.sleep(500);
+
+                bot.setElbowServoPosition(0.5);
                 Thread.sleep(500);
 
                 bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
-                imuTurn(bot, 30, 0.25, "right"); //pivot right to original position
-                Thread.sleep(500);
             }
             else { //the ball on the right is blue
 
@@ -82,14 +83,15 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                imuTurn(bot, 30, 0.25, "right"); //pivot right
+                bot.setElbowServoPosition(0.0);
+                Thread.sleep(500);
+
+                bot.setElbowServoPosition(0.5);
                 Thread.sleep(500);
 
                 bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
-                imuTurn(bot, 30, 0.25, "left"); //pivot left to original position
-                Thread.sleep(500);
             }
         }
 
@@ -105,14 +107,15 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                imuTurn(bot, 30, 0.25, "left"); //pivot left
+                bot.setElbowServoPosition(1.0);
+                Thread.sleep(500);
+
+                bot.setElbowServoPosition(0.5);
                 Thread.sleep(500);
 
                 bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
 
-                imuTurn(bot, 30, 0.25, "right"); //pivot right to original position
-                Thread.sleep(500);
             }
             else { //the ball on the left is blue
 
@@ -122,16 +125,18 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                imuTurn(bot, 30, 0.25, "right"); //pivot right
+                bot.setElbowServoPosition(0.0);
+                Thread.sleep(500);
+
+                bot.setElbowServoPosition(0.5);
                 Thread.sleep(500);
 
                 bot.setJewelServoPosition(0.1); //move arm back to initialization position
                 Thread.sleep(1000);
-
-                imuTurn(bot, 30, 0.25, "left"); //pivot left to original position
-                Thread.sleep(500);
             }
         }
+
+        Thread.sleep(2000);
     }
 
     /**
@@ -139,55 +144,101 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      *
      * @param bot           the bot currently being worked on
      * @param allianceColor the color of your alliance
+     * @param alliancePlacement the placement of the alliance: either close or far
      * @param pictograph    the name of the pictograph as determined by getRelicRecoveryVuMark()
      * @throws InterruptedException
      */
-    public void selectColumn(Robot bot, String allianceColor, String pictograph) throws InterruptedException {
+    public void selectColumn(Robot bot, String allianceColor, String alliancePlacement, String pictograph) throws InterruptedException {
 
         if (allianceColor.equals("red")) { //if we are on the red side
 
-            if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
+            if (alliancePlacement.equals("close")) { //if we are close to the audience
 
-                encodersMove(bot, 15, 0.5, "backward"); //move backward 15 inches until in front of the left column
-                Thread.sleep(250);
+                if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
+
+                    encodersMove(bot, 42, 0.5, "backward"); //move backward 42 inches until in front of the left column
+                    Thread.sleep(250);
+                } else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
+
+                    encodersMove(bot, 35, 0.5, "backward"); //move backward 35 inches until in front of the center column
+                    Thread.sleep(250);
+                } else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
+
+                    encodersMove(bot, 27, 0.5, "backward"); //move backward 27 inches until in front of the right column
+                    Thread.sleep(250);
+                } else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
+
+                    encodersMove(bot, 35, 0.5, "backward"); //move backward 35 inches until in front of the center column (default)
+                    Thread.sleep(250);
+                }
+
             }
-            else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
 
-                encodersMove(bot, 10, 0.5, "backward"); //move backward 10 inches until in front of the center column
-                Thread.sleep(250);
-            }
-            else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
+            else if (alliancePlacement.equals("far")) { //if we are far from the audience
 
-                encodersMove(bot, 5, 0.5, "backward"); //move backward 5 inches until in front of the right column
-                Thread.sleep(250);
-            }
-            else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
+                if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
 
-                encodersMove(bot, 10, 0.5, "backward"); //move backward 10 inches until in front of the center column (default)
-                Thread.sleep(250);
+                    encodersMove(bot, 20, 0.5, "backward"); //move backward 20 inches until in front of the left column
+                    Thread.sleep(250);
+                } else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
+
+                    encodersMove(bot, 12, 0.5, "backward"); //move backward 12 inches until in front of the center column
+                    Thread.sleep(250);
+                } else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
+
+                    encodersMove(bot, 5, 0.5, "backward"); //move backward 5 inches until in front of the right column
+                    Thread.sleep(250);
+                } else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
+
+                    encodersMove(bot, 12, 0.5, "backward"); //move backward 12 inches until in front of the center column (default)
+                    Thread.sleep(250);
+                }
+
             }
         }
         else if (allianceColor.equals("blue")) { //else if we are on the blue side
 
-            if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
+            if (alliancePlacement.equals("close")) {  //if we are close to the audience
 
-                encodersMove(bot, 5, 0.5, "forward"); //move forward 5 inches until in front of the left column
-                Thread.sleep(250);
+                if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
+
+                    encodersMove(bot, 27, 0.5, "forward"); //move forward 27 inches until in front of the left column
+                    Thread.sleep(250);
+                } else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
+
+                    encodersMove(bot, 35, 0.5, "forward"); //move forward 35 inches until in front of the center column
+                    Thread.sleep(250);
+                } else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
+
+                    encodersMove(bot, 42, 0.5, "forward"); //move forward 42 inches until in front of the right column
+                    Thread.sleep(250);
+                } else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
+
+                    encodersMove(bot, 35, 0.5, "forward"); //move forward 35 inches until in front of the center column (default)
+                    Thread.sleep(250);
+                }
+
             }
-            else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
 
-                encodersMove(bot, 10, 0.5, "forward"); //move forward 10 inches until in front of the center column
-                Thread.sleep(250);
-            }
-            else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
+            else if (alliancePlacement.equals("far")) { //if we are far from the audience
 
-                encodersMove(bot, 15, 0.5, "forward"); //move forward 15 inches until in front of the right column
-                Thread.sleep(250);
-            }
-            else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
+                if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
 
-                encodersMove(bot, 10, 0.5, "forward"); //move forward 10 inches until in front of the center column (default)
-                Thread.sleep(250);
+                    encodersMove(bot, 5, 0.5, "backward"); //move backward 5 inches until in front of the left column
+                    Thread.sleep(250);
+                } else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
+
+                    encodersMove(bot, 12, 0.5, "backward"); //move backward 12 inches until in front of the center column
+                    Thread.sleep(250);
+                } else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
+
+                    encodersMove(bot, 20, 0.5, "backward"); //move backward 20 inches until in front of the right column
+                    Thread.sleep(250);
+                } else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
+
+                    encodersMove(bot, 12, 0.5, "backward"); //move backward 12 inches until in front of the center column (default)
+                    Thread.sleep(250);
+                }
             }
         }
 
