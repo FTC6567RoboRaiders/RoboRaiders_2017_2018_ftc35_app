@@ -53,7 +53,7 @@ public class CryptoboxVuforiaFarBlue extends RoboRaidersAuto {
         imuTurn(robot, 90, 0.5, "right");
         Thread.sleep(250);
 
-        selectColumn(robot, "blue", pictograph);
+        selectColumn(robot, "blue", "far", pictograph);
 
         placeGlyph(robot);
         Thread.sleep(500);

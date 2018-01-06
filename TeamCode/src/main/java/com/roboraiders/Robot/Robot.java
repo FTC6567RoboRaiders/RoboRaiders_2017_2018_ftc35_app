@@ -50,6 +50,7 @@ public class Robot {
     public DcMotor motorGlyphInRight = null;
 
     public Servo servoJewel = null;
+    public Servo servoElbow = null;
     public Servo servoArmLeft = null;
     public Servo servoArmRight = null;
     public Servo servoRelicWrist = null;
@@ -125,6 +126,7 @@ public class Robot {
 
         // Define and initialize servos
         servoJewel = hwMap.get(Servo.class, "servo_Jewel");
+        servoElbow = hwMap.get(Servo.class, "servo_Elbow");
         servoArmLeft = hwMap.get(Servo.class, "servo_Arm_Left");
         servoArmRight = hwMap.get(Servo.class, "servo_Arm_Right");
         servoRelicWrist = hwMap.get(Servo.class, "servo_Relic_Wrist");
@@ -153,6 +155,7 @@ public class Robot {
     public void initializeServos() {
 
         servoJewel.setPosition(0.1);
+        servoElbow.setPosition(0.55);
         servoArmLeft.setPosition(0.95);
         servoArmRight.setPosition(0.0);
         servoRelicWrist.setPosition(0.0);
@@ -517,6 +520,17 @@ public class Robot {
     }
 
     /**
+     * This method sets the elbow servo to the desired position.
+     *
+     * @param servoPosition the desired position of the elbow servo.
+     */
+
+    public void setElbowServoPosition(double servoPosition) {
+
+        servoElbow.setPosition(servoPosition);
+    }
+
+    /**
      * This method returns the current position of the jewel servo
      *
      * @return servoJewel.getPosition() - the current position of the jewel servo
@@ -524,6 +538,16 @@ public class Robot {
     public double getJewelServoPosition() {
 
         return servoJewel.getPosition();
+    }
+
+    /**
+     * This method returns the current position of the elbow servo.
+     *
+     * @return servoElbow.getPosition() - the current position of the elbow servo
+     */
+    public double getElbowServoPosition() {
+
+        return servoElbow.getPosition();
     }
 
     /**

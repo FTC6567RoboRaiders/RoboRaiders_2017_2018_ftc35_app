@@ -43,7 +43,7 @@ public class CryptoboxVuforiaCloseBlue extends RoboRaidersAuto {
 
         Thread.sleep(500);
 
-        selectColumn(robot, "blue", pictograph);  //move to key column using encoders
+        selectColumn(robot, "blue", "close", pictograph);  //move to key column using encoders
 
         //selectColumnDistanceSensor(robot, "blue", pictograph); //this selects the key column using a distance sensor
 
