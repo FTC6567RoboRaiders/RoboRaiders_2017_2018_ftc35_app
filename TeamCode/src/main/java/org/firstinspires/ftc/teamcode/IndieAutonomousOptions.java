@@ -54,9 +54,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
         //robot.initialize(hardwareMap);
         //robot.initializeServos();
-        String value = new String {
-            "In 1" + "inital"
-        } ;
+
         telemetry.addData("Initialized", true);
         telemetry.update();
 
@@ -141,7 +139,8 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
      *
      *
      *
-     *    */
+     *
+     */
 
     public void configForAuto(String selPrompt, String[] PosResps, int selIndex, String[][] selOptions) {
 
