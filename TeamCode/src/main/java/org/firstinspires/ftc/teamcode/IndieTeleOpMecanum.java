@@ -178,29 +178,6 @@ public class IndieTeleOpMecanum extends OpMode {
         relic = (float) scaleInput(relic);
         robot.setRelicMotorPower(relic * 0.5);
 
-        /*
-        // Alternate "Relic Out" functionality
-        currStateDpadUp = gamepad2.dpad_up;
-        if (currStateDpadUp && currStateDpadUp != prevStateDpadUp){
-
-            encodersRelicOut(robot);
-            prevStateDpadUp = currStateDpadUp;
-        }
-        else if (!currStateDpadUp && currStateDpadUp != prevStateDpadUp){
-            prevStateDpadUp = currStateDpadUp;
-        }
-
-        // Alternate "Relic Out" functionality
-        currStateDpadDown = gamepad2.dpad_down;
-        if (currStateDpadDown && currStateDpadDown != prevStateDpadDown){
-
-            encodersRelicIn(robot);
-            prevStateDpadDown = currStateDpadDown;
-        }
-        else if (!currStateDpadDown && currStateDpadDown != prevStateDpadDown){
-            prevStateDpadDown = currStateDpadDown;
-        }*/
-
         // "Relic Wrist Up" functionality
         currStateDpadUp = gamepad2.dpad_up;
         if (currStateDpadUp && currStateDpadUp != prevStateDpadUp) {
@@ -212,26 +189,6 @@ public class IndieTeleOpMecanum extends OpMode {
 
             prevStateDpadUp = currStateDpadUp;
         }
-
-        // "Relic Wrist Down" functionality
-        /*currStateDpadDown = gamepad2.dpad_down;
-        if (currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
-
-            robot.wristDown();
-            prevStateDpadDown = currStateDpadDown;
-        }
-        else if (!currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
-
-            prevStateDpadDown = currStateDpadDown;
-        }*/
-
-        // Alternate "Relic Wrist Down" functionality
-        /*if (gamepad2.dpad_down) {
-
-            wristPosition = robot.getWristPosition();
-            wristPosition -= 0.01;
-        }
-        robot.setWristPosition(wristPosition);*/
 
         // "Wrist Nudging" functionality
         if (gamepad2.dpad_down) {

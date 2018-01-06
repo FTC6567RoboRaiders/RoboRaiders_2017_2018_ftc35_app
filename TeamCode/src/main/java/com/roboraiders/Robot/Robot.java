@@ -4,7 +4,6 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -60,7 +59,7 @@ public class Robot {
     public CRServo servoWheelRight = null;
 
     public ColorSensor colorSensor;
-    //public DistanceSensor distanceSensor;
+    public DistanceSensor distanceSensor;
     public BNO055IMU imu;
 
     /* Local OpMode Members */
@@ -142,7 +141,7 @@ public class Robot {
 
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
-        //distanceSensor = hwMap.get(DistanceSensor.class, "sensor_distance");
+        distanceSensor = hwMap.get(DistanceSensor.class, "sensor_distance");
         imu = hwMap.get(BNO055IMU.class, "imu");
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.mode = BNO055IMU.SensorMode.IMU;
@@ -249,40 +248,6 @@ public class Robot {
     }
 
     /**
-     * This method will extend the relic arm out using encoders
-     */
-    /*public void encodersRelicOut(Robot bot) {
-
-        bot.resetEncoders();
-        bot.runWithEncoders();
-
-        bot.setRelicMotorPower(0.5);
-
-        double COUNTS = bot.calculateCOUNTS(15);
-
-        while (Math.abs(bot.motorRelic.getCurrentPosition()) < COUNTS) {
-
-        }
-    }*/
-
-    /**
-     * This method will retract the relic arm in using encoders
-     */
-    /*public void encodersRelicIn(Robot bot) {
-
-        bot.resetEncoders();
-        bot.runWithEncoders();
-
-        bot.setRelicMotorPower(-0.5);
-
-        double COUNTS = bot.calculateCOUNTS(15);
-
-        while (Math.abs(bot.motorRelic.getCurrentPosition()) < COUNTS) {
-
-        }
-    }*/
-
-    /**
      * This method will raise the wrist servo
      */
     public void wristUp() {
@@ -299,22 +264,6 @@ public class Robot {
 
         wristPosition = wristPosition - 0.01;
         servoRelicWrist.setPosition(wristPosition);
-    }
-
-    /**
-     * This method will set the position of the wrist servo
-     */
-    public void setWristPosition(double wristPosition) {
-
-        servoRelicWrist.setPosition(wristPosition);
-    }
-
-    /**
-     * This method will return the position of the wrist servo
-     */
-    public double getWristPosition() {
-
-        return servoRelicWrist.getPosition();
     }
 
     /**
@@ -431,29 +380,6 @@ public class Robot {
     }
 
     /**
-     * This method will return the absolute value of the current encoder count of the front left motor
-     *
-     * @return Math.abs(motorFrontLeft.getCurrentPosition()) - the absolute value of the current
-     * encoder count of the front left motor
-     */
-    public int getEncoderCount() {
-
-        return Math.abs(motorFrontLeft.getCurrentPosition());
-    }
-
-    /**
-     * This method will return the average encoder count of the two "glyph in" motors
-     *
-     * @return averageCount - the average encoder count of the two "glyph in" motors
-     */
-    public int getGlyphInEncoderCount() {
-
-        int averageCount = (Math.abs(motorGlyphInLeft.getCurrentPosition()) +
-                Math.abs(motorGlyphInRight.getCurrentPosition())) / 2;
-        return averageCount;
-    }
-
-    /**
      * This method will return COUNTS after it is calculated from distance
      *
      * @param distance the desired distance in inches the robot will travel
@@ -483,7 +409,7 @@ public class Robot {
      */
     public double getDistance() {
 
-        return 1; //distanceSensor.getDistance(DistanceUnit.CM);
+        return distanceSensor.getDistance(DistanceUnit.CM);
     }
 
     /**
@@ -510,7 +436,7 @@ public class Robot {
     }
 
     /**
-     * This method sets the jewel servo position to the desired position.
+     * This method sets the jewel servo position to the desired position
      *
      * @param servoPosition the desired position of the jewel servo
      */
@@ -520,9 +446,9 @@ public class Robot {
     }
 
     /**
-     * This method sets the elbow servo to the desired position.
+     * This method sets the elbow servo position to the desired position
      *
-     * @param servoPosition the desired position of the elbow servo.
+     * @param servoPosition the desired position of the elbow servo
      */
 
     public void setElbowServoPosition(double servoPosition) {
@@ -538,16 +464,6 @@ public class Robot {
     public double getJewelServoPosition() {
 
         return servoJewel.getPosition();
-    }
-
-    /**
-     * This method returns the current position of the elbow servo.
-     *
-     * @return servoElbow.getPosition() - the current position of the elbow servo
-     */
-    public double getElbowServoPosition() {
-
-        return servoElbow.getPosition();
     }
 
     /**
