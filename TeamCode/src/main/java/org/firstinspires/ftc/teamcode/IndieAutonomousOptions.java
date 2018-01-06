@@ -76,7 +76,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         String selectionsOk = new String("Selections Great :)");
 
         // Configure for Indie autonomous
-        while (!selectedOptions[0][1].equals("Yes")) {
+        while (!selectedOptions[0][1].equals("yes")) {
             configForAuto(allianceSelPrompt, alliancePosResps, 1, selectedOptions);
             configForAuto(bsSelPrompt, bsPosResps, 2, selectedOptions);
             configForAuto(jewelSelPrompt, yesNoOptions, 3, selectedOptions);
