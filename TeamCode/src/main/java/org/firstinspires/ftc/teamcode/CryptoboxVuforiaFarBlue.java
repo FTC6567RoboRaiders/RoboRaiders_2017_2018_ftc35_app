@@ -30,13 +30,10 @@ public class CryptoboxVuforiaFarBlue extends RoboRaidersAuto {
         lowerArm(robot, 0.99);
         selectJewel(robot, "blue");
 
-        encodersMove(robot, 10, 0.5, "forward");
-        Thread.sleep(250);
-
         getRelicRecoveryVuMark();
         Thread.sleep(250);
 
-        encodersMove(robot, 5, 0.5, "forward");
+        encodersMove(robot, 20, 0.5, "forward");
         Thread.sleep(250);
 
         imuTurn(robot, 90, 0.5, "right");
