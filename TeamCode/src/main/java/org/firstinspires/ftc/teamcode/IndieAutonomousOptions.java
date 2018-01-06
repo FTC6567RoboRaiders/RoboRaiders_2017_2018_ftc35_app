@@ -133,7 +133,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
         while (!(prev_B_ButtonState | prev_X_ButtonState)) {
 
-            cur_B_ButtonState = gamepad1.b;                           // get the current state of button b
+            cur_B_ButtonState = gamepad1.b;                            // get the current state of button b
             cur_X_ButtonState = gamepad1.x;                           // get the current state of button x
 
             if (cur_B_ButtonState) {                                  // when the "b" button on the gamepad is pressed set alliance to RED
