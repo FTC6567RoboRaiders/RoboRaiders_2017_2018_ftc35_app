@@ -54,6 +54,9 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
         //robot.initialize(hardwareMap);
         //robot.initializeServos();
+        String value = new String {
+            "In 1" + "inital"
+        } ;
         telemetry.addData("Initialized", true);
         telemetry.update();
 
@@ -122,23 +125,22 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
      * @param selOptions where to store the configuration prompt and response
      *
      * loop until either the "b" button or the "x" button is pressed
+     * the logic here says OR the previous button states and when they are both false continue
+     * here is a table of how this works
+     *    +--------------------+------+--------------------+--------+-------------+
+     *    | prev_B_ButtonState | -OR- | prev_X_ButtonState | Result | Neg. Result |
+     *    +--------------------+------+--------------------+--------+-------------+
+     *    |      FALSE         | -OR- |     FALSE          | FALSE  |   TRUE      |
+     *    +--------------------+------+--------------------+--------+-------------+
+     *    |      FALSE         | -OR- |     TRUE           | TRUE   |   FALSE     |
+     *    +--------------------+------+--------------------+--------+-------------+
+     *    |      TRUE          | -OR- |     FALSE          | TRUE   |   FALSE     |
+     *    +--------------------+------+--------------------+--------+-------------+
+     *    |      TRUE          | -OR- |     TRUE           | TRUE   |   FALSE     |
+     *    +--------------------+------+--------------------+--------+-------------+
      *
      *
-     *
-     the logic here says OR the previous button states and when they are both false continue
-     here is a table of how this works
-
-    +--------------------+------+--------------------+--------+-------------+
-    | prev_B_ButtonState | -OR- | prev_X_ButtonState | Result | Neg. Result |
-    +--------------------+------+--------------------+--------+-------------+
-    |      FALSE         | -OR- |     FALSE          | FALSE  |   TRUE      |
-    +--------------------+------+--------------------+--------+-------------+
-    |      FALSE         | -OR- |     TRUE           | TRUE   |   FALSE     |
-    +--------------------+------+--------------------+--------+-------------+
-    |      TRUE          | -OR- |     FALSE          | TRUE   |   FALSE     |
-    +--------------------+------+--------------------+--------+-------------+
-    |      TRUE          | -OR- |     TRUE           | TRUE   |   FALSE     |
-    +--------------------+------+--------------------+--------+-------------+*/
+     *    */
 
     public void configForAuto(String selPrompt, String[] PosResps, int selIndex, String[][] selOptions) {
 
