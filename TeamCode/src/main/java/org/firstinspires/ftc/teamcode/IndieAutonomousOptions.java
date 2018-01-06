@@ -275,23 +275,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         }
         telemetry.update();*/
 
-
-
-        String allianceSelPrompt = new String("Alliance");
-        final String[] alliancePosResps = new String[]{"red", "blue"};
-
-        String bsSelPrompt = new String("Balancing Stone");
-        String[] bsPosResps = new String[]{"close", "far"};
-
-
-        String jewelSelPrompt = new String("Jewel");
-
-
-        String parkSelPrompt = new String("Park");
-
-
-        configForAuto(allianceSelPrompt, alliancePosResps,0, selectedOptions);
-        relativeLayout.post(new Runnable() {
+       /* relativeLayout.post(new Runnable() {
 
             public void run() {
 
@@ -313,12 +297,30 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         } catch (InterruptedException e) {
 
             e.printStackTrace();
-        }
+        }*/
 
+        String allianceSelPrompt = new String("Alliance");
+        final String[] alliancePosResps = new String[]{"red", "blue"};
+
+        String bsSelPrompt = new String("Balancing Stone");
+        String[] bsPosResps = new String[]{"close", "far"};
+
+
+        String jewelSelPrompt = new String("Jewel");
+
+
+        String parkSelPrompt = new String("Park");
+
+
+        configForAuto(allianceSelPrompt, alliancePosResps,0, selectedOptions);
         configForAuto(bsSelPrompt, bsPosResps, 1, selectedOptions);
         configForAuto(jewelSelPrompt,yesNoOptions,2, selectedOptions);
         configForAuto(parkSelPrompt, yesNoOptions,3, selectedOptions);
 
+        // tell user what s/he has selected
+        for (int i = 0; i <= 3; i++) {
+            telemetry.addLine().addData(selectedOptions[i][0],selectedOptions[i][1]);
+        }
         waitForStart();
 
         // Change the background color back to white
@@ -361,13 +363,11 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
             if (cur_B_ButtonState) {                                  // when the "b" button on the gamepad is pressed set alliance to RED
                 if (!prev_B_ButtonState) {                            // when the previous "b" button was NOT pushed
                     selOptions[selIndex][1] = PosResps[0];                   // First response was selected, store the response
-                    allianceSelection = PosResps[0];
                     prev_B_ButtonState = true;                        // indicate that the previous B button state is PUSHED
                 }
             } else if (cur_X_ButtonState) {                            // when the "X" button on the gamepad is pressed set the alliance to BLUE
                 if (!prev_X_ButtonState) {                            // when the previous "x" button was NOT pushed
                     selOptions[selIndex][1] = PosResps[1];                   // Second Response was selected, store the response
-                    allianceSelection = PosResps[1];
                     prev_X_ButtonState = true;                        // indicate that the previous X button state is PUSHED
                 }
             }
@@ -376,14 +376,6 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
             // the state of the prev variables...not sure what java/android
             // thinks is going on here...more investigation is needed
         }
-        try {
-
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
-        }
-
     }
 
 
