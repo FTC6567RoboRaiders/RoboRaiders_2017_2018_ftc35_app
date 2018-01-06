@@ -39,16 +39,9 @@ public class CryptoboxVuforiaCloseRed extends RoboRaidersAuto {
         telemetry.addData("Pictograph", pictograph);
         telemetry.update();
 
-        if (blue) { //if ball on the right is blue
+        //selectColumn(robot, "red", "close", pictograph);  //move to key column using encoders
 
-            encodersMove(robot, 1, 0.5, "backward"); //drive farther forward
-        }
-
-        Thread.sleep(500);
-
-        selectColumn(robot, "red", "close", pictograph);  //move to key column using encoders
-
-        //selectColumnDistanceSensor(robot, "red", pictograph); //this selects the column using the distance sensor
+        selectColumnDistanceSensor(robot, "red", pictograph); //this selects the column using the distance sensor
 
         imuTurn(robot, 95, 0.5, "left"); //robot turns so glyph collector faces cryptobox
         Thread.sleep(500);

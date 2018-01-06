@@ -39,16 +39,8 @@ public class CryptoboxVuforiaFarBlue extends RoboRaidersAuto {
         telemetry.addData("Pictograph", pictograph);
         telemetry.update();
 
-        if (blue) { //if ball on the right is blue
-
-            encodersMove(robot, 23, 0.5, "forward"); //drive forward
-            Thread.sleep(500);
-        }
-        else {
-
-            encodersMove(robot, 22, 0.5, "forward"); //do not drive as far forward
-            Thread.sleep(500);
-        }
+        encodersMove(robot, 23, 0.5, "forward"); //drive forward
+        Thread.sleep(500);
 
         imuTurn(robot, 90, 0.5, "right");
         Thread.sleep(250);
@@ -59,5 +51,6 @@ public class CryptoboxVuforiaFarBlue extends RoboRaidersAuto {
         Thread.sleep(500);
 
         //selectColumnDistanceSensor(robot, "blue", pictograph); //select column using the distance sensor
+
     }
 }
