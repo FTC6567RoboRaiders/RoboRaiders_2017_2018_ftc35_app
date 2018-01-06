@@ -245,8 +245,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
         Thread.sleep(250);
 
-        encodersMove(bot, 2, 0.5, "backward"); //move backward two inches
-        Thread.sleep(250);
 
         placeGlyph(bot); //run the method placeGlyph
         Thread.sleep(250);
@@ -302,9 +300,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         }
 
         imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
-        Thread.sleep(250);
-
-        encodersMove(bot, 2, 0.5, "backward"); //move backward two inches
         Thread.sleep(250);
 
         placeGlyph(bot); //run the method placeGlyph
