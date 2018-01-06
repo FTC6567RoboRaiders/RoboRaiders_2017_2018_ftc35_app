@@ -13,7 +13,7 @@ import com.roboraiders.Robot.Robot;
 public class IndieAutonomousOptions extends RoboRaidersAuto {
 
     //    public Robot robot = new Robot();
-    private String[][] selectedOptions = new String[4][2];
+    private String[][] selectedOptions = new String[5][2];
     // int soIdx;
 
     View relativeLayout;
@@ -63,57 +63,52 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         int relativeLayoutId = hardwareMap.appContext.getResources().getIdentifier("RelativeLayout", "id", hardwareMap.appContext.getPackageName());
         relativeLayout = ((Activity) hardwareMap.appContext).findViewById(relativeLayoutId);
 
-        /* Alliance Selection
-        telemetry.addLine(allianceTitle);
-        telemetry.addLine("Press B for Red or X for Blue");
-        telemetry.update();
-
-        gamepad1.reset();                                             // reset the gamepad to initial state
-
-        /*
-        Default the previous button states for the "B" and "X" button to indicate that the
-        buttons were not pushed.
-
-        prev_X_ButtonState = false;
-        prev_B_ButtonState = false;
-        cur_B_ButtonState = false;
-        cur_X_ButtonState = false;
-
-        */
-
-
-
-
-
-
-
         String allianceSelPrompt = new String("Alliance");
         final String[] alliancePosResps = new String[]{"red", "blue"};
 
         String bsSelPrompt = new String("Balancing Stone");
         String[] bsPosResps = new String[]{"close", "far"};
 
-
         String jewelSelPrompt = new String("Jewel");
-
 
         String parkSelPrompt = new String("Park");
 
+        String selectionsOk = new String("Selections Great :)");
 
-        configForAuto(allianceSelPrompt, alliancePosResps,0, selectedOptions);
-        configForAuto(bsSelPrompt, bsPosResps, 1, selectedOptions);
-        configForAuto(jewelSelPrompt,yesNoOptions,2, selectedOptions);
-        configForAuto(parkSelPrompt, yesNoOptions,3, selectedOptions);
+        // Configure for Indie autonomous
+        while (!selectedOptions[0][1].equals("Yes")) {
+            configForAuto(allianceSelPrompt, alliancePosResps, 1, selectedOptions);
+            configForAuto(bsSelPrompt, bsPosResps, 2, selectedOptions);
+            configForAuto(jewelSelPrompt, yesNoOptions, 3, selectedOptions);
+            configForAuto(parkSelPrompt, yesNoOptions, 4, selectedOptions);
 
-        //  tell user what s/he has selected
-        for (int i = 0; i <= 3; i++) {
-            telemetry.addLine().addData(selectedOptions[i][0],selectedOptions[i][1]);
+            //  tell user what s/he has selected
+            for (int i = 1; i <= 4; i++) {
+                telemetry.addLine().addData(selectedOptions[i][0], selectedOptions[i][1]);
+            }
+            telemetry.update();
+
+            //Are you sure about your Options?
+            configForAuto(selectionsOk, yesNoOptions, 0, selectedOptions);
         }
-        telemetry.update();
+
+
+
+
+
+
+
+
+        //wait for start to be pushed
         waitForStart();
 
-
     }
+
+
+
+
+
+
 
 
     /**
