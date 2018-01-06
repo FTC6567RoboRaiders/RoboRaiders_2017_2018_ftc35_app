@@ -53,7 +53,7 @@ public class CryptoboxVuforiaFarRed extends RoboRaidersAuto {
         imuTurn(robot, 90, 0.5, "left");
         Thread.sleep(250);
 
-        selectColumn(robot, "red", pictograph); //select column based on encoder readouts
+        selectColumn(robot, "red", "far", pictograph); //select column based on encoder readouts
 
         imuTurn(robot, 182, 0.5, "left"); //robot turns 180 degrees left
         Thread.sleep(500);
