@@ -317,7 +317,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         configForAuto(jewelSelPrompt,yesNoOptions,2, selectedOptions);
         configForAuto(parkSelPrompt, yesNoOptions,3, selectedOptions);
 
-        // tell user what s/he has selected
+        //  tell user what s/he has selected
         for (int i = 0; i <= 3; i++) {
             telemetry.addLine().addData(selectedOptions[i][0],selectedOptions[i][1]);
         }
