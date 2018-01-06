@@ -321,6 +321,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         for (int i = 0; i <= 3; i++) {
             telemetry.addLine().addData(selectedOptions[i][0],selectedOptions[i][1]);
         }
+        telemetry.update();
         waitForStart();
 
         // Change the background color back to white
