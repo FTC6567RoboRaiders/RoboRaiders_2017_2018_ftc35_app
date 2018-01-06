@@ -136,7 +136,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             }
         }
 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
     }
 
     /**
@@ -506,15 +506,14 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      * This program lowers the servoJewel arm
      *
      * @param bot the robot currently being worked on
-     * @param finalServoPosition the final position that the servo arm will stop at
      * @throws InterruptedException
      */
-    public void lowerArm(Robot bot, double finalServoPosition) throws InterruptedException {
+    public void lowerArm(Robot bot) throws InterruptedException {
 
         double servoPosition = bot.getJewelServoPosition(); //sets getPosition() to servoPosition
 
-        while (servoPosition < finalServoPosition && opModeIsActive()) { //while the op mode is active and while the servo position variable is less
-            //than 0.99
+        while (servoPosition < 0.98 && opModeIsActive()) { //while the op mode is active and while the servo position variable is less
+            //than 0.98
 
             servoPosition = servoPosition + 0.05;          //add 0.05 to the current servoPosition variable
             bot.setJewelServoPosition(servoPosition);
@@ -539,13 +538,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         bot.expelGlyph(bot); //glyph is expelled
         Thread.sleep(500);
 
-        encodersMove(bot, 2, 0.5, "backward"); //moves two inches backward
+        encodersMove(bot, 3, 0.5, "backward"); //moves three inches backward
         Thread.sleep(500);
 
         imuTurn(bot, 180, 0.5, "right"); //turns 180 degrees right
         Thread.sleep(500);
 
-        encodersMove(bot, 5, 0.5, "backward"); //moves five inches backward
+        encodersMove(bot, 6, 0.5, "backward"); //moves six inches backward
         Thread.sleep(500);
 
         encodersMove(bot, 1, 0.5, "forward"); //moves one inch forward

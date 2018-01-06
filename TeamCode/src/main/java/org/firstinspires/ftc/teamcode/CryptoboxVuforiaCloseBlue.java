@@ -10,7 +10,7 @@ import com.roboraiders.Robot.Robot;
  */
 
 @Autonomous
-@Disabled
+//@Disabled
 
 public class CryptoboxVuforiaCloseBlue extends RoboRaidersAuto {
 
@@ -27,7 +27,7 @@ public class CryptoboxVuforiaCloseBlue extends RoboRaidersAuto {
 
         waitForStart();
 
-        lowerArm(robot, 0.99);
+        lowerArm(robot);
         selectJewel(robot, "blue");
 
         getRelicRecoveryVuMark();

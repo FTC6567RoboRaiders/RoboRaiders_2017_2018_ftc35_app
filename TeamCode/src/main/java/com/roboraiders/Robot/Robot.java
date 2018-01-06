@@ -4,6 +4,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -101,8 +102,8 @@ public class Robot {
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackRight.setDirection(DcMotor.Direction.FORWARD);
         motorRelic.setDirection(DcMotor.Direction.FORWARD);
-        motorGlyphInLeft.setDirection(DcMotor.Direction.FORWARD);
-        motorGlyphInRight.setDirection(DcMotor.Direction.REVERSE);
+        motorGlyphInLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorGlyphInRight.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
         motorFrontRight.setPower(0);
