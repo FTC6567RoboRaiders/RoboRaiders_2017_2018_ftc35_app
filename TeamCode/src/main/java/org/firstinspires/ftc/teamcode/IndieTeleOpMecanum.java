@@ -22,16 +22,21 @@ public class IndieTeleOpMecanum extends OpMode {
     float RightFront; // Power for right front motor
     float relic;      // Power for relic motor
     float maxpwr;     // Maximum power of the four motors
+    double powerFactor = 1;
     boolean nudging = false;
     int nudgeCount = 0;
     boolean wristNudging = false;
     int wristNudgeCount = 0;
     public boolean currStateDpadUp = false;
     public boolean prevStateDpadUp = false;
-    public boolean currStateRightBumper = false;
-    public boolean prevStateRightBumper = false;
-    public boolean currStateLeftBumper = false;
-    public boolean prevStateLeftBumper = false;
+    public boolean currStateRightBumper1 = false;
+    public boolean prevStateRightBumper1 = false;
+    public boolean currStateLeftBumper1 = false;
+    public boolean prevStateLeftBumper1 = false;
+    public boolean currStateRightBumper2 = false;
+    public boolean prevStateRightBumper2 = false;
+    public boolean currStateLeftBumper2 = false;
+    public boolean prevStateLeftBumper2 = false;
     public boolean currStateLeftTrigger = false;
     public boolean prevStateLeftTrigger = false;
     public boolean currStateDpadLeft = false;
@@ -79,7 +84,30 @@ public class IndieTeleOpMecanum extends OpMode {
         LeftFront = (float) scaleInput(LeftFront);
         RightFront = (float) scaleInput(RightFront);
 
-        robot.setDriveMotorPower(LeftFront * 0.75, RightFront * 0.75, LeftBack * 0.75, RightBack * 0.75);
+        robot.setDriveMotorPower(LeftFront * 0.75 * powerFactor, RightFront * 0.75 * powerFactor,
+                LeftBack * 0.75 * powerFactor, RightBack * 0.75 * powerFactor);
+
+        // "Power Factor" functionality
+        currStateLeftBumper1 = gamepad1.left_bumper;
+        if (currStateLeftBumper1 && currStateLeftBumper1 != prevStateLeftBumper1) {
+
+            powerFactor = 0.5;
+            prevStateLeftBumper1 = currStateLeftBumper1;
+        }
+        else if (!currStateLeftBumper1 && currStateLeftBumper1 != prevStateLeftBumper1) {
+
+            prevStateLeftBumper1 = currStateLeftBumper1;
+        }
+        currStateRightBumper1 = gamepad1.right_bumper;
+        if (currStateRightBumper1 && currStateRightBumper1 != prevStateRightBumper1) {
+
+            powerFactor = 1;
+            prevStateRightBumper1 = currStateRightBumper1;
+        }
+        else if (!currStateRightBumper1 && currStateRightBumper1 != prevStateRightBumper1) {
+
+            prevStateRightBumper1 = currStateRightBumper1;
+        }
 
         // "Nudging" functionality
         if (gamepad1.dpad_up || gamepad1.dpad_down || gamepad1.dpad_left || gamepad1.dpad_right) { // "If any
@@ -117,27 +145,27 @@ public class IndieTeleOpMecanum extends OpMode {
         }
 
         // "Arms Open" functionality
-        currStateRightBumper = gamepad2.right_bumper;
-        if (currStateRightBumper && currStateRightBumper != prevStateRightBumper) {
+        currStateRightBumper2 = gamepad2.right_bumper;
+        if (currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
 
             robot.armsOpen();
-            prevStateRightBumper = currStateRightBumper;
+            prevStateRightBumper2 = currStateRightBumper2;
         }
-        else if (!currStateRightBumper && currStateRightBumper != prevStateRightBumper) {
+        else if (!currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
 
-            prevStateRightBumper = currStateRightBumper;
+            prevStateRightBumper2 = currStateRightBumper2;
         }
 
         // "Arms Glyph" functionality
-        currStateLeftBumper = gamepad2.left_bumper;
-        if (currStateLeftBumper && currStateLeftBumper != prevStateLeftBumper) {
+        currStateLeftBumper2 = gamepad2.left_bumper;
+        if (currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
 
             robot.armsGlyph();
-            prevStateLeftBumper = currStateLeftBumper;
+            prevStateLeftBumper2 = currStateLeftBumper2;
         }
-        else if (!currStateLeftBumper && currStateLeftBumper != prevStateLeftBumper) {
+        else if (!currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
 
-            prevStateLeftBumper = currStateLeftBumper;
+            prevStateLeftBumper2 = currStateLeftBumper2;
         }
 
         // "Arms Close" functionality
