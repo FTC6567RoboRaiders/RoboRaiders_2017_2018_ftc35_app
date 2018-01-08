@@ -8,7 +8,8 @@ import com.roboraiders.Robot.Robot;
 
 public class IndieAutonomousOptions extends RoboRaidersAuto {
 
-    //    public Robot robot = new Robot();
+    // public Robot robot = new Robot();
+
     boolean cur_B_ButtonState;                                            // "b" button current state
     boolean cur_X_ButtonState;                                            // "x" button current state
 
@@ -43,11 +44,11 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         // Add new selections and associated responses before here
 
 
-        // commented out any code related to robot and running the robot, only because we are still in the process of testing and tweaking it
+
+        // Commented out any code related to robot and running the robot, only because we are still in the process of testing and tweaking it
         //robot.initialize(hardwareMap);
         //robot.initializeServos();
         //vuforiaInitialization(hardwareMap);
-
         telemetry.addData("Initialized", true);
         telemetry.update();
 
@@ -66,23 +67,26 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
             configForAuto(jewelSelPrompt, yesNoOptions, 3, selectedOptions);   // Jewel selection
             configForAuto(parkSelPrompt, yesNoOptions, 4, selectedOptions);   // Park selection
 
+
             // Add new selections above here
 
             // Loop through all of the selections and tell user what s/he has selected
             for (int i = 1; i <= 4; i++) {
+
                 telemetry.addLine().addData(selectedOptions[i][0], selectedOptions[i][1]);
-            } //for (int i = 1; i <= 4; i++)
+            }
 
             // Are you sure about the options selected?
-            //             Prompt              Responses       Index    Options output
+            //             Prompt         Responses  Index    Options output
             configForAuto(selectionsOk, yesNoOptions, 0, selectedOptions); // Finalize Selection
 
-        } // while (selectedOptions[0][1].equals("no"))
+        }
 
-        telemetry.addLine("Options Selected - Waiting for Start");                          // Tell user that options have been selected
+        telemetry.addLine("Options Selected - Waiting for Start");        // Tell user that options have been selected
 
         //wait for start to be pushed
         waitForStart();
+
 
     }
 
@@ -97,7 +101,6 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
      *
 
      */
-
     public void configForAuto(String selPrompt, String[] posResps, int selIndex, String[][] selOptions) {
 
         // Let the user Select
@@ -148,82 +151,16 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
                     prev_X_ButtonState = true;                        // indicate that the previous X button state is PUSHED
                 }
             }
-
         }
+
         telemetry.addLine().addData(selOptions[selIndex][0], selOptions[selIndex][1]);
         telemetry.update();
 
-        //wait a 1/2 of a second
+        // Wait one half of a second
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
-
 }
-
-        // Jewel
- /*       if (jewelSelection.equals("yes")) {
-
-            lowerArm(robot, 0.99);
-            selectJewel(robot, allianceSelection);
-        }
-        else if (jewelSelection.equals("no")) {
-
-        }
-        
-        // Park
-        if (parkSelection.equals("yes")) {
-            
-            if (allianceSelection.equals("blue") && bsSelection.equals("close")) {
-
-                encodersMove(robot, 32, 0.5, "forward");
-                Thread.sleep(500);
-
-                imuTurn(robot, 90, 0.5, "left");
-                Thread.sleep(500);
-
-                encodersMove(robot, 2, 0.5, "forward");
-                Thread.sleep(500);
-            }
-            else if (allianceSelection.equals("blue") && bsSelection.equals("far")) {
-
-                encodersMove(robot, 22, 0.5, "forward");
-                Thread.sleep(500);
-
-                encodersMove(robot, 18, 0.5, "right");
-                Thread.sleep(500);
-            }
-            else if (allianceSelection.equals("red") && bsSelection.equals("close")) {
-
-                encodersMove(robot, 32, 0.5, "backward");
-                Thread.sleep(500);
-
-                imuTurn(robot, 90, 0.5, "left");
-                Thread.sleep(500);
-
-                encodersMove(robot, 2, 0.5, "forward");
-                Thread.sleep(500);
-            }
-            else if (allianceSelection.equals("red") && bsSelection.equals("far")) {
-
-                encodersMove(robot, 22, 0.5, "backward");
-                Thread.sleep(500);
-
-                encodersMove(robot, 18, 0.5, "right");
-                Thread.sleep(500);
-            }
-        }
-        else if (parkSelection.equals("no")){
-
-        }
-
-
-        } */
-
-
-
-
-

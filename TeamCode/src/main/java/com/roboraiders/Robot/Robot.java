@@ -236,7 +236,7 @@ public class Robot {
     public void armsGlyph() {
 
         servoArmLeft.setPosition(0.58);
-        servoArmRight.setPosition(0.22);
+        servoArmRight.setPosition(0.24);
     }
 
     /**
