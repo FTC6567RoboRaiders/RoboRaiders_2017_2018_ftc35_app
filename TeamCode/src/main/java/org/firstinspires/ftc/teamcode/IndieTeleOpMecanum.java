@@ -26,11 +26,8 @@ public class IndieTeleOpMecanum extends OpMode {
     int nudgeCount = 0;
     boolean wristNudging = false;
     int wristNudgeCount = 0;
-    double wristPosition = 0;
     public boolean currStateDpadUp = false;
     public boolean prevStateDpadUp = false;
-    public boolean currStateDpadDown = false;
-    public boolean prevStateDpadDown = false;
     public boolean currStateRightBumper = false;
     public boolean prevStateRightBumper = false;
     public boolean currStateLeftBumper = false;
@@ -41,6 +38,10 @@ public class IndieTeleOpMecanum extends OpMode {
     public boolean prevStateDpadLeft = false;
     public boolean currStateDpadRight = false;
     public boolean prevStateDpadRight = false;
+    public boolean currStateA = false;
+    public boolean prevStateA = false;
+    public boolean currStateY = false;
+    public boolean prevStateY = false;
 
     @Override
     public void init() {
@@ -211,11 +212,11 @@ public class IndieTeleOpMecanum extends OpMode {
             wristNudgeCount = 0;
         }
 
-        // "Relic Gripper Close" functionality
+        // "Relic Gripper Open" functionality
         currStateDpadLeft = gamepad2.dpad_left;
         if (currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
 
-            robot.gripperClose();
+            robot.gripperOpen();
             prevStateDpadLeft = currStateDpadLeft;
         }
         else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
@@ -223,16 +224,40 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateDpadLeft = currStateDpadLeft;
         }
 
-        // "Relic Gripper Open" functionality
+        // "Relic Gripper Close" functionality
         currStateDpadRight = gamepad2.dpad_right;
         if (currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
 
-            robot.gripperOpen();
+            robot.gripperClose();
             prevStateDpadRight = currStateDpadRight;
         }
         else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
 
             prevStateDpadRight = currStateDpadRight;
+        }
+
+        // "Glyph Holder Open" functionality
+        currStateA = gamepad2.a;
+        if (currStateA && currStateA != prevStateA) {
+
+            robot.holderOpen();
+            prevStateA = currStateA;
+        }
+        else if (!currStateA && currStateA != prevStateA) {
+
+            prevStateA = currStateA;
+        }
+
+        // "Glyph Holder Close" functionality
+        currStateY = gamepad2.y;
+        if (currStateY && currStateY != prevStateY) {
+
+            robot.holderClose();
+            prevStateY = currStateY;
+        }
+        else if (!currStateY && currStateY != prevStateY) {
+
+            prevStateY = currStateY;
         }
     }
 

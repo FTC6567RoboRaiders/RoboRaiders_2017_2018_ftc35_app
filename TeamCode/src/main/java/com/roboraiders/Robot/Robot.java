@@ -55,6 +55,7 @@ public class Robot {
     public Servo servoArmRight = null;
     public Servo servoRelicWrist = null;
     public Servo servoRelicGripper = null;
+    public Servo servoGlyphHolder = null;
 
     public CRServo servoWheelLeft = null;
     public CRServo servoWheelRight = null;
@@ -131,6 +132,7 @@ public class Robot {
         servoArmRight = hwMap.get(Servo.class, "servo_Arm_Right");
         servoRelicWrist = hwMap.get(Servo.class, "servo_Relic_Wrist");
         servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
+        servoGlyphHolder = hwMap.get(Servo.class, "servo_Glyph_Holder");
 
         // Define and initialize CR servos
         servoWheelLeft = hwMap.get(CRServo.class, "servo_Wheel_Left");
@@ -160,6 +162,7 @@ public class Robot {
         servoArmRight.setPosition(0.0);
         servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
+        servoGlyphHolder.setPosition(0.0);
     }
 
     /**
@@ -195,8 +198,8 @@ public class Robot {
 
         servoWheelLeft.setPower(-1.0);
         servoWheelRight.setPower(1.0);
-        motorGlyphInLeft.setPower(0.5);
-        motorGlyphInRight.setPower(0.5);
+        motorGlyphInLeft.setPower(0.75);
+        motorGlyphInRight.setPower(0.75);
     }
 
     /**
@@ -206,8 +209,8 @@ public class Robot {
 
         servoWheelLeft.setPower(1.0);
         servoWheelRight.setPower(-1.0);
-        motorGlyphInLeft.setPower(-0.5);
-        motorGlyphInRight.setPower(-0.5);
+        motorGlyphInLeft.setPower(-0.75);
+        motorGlyphInRight.setPower(-0.75);
     }
 
     /**
@@ -281,6 +284,22 @@ public class Robot {
     public void gripperClose() {
 
         servoRelicGripper.setPosition(1.0);
+    }
+
+    /**
+     * This method will open the glyph holder servo
+     */
+    public void holderOpen() {
+
+        servoGlyphHolder.setPosition(0.0);
+    }
+
+    /**
+     * This method will close the glyph holder servo
+     */
+    public void holderClose() {
+
+        servoGlyphHolder.setPosition(0.8);
     }
 
     /**
