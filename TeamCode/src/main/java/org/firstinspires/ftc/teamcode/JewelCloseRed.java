@@ -25,7 +25,7 @@ public class JewelCloseRed extends RoboRaidersAuto {
 
         waitForStart();
 
-        lowerArm(robot, 0.99);
+        lowerArm(robot);
         selectJewel(robot, "red");
 
         encodersMove(robot, 32, 0.5, "backward");

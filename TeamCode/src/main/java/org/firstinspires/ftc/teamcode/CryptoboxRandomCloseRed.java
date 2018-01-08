@@ -25,19 +25,11 @@ public class CryptoboxRandomCloseRed extends RoboRaidersAuto {
 
         waitForStart();
 
-        lowerArm(robot, 0.99); //jewel is selected
+        lowerArm(robot); //jewel is selected
         selectJewel(robot, "red");
 
-        if (red) { //if ball on the right is red
-
-            encodersMove(robot, 26, 0.5, "backward"); //do not drive as far backward
-            Thread.sleep(500);
-        }
-        else {
-
-            encodersMove(robot, 27, 0.5, "backward"); //drive backward
-            Thread.sleep(500);
-        }
+        encodersMove(robot, 28, 0.5, "backward"); //drive backward
+        Thread.sleep(500);
 
         imuTurn(robot, 95, 0.5, "left"); //robot turns so glyph collector faces cryptobox
         Thread.sleep(500);
