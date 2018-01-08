@@ -29,7 +29,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         String allianceSelPrompt = "Alliance";                            // Alliance prompt
         final String[] alliancePosResps = new String[]{"red", "blue"};    // Possible Alliance selections
 
-        String bsSelPrompt = "Balancing Stone";                    // Balance Stone prompt
+        String bsSelPrompt = "Balancing Stone";                           // Balance Stone prompt
         final String[] bsPosResps = new String[]{"close", "far"};         // Possible Balance Stone selections
 
         String jewelSelPrompt = "Jewel";                                  // Jewel prompt
