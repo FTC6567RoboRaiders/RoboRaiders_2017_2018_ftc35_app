@@ -101,8 +101,8 @@ public class Robot {
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackRight.setDirection(DcMotor.Direction.FORWARD);
         motorRelic.setDirection(DcMotor.Direction.FORWARD);
-        motorGlyphInLeft.setDirection(DcMotor.Direction.FORWARD);
-        motorGlyphInRight.setDirection(DcMotor.Direction.REVERSE);
+        motorGlyphInLeft.setDirection(DcMotor.Direction.REVERSE);
+        motorGlyphInRight.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
         motorFrontRight.setPower(0);
