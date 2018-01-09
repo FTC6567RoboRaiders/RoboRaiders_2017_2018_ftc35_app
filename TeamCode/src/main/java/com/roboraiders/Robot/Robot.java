@@ -56,12 +56,11 @@ public class Robot {
     public Servo servoRelicWrist = null;
     public Servo servoRelicGripper = null;
     public Servo servoGlyphHolder = null;
-
-    public CRServo servoWheelLeft = null;
-    public CRServo servoWheelRight = null;
+    public Servo servoHandLeft = null;
+    public Servo servoHandRight = null;
 
     public ColorSensor colorSensor;
-    public DistanceSensor distanceSensor;
+    //public DistanceSensor distanceSensor;
     public BNO055IMU imu;
 
     /* Local OpMode Members */
@@ -133,18 +132,12 @@ public class Robot {
         servoRelicWrist = hwMap.get(Servo.class, "servo_Relic_Wrist");
         servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
         servoGlyphHolder = hwMap.get(Servo.class, "servo_Glyph_Holder");
-
-        // Define and initialize CR servos
-        servoWheelLeft = hwMap.get(CRServo.class, "servo_Wheel_Left");
-        servoWheelRight = hwMap.get(CRServo.class, "servo_Wheel_Right");
-
-        // Set all CR servos to zero power
-        servoWheelLeft.setPower(0);
-        servoWheelRight.setPower(0);
+        servoHandLeft = hwMap.get(Servo.class, "servo_Hand_Left");
+        servoHandRight = hwMap.get(Servo.class, "servo_Hand_Right");
 
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
-        distanceSensor = hwMap.get(DistanceSensor.class, "sensor_distance");
+        //distanceSensor = hwMap.get(DistanceSensor.class, "sensor_distance");
         imu = hwMap.get(BNO055IMU.class, "imu");
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.mode = BNO055IMU.SensorMode.IMU;
@@ -163,6 +156,8 @@ public class Robot {
         servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
         servoGlyphHolder.setPosition(0.0);
+        servoHandLeft.setPosition(1.0);
+        servoHandRight.setPosition(0.0);
     }
 
     /**
@@ -182,6 +177,17 @@ public class Robot {
     }
 
     /**
+     * This method will set the power for the two glyph in motors
+     *
+     * @param glyph power setting for the two glyph in motors
+     */
+    public void setGlyphInMotorPower(double glyph) {
+
+        motorGlyphInLeft.setPower(glyph);
+        motorGlyphInRight.setPower(glyph);
+    }
+
+    /**
      * This method will set the power for the relic motor
      *
      * @param relic power setting for the relic motor
@@ -189,39 +195,6 @@ public class Robot {
     public void setRelicMotorPower(double relic) {
 
         motorRelic.setPower(relic);
-    }
-
-    /**
-     * This method will pull a glyph in using the glyph intake assembly
-     */
-    public void glyphIn() {
-
-        servoWheelLeft.setPower(-1.0);
-        servoWheelRight.setPower(1.0);
-        motorGlyphInLeft.setPower(0.75);
-        motorGlyphInRight.setPower(0.75);
-    }
-
-    /**
-     * This method will push a glyph out using the glyph intake assembly
-     */
-    public void glyphOut() {
-
-        servoWheelLeft.setPower(1.0);
-        servoWheelRight.setPower(-1.0);
-        motorGlyphInLeft.setPower(-0.75);
-        motorGlyphInRight.setPower(-0.75);
-    }
-
-    /**
-     * This method will halt movement of the glyph intake assembly
-     */
-    public void glyphRest() {
-
-        servoWheelLeft.setPower(0.0);
-        servoWheelRight.setPower(0.0);
-        motorGlyphInLeft.setPower(0.0);
-        motorGlyphInRight.setPower(0.0);
     }
 
     /**
@@ -249,6 +222,24 @@ public class Robot {
 
         servoArmLeft.setPosition(0.95);
         servoArmRight.setPosition(0.0);
+    }
+
+    /**
+     * This method will close the servo hands to capture a glyph
+     */
+    public void handsGlyph() {
+
+        servoHandLeft.setPosition(0.75);
+        servoHandRight.setPosition(0.25);
+    }
+
+    /**
+     * This method will close the servo hands all of the way
+     */
+    public void handsClose() {
+
+        servoHandLeft.setPosition(1.0);
+        servoHandRight.setPosition(0.0);
     }
 
     /**
@@ -429,7 +420,7 @@ public class Robot {
      */
     public double getDistance() {
 
-        return distanceSensor.getDistance(DistanceUnit.CM);
+        return 1; //distanceSensor.getDistance(DistanceUnit.CM);
     }
 
     /**

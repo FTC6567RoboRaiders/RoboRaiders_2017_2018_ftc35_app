@@ -20,6 +20,7 @@ public class IndieTeleOpMecanum extends OpMode {
     float RightBack;  // Power for right back motor
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
+    float glyph;      // Power for the two glyph in motors
     float relic;      // Power for relic motor
     float maxpwr;     // Maximum power of the four motors
     double powerFactor = 1;
@@ -43,6 +44,10 @@ public class IndieTeleOpMecanum extends OpMode {
     public boolean prevStateDpadLeft = false;
     public boolean currStateDpadRight = false;
     public boolean prevStateDpadRight = false;
+    public boolean currStateB = false;
+    public boolean prevStateB = false;
+    public boolean currStateX = false;
+    public boolean prevStateX = false;
     public boolean currStateA = false;
     public boolean prevStateA = false;
     public boolean currStateY = false;
@@ -187,19 +192,35 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateLeftTrigger = currStateLeftTrigger;
         }
 
-        // "Glyph In/Out/Rest" functionality
-        if (gamepad2.x) {
+        // "Hands Glyph" functionality
+        currStateB = gamepad2.b;
+        if (currStateB && currStateB != prevStateB) {
 
-            robot.glyphIn();
+            robot.handsGlyph();
+            prevStateB = currStateB;
         }
-        else if (gamepad2.b) {
+        else if (!currStateB && currStateB != prevStateB) {
 
-            robot.glyphOut();
+            prevStateB = currStateB;
         }
-        else {
 
-            robot.glyphRest();
+        // "Hands Close" functionality
+        currStateX = gamepad2.x;
+        if (currStateX && currStateX != prevStateX) {
+
+            robot.handsClose();
+            prevStateX = currStateX;
         }
+        else if (!currStateX && currStateX != prevStateX) {
+
+            prevStateX = currStateX;
+        }
+
+        // "Set Glyph In Motor Power" functionality
+        glyph = gamepad2.right_stick_y;
+        glyph = Range.clip(glyph, -1, 1);
+        glyph = (float) scaleInput(glyph);
+        robot.setGlyphInMotorPower(glyph * 0.75);
 
         // "Set Relic Motor Power" functionality
         relic = gamepad2.left_stick_y;
