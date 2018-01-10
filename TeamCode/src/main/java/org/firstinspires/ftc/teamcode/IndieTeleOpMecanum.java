@@ -38,6 +38,8 @@ public class IndieTeleOpMecanum extends OpMode {
     public boolean prevStateRightBumper2 = false;
     public boolean currStateLeftBumper2 = false;
     public boolean prevStateLeftBumper2 = false;
+    public boolean currStateRightTrigger = false;
+    public boolean prevStateRightTrigger = false;
     public boolean currStateLeftTrigger = false;
     public boolean prevStateLeftTrigger = false;
     public boolean currStateDpadLeft = false;
@@ -48,10 +50,6 @@ public class IndieTeleOpMecanum extends OpMode {
     public boolean prevStateB = false;
     public boolean currStateX = false;
     public boolean prevStateX = false;
-    public boolean currStateA = false;
-    public boolean prevStateA = false;
-    public boolean currStateY = false;
-    public boolean prevStateY = false;
 
     @Override
     public void init() {
@@ -173,6 +171,25 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateLeftBumper2 = currStateLeftBumper2;
         }
 
+        // "Arms Very Open" functionality
+        if (gamepad2.right_trigger > 0.5) {
+
+            currStateRightTrigger = true;
+        }
+        else {
+
+            currStateRightTrigger = false;
+        }
+        if (currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
+
+            robot.armsVeryOpen();
+            prevStateRightTrigger = currStateRightTrigger;
+        }
+        else if (!currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
+
+            prevStateRightTrigger = currStateRightTrigger;
+        }
+
         // "Arms Close" functionality
         if (gamepad2.left_trigger > 0.5) {
 
@@ -217,7 +234,7 @@ public class IndieTeleOpMecanum extends OpMode {
         }
 
         // "Set Glyph In Motor Power" functionality
-        glyph = gamepad2.right_stick_y;
+        glyph = -gamepad2.right_stick_y;
         glyph = Range.clip(glyph, -1, 1);
         glyph = (float) scaleInput(glyph);
         robot.setGlyphInMotorPower(glyph * 0.75);
@@ -283,30 +300,6 @@ public class IndieTeleOpMecanum extends OpMode {
         else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
 
             prevStateDpadRight = currStateDpadRight;
-        }
-
-        // "Glyph Holder Open" functionality
-        currStateA = gamepad2.a;
-        if (currStateA && currStateA != prevStateA) {
-
-            robot.holderOpen();
-            prevStateA = currStateA;
-        }
-        else if (!currStateA && currStateA != prevStateA) {
-
-            prevStateA = currStateA;
-        }
-
-        // "Glyph Holder Close" functionality
-        currStateY = gamepad2.y;
-        if (currStateY && currStateY != prevStateY) {
-
-            robot.holderClose();
-            prevStateY = currStateY;
-        }
-        else if (!currStateY && currStateY != prevStateY) {
-
-            prevStateY = currStateY;
         }
     }
 

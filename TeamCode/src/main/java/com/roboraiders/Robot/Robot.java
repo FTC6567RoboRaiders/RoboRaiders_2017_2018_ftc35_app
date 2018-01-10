@@ -55,7 +55,6 @@ public class Robot {
     public Servo servoArmRight = null;
     public Servo servoRelicWrist = null;
     public Servo servoRelicGripper = null;
-    public Servo servoGlyphHolder = null;
     public Servo servoHandLeft = null;
     public Servo servoHandRight = null;
 
@@ -131,7 +130,6 @@ public class Robot {
         servoArmRight = hwMap.get(Servo.class, "servo_Arm_Right");
         servoRelicWrist = hwMap.get(Servo.class, "servo_Relic_Wrist");
         servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
-        servoGlyphHolder = hwMap.get(Servo.class, "servo_Glyph_Holder");
         servoHandLeft = hwMap.get(Servo.class, "servo_Hand_Left");
         servoHandRight = hwMap.get(Servo.class, "servo_Hand_Right");
 
@@ -155,9 +153,8 @@ public class Robot {
         servoArmRight.setPosition(0.0);
         servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
-        servoGlyphHolder.setPosition(0.0);
-        servoHandLeft.setPosition(0.0);
-        servoHandRight.setPosition(1.0);
+        servoHandLeft.setPosition(0.2);
+        servoHandRight.setPosition(0.2);
     }
 
     /**
@@ -198,12 +195,21 @@ public class Robot {
     }
 
     /**
+     * This method will open the servo arms all of the way
+     */
+    public void armsVeryOpen() {
+
+        servoArmLeft.setPosition(0.0);
+        servoArmRight.setPosition(0.9);
+    }
+
+    /**
      * This method will open the servo arms
      */
     public void armsOpen() {
 
-        servoArmLeft.setPosition(0.0);
-        servoArmRight.setPosition(0.9);
+        servoArmLeft.setPosition(0.45);
+        servoArmRight.setPosition(0.45);
     }
 
     /**
@@ -211,8 +217,8 @@ public class Robot {
      */
     public void armsGlyph() {
 
-        servoArmLeft.setPosition(0.58);
-        servoArmRight.setPosition(0.24);
+        servoArmLeft.setPosition(0.59);
+        servoArmRight.setPosition(0.23);
     }
 
     /**
@@ -229,7 +235,7 @@ public class Robot {
      */
     public void handsGlyph() {
 
-        servoHandLeft.setPosition(0.5);
+        servoHandLeft.setPosition(0.45);
         servoHandRight.setPosition(0.0);
     }
 
@@ -238,8 +244,8 @@ public class Robot {
      */
     public void handsClose() {
 
-        servoHandLeft.setPosition(0.0);
-        servoHandRight.setPosition(1.0);
+        servoHandLeft.setPosition(0.2);
+        servoHandRight.setPosition(0.5);
     }
 
     /**
@@ -275,22 +281,6 @@ public class Robot {
     public void gripperClose() {
 
         servoRelicGripper.setPosition(1.0);
-    }
-
-    /**
-     * This method will open the glyph holder servo
-     */
-    public void holderOpen() {
-
-        servoGlyphHolder.setPosition(0.0);
-    }
-
-    /**
-     * This method will close the glyph holder servo
-     */
-    public void holderClose() {
-
-        servoGlyphHolder.setPosition(0.8);
     }
 
     /**
