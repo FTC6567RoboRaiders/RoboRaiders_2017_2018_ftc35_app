@@ -156,8 +156,8 @@ public class Robot {
         servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
         servoGlyphHolder.setPosition(0.0);
-        servoHandLeft.setPosition(1.0);
-        servoHandRight.setPosition(0.0);
+        servoHandLeft.setPosition(0.0);
+        servoHandRight.setPosition(1.0);
     }
 
     /**
@@ -225,12 +225,12 @@ public class Robot {
     }
 
     /**
-     * This method will close the servo hands to capture a glyph
+     * This method will open the servo hands to capture a glyph
      */
     public void handsGlyph() {
 
-        servoHandLeft.setPosition(0.75);
-        servoHandRight.setPosition(0.25);
+        servoHandLeft.setPosition(0.5);
+        servoHandRight.setPosition(0.0);
     }
 
     /**
@@ -238,8 +238,8 @@ public class Robot {
      */
     public void handsClose() {
 
-        servoHandLeft.setPosition(1.0);
-        servoHandRight.setPosition(0.0);
+        servoHandLeft.setPosition(0.0);
+        servoHandRight.setPosition(1.0);
     }
 
     /**
