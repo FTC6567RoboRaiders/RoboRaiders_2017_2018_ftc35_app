@@ -57,6 +57,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         if (allianceColor.equals("red")) { //red alliance
 
+
             if (bot.getColorIntensity("red") > bot.getColorIntensity("blue"))  { //if the ball on the right is red
 
                 red = false;
