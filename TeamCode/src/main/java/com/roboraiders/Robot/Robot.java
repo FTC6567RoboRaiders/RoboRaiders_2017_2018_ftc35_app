@@ -209,7 +209,7 @@ public class Robot {
     public void armsOpen() {
 
         servoArmLeft.setPosition(0.45);
-        servoArmRight.setPosition(0.45);
+        servoArmRight.setPosition(0.40);
     }
 
     /**
