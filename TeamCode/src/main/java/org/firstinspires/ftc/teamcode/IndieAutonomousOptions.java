@@ -47,8 +47,8 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
 
         // Commented out any code related to robot and running the robot, only because we are still in the process of testing and tweaking it
-        //robot.initialize(hardwareMap);
-        //robot.initializeServos();
+        robot.initialize(hardwareMap);
+        robot.initializeServos();
         //vuforiaInitialization(hardwareMap);
         telemetry.addData("Initialized", true);
         telemetry.update();

@@ -417,6 +417,40 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     }
 
     /**
+     * This program will make the robot move forwards, backwards, right, or left using run to position
+     *
+     * @param bot       the robot currently being worked on
+     * @param distance  the distance the robot should travel in inches
+     * @param power     the speed the robot will travel at
+     * @param direction the direction the robot will travel: either forward, backward, right, or left
+     */
+    public void encodersRunToPosition(Robot bot, int distance, double power, String direction) { //sets the parameters
+
+        bot.resetEncoders(); //resets encoders
+        bot.runToPosition(); //sets the mode back to run with encoder
+
+        double COUNTS = bot.calculateCOUNTS(distance); //COUNTS is now equal to the value calculated
+        bot.setTargetPosition(COUNTS); //sets the target position according to COUNTS
+
+        if (direction.equals("forward")) { //if the desired direction is forward
+
+            bot.setDriveMotorPower(power, power, power, power); //drive forward
+        }
+        else if (direction.equals("backward")) { //if the desired direction is backward
+
+            bot.setDriveMotorPower(-power, -power, -power, -power); //drive backward
+        }
+        else if (direction.equals("right")) { //if the desired direction is right
+
+            bot.setDriveMotorPower(power, -power, -power, power); //strafe right
+        }
+        else if (direction.equals("left")) { //if the desired direction is left
+
+            bot.setDriveMotorPower(-power, power, power, -power); //strafe left
+        }
+    }
+
+    /**
      * This method will have the robot drive until the distance sensor has detected the robot has
      * passed a certain number of dividers
      *

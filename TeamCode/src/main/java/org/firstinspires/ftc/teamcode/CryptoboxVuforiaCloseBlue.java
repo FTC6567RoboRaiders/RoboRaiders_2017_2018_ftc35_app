@@ -33,9 +33,9 @@ public class CryptoboxVuforiaCloseBlue extends RoboRaidersAuto {
         getRelicRecoveryVuMark();
         Thread.sleep(250);
 
-        encodersMove(robot, 15, 0.5, "forward");
+        /*encodersMove(robot, 15, 0.5, "forward");
         Thread.sleep(250);
 
-        selectColumnDistanceSensor(robot, "blue", pictograph);
+        selectColumnDistanceSensor(robot, "blue", pictograph);*/
     }
 }

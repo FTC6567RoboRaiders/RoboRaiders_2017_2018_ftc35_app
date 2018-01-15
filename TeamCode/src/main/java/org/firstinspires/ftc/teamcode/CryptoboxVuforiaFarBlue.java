@@ -33,7 +33,7 @@ public class CryptoboxVuforiaFarBlue extends RoboRaidersAuto {
         getRelicRecoveryVuMark();
         Thread.sleep(250);
 
-        encodersMove(robot, 20, 0.5, "forward");
+        /*encodersMove(robot, 20, 0.5, "forward");
         Thread.sleep(250);
 
         imuTurn(robot, 90, 0.5, "right");
@@ -42,6 +42,6 @@ public class CryptoboxVuforiaFarBlue extends RoboRaidersAuto {
         encodersMove(robot, 5, 0.5, "forward");
         Thread.sleep(250);
 
-        selectColumnDistanceSensor(robot, "blue", pictograph);
+        selectColumnDistanceSensor(robot, "blue", pictograph);*/
     }
 }
