@@ -6,7 +6,7 @@ import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 @Autonomous
-@Disabled
+//@Disabled
 
 public class IndieAutonomousOptions extends RoboRaidersAuto {
 

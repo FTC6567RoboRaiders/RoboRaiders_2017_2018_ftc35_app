@@ -330,6 +330,31 @@ public class Robot {
     }
 
     /**
+     * This method will set the mode of all of the motors to run to position
+     */
+    public void runToPosition() {
+
+        motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    /**
+     * This method will set the target position of all of the motors to COUNTS
+     *
+     * @param COUNTS - the number of encoder counts the robot will travel that is equal
+     * to the number of inches
+     */
+    public void setTargetPosition(double COUNTS) {
+
+        motorFrontLeft.setTargetPosition((int) COUNTS);
+        motorFrontRight.setTargetPosition((int) COUNTS);
+        motorBackLeft.setTargetPosition((int) COUNTS);
+        motorBackRight.setTargetPosition((int) COUNTS);
+    }
+
+    /**
      * This method will set the mode of all of the drive train motors to run without encoder
      */
     public void runWithoutEncoders() {
