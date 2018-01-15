@@ -153,6 +153,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         cur_B_ButtonState = false;
         cur_X_ButtonState = false;
 
+
         selOptions[selIndex][0] = selPrompt;
 
         // Prompt User for Selection
