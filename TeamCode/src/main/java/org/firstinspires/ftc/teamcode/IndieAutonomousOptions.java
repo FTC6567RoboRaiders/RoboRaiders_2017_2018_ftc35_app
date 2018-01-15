@@ -91,6 +91,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         // Jewel
         if (selectedOptions[3][1].equals("yes")) {
 
+            lowerArm(robot);
             selectJewel(robot, selectedOptions[1][1]);
         }
         else if (selectedOptions[3][1].equals("no")) {
@@ -163,7 +164,6 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         prev_X_ButtonState = false;
         cur_B_ButtonState = false;
         cur_X_ButtonState = false;
-
 
         selOptions[selIndex][0] = selPrompt;
 
