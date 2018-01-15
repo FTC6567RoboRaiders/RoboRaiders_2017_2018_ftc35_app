@@ -18,6 +18,7 @@ public class FrankenBot extends OpMode {
 
     DcMotor leftMotor = null;
     DcMotor rightMotor = null;
+    DcMotor liftMotor = null;
     Servo lefty = null;
     Servo righty = null;
 
@@ -26,11 +27,13 @@ public class FrankenBot extends OpMode {
     public boolean currStateB = false;   // B is close
     public boolean prevStateB = false;
 
+
     @Override
     public void init() {
 
         leftMotor = hardwareMap.get(DcMotor.class, "motorLeft");
         rightMotor = hardwareMap.get(DcMotor.class, "motorRight");
+        liftMotor = hardwareMap.get(DcMotor.class, "motorLift");
 
         righty = hardwareMap.get(Servo.class, "righty");
         lefty = hardwareMap.get(Servo.class, "lefty");
@@ -49,6 +52,7 @@ public class FrankenBot extends OpMode {
 
         float left = gamepad1.left_stick_y;
         float right = gamepad1.right_stick_y;
+        float lift = gamepad1.right_trigger;
 
         left = Range.clip(left, -1, 1);
         right = Range.clip(right, -1, 1);
@@ -56,8 +60,7 @@ public class FrankenBot extends OpMode {
         left = (float) scaleInput(left);
         right = (float) scaleInput(right);
 
-        leftMotor.setPower(left);
-        rightMotor.setPower(right);
+        setMotorPower(left, right);
 
         //  setMotorPower(left, right);
 
@@ -86,6 +89,17 @@ public class FrankenBot extends OpMode {
             prevStateB = currStateB;
         }
 
+        if (gamepad1.right_bumper) {
+
+            liftPower(1);
+        }
+        else if (gamepad1.left_bumper){
+            liftPower(-1);
+
+        }
+        else {
+            liftPower(0);
+        }
 
     }
 
@@ -93,7 +107,14 @@ public class FrankenBot extends OpMode {
 
         leftMotor.setPower(left);
         rightMotor.setPower(right);
+
     }
+    
+    public void liftPower (float lift){
+        liftMotor.setPower(lift);
+    }
+
+
 
 
     /**
