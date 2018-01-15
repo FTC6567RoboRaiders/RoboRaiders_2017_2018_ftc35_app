@@ -83,11 +83,11 @@ public class FrankenBot extends OpMode {
 
         if (gamepad1.right_bumper) {
 
-            liftPower(1);
+            liftPower(0.5);
         }
         else if (gamepad1.left_bumper){
 
-            liftPower(-1);
+            liftPower(-0.5);
         }
         else {
 
@@ -101,7 +101,7 @@ public class FrankenBot extends OpMode {
         rightMotor.setPower(right);
     }
     
-    public void liftPower (float lift) {
+    public void liftPower(double lift) {
 
         liftMotor.setPower(lift);
     }

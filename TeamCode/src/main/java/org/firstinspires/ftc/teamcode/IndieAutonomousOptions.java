@@ -7,7 +7,6 @@ import com.roboraiders.Robot.Robot;
 
 @Autonomous
 
-
 public class IndieAutonomousOptions extends RoboRaidersAuto {
 
      public Robot robot = new Robot();
@@ -112,7 +111,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
                 encodersMove(robot, 2, 0.5, "forward");
                 Thread.sleep(500);
             }
-            if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("far")) {
+            else if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("far")) {
 
                 encodersMove(robot, 22, 0.5, "forward");
                 Thread.sleep(500);
@@ -120,7 +119,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
                 encodersMove(robot, 18, 0.5, "right");
                 Thread.sleep(500);
             }
-            if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("close")) {
+            else if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("close")) {
 
                 encodersMove(robot, 32, 0.5, "backward");
                 Thread.sleep(500);
@@ -131,7 +130,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
                 encodersMove(robot, 2, 0.5, "forward");
                 Thread.sleep(500);
             }
-            if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("far")) {
+            else if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("far")) {
 
                 encodersMove(robot, 22, 0.5, "backward");
                 Thread.sleep(500);
@@ -139,9 +138,9 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
                 encodersMove(robot, 18, 0.5, "right");
                 Thread.sleep(500);
             }
-            else if (selectedOptions[4][1].equals("no")) {
+        }
+        else if (selectedOptions[4][1].equals("no")) {
 
-            }
         }
     }
 
