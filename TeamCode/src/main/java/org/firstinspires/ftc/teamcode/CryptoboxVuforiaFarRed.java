@@ -34,16 +34,5 @@ public class CryptoboxVuforiaFarRed extends RoboRaidersAuto {
         Thread.sleep(250);
 
         selectColumn(robot, "red", "far", pictograph);
-
-        /*encodersMove(robot, 20, 0.5, "backward");
-        Thread.sleep(250);
-
-        imuTurn(robot, 90, 0.5, "left");
-        Thread.sleep(250);
-
-        encodersMove(robot, 5, 0.5, "backward");
-        Thread.sleep(250);
-
-        selectColumnDistanceSensor(robot, "red", pictograph);*/
     }
 }

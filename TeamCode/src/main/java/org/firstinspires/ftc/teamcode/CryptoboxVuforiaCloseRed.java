@@ -10,7 +10,7 @@ import com.roboraiders.Robot.Robot;
  */
 
 @Autonomous
-@Disabled
+//@Disabled
 
 public class CryptoboxVuforiaCloseRed extends RoboRaidersAuto {
 
@@ -34,10 +34,5 @@ public class CryptoboxVuforiaCloseRed extends RoboRaidersAuto {
         Thread.sleep(250);
 
         selectColumn(robot, "red", "close", pictograph);
-
-        /*encodersMove(robot, 15, 0.5, "backward");
-        Thread.sleep(250);
-
-        selectColumnDistanceSensor(robot, "red", pictograph);*/
     }
 }
