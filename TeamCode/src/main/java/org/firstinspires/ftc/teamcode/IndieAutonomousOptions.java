@@ -90,10 +90,8 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
         // Jewel
         if (selectedOptions[3][1].equals("yes")) {
-            selectJewel(robot, selectedOptions[1][1]);
-        } else if (selectedOptions[3][1].equals("no")) {
 
-            selectJewel(robot, selectedOptions[3][1]);
+            selectJewel(robot, selectedOptions[1][1]);
         }
         else if (selectedOptions[3][1].equals("no")) {
 
@@ -219,5 +217,4 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
             e.printStackTrace();
         }
     }
-
 }
