@@ -6,11 +6,11 @@ import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 @Autonomous
-@Disabled
+
 
 public class IndieAutonomousOptions extends RoboRaidersAuto {
 
-    // public Robot robot = new Robot();
+     public Robot robot = new Robot();
 
     boolean cur_B_ButtonState;                                            // "b" button current state
     boolean cur_X_ButtonState;                                            // "x" button current state
@@ -44,7 +44,6 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         String selectionsOk = "Selections Great :)";                      // Finalize selections prompt
 
         // Add new selections and associated responses before here
-
 
 
         // Commented out any code related to robot and running the robot, only because we are still in the process of testing and tweaking it
@@ -89,9 +88,50 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         //wait for start to be pushed
         waitForStart();
 
+        if (selectedOptions[3][1].equals("yes")) {
+            selectJewel(robot, selectedOptions[3][1]);
+        } else if (selectedOptions[3][1].equals("no")) {
 
+        }
+        if (selectedOptions[4][1].equals("yes")) {
+            if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("close")) {
+                encodersMove(robot, 32, 0.5, "forward");
+                Thread.sleep(500);
+
+                imuTurn(robot, 90, 0.5, "left");
+                Thread.sleep(500);
+
+                encodersMove(robot, 2, 0.5, "forward");
+                Thread.sleep(500);
+            }
+            if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("far")) {
+                encodersMove(robot, 22, 0.5, "forward");
+                Thread.sleep(500);
+
+                encodersMove(robot, 18, 0.5, "right");
+                Thread.sleep(500);
+            }
+            if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("close")) {
+                encodersMove(robot, 32, 0.5, "backward");
+                Thread.sleep(500);
+
+                imuTurn(robot, 90, 0.5, "left");
+                Thread.sleep(500);
+
+                encodersMove(robot, 2, 0.5, "forward");
+                Thread.sleep(500);
+            }
+            if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("Far")) {
+                encodersMove(robot, 22, 0.5, "backward");
+                Thread.sleep(500);
+
+                encodersMove(robot, 18, 0.5, "right");
+                Thread.sleep(500);
+            } else if (selectedOptions[4][1].equals("no")) {
+
+            }
+        }
     }
-
     /**
      * configForAuto will save the response (selOptions) from a set of possible responses (posResps)
      * a given prompt (selPrompt)
@@ -164,5 +204,6 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
     }
 }
