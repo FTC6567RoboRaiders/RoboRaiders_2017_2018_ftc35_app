@@ -20,8 +20,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public boolean currStateDistance = false;
     public boolean prevStateDistance = false;
     public String pictograph = "UNKNOWN";
-    public boolean blue;
-    public boolean red;
 
     /**
      * This method will initialize Vuforia in autonomous op modes
@@ -59,8 +57,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             if (bot.getColorIntensity("red") > bot.getColorIntensity("blue"))  { //if the ball on the right is red
 
-                red = false;
-
                 telemetry.addLine().addData("Red", bot.getColorIntensity("red"));
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
@@ -76,8 +72,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             }
             else { //the ball on the right is blue
-
-                red = true;
 
                 telemetry.addLine().addData("Red", bot.getColorIntensity("red"));
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
@@ -101,8 +95,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             if (bot.getColorIntensity("blue") > bot.getColorIntensity("red")) { //if the ball on the right is blue
 
-                blue = true;
-
                 telemetry.addLine().addData("Red", bot.getColorIntensity("red"));
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
@@ -118,8 +110,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             }
             else { //the ball on the left is blue
-
-                blue = false;
 
                 telemetry.addLine().addData("Red", bot.getColorIntensity("red"));
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
@@ -171,7 +161,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                     encodersMove(bot, 28, 0.5, "backward"); //move backward 35 inches until in front of the center column (default)
                     Thread.sleep(250);
                 }
-
             }
 
             else if (alliancePlacement.equals("far")) { //if we are far from the audience
@@ -193,7 +182,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                     encodersMove(bot, 16, 0.5, "backward"); //move backward 16 inches until in front of the center column (default)
                     Thread.sleep(250);
                 }
-
             }
         }
         else if (allianceColor.equals("blue")) { //else if we are on the blue side
@@ -217,7 +205,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                     encodersMove(bot, 28, 0.5, "forward"); //move forward 28 inches until in front of the center column (default)
                     Thread.sleep(250);
                 }
-
             }
 
             else if (alliancePlacement.equals("far")) { //if we are far from the audience

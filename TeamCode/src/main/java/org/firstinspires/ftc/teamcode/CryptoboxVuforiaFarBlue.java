@@ -10,7 +10,7 @@ import com.roboraiders.Robot.Robot;
  */
 
 @Autonomous
-@Disabled
+//@Disabled
 
 public class CryptoboxVuforiaFarBlue extends RoboRaidersAuto {
 
@@ -34,6 +34,7 @@ public class CryptoboxVuforiaFarBlue extends RoboRaidersAuto {
         Thread.sleep(250);
 
         //selectColumn(robot, "blue", "far", pictograph);
+
         /*encodersMove(robot, 20, 0.5, "forward");
         Thread.sleep(250);
 
