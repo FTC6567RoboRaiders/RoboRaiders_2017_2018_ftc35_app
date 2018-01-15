@@ -88,13 +88,20 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         //wait for start to be pushed
         waitForStart();
 
+        // Jewel
         if (selectedOptions[3][1].equals("yes")) {
+
             selectJewel(robot, selectedOptions[3][1]);
-        } else if (selectedOptions[3][1].equals("no")) {
+        }
+        else if (selectedOptions[3][1].equals("no")) {
 
         }
+
+        // Park
         if (selectedOptions[4][1].equals("yes")) {
+
             if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("close")) {
+
                 encodersMove(robot, 32, 0.5, "forward");
                 Thread.sleep(500);
 
@@ -105,6 +112,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
                 Thread.sleep(500);
             }
             if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("far")) {
+
                 encodersMove(robot, 22, 0.5, "forward");
                 Thread.sleep(500);
 
@@ -112,6 +120,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
                 Thread.sleep(500);
             }
             if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("close")) {
+
                 encodersMove(robot, 32, 0.5, "backward");
                 Thread.sleep(500);
 
@@ -121,17 +130,20 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
                 encodersMove(robot, 2, 0.5, "forward");
                 Thread.sleep(500);
             }
-            if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("Far")) {
+            if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("far")) {
+
                 encodersMove(robot, 22, 0.5, "backward");
                 Thread.sleep(500);
 
                 encodersMove(robot, 18, 0.5, "right");
                 Thread.sleep(500);
-            } else if (selectedOptions[4][1].equals("no")) {
+            }
+            else if (selectedOptions[4][1].equals("no")) {
 
             }
         }
     }
+
     /**
      * configForAuto will save the response (selOptions) from a set of possible responses (posResps)
      * a given prompt (selPrompt)
@@ -141,7 +153,6 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
      * @param selIndex The position within selOptions array in which to store the responses
      * @param selOptions where to store the configuration prompt and response
      *
-
      */
     public void configForAuto(String selPrompt, String[] posResps, int selIndex, String[][] selOptions) {
 
@@ -205,6 +216,5 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 }
