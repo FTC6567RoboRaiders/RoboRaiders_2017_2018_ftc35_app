@@ -47,8 +47,6 @@ public class Robot {
 
     public Servo servoJewel = null;
     public Servo servoElbow = null;
-    public Servo servoArmLeft = null;
-    public Servo servoArmRight = null;
     public Servo servoRelicWrist = null;
     public Servo servoRelicGripper = null;
     public Servo servoHandLeft = null;
@@ -122,8 +120,6 @@ public class Robot {
         // Define and initialize servos
         servoJewel = hwMap.get(Servo.class, "servo_Jewel");
         servoElbow = hwMap.get(Servo.class, "servo_Elbow");
-        servoArmLeft = hwMap.get(Servo.class, "servo_Arm_Left");
-        servoArmRight = hwMap.get(Servo.class, "servo_Arm_Right");
         servoRelicWrist = hwMap.get(Servo.class, "servo_Relic_Wrist");
         servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
         servoHandLeft = hwMap.get(Servo.class, "servo_Hand_Left");
@@ -145,8 +141,6 @@ public class Robot {
 
         servoJewel.setPosition(0.1);
         servoElbow.setPosition(0.55);
-        servoArmLeft.setPosition(0.95);
-        servoArmRight.setPosition(0.0);
         servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
         servoHandLeft.setPosition(0.2);
@@ -188,42 +182,6 @@ public class Robot {
     public void setRelicMotorPower(double relic) {
 
         motorRelic.setPower(relic);
-    }
-
-    /**
-     * This method will open the servo arms all of the way
-     */
-    public void armsVeryOpen() {
-
-        servoArmLeft.setPosition(0.0);
-        servoArmRight.setPosition(0.9);
-    }
-
-    /**
-     * This method will open the servo arms
-     */
-    public void armsOpen() {
-
-        servoArmLeft.setPosition(0.45);
-        servoArmRight.setPosition(0.40);
-    }
-
-    /**
-     * This method will close the servo arms to capture a glyph
-     */
-    public void armsGlyph() {
-
-        servoArmLeft.setPosition(0.59);
-        servoArmRight.setPosition(0.23);
-    }
-
-    /**
-     * This method will close the servo arms all of the way
-     */
-    public void armsClose() {
-
-        servoArmLeft.setPosition(0.95);
-        servoArmRight.setPosition(0.0);
     }
 
     /**
