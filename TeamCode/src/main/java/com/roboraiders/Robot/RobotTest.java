@@ -38,8 +38,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 public class RobotTest {
 
 
-
-
     /* Robot Motors, Servos, CR Servos and Sensors */
     public DcMotor motorFrontLeft = null;
     public DcMotor motorFrontRight = null;
