@@ -7,7 +7,11 @@ import com.roboraiders.Robot.Robot;
 import com.roboraiders.Robot.RobotTest;
 
 /**
- * Created by Jason Sember on 9/23/2017.
+ *
+ * This is a class that is a DIRECT copy (as of 1/17/18) of the IndieTeleopMecanum class.
+ * This class was created to test new prototypes on the robot without changing the current teleop code.
+ *
+ * Created by Alex Snyder on 1/17/18
  */
 
 @TeleOp
