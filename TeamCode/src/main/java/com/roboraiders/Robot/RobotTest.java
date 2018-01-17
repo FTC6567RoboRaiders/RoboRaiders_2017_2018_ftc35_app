@@ -13,26 +13,11 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 /**
- * This is NOT an Op Mode.
  *
+ * This is a class that is a DIRECT copy (as of 1/17/18) of the Robot class.
+ * This class was created to test new prototypes on the robot without changing the current Robot class code.
  *
- * This class will be used to define all "basic" functions for our 2017 - 2018 robot.
- * <br>
- * Basic functions would include things like:
- * <ul>
- *     <li>Setting power to motors</li>
- *     <li>Obtaining color sensor information</li>
- *     <li>Obtaining distance sensor information</li>
- *     <li>Obtaining encoder counts</li>
- *     <li>Setting servo position(s)</li>
- * </ul>
- * <br>
- * Any advanced functionality, lets say like <u>following a white line</u> or <u>moving the
- * robot until a given distance from a barrier</u> should be handled in a different class
- * (e.g. a Driver class).
- * <br>
- * <b>Author(s):</b> Jason Sember, Alex Snyder, Katelin Zichittella, add your name here ...
- *
+ * Created by Alex Snyder on 1/17/18
  */
 
 public class RobotTest {
