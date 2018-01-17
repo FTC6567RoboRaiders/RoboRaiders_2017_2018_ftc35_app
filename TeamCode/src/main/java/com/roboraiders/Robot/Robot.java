@@ -1,18 +1,14 @@
 package com.roboraiders.Robot;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 /**
@@ -328,6 +324,31 @@ public class Robot {
         motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
+
+    /**
+     * This method will set the mode of all of the motors to run to position
+     */
+    /*public void runToPosition() {
+
+        motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        motorBackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }*/
+
+    /**
+     * This method will set the target position of all of the motors to COUNTS
+     *
+     * @param COUNTS - the number of encoder counts the robot will travel that is equal
+     * to the number of inches
+     */
+    /*public void setTargetPosition(double COUNTS) {
+
+        motorFrontLeft.setTargetPosition((int) COUNTS);
+        motorFrontRight.setTargetPosition((int) COUNTS);
+        motorBackLeft.setTargetPosition((int) COUNTS);
+        motorBackRight.setTargetPosition((int) COUNTS);
+    }*/
 
     /**
      * This method will set the mode of all of the drive train motors to run without encoder

@@ -6,11 +6,10 @@ import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
 @Autonomous
-@Disabled
 
 public class IndieAutonomousOptions extends RoboRaidersAuto {
 
-    // public Robot robot = new Robot();
+     public Robot robot = new Robot();
 
     boolean cur_B_ButtonState;                                            // "b" button current state
     boolean cur_X_ButtonState;                                            // "x" button current state
@@ -46,10 +45,9 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         // Add new selections and associated responses before here
 
 
-
         // Commented out any code related to robot and running the robot, only because we are still in the process of testing and tweaking it
-        //robot.initialize(hardwareMap);
-        //robot.initializeServos();
+        robot.initialize(hardwareMap);
+        robot.initializeServos();
         //vuforiaInitialization(hardwareMap);
         telemetry.addData("Initialized", true);
         telemetry.update();
@@ -89,7 +87,61 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         //wait for start to be pushed
         waitForStart();
 
+        // Jewel
+        if (selectedOptions[3][1].equals("yes")) {
 
+            lowerArm(robot);
+            selectJewel(robot, selectedOptions[1][1]);
+        }
+        else if (selectedOptions[3][1].equals("no")) {
+
+        }
+
+        // Park
+        if (selectedOptions[4][1].equals("yes")) {
+
+            if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("close")) {
+
+                encodersMove(robot, 32, 0.5, "forward");
+                Thread.sleep(500);
+
+                imuTurn(robot, 90, 0.5, "left");
+                Thread.sleep(500);
+
+                encodersMove(robot, 2, 0.5, "forward");
+                Thread.sleep(500);
+            }
+            else if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("far")) {
+
+                encodersMove(robot, 22, 0.5, "forward");
+                Thread.sleep(500);
+
+                encodersMove(robot, 18, 0.5, "right");
+                Thread.sleep(500);
+            }
+            else if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("close")) {
+
+                encodersMove(robot, 32, 0.5, "backward");
+                Thread.sleep(500);
+
+                imuTurn(robot, 90, 0.5, "left");
+                Thread.sleep(500);
+
+                encodersMove(robot, 2, 0.5, "forward");
+                Thread.sleep(500);
+            }
+            else if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("far")) {
+
+                encodersMove(robot, 22, 0.5, "backward");
+                Thread.sleep(500);
+
+                encodersMove(robot, 18, 0.5, "right");
+                Thread.sleep(500);
+            }
+        }
+        else if (selectedOptions[4][1].equals("no")) {
+
+        }
     }
 
     /**
@@ -101,7 +153,6 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
      * @param selIndex The position within selOptions array in which to store the responses
      * @param selOptions where to store the configuration prompt and response
      *
-
      */
     public void configForAuto(String selPrompt, String[] posResps, int selIndex, String[][] selOptions) {
 

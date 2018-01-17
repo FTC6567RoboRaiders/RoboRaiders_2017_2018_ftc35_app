@@ -3,10 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
-import com.roboraiders.Robot.Robot;
 
 /**
  * Created by Steve Kocik on 1/14/2018.
@@ -18,6 +16,7 @@ public class FrankenBot extends OpMode {
 
     DcMotor leftMotor = null;
     DcMotor rightMotor = null;
+    DcMotor liftMotor = null;
     Servo lefty = null;
     Servo righty = null;
 
@@ -31,6 +30,7 @@ public class FrankenBot extends OpMode {
 
         leftMotor = hardwareMap.get(DcMotor.class, "motorLeft");
         rightMotor = hardwareMap.get(DcMotor.class, "motorRight");
+        liftMotor = hardwareMap.get(DcMotor.class, "motorLift");
 
         righty = hardwareMap.get(Servo.class, "righty");
         lefty = hardwareMap.get(Servo.class, "lefty");
@@ -46,7 +46,6 @@ public class FrankenBot extends OpMode {
         currStateB = false;
         prevStateB = false;
 
-
         float left = gamepad1.left_stick_y;
         float right = gamepad1.right_stick_y;
 
@@ -56,12 +55,9 @@ public class FrankenBot extends OpMode {
         left = (float) scaleInput(left);
         right = (float) scaleInput(right);
 
-        leftMotor.setPower(left);
-        rightMotor.setPower(right);
+        setMotorPower(left, right);
 
-        //  setMotorPower(left, right);
-
-        // open
+        // open the lefty and righty
         currStateA = gamepad1.a;
         if (currStateA && currStateA != prevStateA) {
 
@@ -79,14 +75,24 @@ public class FrankenBot extends OpMode {
 
             righty.setPosition(0.4);
             lefty.setPosition(0.6);
-
             prevStateB = currStateB;
         } else if (!currStateB && currStateB != prevStateB) {
 
             prevStateB = currStateB;
         }
 
+        if (gamepad1.right_bumper) {
 
+            liftPower(0.5);
+        }
+        else if (gamepad1.left_bumper){
+
+            liftPower(-0.5);
+        }
+        else {
+
+            liftPower(0);
+        }
     }
 
     public void setMotorPower(float left, float right) {
@@ -94,7 +100,11 @@ public class FrankenBot extends OpMode {
         leftMotor.setPower(left);
         rightMotor.setPower(right);
     }
+    
+    public void liftPower(double lift) {
 
+        liftMotor.setPower(lift);
+    }
 
     /**
      * scaleInput will attempt to smooth or scale joystick input when driving the
@@ -187,30 +197,5 @@ public class FrankenBot extends OpMode {
 
         // return scaled value.
         return dScale;
-    }
-
-    /**
-     * findMaxPower - finds the maximum power of four power values
-     *
-     * @param pwr1 first power
-     * @param pwr2 second power
-     * @param pwr3 third power
-     * @param pwr4 fourth power
-     * @return maximum power of the four values
-     * <B>Author(s):</B> Jason Sember and Steeeve
-     */
-    float findMaxPower(float pwr1, float pwr2, float pwr3, float pwr4) {
-
-        float maxpwrA = Math.max(Math.abs(pwr1), Math.abs(pwr2));
-        float maxpwrB = Math.max(Math.abs(pwr3), Math.abs(pwr4));
-        float maxpwr = Math.max(Math.abs(maxpwrA), Math.abs(maxpwrB));
-
-        if (maxpwr > 1.0) {
-
-            return maxpwr;
-        } else {
-
-            return 1;
-        }
     }
 }

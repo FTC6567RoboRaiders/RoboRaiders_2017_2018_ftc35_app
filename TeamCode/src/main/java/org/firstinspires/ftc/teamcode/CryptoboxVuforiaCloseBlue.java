@@ -10,7 +10,7 @@ import com.roboraiders.Robot.Robot;
  */
 
 @Autonomous
-@Disabled
+//@Disabled
 
 public class CryptoboxVuforiaCloseBlue extends RoboRaidersAuto {
 
@@ -33,9 +33,6 @@ public class CryptoboxVuforiaCloseBlue extends RoboRaidersAuto {
         getRelicRecoveryVuMark();
         Thread.sleep(250);
 
-        encodersMove(robot, 15, 0.5, "forward");
-        Thread.sleep(250);
-
-        selectColumnDistanceSensor(robot, "blue", pictograph);
+        selectColumn(robot, "blue", "close", pictograph);
     }
 }
