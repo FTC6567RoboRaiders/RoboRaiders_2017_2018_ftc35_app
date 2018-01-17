@@ -135,8 +135,8 @@ public class RobotTest {
         servoElbow.setPosition(0.55);
         servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
-        servoGlyphRight.setPosition(0.6);
-        servoGlyphLeft.setPosition(0.4);
+        servoGlyphRight.setPosition(0.4);
+        servoGlyphLeft.setPosition(0.6);
     }
 
     /**
@@ -172,8 +172,8 @@ public class RobotTest {
      */
     public void GlyphGrabberOpen() {
 
-        servoGlyphLeft.setPosition(0.6);
-        servoGlyphRight.setPosition(0.4);
+        servoGlyphLeft.setPosition(0.3);
+        servoGlyphRight.setPosition(0.6);
     }
 
     /**
@@ -182,8 +182,8 @@ public class RobotTest {
      */
     public void GlyphGrabberClose() {
 
-        servoGlyphLeft.setPosition(0.5);
-        servoGlyphRight.setPosition(0.5);
+        servoGlyphLeft.setPosition(0.45);
+        servoGlyphRight.setPosition(0.45);
     }
 
     /**
