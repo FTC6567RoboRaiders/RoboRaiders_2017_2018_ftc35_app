@@ -60,18 +60,18 @@ public class HubBotRangeSensorTest extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        // get a reference to our compass
-        //       mrRange = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range");
+
+        mrRange = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range");
         revDistance = hardwareMap.get(DistanceSensor.class, "rev_distance");
 
         // wait for the start button to be pressed
         waitForStart();
 
         while (opModeIsActive()) {
-            //         telemetry.addData("raw ultrasonic", mrRange.rawUltrasonic());
-            //       telemetry.addData("raw optical", mrRange.rawOptical());
-            //         telemetry.addData("cm optical", "%.2f cm", mrRange.cmOptical());
-            //         telemetry.addData("cm", "%.2f cm", mrRange.getDistance(DistanceUnit.CM));
+            telemetry.addData("raw ultrasonic", mrRange.rawUltrasonic());
+            telemetry.addData("raw optical", mrRange.rawOptical());
+            telemetry.addData("cm optical", "%.2f cm", mrRange.cmOptical());
+            telemetry.addData("cm", "%.2f cm", mrRange.getDistance(DistanceUnit.CM));
             telemetry.addData("Distance (cm)",
                     String.format(Locale.US, "%.02f", revDistance.getDistance(DistanceUnit.CM)));
             telemetry.update();
