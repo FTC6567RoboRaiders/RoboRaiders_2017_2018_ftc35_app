@@ -26,7 +26,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
         // Array to store selected options, by design selectedOptions[0][*] is used to store the
         // response for finalizing the selected options.
-        String[][] selectedOptions = new String[5][2];                    // Array to store selections
+        String[][] selectedOptions = new String[6][2];                    // Array to store selections
 
         String allianceSelPrompt = "Alliance";                            // Alliance prompt
         final String[] alliancePosResps = new String[]{"red", "blue"};    // Possible Alliance selections
@@ -40,12 +40,15 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
         final String[] yesNoOptions = new String[]{"no", "yes"};          // Possible selections for Jewel and Park
 
-        String selectionsOk = "Selections Great :)";                      // Finalize selections prompt
+        String selectionsOk = "Are these the right Selections?";
+
+        String vuforiaSelPrompt = "Vuforia";
+        // Finalize selections prompt
 
         // Add new selections and associated responses before here
 
 
-        // Commented out any code related to robot and running the robot, only because we are still in the process of testing and tweaking it
+        // Commented out any code related to robot and running the robot, only beca use we are still in the process of testing and tweaking it
         robot.initialize(hardwareMap);
         robot.initializeServos();
         //vuforiaInitialization(hardwareMap);
@@ -66,12 +69,13 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
             configForAuto(bsSelPrompt, bsPosResps, 2, selectedOptions);   // Balance stone selection
             configForAuto(jewelSelPrompt, yesNoOptions, 3, selectedOptions);   // Jewel selection
             configForAuto(parkSelPrompt, yesNoOptions, 4, selectedOptions);   // Park selection
+            configForAuto(vuforiaSelPrompt, yesNoOptions, 5, selectedOptions); // Vuforia Selection
 
 
             // Add new selections above here
 
             // Loop through all of the selections and tell user what s/he has selected
-            for (int i = 1; i <= 4; i++) {
+            for (int i = 1; i <= 5; i++) {
 
                 telemetry.addLine().addData(selectedOptions[i][0], selectedOptions[i][1]);
             }
