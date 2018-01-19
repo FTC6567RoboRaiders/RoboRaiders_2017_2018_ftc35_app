@@ -58,9 +58,23 @@ public class HubBotRangeSensorTest extends LinearOpMode {
     ModernRoboticsI2cRangeSensor mrRange2;
     DistanceSensor revDistance;
 
+    boolean cur_Y_ButtonState;                                            // "b" button current state
+
+    boolean prev_Y_ButtonState;
+
+    double distanceFromWall;
+
 
     @Override
     public void runOpMode() {
+
+        gamepad1.reset();
+
+        prev_Y_ButtonState = false;
+
+        cur_Y_ButtonState = false;
+
+        distanceFromWall = 0;
 
 
         mrRange = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range");
@@ -68,51 +82,52 @@ public class HubBotRangeSensorTest extends LinearOpMode {
         revDistance = hardwareMap.get(DistanceSensor.class, "rev_distance");
 
 
-        double distanceFromWall;
-        distanceFromWall = mrRange.getDistance(DistanceUnit.CM);
-
-
         telemetry.addData("Initialized", true);
         telemetry.update();
 
-        if (distanceFromWall < 25) {
+        while (!prev_Y_ButtonState) {
 
-            telemetry.addLine("Move the robot farther away from the wall.");
+            distanceFromWall = mrRange.getDistance(DistanceUnit.INCH);
+
+            if (distanceFromWall < 12) {
+
+                telemetry.addLine("Move the robot farther away from the wall.");
+
+            }
+
+            else if (distanceFromWall >= 12 && distanceFromWall <= 16) {
+
+                telemetry.addLine("The robot is good.");
+            }
+
+            else if (distanceFromWall > 16) {
+
+                telemetry.addLine("Move the robot closer to the wall");
+            }
+
+            else {
+
+                telemetry.addLine("Please place the robot in front of the wall.");
+
+            }
+
+            telemetry.addData("mr_Range ", "%.2f inches", distanceFromWall);
             telemetry.update();
+            cur_Y_ButtonState = gamepad1.y;                           // get the current state of button y
 
-        }
+            if (cur_Y_ButtonState) {                                  // when the "y" button on the gamepad is pressed
 
-        else if (distanceFromWall > 25 && distanceFromWall < 30) {
+                if (!prev_Y_ButtonState) {                            // when the previous "y" button was NOT pushed
 
-            telemetry.addLine("The robot is good.");
-            telemetry.update();
-        }
-
-        else if (distanceFromWall > 30) {
-
-            telemetry.addLine("Move the robot closer to the wall");
-            telemetry.update();
-        }
-
-        else {
-
-            telemetry.addLine("Please place the robot in front of the wall.");
-            telemetry.update();
-
-        }
-
-        while (!opModeIsActive()) {
-
-            telemetry.addData("mr_Range cm", "%.2f cm", distanceFromWall);
-            telemetry.addData("mr_Range2 cm", "%.2f cm", distanceFromWall);
-            telemetry.update();
-
+                    prev_Y_ButtonState = true;                        // indicate that the previous y button state is PUSHED
+                }
+            }
         }
 
         // wait for the start button to be pressed
         waitForStart();
 
-        while (!opModeIsActive()) {
+        while (opModeIsActive()) {
 
             telemetry.addData("mr_Range cm", "%.2f cm", distanceFromWall);
             telemetry.addData("mr_Range2 cm", "%.2f cm", distanceFromWall);
