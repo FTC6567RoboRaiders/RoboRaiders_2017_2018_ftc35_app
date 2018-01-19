@@ -133,8 +133,8 @@ public class RobotTest {
 
         servoJewel.setPosition(0.1);
         servoElbow.setPosition(0.55);
-        servoRelicWrist.setPosition(0.0);
-        servoRelicGripper.setPosition(0.0);
+        servoRelicWrist.setPosition(0.0);       //VERIFY THIS THROUGH TESTING
+        servoRelicGripper.setPosition(0.0);     //VERIFY THIS THROUGH TESTING
         servoGlyphRight.setPosition(0.4);
         servoGlyphLeft.setPosition(0.6);
     }
@@ -212,7 +212,7 @@ public class RobotTest {
      */
     public void wristUp() {
 
-        servoRelicWrist.setPosition(0.8);
+        servoRelicWrist.setPosition(1.0);
     }
 
     /**
@@ -231,7 +231,7 @@ public class RobotTest {
      */
     public void gripperOpen() {
 
-        servoRelicGripper.setPosition(0.6);
+        servoRelicGripper.setPosition(0.0);
     }
 
     /**

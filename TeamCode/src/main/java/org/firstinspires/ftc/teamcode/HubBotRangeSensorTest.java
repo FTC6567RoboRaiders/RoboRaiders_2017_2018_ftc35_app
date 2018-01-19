@@ -55,13 +55,16 @@ import java.util.Locale;
 public class HubBotRangeSensorTest extends LinearOpMode {
 
     ModernRoboticsI2cRangeSensor mrRange;
+    ModernRoboticsI2cRangeSensor mrRange2;
     DistanceSensor revDistance;
+
 
     @Override
     public void runOpMode() {
 
 
         mrRange = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range");
+        mrRange2 = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range2");
         revDistance = hardwareMap.get(DistanceSensor.class, "rev_distance");
 
         // wait for the start button to be pressed
@@ -70,10 +73,9 @@ public class HubBotRangeSensorTest extends LinearOpMode {
         while (opModeIsActive()) {
             telemetry.addData("raw ultrasonic", mrRange.rawUltrasonic());
             telemetry.addData("raw optical", mrRange.rawOptical());
-            telemetry.addData("cm optical", "%.2f cm", mrRange.cmOptical());
-            telemetry.addData("cm", "%.2f cm", mrRange.getDistance(DistanceUnit.CM));
-            telemetry.addData("Distance (cm)",
-                    String.format(Locale.US, "%.02f", revDistance.getDistance(DistanceUnit.CM)));
+            telemetry.addData("mr_Range cm", "%.2f cm", mrRange.getDistance(DistanceUnit.CM));
+            telemetry.addData("mr_Range2 cm", "%.2f cm", mrRange2.getDistance(DistanceUnit.CM));
+            telemetry.addData("Distance (cm)", String.format(Locale.US, "%.02f", revDistance.getDistance(DistanceUnit.CM)));
             telemetry.update();
         }
     }
