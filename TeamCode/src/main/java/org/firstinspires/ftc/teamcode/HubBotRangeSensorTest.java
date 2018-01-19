@@ -67,16 +67,57 @@ public class HubBotRangeSensorTest extends LinearOpMode {
         mrRange2 = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range2");
         revDistance = hardwareMap.get(DistanceSensor.class, "rev_distance");
 
+
+        double distanceFromWall;
+        distanceFromWall = mrRange.getDistance(DistanceUnit.CM);
+
+
+        telemetry.addData("Initialized", true);
+        telemetry.update();
+
+        if (distanceFromWall < 25) {
+
+            telemetry.addLine("Move the robot farther away from the wall.");
+            telemetry.update();
+
+        }
+
+        else if (distanceFromWall > 25 && distanceFromWall < 30) {
+
+            telemetry.addLine("The robot is good.");
+            telemetry.update();
+        }
+
+        else if (distanceFromWall > 30) {
+
+            telemetry.addLine("Move the robot closer to the wall");
+            telemetry.update();
+        }
+
+        else {
+
+            telemetry.addLine("Please place the robot in front of the wall.");
+            telemetry.update();
+
+        }
+
+        while (!opModeIsActive()) {
+
+            telemetry.addData("mr_Range cm", "%.2f cm", distanceFromWall);
+            telemetry.addData("mr_Range2 cm", "%.2f cm", distanceFromWall);
+            telemetry.update();
+
+        }
+
         // wait for the start button to be pressed
         waitForStart();
 
-        while (opModeIsActive()) {
-            telemetry.addData("raw ultrasonic", mrRange.rawUltrasonic());
-            telemetry.addData("raw optical", mrRange.rawOptical());
-            telemetry.addData("mr_Range cm", "%.2f cm", mrRange.getDistance(DistanceUnit.CM));
-            telemetry.addData("mr_Range2 cm", "%.2f cm", mrRange2.getDistance(DistanceUnit.CM));
-            telemetry.addData("Distance (cm)", String.format(Locale.US, "%.02f", revDistance.getDistance(DistanceUnit.CM)));
+        while (!opModeIsActive()) {
+
+            telemetry.addData("mr_Range cm", "%.2f cm", distanceFromWall);
+            telemetry.addData("mr_Range2 cm", "%.2f cm", distanceFromWall);
             telemetry.update();
+
         }
     }
 }
