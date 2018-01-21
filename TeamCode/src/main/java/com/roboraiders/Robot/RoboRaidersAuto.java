@@ -1,6 +1,5 @@
 package com.roboraiders.Robot;
 
-import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -11,8 +10,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
-
-import java.util.Locale;
 
 /**
  * Created by Alex Snyder on 10/8/17.
@@ -618,5 +615,4 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         encodersMove(bot, 1, 0.5, "forward"); //moves one inch forward
         Thread.sleep(500);
     }
-
 }

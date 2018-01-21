@@ -269,7 +269,6 @@ public class Robot {
      * This method will set the mode of all of the motors to run to position
      */
     /*public void runToPosition() {
-
         motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         motorBackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -283,7 +282,6 @@ public class Robot {
      * to the number of inches
      */
     /*public void setTargetPosition(double COUNTS) {
-
         motorFrontLeft.setTargetPosition((int) COUNTS);
         motorFrontRight.setTargetPosition((int) COUNTS);
         motorBackLeft.setTargetPosition((int) COUNTS);

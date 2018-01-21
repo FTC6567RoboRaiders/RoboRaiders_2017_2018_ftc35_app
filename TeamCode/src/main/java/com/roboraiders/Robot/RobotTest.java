@@ -3,7 +3,6 @@ package com.roboraiders.Robot;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -21,7 +20,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
  */
 
 public class RobotTest {
-
 
     /* Robot Motors, Servos, CR Servos and Sensors */
     public DcMotor motorFrontLeft = null;
@@ -156,45 +154,31 @@ public class RobotTest {
     }
 
     /**
-     * This method will set the power for the two glyph in motors
-     *
-     * @param glyph power setting for the two glyph in motors
+     * This method will set the positions of the glyph grabber servos to an open positions large enough to grab the glyph
      */
-    public void setGlyphInMotorPower(double glyph) {
-
-        motorGlyphInLeft.setPower(glyph);
-        motorGlyphInRight.setPower(glyph);
-    }
-
-    /**
-     * This method will set the positions of the glyph grabber servos to an open positions large enough to grab the glyph.
-     *
-     */
-    public void GlyphGrabberOpen() {
+    public void glyphGrabberOpen() {
 
         servoGlyphLeft.setPosition(0.3);
         servoGlyphRight.setPosition(0.6);
     }
 
     /**
-     * This method will set the positions of the glyph grabber to a closed position grabbing the glyph.
-     *
+     * This method will set the positions of the glyph grabber to a closed position grabbing the glyph
      */
-    public void GlyphGrabberClose() {
+    public void glyphGrabberClose() {
 
         servoGlyphLeft.setPosition(0.45);
         servoGlyphRight.setPosition(0.45);
     }
 
     /**
-     * This method sets the power for the glyph lift.
+     * This method sets the power for the glyph lift
      *
-     * @param glyph the power to be set for the glyph lift.
+     * @param glyphLift the power to be set for the glyph lift
      */
+    public void setGlyphLiftMotorPower(double glyphLift) {
 
-    public void setGlyphLiftPower(double glyph) {
-
-        motorGlyphLift.setPower(glyph);
+        motorGlyphLift.setPower(glyphLift);
     }
 
     /**
@@ -435,7 +419,6 @@ public class RobotTest {
      *
      * @param servoPosition the desired position of the elbow servo
      */
-
     public void setElbowServoPosition(double servoPosition) {
 
         servoElbow.setPosition(servoPosition);
