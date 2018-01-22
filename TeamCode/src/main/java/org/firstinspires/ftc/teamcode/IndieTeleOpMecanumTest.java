@@ -92,7 +92,8 @@ public class IndieTeleOpMecanumTest extends OpMode {
 
             powerFactor = 0.5;
             prevStateLeftBumper1 = currStateLeftBumper1;
-        } else if (!currStateLeftBumper1 && currStateLeftBumper1 != prevStateLeftBumper1) {
+        }
+        else if (!currStateLeftBumper1 && currStateLeftBumper1 != prevStateLeftBumper1) {
 
             prevStateLeftBumper1 = currStateLeftBumper1;
         }
@@ -101,7 +102,8 @@ public class IndieTeleOpMecanumTest extends OpMode {
 
             powerFactor = 1;
             prevStateRightBumper1 = currStateRightBumper1;
-        } else if (!currStateRightBumper1 && currStateRightBumper1 != prevStateRightBumper1) {
+        }
+        else if (!currStateRightBumper1 && currStateRightBumper1 != prevStateRightBumper1) {
 
             prevStateRightBumper1 = currStateRightBumper1;
         }
@@ -136,7 +138,8 @@ public class IndieTeleOpMecanumTest extends OpMode {
                 nudging = true; // ...nudging is true, so the robot cannot nudge anymore. This allows for 5 loop cycles
                 // of movement...
             }
-        } else { // ...else if nudging is true (the robot is no longer being nudged)...
+        }
+        else { // ...else if nudging is true (the robot is no longer being nudged)...
 
             nudging = false; // ...nudging is returned to false, which allows nudging again if any of the dpad buttons
             // are pressed on the first controller...
@@ -206,7 +209,8 @@ public class IndieTeleOpMecanumTest extends OpMode {
 
                 wristNudging = true;
             }
-        } else {
+        }
+        else {
 
             wristNudging = false;
             wristNudgeCount = 0;

@@ -147,7 +147,91 @@ public class IndieTeleOpMecanum extends OpMode {
             nudgeCount = 0; // ...and nudgeCount is reset to 0."
         }
 
+        // "Arms Open" functionality
+        currStateRightBumper2 = gamepad2.right_bumper;
+        if (currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
 
+            robot.armsOpen();
+            prevStateRightBumper2 = currStateRightBumper2;
+        }
+        else if (!currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
+
+            prevStateRightBumper2 = currStateRightBumper2;
+        }
+
+        // "Arms Glyph" functionality
+        currStateLeftBumper2 = gamepad2.left_bumper;
+        if (currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
+
+            robot.armsGlyph();
+            prevStateLeftBumper2 = currStateLeftBumper2;
+        }
+        else if (!currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
+
+            prevStateLeftBumper2 = currStateLeftBumper2;
+        }
+
+        // "Arms Very Open" functionality
+        if (gamepad2.right_trigger > 0.5) {
+
+            currStateRightTrigger = true;
+        }
+        else {
+
+            currStateRightTrigger = false;
+        }
+        if (currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
+
+            robot.armsVeryOpen();
+            prevStateRightTrigger = currStateRightTrigger;
+        }
+        else if (!currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
+
+            prevStateRightTrigger = currStateRightTrigger;
+        }
+
+        // "Arms Close" functionality
+        if (gamepad2.left_trigger > 0.5) {
+
+            currStateLeftTrigger = true;
+        }
+        else {
+
+            currStateLeftTrigger = false;
+        }
+        if (currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
+
+            robot.armsClose();
+            prevStateLeftTrigger = currStateLeftTrigger;
+        }
+        else if (!currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
+
+            prevStateLeftTrigger = currStateLeftTrigger;
+        }
+
+        // "Hands Glyph" functionality
+        currStateB = gamepad2.b;
+        if (currStateB && currStateB != prevStateB) {
+
+            robot.handsGlyph();
+            prevStateB = currStateB;
+        }
+        else if (!currStateB && currStateB != prevStateB) {
+
+            prevStateB = currStateB;
+        }
+
+        // "Hands Close" functionality
+        currStateX = gamepad2.x;
+        if (currStateX && currStateX != prevStateX) {
+
+            robot.handsClose();
+            prevStateX = currStateX;
+        }
+        else if (!currStateX && currStateX != prevStateX) {
+
+            prevStateX = currStateX;
+        }
 
         // "Set Glyph In Motor Power" functionality
         glyph = -gamepad2.right_stick_y;

@@ -1,11 +1,9 @@
 package com.roboraiders.Robot;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
@@ -19,8 +17,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
     public VuforiaLocalizer vuforia;
     public VuforiaTrackable relicTemplate;
-    //public boolean currStateDistance = false;
-    //public boolean prevStateDistance = false;
     public String pictograph = "UNKNOWN";
 
     /**
@@ -272,70 +268,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     }
 
     /**
-     * This method directs the robot to place the glyph in the key column using the distance sensor
-     *
-     * @param bot           the bot currently being worked on
-     * @param allianceColor the color of your alliance
-     * @param pictograph    the name of the pictograph as determined by getRelicRecoveryVuMark()
-     * @throws InterruptedException
-     */
-    /*public void selectColumnDistanceSensor(Robot bot, String allianceColor, String pictograph) throws InterruptedException {
-
-        if (allianceColor.equals("red")) { //if we are on the red side
-
-            if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
-
-                distanceSensorCount(bot, 3, -0.5, 25); //move backward until the robot has passed three dividers
-                Thread.sleep(250);
-            }
-            else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
-
-                distanceSensorCount(bot, 2, -0.5, 25); //move backward until the robot has passed two dividers
-                Thread.sleep(250);
-            }
-            else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
-
-                distanceSensorCount(bot, 1, -0.5, 25); //move backward until the robot has passed one divider
-                Thread.sleep(250);
-            }
-            else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
-
-                distanceSensorCount(bot, 2, -0.5, 25); //move backward until the robot has passed two dividers (default)
-                Thread.sleep(250);
-            }
-        }
-        else if (allianceColor.equals("blue")) { //else if we are on the blue side
-
-            if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
-
-                distanceSensorCount(bot, 1, 0.5, 25); //move forward until the robot has passed one divider
-                Thread.sleep(250);
-            }
-            else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
-
-                distanceSensorCount(bot, 2, 0.5, 25); //move forward until the robot has passed two dividers
-                Thread.sleep(250);
-            }
-            else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
-
-                distanceSensorCount(bot, 3, 0.5, 25); //move forward until the robot has passed three dividers
-                Thread.sleep(250);
-            }
-            else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
-
-                distanceSensorCount(bot, 2, 0.5, 25); //move forward until the robot has passed two dividers (default)
-                Thread.sleep(250);
-            }
-        }
-
-        imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
-        Thread.sleep(250);
-
-        placeGlyph(bot); //run the method placeGlyph
-        Thread.sleep(250);
-    }*/
-
-    /**
      * This method will turn the robot right or left a certain angle measure using the IMU
      *
      * @param bot       the bot currently being worked on
@@ -445,98 +377,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         bot.runWithoutEncoders(); //sets the mode back to run without encoder
     }
-
-    /**
-     * This program will make the robot move forwards, backwards, right, or left using run to position
-     *
-     * @param bot       the robot currently being worked on
-     * @param distance  the distance the robot should travel in inches
-     * @param power     the speed the robot will travel at
-     * @param direction the direction the robot will travel: either forward, backward, right, or left
-     */
-    /*public void encodersRunToPosition(Robot bot, int distance, double power, String direction) { //sets the parameters
-
-        bot.resetEncoders(); //resets encoders
-        bot.runToPosition(); //sets the mode back to run with encoder
-
-        double COUNTS = bot.calculateCOUNTS(distance); //COUNTS is now equal to the value calculated
-        bot.setTargetPosition(COUNTS); //sets the target position according to COUNTS
-
-        if (direction.equals("forward")) { //if the desired direction is forward
-
-            bot.setDriveMotorPower(power, power, power, power); //drive forward
-        }
-        else if (direction.equals("backward")) { //if the desired direction is backward
-
-            bot.setDriveMotorPower(-power, -power, -power, -power); //drive backward
-        }
-        else if (direction.equals("right")) { //if the desired direction is right
-
-            bot.setDriveMotorPower(power, -power, -power, power); //strafe right
-        }
-        else if (direction.equals("left")) { //if the desired direction is left
-
-            bot.setDriveMotorPower(-power, power, power, -power); //strafe left
-        }
-    }*/
-
-    /**
-     * This method will have the robot drive until the distance sensor has detected the robot has
-     * passed a certain number of dividers
-     *
-     * @param bot             the bot currently being worked on
-     * @param dividersTarget  the desired number of dividers to pass
-     * @param power           the desired power the wheel motors will run at
-     * @param desiredDistance the desired distance from the target
-     */
-    /*public void distanceSensorCount(Robot bot, int dividersTarget, double power, int desiredDistance) { //establishes
-        //parameters for method
-
-        double dividersDistance = 0; //counts the number of times that the robot hits the divider with the distance sensor
-
-        bot.setDriveMotorPower(power, power, power, power); //robot is moving at whatever power is specified
-
-        while (dividersDistance < dividersTarget && opModeIsActive()) { //while the robot has not yet hit the specified number of dividers
-            //and the opMode has not been stopped
-
-            telemetry.addData("Distance", bot.getDistance());
-            telemetry.update();
-
-            if (bot.getDistance() <= desiredDistance) { //if the distance of the
-                //sensor is less than the
-                //pre-specified value, aka the robot is passing
-                //close to the divider
-
-                currStateDistance = true; //the robot is currently passing a divider
-                telemetry.addData("Distance Sensor", "Is In Front of a Divider");
-                telemetry.update();
-            }
-            else { //if the distance of the sensor is greater than the
-                //pre-specified value, aka the robot is between dividers
-
-                currStateDistance = false; //the robot is not currently passing a divider
-                telemetry.addData("Digital Sensor", "Is Not In Front of a Divider");
-                telemetry.update();
-            }
-
-            if (currStateDistance && currStateDistance != prevStateDistance) { //if the robot sees the
-                //divider and it didn't see the divider before
-                //basically, if the robot sees the divider
-
-                dividersDistance++; //add 1 to the current "dividersDistance" variable
-                prevStateDistance = currStateDistance; //now the previous state is the same as the current state
-            }
-            else if (!currStateDistance && currStateDistance != prevStateDistance) { //if the robot is no
-                //longer seeing the divider
-
-                prevStateDistance = currStateDistance; //now the previous state equals the current state,
-                //don't change anything to the "dividersDistance" variable
-            }
-        }
-
-        bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
-    }
-    */
 
     /**
      * This method will determine the name of the pictograph the robot sees

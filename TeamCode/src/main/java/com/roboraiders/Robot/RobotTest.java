@@ -27,8 +27,6 @@ public class RobotTest {
     public DcMotor motorBackLeft = null;
     public DcMotor motorBackRight = null;
     public DcMotor motorRelic = null;
-    public DcMotor motorGlyphInLeft = null;
-    public DcMotor motorGlyphInRight = null;
     public DcMotor motorGlyphLift = null;
 
     public Servo servoJewel = null;
@@ -72,8 +70,6 @@ public class RobotTest {
         motorBackLeft = hwMap.get(DcMotor.class, "left_Back");
         motorBackRight = hwMap.get(DcMotor.class, "right_Back");
         motorRelic = hwMap.get(DcMotor.class, "relic");
-        motorGlyphInLeft = hwMap.get(DcMotor.class, "glyph_In_Left");
-        motorGlyphInRight = hwMap.get(DcMotor.class, "glyph_In_Right");
         motorGlyphLift = hwMap.get(DcMotor.class, "glyph_Lift");
 
         // Defines the directions the motors will spin
@@ -82,8 +78,6 @@ public class RobotTest {
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackRight.setDirection(DcMotor.Direction.FORWARD);
         motorRelic.setDirection(DcMotor.Direction.FORWARD);
-        motorGlyphInLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorGlyphInRight.setDirection(DcMotor.Direction.FORWARD);
         motorGlyphLift.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
@@ -92,8 +86,6 @@ public class RobotTest {
         motorBackRight.setPower(0);
         motorBackLeft.setPower(0);
         motorRelic.setPower(0);
-        motorGlyphInLeft.setPower(0);
-        motorGlyphInRight.setPower(0);
         motorGlyphLift.setPower(0);
 
         // Set all motors to run without encoders.
@@ -103,8 +95,6 @@ public class RobotTest {
         motorBackLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorRelic.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorGlyphInLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        motorGlyphInRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorGlyphLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize servos
@@ -131,10 +121,10 @@ public class RobotTest {
 
         servoJewel.setPosition(0.1);
         servoElbow.setPosition(0.55);
-        servoRelicWrist.setPosition(0.0);       //VERIFY THIS THROUGH TESTING
-        servoRelicGripper.setPosition(0.0);     //VERIFY THIS THROUGH TESTING
-        servoGlyphRight.setPosition(0.4);
-        servoGlyphLeft.setPosition(0.6);
+        servoRelicWrist.setPosition(0.0);
+        servoRelicGripper.setPosition(0.0);
+        servoGlyphRight.setPosition(0.45);
+        servoGlyphLeft.setPosition(0.45);
     }
 
     /**
@@ -271,31 +261,6 @@ public class RobotTest {
         motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-
-    /**
-     * This method will set the mode of all of the motors to run to position
-     */
-    /*public void runToPosition() {
-
-        motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorBackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorBackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    }*/
-
-    /**
-     * This method will set the target position of all of the motors to COUNTS
-     *
-     * @param COUNTS - the number of encoder counts the robot will travel that is equal
-     * to the number of inches
-     */
-    /*public void setTargetPosition(double COUNTS) {
-
-        motorFrontLeft.setTargetPosition((int) COUNTS);
-        motorFrontRight.setTargetPosition((int) COUNTS);
-        motorBackLeft.setTargetPosition((int) COUNTS);
-        motorBackRight.setTargetPosition((int) COUNTS);
-    }*/
 
     /**
      * This method will set the mode of all of the drive train motors to run without encoder
@@ -441,12 +406,5 @@ public class RobotTest {
      */
     public void expelGlyph(Robot bot) throws InterruptedException {
 
-        bot.motorGlyphInLeft.setPower(-0.75);
-        bot.motorGlyphInRight.setPower(-0.75);
-
-        Thread.sleep(1000);
-
-        bot.motorGlyphInLeft.setPower(0.0);
-        bot.motorGlyphInRight.setPower(0.0);
     }
 }
