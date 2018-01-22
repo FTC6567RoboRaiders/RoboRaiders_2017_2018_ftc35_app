@@ -27,7 +27,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
         // Array to store selected options, by design selectedOptions[0][*] is used to store the
         // response for finalizing the selected options.
-        String[][] selectedOptions = new String[5][3];                    // Array to store selections
+        String[][] selectedOptions = new String[5][2];                    // Array to store selections
 
         String allianceSelPrompt = "Alliance";                            // Alliance prompt
         final String[] alliancePosResps = new String[]                    // Possible Alliance selections
