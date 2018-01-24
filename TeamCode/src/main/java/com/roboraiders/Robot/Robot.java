@@ -53,8 +53,8 @@ public class Robot {
     public Servo servoArmRight = null;
     public Servo servoRelicWrist = null;
     public Servo servoRelicGripper = null;
-    public Servo servoHandLeft = null;
-    public Servo servoHandRight = null;
+    public Servo servoHandBoth = null;
+
 
     public ColorSensor colorSensor;
     //public DistanceSensor distanceSensor;
@@ -126,8 +126,8 @@ public class Robot {
         servoElbow = hwMap.get(Servo.class, "servo_Elbow");
         servoRelicWrist = hwMap.get(Servo.class, "servo_Relic_Wrist");
         servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
-        servoHandLeft = hwMap.get(Servo.class, "servo_Hand_Left");
-        servoHandRight = hwMap.get(Servo.class, "servo_Hand_Right");
+        servoHandBoth = hwMap.get(Servo.class, "servo_Hand_Both");
+
 
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
@@ -149,8 +149,8 @@ public class Robot {
         servoArmRight.setPosition(0.0);
         servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
-        servoHandLeft.setPosition(0.2);
-        servoHandRight.setPosition(0.2);
+        servoHandBoth.setPosition(0.5);
+
     }
 
     /**
@@ -231,8 +231,8 @@ public class Robot {
      */
     public void handsGlyph() {
 
-        servoHandLeft.setPosition(0.45);
-        servoHandRight.setPosition(0.0);
+        servoHandBoth.setPosition(0.7);
+
     }
 
     /**
@@ -240,9 +240,9 @@ public class Robot {
      */
     public void handsClose() {
 
-        servoHandLeft.setPosition(0.2);
-        servoHandRight.setPosition(0.5);
-    }
+        servoHandBoth.setPosition(0.3);
+
+}
 
     /**
      * This method will raise the wrist servo

@@ -50,6 +50,10 @@ public class IndieTeleOpMecanum extends OpMode {
     public boolean prevStateB = false;
     public boolean currStateX = false;
     public boolean prevStateX = false;
+    public boolean currStateY = false;
+    public boolean prevStateY = false;
+    public boolean currStateA = false;
+    public boolean prevStateA = false;
 
     @Override
     public void init() {
@@ -96,8 +100,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
             powerFactor = 0.5;
             prevStateLeftBumper1 = currStateLeftBumper1;
-        }
-        else if (!currStateLeftBumper1 && currStateLeftBumper1 != prevStateLeftBumper1) {
+        } else if (!currStateLeftBumper1 && currStateLeftBumper1 != prevStateLeftBumper1) {
 
             prevStateLeftBumper1 = currStateLeftBumper1;
         }
@@ -106,8 +109,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
             powerFactor = 1;
             prevStateRightBumper1 = currStateRightBumper1;
-        }
-        else if (!currStateRightBumper1 && currStateRightBumper1 != prevStateRightBumper1) {
+        } else if (!currStateRightBumper1 && currStateRightBumper1 != prevStateRightBumper1) {
 
             prevStateRightBumper1 = currStateRightBumper1;
         }
@@ -119,16 +121,20 @@ public class IndieTeleOpMecanum extends OpMode {
 
             if (!nudging) { // ...if nudging is false (the robot is still being nudged)...
 
-                if (gamepad1.dpad_up) robot.setDriveMotorPower(0.5, 0.5, 0.5 ,0.5); // ...if 'up' was pressed, the robot moves forward...
+                if (gamepad1.dpad_up)
+                    robot.setDriveMotorPower(0.5, 0.5, 0.5, 0.5); // ...if 'up' was pressed, the robot moves forward...
 
-                else if (gamepad1.dpad_down) robot.setDriveMotorPower(-0.5, -0.5, -0.5, -0.5); // ...else if 'down' was pressed, the robot
+                else if (gamepad1.dpad_down)
+                    robot.setDriveMotorPower(-0.5, -0.5, -0.5, -0.5); // ...else if 'down' was pressed, the robot
                     // moves backward...
 
-                else if (gamepad1.dpad_left) robot.setDriveMotorPower(-0.6, 0.6, 0.6, -0.6); // ...else if 'left' was pressed, the robot
+                else if (gamepad1.dpad_left)
+                    robot.setDriveMotorPower(-0.6, 0.6, 0.6, -0.6); // ...else if 'left' was pressed, the robot
                     // strafes left...
 
-                else if (gamepad1.dpad_right) robot.setDriveMotorPower(0.6, -0.6, -0.6, 0.6); // ...else if 'right' was pressed, the robot
-                    // strafes right...
+                else if (gamepad1.dpad_right)
+                    robot.setDriveMotorPower(0.6, -0.6, -0.6, 0.6); // ...else if 'right' was pressed, the robot
+                // strafes right...
             }
 
             nudgeCount++; // ...after this one loop cycle, the number of the nudgeCount goes up by one...
@@ -138,8 +144,7 @@ public class IndieTeleOpMecanum extends OpMode {
                 nudging = true; // ...nudging is true, so the robot cannot nudge anymore. This allows for 5 loop cycles
                 // of movement...
             }
-        }
-        else { // ...else if nudging is true (the robot is no longer being nudged)...
+        } else { // ...else if nudging is true (the robot is no longer being nudged)...
 
             nudging = false; // ...nudging is returned to false, which allows nudging again if any of the dpad buttons
             // are pressed on the first controller...
@@ -153,8 +158,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
             robot.armsOpen();
             prevStateRightBumper2 = currStateRightBumper2;
-        }
-        else if (!currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
+        } else if (!currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
 
             prevStateRightBumper2 = currStateRightBumper2;
         }
@@ -165,8 +169,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
             robot.armsGlyph();
             prevStateLeftBumper2 = currStateLeftBumper2;
-        }
-        else if (!currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
+        } else if (!currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
 
             prevStateLeftBumper2 = currStateLeftBumper2;
         }
@@ -175,8 +178,7 @@ public class IndieTeleOpMecanum extends OpMode {
         if (gamepad2.right_trigger > 0.5) {
 
             currStateRightTrigger = true;
-        }
-        else {
+        } else {
 
             currStateRightTrigger = false;
         }
@@ -184,8 +186,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
             robot.armsVeryOpen();
             prevStateRightTrigger = currStateRightTrigger;
-        }
-        else if (!currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
+        } else if (!currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
 
             prevStateRightTrigger = currStateRightTrigger;
         }
@@ -194,8 +195,7 @@ public class IndieTeleOpMecanum extends OpMode {
         if (gamepad2.left_trigger > 0.5) {
 
             currStateLeftTrigger = true;
-        }
-        else {
+        } else {
 
             currStateLeftTrigger = false;
         }
@@ -203,8 +203,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
             robot.armsClose();
             prevStateLeftTrigger = currStateLeftTrigger;
-        }
-        else if (!currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
+        } else if (!currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
 
             prevStateLeftTrigger = currStateLeftTrigger;
         }
@@ -215,8 +214,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
             robot.handsGlyph();
             prevStateB = currStateB;
-        }
-        else if (!currStateB && currStateB != prevStateB) {
+        } else if (!currStateB && currStateB != prevStateB) {
 
             prevStateB = currStateB;
         }
@@ -227,8 +225,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
             robot.handsClose();
             prevStateX = currStateX;
-        }
-        else if (!currStateX && currStateX != prevStateX) {
+        } else if (!currStateX && currStateX != prevStateX) {
 
             prevStateX = currStateX;
         }
@@ -251,8 +248,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
             robot.wristUp();
             prevStateDpadUp = currStateDpadUp;
-        }
-        else if (!currStateDpadUp && currStateDpadUp != prevStateDpadUp) {
+        } else if (!currStateDpadUp && currStateDpadUp != prevStateDpadUp) {
 
             prevStateDpadUp = currStateDpadUp;
         }
@@ -271,8 +267,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
                 wristNudging = true;
             }
-        }
-        else {
+        } else {
 
             wristNudging = false;
             wristNudgeCount = 0;
@@ -284,8 +279,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
             robot.gripperOpen();
             prevStateDpadLeft = currStateDpadLeft;
-        }
-        else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
+        } else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
 
             prevStateDpadLeft = currStateDpadLeft;
         }
@@ -296,12 +290,24 @@ public class IndieTeleOpMecanum extends OpMode {
 
             robot.gripperClose();
             prevStateDpadRight = currStateDpadRight;
-        }
-        else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
+        } else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
 
             prevStateDpadRight = currStateDpadRight;
         }
+
+
+        float left = gamepad1.left_stick_y;
+        float right = gamepad1.right_stick_y;
+
+        left = Range.clip(left, -1, 1);
+        right = Range.clip(right, -1, 1);
+
+        left = (float) scaleInput(left);
+        right = (float) scaleInput(right);
+
     }
+
+
 
     @Override
     public void stop() {

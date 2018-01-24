@@ -45,7 +45,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
         String parkCryptSelPrompt = "Parking and/or Cryptobox";           // Parking and/or Cryptobox prompt
         final String[] parkCryptPosResps = new String[]                   // Possible Parking and/or Cryptobox selections
-                {"Stay on the Balancing Stone", "Just Park", "Crytobox Random", "Cryptobox Vuforia"};
+                { "Just Park", "Cryptobox Vuforia"};
 
         String selectionsOk = "Selections Great :)";                      // Finished Selections prompt
         final String[] finishedSelPosResps = new String[]                 // Possible Finished Selections responses
@@ -64,7 +64,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
             configForAuto2Options(allianceSelPrompt, alliancePosResps, 1, selectedOptions);     // Alliance Color selection
             configForAuto2Options(bsSelPrompt, bsPosResps, 2, selectedOptions);                 // Balancing Stone Location selection
             configForAuto2Options(jewelSelPrompt, jewelPosResps, 3, selectedOptions);           // Parking and/or Cryptobox selection
-            configForAuto4Options(parkCryptSelPrompt, parkCryptPosResps, 4, selectedOptions);   // Park selection
+            configForAuto2Options(parkCryptSelPrompt, parkCryptPosResps, 4, selectedOptions);   // Park selection
 
             // Loop through all of the selections and tell user what s/he has selected
             for (int i = 1; i <= 4; i++) {
@@ -107,10 +107,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         }
 
         // Parking and/or Cryptobox
-        if (selectedOptions[4][1].equals("Stay on the Balancing Stone")) {
-
-        }
-        else if (selectedOptions[4][1].equals("Just Park")) {
+        if (selectedOptions[4][1].equals("Just Park")) {
 
             if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("close")) {
 
@@ -151,65 +148,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
                 Thread.sleep(500);
             }
         }
-        else if (selectedOptions[4][1].equals("Cryptobox Random")) {
 
-            if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("close")) {
-
-                encodersMove(robot, 28, 0.5, "forward"); //drive forward
-                Thread.sleep(500);
-
-                imuTurn(robot, 90, 0.5, "left"); //robot turns so glyph collector faces cryptobox
-                Thread.sleep(500);
-
-                placeGlyph(robot); //robot places glyph`
-                Thread.sleep(500);
-            }
-            else if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("far")) {
-
-                encodersMove(robot, 20, 0.5, "forward"); //drive forward
-                Thread.sleep(500);
-
-                imuTurn(robot, 90, 0.5, "right"); //turn right 90 degrees
-                Thread.sleep(250);
-
-                encodersMove(robot, 5, 0.5, "forward"); //move forward 5 inches until in front of the center column
-                Thread.sleep(250);
-
-                imuTurn(robot, 90, 0.5, "left"); //turn left 90 degrees
-                Thread.sleep(250);
-
-                placeGlyph(robot); //robot places glyph
-                Thread.sleep(500);
-            }
-            else if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("close")) {
-
-                encodersMove(robot, 28, 0.5, "backward"); //drive backward
-                Thread.sleep(500);
-
-                imuTurn(robot, 90, 0.5, "left"); //robot turns so glyph collector faces cryptobox
-                Thread.sleep(500);
-
-                placeGlyph(robot); //robot places glyph`
-                Thread.sleep(500);
-            }
-            else if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("far")) {
-
-                encodersMove(robot, 20, 0.5, "backward"); //drive backward
-                Thread.sleep(500);
-
-                imuTurn(robot, 90, 0.5, "right"); //turn right 90 degrees
-                Thread.sleep(250);
-
-                encodersMove(robot, 8, 0.5, "forward"); //move forward 8 inches until in front of the center column
-                Thread.sleep(250);
-
-                imuTurn(robot, 90, 0.5, "right"); //turn right 90 degrees
-                Thread.sleep(250);
-
-                placeGlyph(robot); //robot places glyph
-                Thread.sleep(500);
-            }
-        }
         else if (selectedOptions[4][1].equals("Cryptobox Vuforia")) {
 
             getRelicRecoveryVuMark();
@@ -272,86 +211,10 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
                     selOptions[selIndex][1] = posResps[0];            // first response was selected, store the response
                     prev_B_ButtonState = true;                        // indicate that the previous B button state is PUSHED
                 }
-            }
-            else if (cur_X_ButtonState) {                             // when the "x" button on the gamepad is pressed
+            } else if (cur_X_ButtonState) {                             // when the "x" button on the gamepad is pressed
                 if (!prev_X_ButtonState) {                            // when the previous "x" button was NOT pushed
                     selOptions[selIndex][1] = posResps[1];            // second response was selected, store the response
                     prev_X_ButtonState = true;                        // indicate that the previous X button state is PUSHED
-                }
-            }
-        }
-
-        telemetry.addLine().addData(selOptions[selIndex][0], selOptions[selIndex][1]);
-        telemetry.update();
-
-        // Wait one second
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * configForAuto4Options will save the response (selOptions) from a set of 4 possible responses (posResps)
-     * a given prompt (selPrompt)
-     *
-     * @param selPrompt The given configuration prompt
-     * @param posResps The possible responses to a given configuration prompt
-     * @param selIndex The position within selOptions array in which to store the responses
-     * @param selOptions Where to store the configuration prompt and response
-     */
-    public void configForAuto4Options(String selPrompt, String[] posResps, int selIndex, String[][] selOptions) {
-
-        // Let the user Select
-        gamepad1.reset();
-
-        prev_B_ButtonState = false;
-        prev_X_ButtonState = false;
-        prev_A_ButtonState = false;
-        prev_Y_ButtonState = false;
-        cur_B_ButtonState = false;
-        cur_X_ButtonState = false;
-        cur_A_ButtonState = false;
-        cur_Y_ButtonState = false;
-
-        selOptions[selIndex][0] = selPrompt;
-
-        // Prompt User for Selection
-        telemetry.addLine(selPrompt);
-        telemetry.addLine("Press B for " + posResps[0] + " or X for " + posResps[1]
-                + " or A for " + posResps[2] + " or Y for " + posResps[3]);
-        telemetry.update();
-
-        while (!(prev_B_ButtonState | prev_X_ButtonState | prev_A_ButtonState | prev_Y_ButtonState)) {
-
-            cur_B_ButtonState = gamepad1.b;                           // get the current state of button b
-            cur_X_ButtonState = gamepad1.x;                           // get the current state of button x
-            cur_A_ButtonState = gamepad1.a;                           // get the current state of button a
-            cur_Y_ButtonState = gamepad1.y;                           // get the current state of button y
-
-            if (cur_B_ButtonState) {                                  // when the "b" button on the gamepad is pressed
-                if (!prev_B_ButtonState) {                            // when the previous "b" button was NOT pushed
-                    selOptions[selIndex][1] = posResps[0];            // first response was selected, store the response
-                    prev_B_ButtonState = true;                        // indicate that the previous B button state is PUSHED
-                }
-            }
-            else if (cur_X_ButtonState) {                             // when the "x" button on the gamepad is pressed
-                if (!prev_X_ButtonState) {                            // when the previous "x" button was NOT pushed
-                    selOptions[selIndex][1] = posResps[1];            // second response was selected, store the response
-                    prev_X_ButtonState = true;                        // indicate that the previous X button state is PUSHED
-                }
-            }
-            else if (cur_A_ButtonState) {                             // when the "a" button on the gamepad is pressed
-                if (!prev_A_ButtonState) {                            // when the previous "a" button was NOT pushed
-                    selOptions[selIndex][1] = posResps[2];            // third response was selected, store the response
-                    prev_A_ButtonState = true;                        // indicate that the previous A button state is PUSHED
-                }
-            }
-            else if (cur_Y_ButtonState) {                             // when the "y" button on the gamepad is pressed
-                if (!prev_Y_ButtonState) {                            // when the previous "y" button was NOT pushed
-                    selOptions[selIndex][1] = posResps[3];            // fourth response was selected, store the response
-                    prev_Y_ButtonState = true;                        // indicate that the previous Y button state is PUSHED
                 }
             }
         }
@@ -367,3 +230,13 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         }
     }
 }
+
+    /**
+     * configForAuto4Options will save the response (selOptions) from a set of 4 possible responses (posResps)
+     * a given prompt (selPrompt)
+     *
+     * @param selPrompt The given configuration prompt
+     * @param posResps The possible responses to a given configuration prompt
+     * @param selIndex The position within selOptions array in which to store the responses
+     * @param selOptions Where to store the configuration prompt and response
+     */
