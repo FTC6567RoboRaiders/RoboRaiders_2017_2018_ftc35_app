@@ -33,8 +33,8 @@ public class RobotTest {
     public Servo servoElbow = null;
     public Servo servoRelicWrist = null;
     public Servo servoRelicGripper = null;
-    public Servo servoGlyphRight = null;
-    public Servo servoGlyphLeft = null;
+    public Servo servoGlyphBoth = null;
+
 
     public ColorSensor colorSensor;
     //public DistanceSensor distanceSensor;
@@ -102,8 +102,8 @@ public class RobotTest {
         servoElbow = hwMap.get(Servo.class, "servo_Elbow");
         servoRelicWrist = hwMap.get(Servo.class, "servo_Relic_Wrist");
         servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
-        servoGlyphRight = hwMap.get(Servo.class, "servo_glyph_right");
-        servoGlyphLeft = hwMap.get(Servo.class, "servo_glyph_left");
+        servoGlyphBoth = hwMap.get(Servo.class, "servo_glyph_Both");
+
 
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
@@ -121,10 +121,10 @@ public class RobotTest {
 
         servoJewel.setPosition(0.1);
         servoElbow.setPosition(0.55);
-        servoRelicWrist.setPosition(0.0);
-        servoRelicGripper.setPosition(0.0);
-        servoGlyphRight.setPosition(0.45);
-        servoGlyphLeft.setPosition(0.45);
+        servoRelicWrist.setPosition(0.45);
+        servoRelicGripper.setPosition(1.0);
+        servoGlyphBoth.setPosition(1.0);
+
     }
 
     /**
@@ -148,8 +148,8 @@ public class RobotTest {
      */
     public void glyphGrabberOpen() {
 
-        servoGlyphLeft.setPosition(0.3);
-        servoGlyphRight.setPosition(0.6);
+        servoGlyphBoth.setPosition(1);
+
     }
 
     /**
@@ -157,8 +157,8 @@ public class RobotTest {
      */
     public void glyphGrabberClose() {
 
-        servoGlyphLeft.setPosition(0.45);
-        servoGlyphRight.setPosition(0.45);
+        servoGlyphBoth.setPosition(0.0);
+
     }
 
     /**
@@ -194,10 +194,7 @@ public class RobotTest {
      */
     public void wristDown() {
 
-        double wristPosition = servoRelicWrist.getPosition();
-
-        wristPosition = wristPosition - 0.01;
-        servoRelicWrist.setPosition(wristPosition);
+       servoRelicWrist.setPosition(0.45);
     }
 
     /**
