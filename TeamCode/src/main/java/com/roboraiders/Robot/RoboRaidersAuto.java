@@ -440,16 +440,16 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         encodersMove(bot, 1, 0.5, "forward"); //moves one inch forward
         Thread.sleep(1000);
 
-        bot.expelGlyph(bot); //glyph is expelled
+        bot.glyphGrabberOpen(); //releases the glyph
         Thread.sleep(500);
 
-        encodersMove(bot, 3, 0.5, "backward"); //moves three inches backward
+        encodersMove(bot, 4, 0.5, "backward"); //moves four inches backward
         Thread.sleep(500);
 
         imuTurn(bot, 180, 0.5, "right"); //turns 180 degrees right
         Thread.sleep(500);
 
-        encodersMove(bot, 6, 0.5, "backward"); //moves six inches backward
+        encodersMove(bot, 7, 0.5, "backward"); //moves seven inches backward
         Thread.sleep(500);
 
         encodersMove(bot, 1, 0.5, "forward"); //moves one inch forward

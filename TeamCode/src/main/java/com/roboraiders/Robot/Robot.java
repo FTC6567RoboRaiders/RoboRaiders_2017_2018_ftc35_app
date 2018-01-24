@@ -121,7 +121,7 @@ public class Robot {
         servoElbow.setPosition(0.55);
         servoRelicWrist.setPosition(0.45);
         servoRelicGripper.setPosition(1.0);
-        servoGlyphBoth.setPosition(1.0);
+        servoGlyphBoth.setPosition(0.0);
     }
 
     /**
@@ -389,14 +389,5 @@ public class Robot {
     public double getJewelServoPosition() {
 
         return servoJewel.getPosition();
-    }
-
-    /**
-     * This method expels a glyph in autonomous
-     *
-     * @throws InterruptedException
-     */
-    public void expelGlyph(Robot bot) throws InterruptedException {
-
     }
 }
