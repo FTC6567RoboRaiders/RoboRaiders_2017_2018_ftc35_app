@@ -46,7 +46,7 @@ public class Robot {
     public BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
     public Orientation angles;
 
-    /** Constructor for RobotTest class, current does nothing but is needed since every class needs a constructor
+    /** Constructor for Robot class, current does nothing but is needed since every class needs a constructor
      *
      */
     public Robot(){
@@ -174,60 +174,6 @@ public class Robot {
     public void setRelicMotorPower(double relic) {
 
         motorRelic.setPower(relic);
-    }
-
-    /**
-     * This method will open the servo arms all of the way
-     */
-    public void armsVeryOpen() {
-
-        servoArmLeft.setPosition(0.0);
-        servoArmRight.setPosition(0.9);
-    }
-
-    /**
-     * This method will open the servo arms
-     */
-    public void armsOpen() {
-
-        servoArmLeft.setPosition(0.45);
-        servoArmRight.setPosition(0.45);
-    }
-
-    /**
-     * This method will close the servo arms to capture a glyph
-     */
-    public void armsGlyph() {
-
-        servoArmLeft.setPosition(0.59);
-        servoArmRight.setPosition(0.23);
-    }
-
-    /**
-     * This method will close the servo arms all of the way
-     */
-    public void armsClose() {
-
-        servoArmLeft.setPosition(0.95);
-        servoArmRight.setPosition(0.0);
-    }
-
-    /**
-     * This method will open the servo hands to capture a glyph
-     */
-    public void handsGlyph() {
-
-        servoHandLeft.setPosition(0.45);
-        servoHandRight.setPosition(0.0);
-    }
-
-    /**
-     * This method will close the servo hands all of the way
-     */
-    public void handsClose() {
-
-        servoHandLeft.setPosition(0.2);
-        servoHandRight.setPosition(0.5);
     }
 
     /**
