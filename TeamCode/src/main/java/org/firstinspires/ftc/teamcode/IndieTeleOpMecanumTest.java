@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
-import com.roboraiders.Robot.Robot;
 import com.roboraiders.Robot.RobotTest;
 
 /**
@@ -25,7 +24,7 @@ public class IndieTeleOpMecanumTest extends OpMode {
     float RightBack;  // Power for right back motor
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
-    float glyph;      // Power for the two glyph in motors
+    float glyphLift;  // Power for the glyph lift motor
     float relic;      // Power for relic motor
     float maxpwr;     // Maximum power of the four motors
     double powerFactor = 1;
@@ -43,18 +42,10 @@ public class IndieTeleOpMecanumTest extends OpMode {
     public boolean prevStateRightBumper2 = false;
     public boolean currStateLeftBumper2 = false;
     public boolean prevStateLeftBumper2 = false;
-    public boolean currStateRightTrigger = false;
-    public boolean prevStateRightTrigger = false;
-    public boolean currStateLeftTrigger = false;
-    public boolean prevStateLeftTrigger = false;
     public boolean currStateDpadLeft = false;
     public boolean prevStateDpadLeft = false;
     public boolean currStateDpadRight = false;
     public boolean prevStateDpadRight = false;
-    public boolean currStateB = false;
-    public boolean prevStateB = false;
-    public boolean currStateX = false;
-    public boolean prevStateX = false;
 
     @Override
     public void init() {
@@ -101,7 +92,8 @@ public class IndieTeleOpMecanumTest extends OpMode {
 
             powerFactor = 0.5;
             prevStateLeftBumper1 = currStateLeftBumper1;
-        } else if (!currStateLeftBumper1 && currStateLeftBumper1 != prevStateLeftBumper1) {
+        }
+        else if (!currStateLeftBumper1 && currStateLeftBumper1 != prevStateLeftBumper1) {
 
             prevStateLeftBumper1 = currStateLeftBumper1;
         }
@@ -110,7 +102,8 @@ public class IndieTeleOpMecanumTest extends OpMode {
 
             powerFactor = 1;
             prevStateRightBumper1 = currStateRightBumper1;
-        } else if (!currStateRightBumper1 && currStateRightBumper1 != prevStateRightBumper1) {
+        }
+        else if (!currStateRightBumper1 && currStateRightBumper1 != prevStateRightBumper1) {
 
             prevStateRightBumper1 = currStateRightBumper1;
         }
@@ -145,7 +138,8 @@ public class IndieTeleOpMecanumTest extends OpMode {
                 nudging = true; // ...nudging is true, so the robot cannot nudge anymore. This allows for 5 loop cycles
                 // of movement...
             }
-        } else { // ...else if nudging is true (the robot is no longer being nudged)...
+        }
+        else { // ...else if nudging is true (the robot is no longer being nudged)...
 
             nudging = false; // ...nudging is returned to false, which allows nudging again if any of the dpad buttons
             // are pressed on the first controller...
@@ -154,16 +148,16 @@ public class IndieTeleOpMecanumTest extends OpMode {
         }
 
         // "Set Glyph Lift Motor Power" functionality
-        glyph = -gamepad2.right_stick_y;
-        glyph = Range.clip(glyph, -1, 1);
-        glyph = (float) scaleInput(glyph);
-        robot.setGlyphLiftPower(glyph * 0.75);
+        glyphLift = -gamepad2.right_stick_y;
+        glyphLift = Range.clip(glyphLift, -1, 1);
+        glyphLift = (float) scaleInput(glyphLift);
+        robot.setGlyphLiftMotorPower(glyphLift * 0.75);
 
-        // "GlyphGrabberOpen" functionality
+        // "Glyph Grabber Open" functionality
         currStateRightBumper2 = gamepad2.right_bumper;
         if (currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
 
-            robot.GlyphGrabberOpen();
+            robot.glyphGrabberOpen();
             prevStateRightBumper2 = currStateRightBumper2;
         }
         else if (!currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
@@ -171,11 +165,11 @@ public class IndieTeleOpMecanumTest extends OpMode {
             prevStateRightBumper2 = currStateRightBumper2;
         }
 
-        // "GlyphGrabberClose" functionality
+        // "Glyph Grabber Close" functionality
         currStateLeftBumper2 = gamepad2.left_bumper;
         if (currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
 
-            robot.GlyphGrabberClose();
+            robot.glyphGrabberClose();
             prevStateLeftBumper2 = currStateLeftBumper2;
         }
         else if (!currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
@@ -195,7 +189,8 @@ public class IndieTeleOpMecanumTest extends OpMode {
 
             robot.wristUp();
             prevStateDpadUp = currStateDpadUp;
-        } else if (!currStateDpadUp && currStateDpadUp != prevStateDpadUp) {
+        }
+        else if (!currStateDpadUp && currStateDpadUp != prevStateDpadUp) {
 
             prevStateDpadUp = currStateDpadUp;
         }
@@ -214,7 +209,8 @@ public class IndieTeleOpMecanumTest extends OpMode {
 
                 wristNudging = true;
             }
-        } else {
+        }
+        else {
 
             wristNudging = false;
             wristNudgeCount = 0;
@@ -226,7 +222,8 @@ public class IndieTeleOpMecanumTest extends OpMode {
 
             robot.gripperOpen();
             prevStateDpadLeft = currStateDpadLeft;
-        } else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
+        }
+        else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
 
             prevStateDpadLeft = currStateDpadLeft;
         }
@@ -237,7 +234,8 @@ public class IndieTeleOpMecanumTest extends OpMode {
 
             robot.gripperClose();
             prevStateDpadRight = currStateDpadRight;
-        } else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
+        }
+        else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
 
             prevStateDpadRight = currStateDpadRight;
         }

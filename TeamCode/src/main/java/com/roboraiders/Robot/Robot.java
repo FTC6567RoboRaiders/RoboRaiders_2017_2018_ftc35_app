@@ -3,12 +3,14 @@ package com.roboraiders.Robot;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 /**
@@ -47,6 +49,8 @@ public class Robot {
 
     public Servo servoJewel = null;
     public Servo servoElbow = null;
+    public Servo servoArmLeft = null;
+    public Servo servoArmRight = null;
     public Servo servoRelicWrist = null;
     public Servo servoRelicGripper = null;
     public Servo servoHandLeft = null;
@@ -141,6 +145,8 @@ public class Robot {
 
         servoJewel.setPosition(0.1);
         servoElbow.setPosition(0.55);
+        servoArmLeft.setPosition(0.95);
+        servoArmRight.setPosition(0.0);
         servoRelicWrist.setPosition(0.0);
         servoRelicGripper.setPosition(0.0);
         servoHandLeft.setPosition(0.2);
@@ -182,6 +188,60 @@ public class Robot {
     public void setRelicMotorPower(double relic) {
 
         motorRelic.setPower(relic);
+    }
+
+    /**
+     * This method will open the servo arms all of the way
+     */
+    public void armsVeryOpen() {
+
+        servoArmLeft.setPosition(0.0);
+        servoArmRight.setPosition(0.9);
+    }
+
+    /**
+     * This method will open the servo arms
+     */
+    public void armsOpen() {
+
+        servoArmLeft.setPosition(0.45);
+        servoArmRight.setPosition(0.45);
+    }
+
+    /**
+     * This method will close the servo arms to capture a glyph
+     */
+    public void armsGlyph() {
+
+        servoArmLeft.setPosition(0.59);
+        servoArmRight.setPosition(0.23);
+    }
+
+    /**
+     * This method will close the servo arms all of the way
+     */
+    public void armsClose() {
+
+        servoArmLeft.setPosition(0.95);
+        servoArmRight.setPosition(0.0);
+    }
+
+    /**
+     * This method will open the servo hands to capture a glyph
+     */
+    public void handsGlyph() {
+
+        servoHandLeft.setPosition(0.45);
+        servoHandRight.setPosition(0.0);
+    }
+
+    /**
+     * This method will close the servo hands all of the way
+     */
+    public void handsClose() {
+
+        servoHandLeft.setPosition(0.2);
+        servoHandRight.setPosition(0.5);
     }
 
     /**
@@ -264,31 +324,6 @@ public class Robot {
         motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-
-    /**
-     * This method will set the mode of all of the motors to run to position
-     */
-    /*public void runToPosition() {
-
-        motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorBackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motorBackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    }*/
-
-    /**
-     * This method will set the target position of all of the motors to COUNTS
-     *
-     * @param COUNTS - the number of encoder counts the robot will travel that is equal
-     * to the number of inches
-     */
-    /*public void setTargetPosition(double COUNTS) {
-
-        motorFrontLeft.setTargetPosition((int) COUNTS);
-        motorFrontRight.setTargetPosition((int) COUNTS);
-        motorBackLeft.setTargetPosition((int) COUNTS);
-        motorBackRight.setTargetPosition((int) COUNTS);
-    }*/
 
     /**
      * This method will set the mode of all of the drive train motors to run without encoder
