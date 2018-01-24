@@ -177,6 +177,60 @@ public class Robot {
     }
 
     /**
+     * This method will open the servo arms all of the way
+     */
+    public void armsVeryOpen() {
+
+        servoArmLeft.setPosition(0.0);
+        servoArmRight.setPosition(0.9);
+    }
+
+    /**
+     * This method will open the servo arms
+     */
+    public void armsOpen() {
+
+        servoArmLeft.setPosition(0.45);
+        servoArmRight.setPosition(0.45);
+    }
+
+    /**
+     * This method will close the servo arms to capture a glyph
+     */
+    public void armsGlyph() {
+
+        servoArmLeft.setPosition(0.59);
+        servoArmRight.setPosition(0.23);
+    }
+
+    /**
+     * This method will close the servo arms all of the way
+     */
+    public void armsClose() {
+
+        servoArmLeft.setPosition(0.95);
+        servoArmRight.setPosition(0.0);
+    }
+
+    /**
+     * This method will open the servo hands to capture a glyph
+     */
+    public void handsGlyph() {
+
+        servoHandLeft.setPosition(0.45);
+        servoHandRight.setPosition(0.0);
+    }
+
+    /**
+     * This method will close the servo hands all of the way
+     */
+    public void handsClose() {
+
+        servoHandLeft.setPosition(0.2);
+        servoHandRight.setPosition(0.5);
+    }
+
+    /**
      * This method will raise the wrist servo
      */
     public void wristUp() {

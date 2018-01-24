@@ -6,11 +6,7 @@ import com.qualcomm.robotcore.util.Range;
 import com.roboraiders.Robot.Robot;
 
 /**
- *
- * This is a class that is a DIRECT copy (as of 1/17/18) of the IndieTeleopMecanum class.
- * This class was created to test new prototypes on the robot without changing the current teleop code.
- *
- * Created by Alex Snyder on 1/17/18
+ * Created by Jason Sember on 9/23/2017.
  */
 
 @TeleOp
@@ -115,20 +111,16 @@ public class IndieTeleOpMecanum extends OpMode {
 
             if (!nudging) { // ...if nudging is false (the robot is still being nudged)...
 
-                if (gamepad1.dpad_up)
-                    robot.setDriveMotorPower(0.5, 0.5, 0.5, 0.5); // ...if 'up' was pressed, the robot moves forward...
+                if (gamepad1.dpad_up) robot.setDriveMotorPower(0.5, 0.5, 0.5 ,0.5); // ...if 'up' was pressed, the robot moves forward...
 
-                else if (gamepad1.dpad_down)
-                    robot.setDriveMotorPower(-0.5, -0.5, -0.5, -0.5); // ...else if 'down' was pressed, the robot
+                else if (gamepad1.dpad_down) robot.setDriveMotorPower(-0.5, -0.5, -0.5, -0.5); // ...else if 'down' was pressed, the robot
                     // moves backward...
 
-                else if (gamepad1.dpad_left)
-                    robot.setDriveMotorPower(-0.6, 0.6, 0.6, -0.6); // ...else if 'left' was pressed, the robot
+                else if (gamepad1.dpad_left) robot.setDriveMotorPower(-0.6, 0.6, 0.6, -0.6); // ...else if 'left' was pressed, the robot
                     // strafes left...
 
-                else if (gamepad1.dpad_right)
-                    robot.setDriveMotorPower(0.6, -0.6, -0.6, 0.6); // ...else if 'right' was pressed, the robot
-                // strafes right...
+                else if (gamepad1.dpad_right) robot.setDriveMotorPower(0.6, -0.6, -0.6, 0.6); // ...else if 'right' was pressed, the robot
+                    // strafes right...
             }
 
             nudgeCount++; // ...after this one loop cycle, the number of the nudgeCount goes up by one...
