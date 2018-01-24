@@ -6,7 +6,11 @@ import com.qualcomm.robotcore.util.Range;
 import com.roboraiders.Robot.Robot;
 
 /**
- * Created by Jason Sember on 9/23/2017.
+ *
+ * This is a class that is a DIRECT copy (as of 1/17/18) of the IndieTeleopMecanum class.
+ * This class was created to test new prototypes on the robot without changing the current teleop code.
+ *
+ * Created by Alex Snyder on 1/17/18
  */
 
 @TeleOp
@@ -20,7 +24,7 @@ public class IndieTeleOpMecanum extends OpMode {
     float RightBack;  // Power for right back motor
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
-    float glyph;      // Power for the two glyph in motors
+    float glyphLift;  // Power for the glyph lift motor
     float relic;      // Power for relic motor
     float maxpwr;     // Maximum power of the four motors
     double powerFactor = 1;
@@ -38,18 +42,10 @@ public class IndieTeleOpMecanum extends OpMode {
     public boolean prevStateRightBumper2 = false;
     public boolean currStateLeftBumper2 = false;
     public boolean prevStateLeftBumper2 = false;
-    public boolean currStateRightTrigger = false;
-    public boolean prevStateRightTrigger = false;
-    public boolean currStateLeftTrigger = false;
-    public boolean prevStateLeftTrigger = false;
     public boolean currStateDpadLeft = false;
     public boolean prevStateDpadLeft = false;
     public boolean currStateDpadRight = false;
     public boolean prevStateDpadRight = false;
-    public boolean currStateB = false;
-    public boolean prevStateB = false;
-    public boolean currStateX = false;
-    public boolean prevStateX = false;
 
     @Override
     public void init() {
@@ -119,16 +115,20 @@ public class IndieTeleOpMecanum extends OpMode {
 
             if (!nudging) { // ...if nudging is false (the robot is still being nudged)...
 
-                if (gamepad1.dpad_up) robot.setDriveMotorPower(0.5, 0.5, 0.5 ,0.5); // ...if 'up' was pressed, the robot moves forward...
+                if (gamepad1.dpad_up)
+                    robot.setDriveMotorPower(0.5, 0.5, 0.5, 0.5); // ...if 'up' was pressed, the robot moves forward...
 
-                else if (gamepad1.dpad_down) robot.setDriveMotorPower(-0.5, -0.5, -0.5, -0.5); // ...else if 'down' was pressed, the robot
+                else if (gamepad1.dpad_down)
+                    robot.setDriveMotorPower(-0.5, -0.5, -0.5, -0.5); // ...else if 'down' was pressed, the robot
                     // moves backward...
 
-                else if (gamepad1.dpad_left) robot.setDriveMotorPower(-0.6, 0.6, 0.6, -0.6); // ...else if 'left' was pressed, the robot
+                else if (gamepad1.dpad_left)
+                    robot.setDriveMotorPower(-0.6, 0.6, 0.6, -0.6); // ...else if 'left' was pressed, the robot
                     // strafes left...
 
-                else if (gamepad1.dpad_right) robot.setDriveMotorPower(0.6, -0.6, -0.6, 0.6); // ...else if 'right' was pressed, the robot
-                    // strafes right...
+                else if (gamepad1.dpad_right)
+                    robot.setDriveMotorPower(0.6, -0.6, -0.6, 0.6); // ...else if 'right' was pressed, the robot
+                // strafes right...
             }
 
             nudgeCount++; // ...after this one loop cycle, the number of the nudgeCount goes up by one...
@@ -147,11 +147,17 @@ public class IndieTeleOpMecanum extends OpMode {
             nudgeCount = 0; // ...and nudgeCount is reset to 0."
         }
 
-        // "Arms Open" functionality
+        // "Set Glyph Lift Motor Power" functionality
+        glyphLift = -gamepad2.right_stick_y;
+        glyphLift = Range.clip(glyphLift, -1, 1);
+        glyphLift = (float) scaleInput(glyphLift);
+        robot.setGlyphLiftMotorPower(glyphLift * 0.75);
+
+        // "Glyph Grabber Open" functionality
         currStateRightBumper2 = gamepad2.right_bumper;
         if (currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
 
-            robot.armsOpen();
+            robot.glyphGrabberOpen();
             prevStateRightBumper2 = currStateRightBumper2;
         }
         else if (!currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
@@ -159,85 +165,17 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateRightBumper2 = currStateRightBumper2;
         }
 
-        // "Arms Glyph" functionality
+        // "Glyph Grabber Close" functionality
         currStateLeftBumper2 = gamepad2.left_bumper;
         if (currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
 
-            robot.armsGlyph();
+            robot.glyphGrabberClose();
             prevStateLeftBumper2 = currStateLeftBumper2;
         }
         else if (!currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
 
             prevStateLeftBumper2 = currStateLeftBumper2;
         }
-
-        // "Arms Very Open" functionality
-        if (gamepad2.right_trigger > 0.5) {
-
-            currStateRightTrigger = true;
-        }
-        else {
-
-            currStateRightTrigger = false;
-        }
-        if (currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
-
-            robot.armsVeryOpen();
-            prevStateRightTrigger = currStateRightTrigger;
-        }
-        else if (!currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
-
-            prevStateRightTrigger = currStateRightTrigger;
-        }
-
-        // "Arms Close" functionality
-        if (gamepad2.left_trigger > 0.5) {
-
-            currStateLeftTrigger = true;
-        }
-        else {
-
-            currStateLeftTrigger = false;
-        }
-        if (currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
-
-            robot.armsClose();
-            prevStateLeftTrigger = currStateLeftTrigger;
-        }
-        else if (!currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
-
-            prevStateLeftTrigger = currStateLeftTrigger;
-        }
-
-        // "Hands Glyph" functionality
-        currStateB = gamepad2.b;
-        if (currStateB && currStateB != prevStateB) {
-
-            robot.handsGlyph();
-            prevStateB = currStateB;
-        }
-        else if (!currStateB && currStateB != prevStateB) {
-
-            prevStateB = currStateB;
-        }
-
-        // "Hands Close" functionality
-        currStateX = gamepad2.x;
-        if (currStateX && currStateX != prevStateX) {
-
-            robot.handsClose();
-            prevStateX = currStateX;
-        }
-        else if (!currStateX && currStateX != prevStateX) {
-
-            prevStateX = currStateX;
-        }
-
-        // "Set Glyph In Motor Power" functionality
-        glyph = -gamepad2.right_stick_y;
-        glyph = Range.clip(glyph, -1, 1);
-        glyph = (float) scaleInput(glyph);
-        robot.setGlyphInMotorPower(glyph * 0.75);
 
         // "Set Relic Motor Power" functionality
         relic = gamepad2.left_stick_y;
@@ -308,7 +246,8 @@ public class IndieTeleOpMecanum extends OpMode {
 
     }
 
-    /** scaleInput will attempt to smooth or scale joystick input when driving the
+    /**
+     * scaleInput will attempt to smooth or scale joystick input when driving the
      * robot in teleop mode.  By smoothing the joystick input more controlled movement
      * of the robot will occur, especially at lower speeds.
      * <br><br>
@@ -321,48 +260,48 @@ public class IndieTeleOpMecanum extends OpMode {
      * <br>
      * Stepping through the algorithm
      * <ol>
-     *     <li> 0.76*16 = 12.16, but because we cast the calculations as an integer (int)
-     *     we lose the .16 so the value just is 12, variable index now contains 12.  <b>Note:</b>
-     *     the index variable will tell us which of the array entries in the scaleArray array to
-     *     use.</li>
-     *     <li> Check if the index is negative (less than zero), in this example the
-     *     variable index contains a positive 12</li>
-     *     <li> Check if the variable index is greater than 16, this is done so the
-     *     algorithm does not exceed the number of entries in the scaleArray array</li>
-     *     <li> Initialize the variable dScale to 0.0 (not really needed but we are
-     *     just being safe)</li>
-     *     <li> If dVal (value passed to this method) was initially negative, then
-     *     set the variable dScale to the negative of the scaleArray(index), in this example
-     *     dVal was initially 0.76 so not negative</li>
-     *     <li> If dVal (value passed to this method) was initially positive, then
-     *     set the variable dScale to the scaleArray(index), since index is 12, then
-     *     scaleArray(12) = 0.60.  <b>Remember, in java the first array index is 0,
-     *     this is why scaleArray(12) is not 0.50</b></li>
-     *     <li> Return the dScale value (0.60)</li>
+     * <li> 0.76*16 = 12.16, but because we cast the calculations as an integer (int)
+     * we lose the .16 so the value just is 12, variable index now contains 12.  <b>Note:</b>
+     * the index variable will tell us which of the array entries in the scaleArray array to
+     * use.</li>
+     * <li> Check if the index is negative (less than zero), in this example the
+     * variable index contains a positive 12</li>
+     * <li> Check if the variable index is greater than 16, this is done so the
+     * algorithm does not exceed the number of entries in the scaleArray array</li>
+     * <li> Initialize the variable dScale to 0.0 (not really needed but we are
+     * just being safe)</li>
+     * <li> If dVal (value passed to this method) was initially negative, then
+     * set the variable dScale to the negative of the scaleArray(index), in this example
+     * dVal was initially 0.76 so not negative</li>
+     * <li> If dVal (value passed to this method) was initially positive, then
+     * set the variable dScale to the scaleArray(index), since index is 12, then
+     * scaleArray(12) = 0.60.  <b>Remember, in java the first array index is 0,
+     * this is why scaleArray(12) is not 0.50</b></li>
+     * <li> Return the dScale value (0.60)</li>
      * </ol>
-     *
+     * <p>
      * <br><br>
      * <b>Example 2</b> dVal (the input value or value passed to this method) is set to -0.43
      * <br>
      * Stepping through the algorithm
      * <ol>
-     *     <li> -0.43*16 = -6.88, but because we cast the calculations as an integer (int)
-     *     we lose the .88 so the value just is 12, variable index now contains -6.  <b>Note:</b>
-     *     the index variable will tell us which of the array entries in the scaleArray array to
-     *     use.</li>
-     *     <li> Check if the index is negative (less than zero), in this example the
-     *     variable index is negative, so make the negative a negative (essentially
-     *     multiplying the variable index by -1, the variable index now contains 6</li>
-     *     <li> Check if the variable index is greater than 16, this is done so the
-     *     algorithm does not exceed the number of entries in the scaleArray array</li>
-     *     <li> Initialize the variable dScale to 0.0 (not really needed but we are
-     *     just being safe)</li>
-     *     <li> If dVal (value passed to this method) was initially negative, then
-     *     set the variable dScale to the negative of the scaleArray(index), in this example
-     *     dVal was initially -0.43, so make sure to return a negative value of scaleArray(6).
-     *     scaleArray(6) is equal to 0.18 and the negative of that is -0.18 <b>Remember,
-     *     in java the first array index is 0, this is why scaleArray(6) is not 0.15</b></li>
-     *     <li> Return the dScale value (-0.18)</li>
+     * <li> -0.43*16 = -6.88, but because we cast the calculations as an integer (int)
+     * we lose the .88 so the value just is 12, variable index now contains -6.  <b>Note:</b>
+     * the index variable will tell us which of the array entries in the scaleArray array to
+     * use.</li>
+     * <li> Check if the index is negative (less than zero), in this example the
+     * variable index is negative, so make the negative a negative (essentially
+     * multiplying the variable index by -1, the variable index now contains 6</li>
+     * <li> Check if the variable index is greater than 16, this is done so the
+     * algorithm does not exceed the number of entries in the scaleArray array</li>
+     * <li> Initialize the variable dScale to 0.0 (not really needed but we are
+     * just being safe)</li>
+     * <li> If dVal (value passed to this method) was initially negative, then
+     * set the variable dScale to the negative of the scaleArray(index), in this example
+     * dVal was initially -0.43, so make sure to return a negative value of scaleArray(6).
+     * scaleArray(6) is equal to 0.18 and the negative of that is -0.18 <b>Remember,
+     * in java the first array index is 0, this is why scaleArray(6) is not 0.15</b></li>
+     * <li> Return the dScale value (-0.18)</li>
      * </ol>
      *
      * @param dVal the value to be scaled -between -1.0 and 1.0
@@ -402,27 +341,26 @@ public class IndieTeleOpMecanum extends OpMode {
 
     /**
      * findMaxPower - finds the maximum power of four power values
+     *
      * @param pwr1 first power
      * @param pwr2 second power
      * @param pwr3 third power
      * @param pwr4 fourth power
-     *
      * @return maximum power of the four values
      * <B>Author(s):</B> Jason Sember and Steeeve
      */
     float findMaxPower(float pwr1, float pwr2, float pwr3, float pwr4) {
 
         float maxpwrA = Math.max(Math.abs(pwr1), Math.abs(pwr2));
-        float maxpwrB = Math.max (Math.abs(pwr3), Math.abs(pwr4));
+        float maxpwrB = Math.max(Math.abs(pwr3), Math.abs(pwr4));
         float maxpwr = Math.max(Math.abs(maxpwrA), Math.abs(maxpwrB));
 
-         if (maxpwr > 1.0) {
+        if (maxpwr > 1.0) {
 
-             return maxpwr;
-         }
-         else {
+            return maxpwr;
+        } else {
 
-             return 1;
-         }
+            return 1;
+        }
     }
 }

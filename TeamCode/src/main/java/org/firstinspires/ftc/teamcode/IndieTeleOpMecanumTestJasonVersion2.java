@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
-import com.roboraiders.Robot.RobotTest;
+import com.roboraiders.Robot.Robot;
 
 /**
  *
@@ -17,7 +17,7 @@ import com.roboraiders.Robot.RobotTest;
 
 public class IndieTeleOpMecanumTestJasonVersion2 extends OpMode {
 
-    public RobotTest robot = new RobotTest();
+    public Robot robot = new Robot();
 
     /* Define variables */
     float LeftBack;   // Power for left back motor
@@ -197,7 +197,7 @@ public class IndieTeleOpMecanumTestJasonVersion2 extends OpMode {
             prevStateDpadUp = currStateDpadUp;
         }
 
-
+        // "Relic Wrist Down" functionality
         currStateDpadDown = gamepad2.dpad_down;
         if (currStateDpadDown && currStateDpadDown != prevStateDpadDown) {
 
