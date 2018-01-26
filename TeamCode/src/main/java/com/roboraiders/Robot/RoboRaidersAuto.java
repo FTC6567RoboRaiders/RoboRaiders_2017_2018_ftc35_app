@@ -470,7 +470,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             distanceFromWall = bot.getDistance();
 
             telemetry.addData("mr_Range ", "%.2f inches", distanceFromWall);
-            telemetry.update();
 
             if (distanceFromWall < 12) {
 
@@ -499,12 +498,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 }
             }
 
-            telemetry.addData("mr_Range in", "%.2f in", distanceFromWall);
             telemetry.update();
         }
-
     }
-
 
     /**
      * This method will run the movement code in JewelCloseBlue for use in IndieAutonomousOptions
