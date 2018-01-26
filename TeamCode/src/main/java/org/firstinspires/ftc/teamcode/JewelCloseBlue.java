@@ -19,7 +19,7 @@ public class JewelCloseBlue extends RoboRaidersAuto {
 
         robot.initialize(hardwareMap);
         robot.initializeServos();
-        alignRobot();
+        alignRobot(robot);
         telemetry.addData("Initialized", true);
         telemetry.update();
 
