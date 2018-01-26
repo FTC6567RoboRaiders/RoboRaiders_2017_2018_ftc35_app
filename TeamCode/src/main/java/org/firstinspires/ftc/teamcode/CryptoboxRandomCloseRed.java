@@ -24,6 +24,7 @@ public class CryptoboxRandomCloseRed extends RoboRaidersAuto {
         telemetry.update();
 
         waitForStart();
+        robot.liftGlyph();
 
         lowerArm(robot); //jewel is selected
         selectJewel(robot, "red");

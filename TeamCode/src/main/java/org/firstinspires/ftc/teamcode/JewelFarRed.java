@@ -24,6 +24,7 @@ public class JewelFarRed extends RoboRaidersAuto {
         telemetry.update();
 
         waitForStart();
+        robot.liftGlyph();
 
         lowerArm(robot);
         selectJewel(robot, "red");

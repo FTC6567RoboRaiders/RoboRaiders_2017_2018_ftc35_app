@@ -26,6 +26,7 @@ public class CryptoboxVuforiaFarBlue extends RoboRaidersAuto {
         telemetry.update();
 
         waitForStart();
+        robot.liftGlyph();
 
         lowerArm(robot);
         selectJewel(robot, "blue");

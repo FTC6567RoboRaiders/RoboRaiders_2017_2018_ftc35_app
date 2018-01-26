@@ -113,7 +113,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         }
 
         // Parking and/or Cryptobox
-        else if (selectedOptions[4][1].equals("Just Park")) {
+        if (selectedOptions[4][1].equals("Just Park")) {
 
             if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("close")) {
 

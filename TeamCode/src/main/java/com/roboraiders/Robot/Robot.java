@@ -103,7 +103,7 @@ public class Robot {
         servoElbow = hwMap.get(Servo.class, "servo_Elbow");
         servoRelicWrist = hwMap.get(Servo.class, "servo_Relic_Wrist");
         servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
-        servoGlyphBoth = hwMap.get(Servo.class, "servo_glyph_Both");
+        servoGlyphBoth = hwMap.get(Servo.class, "servo_Glyph_Both");
 
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
@@ -121,9 +121,7 @@ public class Robot {
 
         servoJewel.setPosition(0.1);
         servoElbow.setPosition(0.55);
-        servoRelicWrist.setPosition(0.45);
-        servoRelicGripper.setPosition(1.0);
-        servoGlyphBoth.setPosition(0.0);
+        servoGlyphBoth.setPosition(1.0);
     }
 
     /**
@@ -183,7 +181,7 @@ public class Robot {
      */
     public void wristUp() {
 
-        servoRelicWrist.setPosition(1.0);
+        servoRelicWrist.setPosition(0.6);
     }
 
     /**
@@ -191,7 +189,7 @@ public class Robot {
      */
     public void wristDown() {
 
-       servoRelicWrist.setPosition(0.45);
+       servoRelicWrist.setPosition(1.0);
     }
 
     /**
@@ -398,8 +396,11 @@ public class Robot {
      */
     public void liftGlyph() throws InterruptedException {
 
-        motorGlyphLift.setPower(0.5);
+        glyphGrabberClose();
         Thread.sleep(500);
+
+        motorGlyphLift.setPower(0.5);
+        Thread.sleep(750);
 
         motorGlyphLift.setPower(0.0);
         Thread.sleep(250);
