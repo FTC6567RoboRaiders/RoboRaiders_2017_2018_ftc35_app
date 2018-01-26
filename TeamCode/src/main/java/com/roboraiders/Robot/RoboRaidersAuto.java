@@ -498,8 +498,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                     prev_Y_ButtonState = true;                        // indicate that the previous y button state is PUSHED
                 }
             }
+
+            telemetry.addData("mr_Range in", "%.2f in", distanceFromWall);
+            telemetry.update();
         }
+
     }
+
 
     /**
      * This method will run the movement code in JewelCloseBlue for use in IndieAutonomousOptions
