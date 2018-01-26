@@ -21,7 +21,7 @@ public class CryptoboxVuforiaCloseRed extends RoboRaidersAuto {
         robot.initialize(hardwareMap);
         vuforiaInitialization(hardwareMap);
         robot.initializeServos();
-        alignRobot();
+        alignRobot(robot);
         telemetry.addData("Initialized", true);
         telemetry.update();
 

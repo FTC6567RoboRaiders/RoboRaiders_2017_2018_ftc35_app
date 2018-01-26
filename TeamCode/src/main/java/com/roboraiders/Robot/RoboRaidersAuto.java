@@ -502,9 +502,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             telemetry.addData("mr_Range in", "%.2f in", distanceFromWall);
             telemetry.update();
         }
-
     }
-
 
     /**
      * This method will run the movement code in JewelCloseBlue for use in IndieAutonomousOptions
