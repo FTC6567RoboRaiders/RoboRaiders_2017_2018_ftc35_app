@@ -16,9 +16,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 /**
  *
- * This is a class that is a DIRECT copy (as of 1/17/18) of the Robot class.
- * This class was created to test new prototypes on the robot without changing the current Robot class code.
- *
  * Created by Alex Snyder on 1/17/18
  */
 
@@ -339,7 +336,7 @@ public class Robot {
      */
     public double getDistance() {
 
-        return distanceSensor.getDistance(DistanceUnit.CM);
+        return distanceSensor.getDistance(DistanceUnit.INCH);
     }
 
     /**

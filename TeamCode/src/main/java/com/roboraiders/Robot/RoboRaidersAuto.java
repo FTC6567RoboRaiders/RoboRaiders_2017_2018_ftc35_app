@@ -459,7 +459,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         Thread.sleep(500);
     }
 
-    public void alignRobot() {
+    /**
+     * This method aligns the robot during initialization using a Modern Robotics Distance Sensor.
+     *
+     * @param bot
+     */
+
+    public void alignRobot(Robot bot) {
 
         ModernRoboticsI2cRangeSensor mrRange;
 
@@ -468,7 +474,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         boolean prev_Y_ButtonState;
 
         double distanceFromWall;
-
 
         gamepad1.reset();
 
@@ -485,7 +490,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         while (!prev_Y_ButtonState) {
 
-            distanceFromWall = mrRange.getDistance(DistanceUnit.INCH);
+            distanceFromWall = bot.getDistance();
 
             if (distanceFromWall < 12) {
 
@@ -521,7 +526,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 }
             }
 
-            telemetry.addData("mr_Range cm", "%.2f cm", distanceFromWall);
+            telemetry.addData("mr_Range in", "%.2f in", distanceFromWall);
             telemetry.update();
 
         }
