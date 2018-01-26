@@ -51,6 +51,7 @@ import java.util.Locale;
  * @see <a href="http://modernroboticsinc.com/range-sensor">MR Range Sensor</a>
  */
 @Autonomous(name = "Sensor: MR/REV Range and Distance", group = "Sensor")
+@Disabled
 
 public class HubBotRangeSensorTest extends LinearOpMode {
 

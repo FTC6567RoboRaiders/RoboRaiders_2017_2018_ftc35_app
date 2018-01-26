@@ -1,7 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.configuration.DistributorInfo;
 import com.qualcomm.robotcore.util.Range;
 import com.roboraiders.Robot.Robot;
 
@@ -14,6 +16,7 @@ import com.roboraiders.Robot.Robot;
  */
 
 @TeleOp
+@Disabled
 
 public class IndieTeleOpMecanumTestJasonVersion2 extends OpMode {
 

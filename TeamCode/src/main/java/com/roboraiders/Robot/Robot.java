@@ -189,7 +189,7 @@ public class Robot {
      */
     public void wristDown() {
 
-       servoRelicWrist.setPosition(1.0);
+       servoRelicWrist.setPosition(0.1);
     }
 
     /**
@@ -197,7 +197,7 @@ public class Robot {
      */
     public void gripperOpen() {
 
-        servoRelicGripper.setPosition(0.0);
+        servoRelicGripper.setPosition(1.0);
     }
 
     /**
@@ -205,7 +205,7 @@ public class Robot {
      */
     public void gripperClose() {
 
-        servoRelicGripper.setPosition(1.0);
+        servoRelicGripper.setPosition(0.0);
     }
 
     /**
