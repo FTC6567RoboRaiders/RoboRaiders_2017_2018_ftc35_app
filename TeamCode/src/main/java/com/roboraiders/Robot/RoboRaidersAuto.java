@@ -1,9 +1,12 @@
 package com.roboraiders.Robot;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
@@ -454,6 +457,74 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         encodersMove(bot, 1, 0.5, "forward"); //moves one inch forward
         Thread.sleep(500);
+    }
+
+    public void alignRobot() {
+
+        ModernRoboticsI2cRangeSensor mrRange;
+
+        boolean cur_Y_ButtonState;                                            // "b" button current state
+
+        boolean prev_Y_ButtonState;
+
+        double distanceFromWall;
+
+
+        gamepad1.reset();
+
+        prev_Y_ButtonState = false;
+
+        cur_Y_ButtonState = false;
+
+        distanceFromWall = 0;
+
+        mrRange = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range");
+
+        telemetry.addData("Initialized", true);
+        telemetry.update();
+
+        while (!prev_Y_ButtonState) {
+
+            distanceFromWall = mrRange.getDistance(DistanceUnit.INCH);
+
+            if (distanceFromWall < 12) {
+
+                telemetry.addLine("Move the robot farther away from the wall.");
+
+            }
+
+            else if (distanceFromWall >= 12 && distanceFromWall <= 16) {
+
+                telemetry.addLine("The robot is good.");
+            }
+
+            else if (distanceFromWall > 16) {
+
+                telemetry.addLine("Move the robot closer to the wall");
+            }
+
+            else {
+
+                telemetry.addLine("Please place the robot in front of the wall.");
+
+            }
+
+            telemetry.addData("mr_Range ", "%.2f inches", distanceFromWall);
+            telemetry.update();
+            cur_Y_ButtonState = gamepad1.y;                           // get the current state of button y
+
+            if (cur_Y_ButtonState) {                                  // when the "y" button on the gamepad is pressed
+
+                if (!prev_Y_ButtonState) {                            // when the previous "y" button was NOT pushed
+
+                    prev_Y_ButtonState = true;                        // indicate that the previous y button state is PUSHED
+                }
+            }
+
+            telemetry.addData("mr_Range cm", "%.2f cm", distanceFromWall);
+            telemetry.update();
+
+        }
     }
 
     /**

@@ -19,6 +19,7 @@ public class CryptoboxRandomFarRed extends RoboRaidersAuto {
 
         robot.initialize(hardwareMap);
         robot.initializeServos();
+        alignRobot();
         telemetry.addData("Initialized", true);
         telemetry.update();
 
