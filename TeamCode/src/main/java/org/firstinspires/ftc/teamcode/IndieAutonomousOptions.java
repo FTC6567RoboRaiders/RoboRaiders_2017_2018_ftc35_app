@@ -103,6 +103,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
         // Wait for start to be pushed
         waitForStart();
+        robot.liftGlyph();
 
         // Jewel
         if (selectedOptions[3][1].equals("yes")) {

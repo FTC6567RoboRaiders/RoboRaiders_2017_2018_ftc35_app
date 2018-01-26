@@ -461,6 +461,11 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         Thread.sleep(500);
     }
 
+    /**
+     * This method will help the drive team to align the robot prior to autonomous using the range sensor
+     *
+     * @param bot the bot currently being worked on
+     */
     public void alignRobot(Robot bot) {
 
         gamepad1.reset();
@@ -471,15 +476,15 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             telemetry.addData("mr_Range ", "%.2f inches", distanceFromWall);
 
-            if (distanceFromWall < 12) {
+            if (distanceFromWall < 13.4) {
 
                 telemetry.addLine("Move the robot farther away from the wall.");
             }
-            else if (distanceFromWall >= 12 && distanceFromWall <= 16) {
+            else if (distanceFromWall >= 13.4 && distanceFromWall <= 14.5) {
 
                 telemetry.addLine("The robot is good.");
             }
-            else if (distanceFromWall > 16) {
+            else if (distanceFromWall > 14.5) {
 
                 telemetry.addLine("Move the robot closer to the wall.");
             }
@@ -505,7 +510,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     /**
      * This method will run the movement code in JewelCloseBlue for use in IndieAutonomousOptions
      *
-     * @param bot - the bot currently being worked on
+     * @param bot the bot currently being worked on
      * @throws InterruptedException
      */
     public void justParkCloseBlue(Robot bot) throws InterruptedException {
@@ -523,7 +528,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     /**
      * This method will run the movement code in JewelFarBlue for use in IndieAutonomousOptions
      *
-     * @param bot - the bot currently being worked on
+     * @param bot the bot currently being worked on
      * @throws InterruptedException
      */
     public void justParkFarBlue(Robot bot) throws InterruptedException {
@@ -538,7 +543,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     /**
      * This method will run the movement code in JewelCloseRed for use in IndieAutonomousOptions
      *
-     * @param bot - the bot currently being worked on
+     * @param bot the bot currently being worked on
      * @throws InterruptedException
      */
     public void justParkCloseRed(Robot bot) throws InterruptedException {
@@ -556,7 +561,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     /**
      * This method will run the movement code in JewelFarRed for use in IndieAutonomousOptions
      *
-     * @param bot - the bot currently being worked on
+     * @param bot the bot currently being worked on
      * @throws InterruptedException
      */
     public void justParkFarRed(Robot bot) throws InterruptedException {

@@ -392,4 +392,16 @@ public class Robot {
 
         return servoJewel.getPosition();
     }
+
+    /**
+     * This method will lift the glyph up slightly at the beginning of autonomous
+     */
+    public void liftGlyph() throws InterruptedException {
+
+        motorGlyphLift.setPower(0.5);
+        Thread.sleep(500);
+
+        motorGlyphLift.setPower(0.0);
+        Thread.sleep(250);
+    }
 }
