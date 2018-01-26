@@ -20,6 +20,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public VuforiaLocalizer vuforia;
     public VuforiaTrackable relicTemplate;
     public String pictograph = "UNKNOWN";
+    public boolean cur_Y_ButtonState = false;
+    public boolean prev_Y_ButtonState = false;
+    public double distanceFromWall = 0;
 
     /**
      * This method will initialize Vuforia in autonomous op modes
@@ -458,71 +461,43 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         Thread.sleep(500);
     }
 
-    public void alignRobot() {
-
-        ModernRoboticsI2cRangeSensor mrRange;
-
-        boolean cur_Y_ButtonState;                                            // "b" button current state
-
-        boolean prev_Y_ButtonState;
-
-        double distanceFromWall;
-
+    public void alignRobot(Robot bot) {
 
         gamepad1.reset();
 
-        prev_Y_ButtonState = false;
-
-        cur_Y_ButtonState = false;
-
-        distanceFromWall = 0;
-
-        mrRange = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range");
-
-        telemetry.addData("Initialized", true);
-        telemetry.update();
-
         while (!prev_Y_ButtonState) {
 
-            distanceFromWall = mrRange.getDistance(DistanceUnit.INCH);
+            distanceFromWall = bot.getDistance();
+
+            telemetry.addData("mr_Range ", "%.2f inches", distanceFromWall);
+            telemetry.update();
 
             if (distanceFromWall < 12) {
 
                 telemetry.addLine("Move the robot farther away from the wall.");
-
             }
-
             else if (distanceFromWall >= 12 && distanceFromWall <= 16) {
 
                 telemetry.addLine("The robot is good.");
             }
-
             else if (distanceFromWall > 16) {
 
-                telemetry.addLine("Move the robot closer to the wall");
+                telemetry.addLine("Move the robot closer to the wall.");
             }
-
             else {
 
                 telemetry.addLine("Please place the robot in front of the wall.");
-
             }
 
-            telemetry.addData("mr_Range ", "%.2f inches", distanceFromWall);
-            telemetry.update();
-            cur_Y_ButtonState = gamepad1.y;                           // get the current state of button y
+            cur_Y_ButtonState = gamepad1.y;                           // get the current state of button "y"
 
-            if (cur_Y_ButtonState) {                                  // when the "y" button on the gamepad is pressed
+            if (cur_Y_ButtonState) {                                  // when the "y" button on the gamepad is pushed
 
                 if (!prev_Y_ButtonState) {                            // when the previous "y" button was NOT pushed
 
                     prev_Y_ButtonState = true;                        // indicate that the previous y button state is PUSHED
                 }
             }
-
-            telemetry.addData("mr_Range cm", "%.2f cm", distanceFromWall);
-            telemetry.update();
-
         }
     }
 
