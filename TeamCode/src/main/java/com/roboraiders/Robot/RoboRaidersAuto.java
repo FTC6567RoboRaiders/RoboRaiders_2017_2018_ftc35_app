@@ -159,22 +159,22 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
                 if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
 
-                    encodersMove(bot, 41, 0.4, "backward"); //move backward 36 inches until in front of the left column
+                    encodersMove(bot, 41, 0.4, "backward"); //move backward 41 inches until in front of the left column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
 
-                    encodersMove(bot, 33, 0.4, "backward"); //move backward 28 inches until in front of the center column
+                    encodersMove(bot, 33, 0.4, "backward"); //move backward 33 inches until in front of the center column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
 
-                    encodersMove(bot, 27, 0.4, "backward"); //move backward 22 inches until in front of the right column
+                    encodersMove(bot, 27, 0.4, "backward"); //move backward 27 inches until in front of the right column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
 
-                    encodersMove(bot, 33, 0.4, "backward"); //move backward 28 inches until in front of the center column (default)
+                    encodersMove(bot, 33, 0.4, "backward"); //move backward 33 inches until in front of the center column (default)
                     Thread.sleep(250);
                 }
 
