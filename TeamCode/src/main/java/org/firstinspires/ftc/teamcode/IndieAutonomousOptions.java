@@ -75,17 +75,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
         // Aligning robot
         telemetry.addLine("Options Selected - Press B to Align Robot");
-
-        gamepad1.reset();
-
-        while (!gamepad1.b) {
-
-        }
-
-        alignRobot(robot);
-
-        // Initializing
-        telemetry.addLine("Robot is Aligned - Press B to Initialize and Wait for Start");
+        telemetry.update();
 
         gamepad1.reset();
 
@@ -94,6 +84,18 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         }
 
         robot.initialize(hardwareMap);
+        alignRobot(robot);
+
+        // Initializing
+        telemetry.addLine("Robot is Aligned - Press B to Initialize and Wait for Start");
+        telemetry.update();
+
+        gamepad1.reset();
+
+        while (!gamepad1.b) {
+
+        }
+
         robot.initializeServos();
         vuforiaInitialization(hardwareMap);
         telemetry.addLine("Initialized");
