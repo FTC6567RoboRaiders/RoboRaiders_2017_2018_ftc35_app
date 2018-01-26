@@ -4,7 +4,6 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -15,6 +14,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 /**
+ *
+ * This is a class that is a DIRECT copy (as of 1/17/18) of the Robot class.
+ * This class was created to test new prototypes on the robot without changing the current Robot class code.
  *
  * Created by Alex Snyder on 1/17/18
  */
@@ -36,7 +38,7 @@ public class Robot {
     public Servo servoGlyphBoth = null;
 
     public ColorSensor colorSensor;
-    public DistanceSensor distanceSensor;
+    public ModernRoboticsI2cRangeSensor mrRange;
     public BNO055IMU imu;
 
     /* Local OpMode Members */
@@ -105,7 +107,7 @@ public class Robot {
 
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
-        distanceSensor = hwMap.get(DistanceSensor.class, "sensor_distance");
+        mrRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range");
         imu = hwMap.get(BNO055IMU.class, "imu");
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.mode = BNO055IMU.SensorMode.IMU;
@@ -123,7 +125,6 @@ public class Robot {
         servoRelicGripper.setPosition(1.0);
         servoGlyphBoth.setPosition(0.0);
     }
-
 
     /**
      * This method will set the power for the drive motors
@@ -331,12 +332,12 @@ public class Robot {
      * This method will return the current distance of the distance sensor from an object
      * in inches
      *
-     * @return distanceSensor.getDistance(DistanceUnit.CM) - the current distance of the
+     * @return mrRange.getDistance(DistanceUnit.INCH) - the current distance of the
      * distance sensor from an object in inches
      */
     public double getDistance() {
 
-        return distanceSensor.getDistance(DistanceUnit.INCH);
+        return mrRange.getDistance(DistanceUnit.INCH);
     }
 
     /**

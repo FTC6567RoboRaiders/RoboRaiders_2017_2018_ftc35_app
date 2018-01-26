@@ -104,41 +104,19 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
             if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("close")) {
 
-                encodersMove(robot, 32, 0.5, "forward");
-                Thread.sleep(500);
-
-                imuTurn(robot, 90, 0.5, "left");
-                Thread.sleep(500);
-
-                encodersMove(robot, 2, 0.5, "forward");
-                Thread.sleep(500);
+                justParkCloseBlue(robot);
             }
             else if (selectedOptions[1][1].equals("blue") && selectedOptions[2][1].equals("far")) {
 
-                encodersMove(robot, 22, 0.5, "forward");
-                Thread.sleep(500);
-
-                encodersMove(robot, 18, 0.5, "right");
-                Thread.sleep(500);
+                justParkFarBlue(robot);
             }
             else if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("close")) {
 
-                encodersMove(robot, 32, 0.5, "backward");
-                Thread.sleep(500);
-
-                imuTurn(robot, 90, 0.5, "left");
-                Thread.sleep(500);
-
-                encodersMove(robot, 2, 0.5, "forward");
-                Thread.sleep(500);
+                justParkCloseRed(robot);
             }
             else if (selectedOptions[1][1].equals("red") && selectedOptions[2][1].equals("far")) {
 
-                encodersMove(robot, 22, 0.5, "backward");
-                Thread.sleep(500);
-
-                encodersMove(robot, 18, 0.5, "right");
-                Thread.sleep(500);
+                justParkFarRed(robot);
             }
         }
         else if (selectedOptions[4][1].equals("Cryptobox Vuforia")) {
