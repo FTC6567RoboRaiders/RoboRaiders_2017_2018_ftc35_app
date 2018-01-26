@@ -455,4 +455,70 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         encodersMove(bot, 1, 0.5, "forward"); //moves one inch forward
         Thread.sleep(500);
     }
+
+    /**
+     * This method will run the movement code in JewelCloseBlue for use in IndieAutonomousOptions
+     *
+     * @param bot - the bot currently being worked on
+     * @throws InterruptedException
+     */
+    public void justParkCloseBlue(Robot bot) throws InterruptedException {
+
+        encodersMove(bot, 32, 0.5, "forward");
+        Thread.sleep(500);
+
+        imuTurn(bot, 90, 0.5, "left");
+        Thread.sleep(500);
+
+        encodersMove(bot, 2, 0.5, "forward");
+        Thread.sleep(500);
+    }
+
+    /**
+     * This method will run the movement code in JewelFarBlue for use in IndieAutonomousOptions
+     *
+     * @param bot - the bot currently being worked on
+     * @throws InterruptedException
+     */
+    public void justParkFarBlue(Robot bot) throws InterruptedException {
+
+        encodersMove(bot, 22, 0.5, "forward");
+        Thread.sleep(500);
+
+        encodersMove(bot, 18, 0.5, "right");
+        Thread.sleep(500);
+    }
+
+    /**
+     * This method will run the movement code in JewelCloseRed for use in IndieAutonomousOptions
+     *
+     * @param bot - the bot currently being worked on
+     * @throws InterruptedException
+     */
+    public void justParkCloseRed(Robot bot) throws InterruptedException {
+
+        encodersMove(bot, 32, 0.5, "backward");
+        Thread.sleep(500);
+
+        imuTurn(bot, 90, 0.5, "left");
+        Thread.sleep(500);
+
+        encodersMove(bot, 2, 0.5, "forward");
+        Thread.sleep(500);
+    }
+
+    /**
+     * This method will run the movement code in JewelFarRed for use in IndieAutonomousOptions
+     *
+     * @param bot - the bot currently being worked on
+     * @throws InterruptedException
+     */
+    public void justParkFarRed(Robot bot) throws InterruptedException {
+
+        encodersMove(bot, 22, 0.5, "backward");
+        Thread.sleep(500);
+
+        encodersMove(bot, 18, 0.5, "right");
+        Thread.sleep(500);
+    }
 }

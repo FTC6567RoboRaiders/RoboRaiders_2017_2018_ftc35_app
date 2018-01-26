@@ -3,12 +3,14 @@ package com.roboraiders.Robot;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 /**
@@ -36,7 +38,7 @@ public class Robot {
     public Servo servoGlyphBoth = null;
 
     public ColorSensor colorSensor;
-    //public DistanceSensor distanceSensor;
+    public DistanceSensor distanceSensor;
     public BNO055IMU imu;
 
     /* Local OpMode Members */
@@ -105,7 +107,7 @@ public class Robot {
 
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
-        //distanceSensor = hwMap.get(DistanceSensor.class, "sensor_distance");
+        distanceSensor = hwMap.get(DistanceSensor.class, "sensor_distance");
         imu = hwMap.get(BNO055IMU.class, "imu");
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.mode = BNO055IMU.SensorMode.IMU;
@@ -335,7 +337,7 @@ public class Robot {
      */
     public double getDistance() {
 
-        return 1; //distanceSensor.getDistance(DistanceUnit.CM);
+        return distanceSensor.getDistance(DistanceUnit.CM);
     }
 
     /**
