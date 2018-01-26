@@ -405,4 +405,19 @@ public class Robot {
         motorGlyphLift.setPower(0.0);
         Thread.sleep(250);
     }
+
+    /**
+     * This method will lift the glyph up slightly at the beginning of autonomous
+     */
+    public void lowerGlyph() throws InterruptedException {
+
+        motorGlyphLift.setPower(-0.5);
+        Thread.sleep(500);
+
+        motorGlyphLift.setPower(0.0);
+        Thread.sleep(250);
+
+        glyphGrabberOpen();
+        Thread.sleep(500);
+    }
 }
