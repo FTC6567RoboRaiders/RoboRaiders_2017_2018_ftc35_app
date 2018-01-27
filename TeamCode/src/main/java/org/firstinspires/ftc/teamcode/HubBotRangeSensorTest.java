@@ -128,6 +128,7 @@ public class HubBotRangeSensorTest extends LinearOpMode {
         // wait for the start button to be pressed
         waitForStart();
 
+
         while (opModeIsActive()) {
 
             telemetry.addData("mr_Range cm", "%.2f cm", distanceFromWall);
