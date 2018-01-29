@@ -407,7 +407,7 @@ public class Robot {
     }
 
     /**
-     * This method will lift the glyph up slightly at the beginning of autonomous
+     * This method will lower the glyph down before placing in the cryptobox in autonomous
      */
     public void lowerGlyph() throws InterruptedException {
 
