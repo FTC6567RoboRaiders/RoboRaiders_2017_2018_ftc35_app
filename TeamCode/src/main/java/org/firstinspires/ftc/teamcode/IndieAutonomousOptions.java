@@ -164,7 +164,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
         // Prompt User for Selection
         telemetry.addLine(selPrompt);
-        telemetry.addLine("Press B for " + posResps[0] + " or X for " + posResps[1]);
+        telemetry.addLine("Press X for " + posResps[1] + " or B for " + posResps[0]);
         telemetry.update();
 
         // Loop until either the "b" button or the "x" button is pressed, initially we set both

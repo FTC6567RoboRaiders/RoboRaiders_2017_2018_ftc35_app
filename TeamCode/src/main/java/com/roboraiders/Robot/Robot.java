@@ -392,6 +392,16 @@ public class Robot {
     }
 
     /**
+     * This method returns the current position of the elbow servo
+     *
+     * @return servoElbow.getPosition() - the current position of the elbow servo
+     */
+    public double getElbowServoPosition() {
+
+        return servoElbow.getPosition();
+    }
+
+    /**
      * This method will lift the glyph up slightly at the beginning of autonomous
      */
     public void liftGlyph() throws InterruptedException {
