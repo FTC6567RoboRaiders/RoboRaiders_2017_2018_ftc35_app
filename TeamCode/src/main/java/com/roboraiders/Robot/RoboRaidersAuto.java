@@ -221,7 +221,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
                 if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
 
-                    encodersMove(bot, 24, 0.5, "forward"); //move forward 24 inches until in front of the left column
+                    encodersMove(bot, 25, 0.5, "forward"); //move forward 24 inches until in front of the left column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("CENTER")) { //else if the pictograph 1says that the key column is the center column
