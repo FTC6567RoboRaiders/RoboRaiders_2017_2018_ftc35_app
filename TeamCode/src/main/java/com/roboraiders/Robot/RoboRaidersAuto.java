@@ -221,12 +221,12 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
                 if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
 
-                    encodersMove(bot, 25, 0.5, "forward"); //move forward 24 inches until in front of the left column
+                    encodersMove(bot, 25, 0.5, "forward"); //move forward 25 inches until in front of the left column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("CENTER")) { //else if the pictograph 1says that the key column is the center column
 
-                    encodersMove(bot, 29, 0.5, "forward"); //move forward 29 inches until in front of the center column
+                    encodersMove(bot, 31, 0.5, "forward"); //move forward 31 inches until in front of the center column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
@@ -550,19 +550,19 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      */
     public void alignRobot(Robot bot) {
 
-        gamepad1.reset();
+        /*gamepad1.reset();
 
         while (!prev_Y_ButtonState) {
 
-            distanceFromWall = bot.getDistance();
+            distanceFromWallBack = bot.getDistanceBack();
 
             telemetry.addData("mr_Range ", "%.2f inches", distanceFromWall);
 
-            if (distanceFromWall < 13.75) {
+            if (distanceFromWall < 13.8) {
 
                 telemetry.addLine("Move the robot farther away from the wall.");
             }
-            else if (distanceFromWall >= 13.75 && distanceFromWall <= 14.2) {
+            else if (distanceFromWall >= 13.8 && distanceFromWall <= 14.2) {
 
                 telemetry.addLine("The robot is good.");
             }
@@ -574,6 +574,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
                 telemetry.addLine("Please place the robot in front of the wall.");
             }
+            if ()
 
             cur_Y_ButtonState = gamepad1.y;                           // get the current state of button "y"
 
@@ -587,7 +588,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             telemetry.addLine("Press Y when the robot is aligned.");
             telemetry.update();
-        }
+        }*/
     }
 
     /**
