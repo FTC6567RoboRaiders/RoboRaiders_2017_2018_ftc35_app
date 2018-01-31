@@ -156,22 +156,22 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
                 if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
 
-                    encodersMove(bot, 38, 0.5, "backward"); //move backward 38 inches until in front of the left column
+                    encodersMove(bot, 36, 0.5, "backward"); //move backward 36 inches until in front of the left column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("CENTER")) { //else if the pictograph says that the key column is the center column
 
-                    encodersMove(bot, 31, 0.5, "backward"); //move backward 31 inches until in front of the center column
+                    encodersMove(bot, 26, 0.5, "backward"); //move backward 26 inches until in front of the center column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
 
-                    encodersMove(bot, 23, 0.5, "backward"); //move backward 23 inches until in front of the right column
+                    encodersMove(bot, 21, 0.5, "backward"); //move backward 21 inches until in front of the right column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
 
-                    encodersMove(bot, 31, 0.5, "backward"); //move backward 31 inches until in front of the center column (default)
+                    encodersMove(bot, 28, 0.5, "backward"); //move backward 28 inches until in front of the center column (default)
                     Thread.sleep(250);
                 }
 
@@ -184,7 +184,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             else if (alliancePlacement.equals("far")) { //if we are far from the audience
 
-                encodersMove(bot, 20, 0.5, "backward"); //drive backward
+                encodersMove(bot, 18, 0.5, "backward"); //drive backward
                 Thread.sleep(250);
 
                 imuTurn(bot, 90, 0.5, "right"); //turn right 90 degrees
@@ -226,17 +226,17 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 }
                 else if (pictograph.equals("CENTER")) { //else if the pictograph 1says that the key column is the center column
 
-                    encodersMove(bot, 31, 0.5, "forward"); //move forward 31 inches until in front of the center column
+                    encodersMove(bot, 32, 0.5, "forward"); //move forward 32 inches until in front of the center column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
 
-                    encodersMove(bot, 36, 0.5, "forward"); //move forward 36 inches until in front of the right column
+                    encodersMove(bot, 40, 0.5, "forward"); //move forward 40 inches until in front of the right column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
 
-                    encodersMove(bot, 29, 0.5, "forward"); //move forward 29 inches until in front of the center column (default)
+                    encodersMove(bot, 32, 0.5, "forward"); //move forward 32 inches until in front of the center column (default)
                     Thread.sleep(250);
                 }
 
@@ -246,7 +246,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             else if (alliancePlacement.equals("far")) { //if we are far from the audience
 
-                encodersMove(bot, 20, 0.5, "forward"); //drive forward
+                encodersMove(bot, 18, 0.5, "forward"); //drive forward
                 Thread.sleep(250);
 
                 imuTurn(bot, 90, 0.5, "right"); //turn right 90 degrees
@@ -530,13 +530,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         bot.lowerGlyph(); //lowers and releases the glyph
 
-        encodersMove(bot, 4, 0.5, "backward"); //moves four inches backward
+        encodersMove(bot, 2, 0.5, "backward"); //moves four inches backward
         Thread.sleep(500);
 
         imuTurn(bot, 180, 0.5, "right"); //turns 180 degrees right
         Thread.sleep(500);
 
-        encodersMove(bot, 12, 0.5, "backward"); //moves twelve inches backward
+        encodersMove(bot, 10, 0.5, "backward"); //moves twelve inches backward
         Thread.sleep(500);
 
         encodersMove(bot, 1, 0.5, "forward"); //moves one inch forward
