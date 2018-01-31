@@ -28,8 +28,8 @@ public class IndieTeleOpMecanum extends OpMode {
     int nudgeCount = 0;
     boolean wristNudging = false;
     int wristNudgeCount = 0;
-    public boolean currStateDpadUp = false;
-    public boolean prevStateDpadUp = false;
+    public boolean currStateY = false;
+    public boolean prevStateY = false;
     public boolean currStateRightBumper1 = false;
     public boolean prevStateRightBumper1 = false;
     public boolean currStateLeftBumper1 = false;
@@ -38,11 +38,15 @@ public class IndieTeleOpMecanum extends OpMode {
     public boolean prevStateRightBumper2 = false;
     public boolean currStateLeftBumper2 = false;
     public boolean prevStateLeftBumper2 = false;
-    public boolean currStateDpadLeft = false;
-    public boolean prevStateDpadLeft = false;
-    public boolean currStateDpadRight = false;
-    public boolean prevStateDpadRight = false;
+    public boolean currStateX = false;
+    public boolean prevStateX = false;
+    public boolean currStateB = false;
+    public boolean prevStateB = false;
+    public boolean currStateA = false;
+    public boolean prevStateA = false;
 
+    
+    
     @Override
     public void init() {
 
@@ -176,60 +180,50 @@ public class IndieTeleOpMecanum extends OpMode {
         robot.setRelicMotorPower(relic * 0.5);
 
         // "Relic Wrist Up" functionality
-        currStateDpadUp = gamepad2.dpad_up;
-        if (currStateDpadUp && currStateDpadUp != prevStateDpadUp) {
+        gamepad2.y = gamepad2.dpad_up;
+        if (currStateY && currStateY != prevStateY) {
 
             robot.wristUp();
-            prevStateDpadUp = currStateDpadUp;
+            prevStateY = currStateY;
         }
-        else if (!currStateDpadUp && currStateDpadUp != prevStateDpadUp) {
+        else if (!currStateY && currStateY != prevStateY) {
 
-            prevStateDpadUp = currStateDpadUp;
-        }
-
-        // "Wrist Nudging" functionality
-        if (gamepad2.dpad_down) {
-
-            if (!wristNudging) {
-
-                robot.wristDown();
-            }
-
-            wristNudgeCount++;
-
-            if (wristNudgeCount > 80) {
-
-                wristNudging = true;
-            }
-        }
-        else {
-
-            wristNudging = false;
-            wristNudgeCount = 0;
+            prevStateY = currStateY;
         }
 
+        // "Relic Wrist Down" functionality
+        currStateA = gamepad2.a;
+        if (currStateA && currStateA != prevStateA) {
+
+            robot.wristDown();
+            prevStateA = currStateA;
+        }
+        else if (!currStateA && currStateA != prevStateA) {
+
+            prevStateA = currStateA;
+        }
         // "Relic Gripper Open" functionality
-        currStateDpadLeft = gamepad2.dpad_left;
-        if (currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
+        currStateX = gamepad2.dpad_left;
+        if (currStateX && currStateX != prevStateX) {
 
             robot.gripperOpen();
-            prevStateDpadLeft = currStateDpadLeft;
+            prevStateX = currStateX;
         }
-        else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
+        else if (!currStateX && currStateX != prevStateX) {
 
-            prevStateDpadLeft = currStateDpadLeft;
+            prevStateX = currStateX;
         }
 
         // "Relic Gripper Close" functionality
-        currStateDpadRight = gamepad2.dpad_right;
-        if (currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
+        currStateB = gamepad2.dpad_right;
+        if (currStateB && currStateB != prevStateB) {
 
             robot.gripperClose();
-            prevStateDpadRight = currStateDpadRight;
+            prevStateB = currStateB;
         }
-        else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
+        else if (!currStateB && currStateB != prevStateB) {
 
-            prevStateDpadRight = currStateDpadRight;
+            prevStateB = currStateB;
         }
     }
 
