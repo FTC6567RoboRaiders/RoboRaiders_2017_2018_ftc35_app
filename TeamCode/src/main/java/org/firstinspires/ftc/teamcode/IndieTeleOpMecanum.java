@@ -26,10 +26,6 @@ public class IndieTeleOpMecanum extends OpMode {
     double powerFactor = 1;
     boolean nudging = false;
     int nudgeCount = 0;
-    boolean wristNudging = false;
-    int wristNudgeCount = 0;
-    public boolean currStateY = false;
-    public boolean prevStateY = false;
     public boolean currStateRightBumper1 = false;
     public boolean prevStateRightBumper1 = false;
     public boolean currStateLeftBumper1 = false;
@@ -38,14 +34,14 @@ public class IndieTeleOpMecanum extends OpMode {
     public boolean prevStateRightBumper2 = false;
     public boolean currStateLeftBumper2 = false;
     public boolean prevStateLeftBumper2 = false;
+    public boolean currStateY = false;
+    public boolean prevStateY = false;
     public boolean currStateX = false;
     public boolean prevStateX = false;
     public boolean currStateB = false;
     public boolean prevStateB = false;
     public boolean currStateA = false;
     public boolean prevStateA = false;
-
-    
     
     @Override
     public void init() {
@@ -180,7 +176,7 @@ public class IndieTeleOpMecanum extends OpMode {
         robot.setRelicMotorPower(relic * 0.5);
 
         // "Relic Wrist Up" functionality
-        gamepad2.y = gamepad2.dpad_up;
+        currStateY = gamepad2.y;
         if (currStateY && currStateY != prevStateY) {
 
             robot.wristUp();
@@ -202,8 +198,9 @@ public class IndieTeleOpMecanum extends OpMode {
 
             prevStateA = currStateA;
         }
+
         // "Relic Gripper Open" functionality
-        currStateX = gamepad2.dpad_left;
+        currStateX = gamepad2.x;
         if (currStateX && currStateX != prevStateX) {
 
             robot.gripperOpen();
@@ -215,7 +212,7 @@ public class IndieTeleOpMecanum extends OpMode {
         }
 
         // "Relic Gripper Close" functionality
-        currStateB = gamepad2.dpad_right;
+        currStateB = gamepad2.b;
         if (currStateB && currStateB != prevStateB) {
 
             robot.gripperClose();
