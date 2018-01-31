@@ -39,6 +39,8 @@ public class Robot {
 
     public ColorSensor colorSensor;
     public ModernRoboticsI2cRangeSensor mrRange;
+    //public ModernRoboticsI2cRangeSensor mrRangeBack;
+    //public ModernRoboticsI2cRangeSensor mrRangeFront;
     public BNO055IMU imu;
 
     /* Local OpMode Members */
@@ -108,6 +110,8 @@ public class Robot {
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
         mrRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range");
+        //mrRangeBack = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range_Back");
+        //mrRangeFront = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range_Front");
         imu = hwMap.get(BNO055IMU.class, "imu");
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.mode = BNO055IMU.SensorMode.IMU;
@@ -337,6 +341,30 @@ public class Robot {
 
         return mrRange.getDistance(DistanceUnit.INCH);
     }
+
+    /**
+     * This method will return the current distance of the back distance sensor from an object
+     * in inches
+     *
+     * @return mrRangeBack.getDistance(DistanceUnit.INCH) - the current distance of the
+     * back distance sensor from an object in inches
+     */
+    /*public double getDistanceBack() {
+
+        return mrRangeBack.getDistance(DistanceUnit.INCH);
+    }*/
+
+    /**
+     * This method will return the current distance of the front distance sensor from an object
+     * in inches
+     *
+     * @return mrRangeFront.getDistance(DistanceUnit.INCH) - the current distance of the
+     * front distance sensor from an object in inches
+     */
+    /*public double getDistanceFront() {
+
+        return mrRangeFront.getDistance(DistanceUnit.INCH);
+    }*/
 
     /**
      * This method will return the color sensor reading of the selected color
