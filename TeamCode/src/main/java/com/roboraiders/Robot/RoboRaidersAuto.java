@@ -24,7 +24,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     //public double distanceFromWallBack = 0;
     //public double distanceFromWallFront = 0;
 
-    public double RED_CLOSE_LEFT_DISTANCE = 36.0;
+    public double RED_CLOSE_LEFT_DISTANCE = 35.0;
     public double RED_CLOSE_CENTER_DISTANCE = 26.0;
     public double RED_CLOSE_RIGHT_DISTANCE = 21.0;
     public double RED_FAR_LEFT_DISTANCE = 13.0;
