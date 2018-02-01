@@ -331,6 +331,26 @@ public class Robot {
     }
 
     /**
+     * This method will return COUNTS after it is calculated from distance
+     *
+     * @param distance the desired distance in inches the robot will travel
+     * @return COUNTS - the number of encoder counts the robot will travel that is equal
+     * to the number of inches
+     */
+    public double calculateCOUNTS(double distance) {
+
+        double COUNTS;
+
+        int DIAMETER = 4; //diameter of wheel
+        double GEAR_RATIO = (2.0 / 3.0); //gear ratio
+        int PULSES = 1120; //encoder counts in one revolution
+        double CIRCUMFERENCE = Math.PI * DIAMETER; //gives you circumference
+        double ROTATIONS = (distance / CIRCUMFERENCE) * GEAR_RATIO; //gives the rotations
+        COUNTS = PULSES * ROTATIONS; //gives the counts
+
+        return COUNTS;
+    }
+    /**
      * This method will return the current distance of the distance sensor from an object
      * in inches
      *

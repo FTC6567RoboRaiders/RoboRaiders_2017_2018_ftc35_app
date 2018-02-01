@@ -24,20 +24,20 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     //public double distanceFromWallBack = 0;
     //public double distanceFromWallFront = 0;
 
-    public int RED_CLOSE_LEFT_DISTANCE = 36;
-    public int RED_CLOSE_CENTER_DISTANCE = 26;
-    public int RED_CLOSE_RIGHT_DISTANCE = 21;
-    public int RED_FAR_LEFT_DISTANCE = 13;
-    public int RED_FAR_CENTER_DISTANCE = 8;
-    public int RED_FAR_RIGHT_DISTANCE = 2;
-    public int BLUE_CLOSE_LEFT_DISTANCE = 25;
-    public int BLUE_CLOSE_CENTER_DISTANCE = 32;
-    public int BLUE_CLOSE_RIGHT_DISTANCE = 40;
-    public int BLUE_FAR_LEFT_DISTANCE = 1;
-    public int BLUE_FAR_CENTER_DISTANCE = 5;
-    public int BLUE_FAR_RIGHT_DISTANCE = 10;
-    public int RED_FAR_BACKWARD_DISTANCE = 20;
-    public int BLUE_FAR_FORWARD_DISTANCE = 20;
+    public double RED_CLOSE_LEFT_DISTANCE = 36.0;
+    public double RED_CLOSE_CENTER_DISTANCE = 26.0;
+    public double RED_CLOSE_RIGHT_DISTANCE = 21.0;
+    public double RED_FAR_LEFT_DISTANCE = 13.0;
+    public double RED_FAR_CENTER_DISTANCE = 8.0;
+    public double RED_FAR_RIGHT_DISTANCE = 2.0;
+    public double BLUE_CLOSE_LEFT_DISTANCE = 25.0;
+    public double BLUE_CLOSE_CENTER_DISTANCE = 32.0;
+    public double BLUE_CLOSE_RIGHT_DISTANCE = 40.0;
+    public double BLUE_FAR_LEFT_DISTANCE = 1.0;
+    public double BLUE_FAR_CENTER_DISTANCE = 5.0;
+    public double BLUE_FAR_RIGHT_DISTANCE = 10.0;
+    public double RED_FAR_BACKWARD_DISTANCE = 20.0;
+    public double BLUE_FAR_FORWARD_DISTANCE = 20.0;
 
     /**
      * This method will initialize Vuforia in autonomous op modes
@@ -393,6 +393,78 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
         }
         else if (direction.equals("left")) { //if the desired direction is left
+
+            bot.setDriveMotorPower(-power, power, power, -power); //start strafing left
+
+            while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
+                //still greater than the desired count and the opMode has not been stopped
+
+                telemetry.addData("COUNTS", COUNTS);
+                telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
+                telemetry.update();
+            }
+
+            bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
+        }
+
+        bot.runWithoutEncoders(); //sets the mode back to run without encoder
+    }
+
+    /**
+     * This program will make the robot move forwards, backwards, right, or left with encoders
+     *
+     * @param bot       the robot currently being worked on
+     * @param distance  the distance the robot should travel in inches
+     * @param power     the speed the robot will travel at
+     * @param direction the direction the robot will travel: either forward, backward, right, or left
+     */
+    public void encodersMove(Robot bot, double distance, double power, String direction) { //sets the parameters
+
+        bot.resetEncoders(); //resets encoders
+        bot.runWithEncoders(); //sets the mode back to run with encoder
+
+        double COUNTS = bot.calculateCOUNTS(distance); //COUNTS is now equal to the value calculated
+
+        if (direction.equals("forward")) { //if the desired direction is forward
+
+            bot.setDriveMotorPower(power, power, power, power); //start driving forward
+
+            while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
+                //still less than the desired count and the opMode has not been stopped
+
+                telemetry.addData("COUNTS", COUNTS);
+                telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
+                telemetry.update();
+            }
+
+            bot.setDriveMotorPower(0, 0, 0, 0); //stop the robot
+        } else if (direction.equals("backward")) { //if the desired direction is backward
+
+            bot.setDriveMotorPower(-power, -power, -power, -power); //start driving backward
+
+            while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
+                //still greater than the desired count and the opMode has not been stopped
+
+                telemetry.addData("COUNTS", COUNTS);
+                telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
+                telemetry.update();
+            }
+
+            bot.setDriveMotorPower(0, 0, 0, 0); //stop the robot
+        } else if (direction.equals("right")) { //if the desired direction is right
+
+            bot.setDriveMotorPower(power, -power, -power, power); //start strafing right
+
+            while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
+                //still less than the desired count and the opMode has not been stopped
+
+                telemetry.addData("COUNTS", COUNTS);
+                telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
+                telemetry.update();
+            }
+
+            bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
+        } else if (direction.equals("left")) { //if the desired direction is left
 
             bot.setDriveMotorPower(-power, power, power, -power); //start strafing left
 
