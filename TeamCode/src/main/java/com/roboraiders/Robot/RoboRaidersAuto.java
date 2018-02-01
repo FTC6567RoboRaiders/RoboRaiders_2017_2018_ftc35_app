@@ -620,7 +620,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         bot.lowerGlyph(); //lowers and releases the glyph
 
-        encodersMove(bot, 2, 0.5, "backward"); //moves two inches backward
+        encodersMove(bot, 4, 0.5, "backward"); //moves two inches backward
         Thread.sleep(500);
 
         imuTurn(bot, 180, 0.5, "right"); //turns 180 degrees right
