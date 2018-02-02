@@ -24,21 +24,30 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     //public double distanceFromWallBack = 0;
     //public double distanceFromWallFront = 0;
 
+    // +----------+----------+--------+
+    // | Alliance | Balance  | Column |
+    // |          |  Stone   |        |
+    // +----------+----------+--------+
+    public double RED_CLOSE_LEFT_DISTANCE = 34.5;      // |  Red     |  Close   |  Left  |
+    public double RED_CLOSE_CENTER_DISTANCE = 26.5;    // |  Red     |  Close   | Center |
+    public double RED_CLOSE_RIGHT_DISTANCE = 21.0;     // |  Red     |  Close   |  Right |
+    // +----------+----------+--------+
+    public double RED_FAR_LEFT_DISTANCE = 10.75;       // |  Red     |   Far    |  Left  |
+    public double RED_FAR_CENTER_DISTANCE = 4.25;      // |  Red     |   Far    | Center |
+    public double RED_FAR_RIGHT_DISTANCE = 1.25;       // |  Red     |   Far    |  Right |
+    // +----------+----------+--------+
+    public double BLUE_CLOSE_LEFT_DISTANCE = 25.0;     // |  Blue    |  Close   |  Left  |
+    public double BLUE_CLOSE_CENTER_DISTANCE = 32.0;   // |  Blue    |  Close   | Center |
+    public double BLUE_CLOSE_RIGHT_DISTANCE = 40.0;    // |  Blue    |  Close   |  Right |
+    // +----------+----------+--------+
+    public double BLUE_FAR_LEFT_DISTANCE = 1.0;        // |  Blue    |   Far    |  Left  |
+    public double BLUE_FAR_CENTER_DISTANCE = 5.0;      // |  Blue    |   Far    | Center |
+    public double BLUE_FAR_RIGHT_DISTANCE = 10.0;      // |  Blue    |   Far    |  Right |
+    // +----------+----------+--------+
 
-    public double RED_CLOSE_LEFT_DISTANCE = 34.5;
-    public double RED_CLOSE_CENTER_DISTANCE = 26.5;
-    public double RED_CLOSE_RIGHT_DISTANCE = 21.0;
-    public double RED_FAR_LEFT_DISTANCE = 10.75;   //was 10, 11
-    public double RED_FAR_CENTER_DISTANCE = 4.25;
-    public double RED_FAR_RIGHT_DISTANCE = 1.25;
-    public double BLUE_CLOSE_LEFT_DISTANCE = 25.0;
-    public double BLUE_CLOSE_CENTER_DISTANCE = 32.0;
-    public double BLUE_CLOSE_RIGHT_DISTANCE = 40.0;
-    public double BLUE_FAR_LEFT_DISTANCE = 1.0;
-    public double BLUE_FAR_CENTER_DISTANCE = 5.0;
-    public double BLUE_FAR_RIGHT_DISTANCE = 10.0;
-    public double RED_FAR_BACKWARD_DISTANCE = 17.0;
-    public double BLUE_FAR_FORWARD_DISTANCE = 20.0;
+
+    public double RED_FAR_BACKWARD_DISTANCE = 17.0;    // Distance robot drives backwards off of the RED, Far balance stone
+    public double BLUE_FAR_FORWARD_DISTANCE = 20.0;    // Distance robot drives forward off of the BLUE, Far balance stone
 
     /**
      * This method will initialize Vuforia in autonomous op modes
