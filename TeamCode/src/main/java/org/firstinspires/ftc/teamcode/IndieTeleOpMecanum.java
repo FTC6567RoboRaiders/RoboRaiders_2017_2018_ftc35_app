@@ -79,8 +79,8 @@ public class IndieTeleOpMecanum extends OpMode {
         LeftFront = (float) scaleInput(LeftFront);
         RightFront = (float) scaleInput(RightFront);
 
-        robot.setDriveMotorPower(LeftFront * 0.75 * powerFactor, RightFront * 0.75 * powerFactor,
-                LeftBack * 0.75 * powerFactor, RightBack * 0.75 * powerFactor);
+        robot.setDriveMotorPower(LeftFront * 0.95 * powerFactor, RightFront * 0.95 * powerFactor,
+                LeftBack * 0.95 * powerFactor, RightBack * 0.95 * powerFactor);
 
         // "Power Factor" functionality
         currStateLeftBumper1 = gamepad1.left_bumper;
@@ -143,7 +143,7 @@ public class IndieTeleOpMecanum extends OpMode {
         glyphLift = -gamepad2.right_stick_y;
         glyphLift = Range.clip(glyphLift, -1, 1);
         glyphLift = (float) scaleInput(glyphLift);
-        robot.setGlyphLiftMotorPower(glyphLift * 0.75);
+        robot.setGlyphLiftMotorPower(glyphLift * 0.90);
 
         // "Glyph Grabber Open" functionality
         currStateRightBumper2 = gamepad2.right_bumper;

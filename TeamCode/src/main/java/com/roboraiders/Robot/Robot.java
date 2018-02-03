@@ -38,9 +38,10 @@ public class Robot {
     public Servo servoGlyphBoth = null;
 
     public ColorSensor colorSensor;
-    public ModernRoboticsI2cRangeSensor mrRange;
-    //public ModernRoboticsI2cRangeSensor mrRangeBack;
-    //public ModernRoboticsI2cRangeSensor mrRangeFront;
+    public ModernRoboticsI2cRangeSensor mrRangeSide;     // Back side range sensor
+    // public ModernRoboticsI2cRangeSensor mrRangeBack;   // Back back range sensor
+    // public ModernRoboticsI2cRangeSensor mrRangeFront;  // Front forward range sensor
+
     public BNO055IMU imu;
 
     /* Local OpMode Members */
@@ -109,9 +110,9 @@ public class Robot {
 
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
-        mrRange = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range");
-        //mrRangeBack = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range_Back");
-        //mrRangeFront = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range_Front");
+        mrRangeSide = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range_side");
+        //mrRangeBack = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range_back");
+        //mrRangeFront = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range_front");
         imu = hwMap.get(BNO055IMU.class, "imu");
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.mode = BNO055IMU.SensorMode.IMU;
@@ -354,12 +355,13 @@ public class Robot {
      * This method will return the current distance of the distance sensor from an object
      * in inches
      *
-     * @return mrRange.getDistance(DistanceUnit.INCH) - the current distance of the
+     * @return mrRangeSide.getDistance(DistanceUnit.INCH) - the current distance of the
      * distance sensor from an object in inches
      */
-    public double getDistance() {
+    public double getSideDistance() {
 
-        return mrRange.getDistance(DistanceUnit.INCH);
+        return mrRangeSide.getDistance(DistanceUnit.INCH);
+
     }
 
     /**
@@ -369,7 +371,7 @@ public class Robot {
      * @return mrRangeBack.getDistance(DistanceUnit.INCH) - the current distance of the
      * back distance sensor from an object in inches
      */
-    /*public double getDistanceBack() {
+    /*public double getBackDistance() {
 
         return mrRangeBack.getDistance(DistanceUnit.INCH);
     }*/
@@ -381,7 +383,7 @@ public class Robot {
      * @return mrRangeFront.getDistance(DistanceUnit.INCH) - the current distance of the
      * front distance sensor from an object in inches
      */
-    /*public double getDistanceFront() {
+    /*public double getFrontDistance() {
 
         return mrRangeFront.getDistance(DistanceUnit.INCH);
     }*/

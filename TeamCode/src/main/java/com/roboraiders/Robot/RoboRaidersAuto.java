@@ -20,9 +20,10 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public String pictograph = "UNKNOWN";
     public boolean cur_Y_ButtonState = false;
     public boolean prev_Y_ButtonState = false;
-    public double distanceFromWall = 0;
+    public double distanceFromSideWall = 0;
     //public double distanceFromWallBack = 0;
     //public double distanceFromWallFront = 0;
+
 
     //                                                    +----------+----------+--------+
     //                                                    | Alliance | Balance  | Column |
@@ -653,22 +654,20 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         while (!prev_Y_ButtonState) {
 
-            distanceFromWall = bot.getDistance();
-            //distanceFromWallBack = bot.getDistanceBack();
-            //distanceFromWallFront = bot.getDistanceFront();
+            distanceFromSideWall = bot.getSideDistance();
+            //distanceFromWallBack = bot.getBackDistance();
+            //distanceFromWallFront = bot.getFrontDistance();
 
-            telemetry.addData("mr_Range ", "%.2f inches", distanceFromWall /*distanceFromWallBack*/);
+            telemetry.addData("mr_Range ", "%.2f inches", distanceFromSideWall /*distanceFromWallBack*/);
             //telemetry.addData("mr_Range_Front ", "%.2f inches", distanceFromWall /*distanceFromWallFront*/);
 
-            if (distanceFromWall /*distanceFromWallBack*/ < 13.8) {
+            if (distanceFromSideWall /*distanceFromWallBack*/ < 13.8) {
 
                 telemetry.addLine("Move the robot farther away from the wall.");
-            }
-            else if (distanceFromWall /*distanceFromWallBack*/ >= 13.8 && distanceFromWall /*distanceFromWallBack*/ <= 14.2) {
+            } else if (distanceFromSideWall /*distanceFromWallBack*/ >= 13.8 && distanceFromSideWall /*distanceFromWallBack*/ <= 14.2) {
 
                 telemetry.addLine("The robot is the correct distance away.");
-            }
-            else if (distanceFromWall /*distanceFromWallBack*/ > 14.2) {
+            } else if (distanceFromSideWall /*distanceFromWallBack*/ > 14.2) {
 
                 telemetry.addLine("Move the robot closer to the wall.");
             }
