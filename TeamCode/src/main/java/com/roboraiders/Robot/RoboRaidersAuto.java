@@ -658,6 +658,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             //distanceFromWallBack = bot.getBackDistance();
             //distanceFromWallFront = bot.getFrontDistance();
 
+            telemetry.addLine("Aligning Robot:");
             telemetry.addData("mr_Range ", "%.2f inches", distanceFromSideWall /*distanceFromWallBack*/);
             //telemetry.addData("mr_Range_Front ", "%.2f inches", distanceFromWall /*distanceFromWallFront*/);
 

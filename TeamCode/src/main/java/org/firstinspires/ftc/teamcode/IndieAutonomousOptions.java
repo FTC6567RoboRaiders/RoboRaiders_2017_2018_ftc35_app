@@ -73,16 +73,6 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
             configForAuto2Options(selectionsOk, finishedSelPosResps, 0, selectedOptions);       // Finished Selections
         }
 
-        // Aligning robot
-        telemetry.addLine("Options Selected - Press B to Align Robot");
-        telemetry.update();
-
-        gamepad1.reset();
-
-        while (!gamepad1.b) {
-
-        }
-
         robot.initialize(hardwareMap);
         alignRobot(robot);
 
