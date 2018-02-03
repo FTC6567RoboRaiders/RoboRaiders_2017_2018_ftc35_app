@@ -164,7 +164,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
         // Prompt User for Selection
         telemetry.addLine(selPrompt);
-        telemetry.addLine("Press X for " + posResps[1] + " or B for " + posResps[0]);
+        telemetry.addLine(posResps[1] + " - X " + " or" + posResps[0] + " - B" );
         telemetry.update();
 
         // Loop until either the "b" button or the "x" button is pressed, initially we set both
@@ -208,7 +208,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
 
         // Wait one second
         try {
-            Thread.sleep(1000);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
