@@ -24,7 +24,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     //public double distanceFromWallBack = 0;
     //public double distanceFromWallFront = 0;
 
-
     //                                                    +----------+----------+--------+
     //                                                    | Alliance | Balance  | Column |
     //                                                    |          |  Stone   |        |
@@ -45,7 +44,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public double BLUE_FAR_CENTER_DISTANCE = 5.0;      // |  Blue    |   Far    | Center |
     public double BLUE_FAR_RIGHT_DISTANCE = 10.0;      // |  Blue    |   Far    |  Right |
     //                                                    +----------+----------+--------+
-
 
     public double RED_FAR_BACKWARD_DISTANCE = 17.0;    // Distance robot drives backwards off of the RED, Far balance stone
     public double BLUE_FAR_FORWARD_DISTANCE = 20.0;    // Distance robot drives forward off of the BLUE, Far balance stone
@@ -76,11 +74,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      * @param allianceColor the color of your alliance
      */
     public void selectJewel(Robot bot, String allianceColor) throws InterruptedException {
-
-        //Does the robot need to move forward at all? Or no? Discuss with programming team. This program assumes no.
-        //assuming color sensor is mounted facing right
-
-        //assuming red alliance
 
         if (allianceColor.equals("red")) { //red alliance
 
@@ -121,8 +114,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 Thread.sleep(1000);
             }
         }
-
-        //assuming blue alliance
 
         else if (allianceColor.equals("blue")) { //not red alliance (blue alliance)
 
@@ -354,7 +345,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      * @param power     the speed the robot will travel at
      * @param direction the direction the robot will travel: either forward, backward, right, or left
      */
-    public void encodersMove(Robot bot, int distance, double power, String direction) { //sets the parameters
+    public void encodersMove(Robot bot, double distance, double power, String direction) { //sets the parameters
 
         bot.resetEncoders(); //resets encoders
         bot.runWithEncoders(); //sets the mode back to run with encoder
@@ -404,78 +395,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
         }
         else if (direction.equals("left")) { //if the desired direction is left
-
-            bot.setDriveMotorPower(-power, power, power, -power); //start strafing left
-
-            while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
-                //still greater than the desired count and the opMode has not been stopped
-
-                telemetry.addData("COUNTS", COUNTS);
-                telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
-                telemetry.update();
-            }
-
-            bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
-        }
-
-        bot.runWithoutEncoders(); //sets the mode back to run without encoder
-    }
-
-    /**
-     * This program will make the robot move forwards, backwards, right, or left with encoders
-     *
-     * @param bot       the robot currently being worked on
-     * @param distance  the distance the robot should travel in inches
-     * @param power     the speed the robot will travel at
-     * @param direction the direction the robot will travel: either forward, backward, right, or left
-     */
-    public void encodersMove(Robot bot, double distance, double power, String direction) { //sets the parameters
-
-        bot.resetEncoders(); //resets encoders
-        bot.runWithEncoders(); //sets the mode back to run with encoder
-
-        double COUNTS = bot.calculateCOUNTS(distance); //COUNTS is now equal to the value calculated
-
-        if (direction.equals("forward")) { //if the desired direction is forward
-
-            bot.setDriveMotorPower(power, power, power, power); //start driving forward
-
-            while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
-                //still less than the desired count and the opMode has not been stopped
-
-                telemetry.addData("COUNTS", COUNTS);
-                telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
-                telemetry.update();
-            }
-
-            bot.setDriveMotorPower(0, 0, 0, 0); //stop the robot
-        } else if (direction.equals("backward")) { //if the desired direction is backward
-
-            bot.setDriveMotorPower(-power, -power, -power, -power); //start driving backward
-
-            while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
-                //still greater than the desired count and the opMode has not been stopped
-
-                telemetry.addData("COUNTS", COUNTS);
-                telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
-                telemetry.update();
-            }
-
-            bot.setDriveMotorPower(0, 0, 0, 0); //stop the robot
-        } else if (direction.equals("right")) { //if the desired direction is right
-
-            bot.setDriveMotorPower(power, -power, -power, power); //start strafing right
-
-            while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) { //while the current count is
-                //still less than the desired count and the opMode has not been stopped
-
-                telemetry.addData("COUNTS", COUNTS);
-                telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
-                telemetry.update();
-            }
-
-            bot.setDriveMotorPower(0.0, 0.0, 0.0, 0.0); //stop the robot
-        } else if (direction.equals("left")) { //if the desired direction is left
 
             bot.setDriveMotorPower(-power, power, power, -power); //start strafing left
 
@@ -665,10 +584,12 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             if (distanceFromSideWall /*distanceFromWallBack*/ < 13.8) {
 
                 telemetry.addLine("Move the robot farther away from the wall.");
-            } else if (distanceFromSideWall /*distanceFromWallBack*/ >= 13.8 && distanceFromSideWall /*distanceFromWallBack*/ <= 14.2) {
+            }
+            else if (distanceFromSideWall /*distanceFromWallBack*/ >= 13.8 && distanceFromSideWall /*distanceFromWallBack*/ <= 14.2) {
 
                 telemetry.addLine("The robot is the correct distance away.");
-            } else if (distanceFromSideWall /*distanceFromWallBack*/ > 14.2) {
+            }
+            else if (distanceFromSideWall /*distanceFromWallBack*/ > 14.2) {
 
                 telemetry.addLine("Move the robot closer to the wall.");
             }
