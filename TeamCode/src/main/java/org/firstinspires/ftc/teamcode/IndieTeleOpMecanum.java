@@ -111,15 +111,15 @@ public class IndieTeleOpMecanum extends OpMode {
 
             if (!nudging) { // ...if nudging is false (the robot is still being nudged)...
 
-                if (gamepad1.dpad_up) robot.setDriveMotorPower(0.5, 0.5, 0.5 ,0.5); // ...if 'up' was pressed, the robot moves forward...
+                if (gamepad1.dpad_up) robot.setDriveMotorPower(0.75, 0.75, 0.75, 0.75); // ...if 'up' was pressed, the robot moves forward...
 
-                else if (gamepad1.dpad_down) robot.setDriveMotorPower(-0.5, -0.5, -0.5, -0.5); // ...else if 'down' was pressed, the robot
+                else if (gamepad1.dpad_down) robot.setDriveMotorPower(-0.75, -0.75, -0.75, -0.75); // ...else if 'down' was pressed, the robot
                     // moves backward...
 
-                else if (gamepad1.dpad_left) robot.setDriveMotorPower(-0.6, 0.6, 0.6, -0.6); // ...else if 'left' was pressed, the robot
+                else if (gamepad1.dpad_left) robot.setDriveMotorPower(-0.8, 0.8, 0.8, -0.8); // ...else if 'left' was pressed, the robot
                     // strafes left...
 
-                else if (gamepad1.dpad_right) robot.setDriveMotorPower(0.6, -0.6, -0.6, 0.6); // ...else if 'right' was pressed, the robot
+                else if (gamepad1.dpad_right) robot.setDriveMotorPower(0.8, -0.8, -0.8, 0.8); // ...else if 'right' was pressed, the robot
                     // strafes right...
             }
 
@@ -203,7 +203,7 @@ public class IndieTeleOpMecanum extends OpMode {
         currStateX = gamepad2.x;
         if (currStateX && currStateX != prevStateX) {
 
-            robot.gripperOpen();
+            robot.gripperClose();
             prevStateX = currStateX;
         }
         else if (!currStateX && currStateX != prevStateX) {
@@ -215,7 +215,7 @@ public class IndieTeleOpMecanum extends OpMode {
         currStateB = gamepad2.b;
         if (currStateB && currStateB != prevStateB) {
 
-            robot.gripperClose();
+            robot.gripperOpen();
             prevStateB = currStateB;
         }
         else if (!currStateB && currStateB != prevStateB) {

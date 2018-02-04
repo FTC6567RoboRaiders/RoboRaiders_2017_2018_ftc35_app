@@ -22,7 +22,7 @@ public class CryptoboxVuforiaFarRed extends RoboRaidersAuto {
         robot.initialize(hardwareMap);
         vuforiaInitialization(hardwareMap);
         robot.initializeServos();
-        alignRobot(robot);
+        alignRobot(robot, "red", "far");
         telemetry.addData("Initialized", true);
         telemetry.update();
 

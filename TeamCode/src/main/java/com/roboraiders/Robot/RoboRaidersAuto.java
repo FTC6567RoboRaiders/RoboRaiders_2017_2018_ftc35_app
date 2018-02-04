@@ -608,7 +608,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             // Side functionality
             distanceFromSideWall = bot.getSideDistance();
-            telemetry.addData("mr_range_side ", "%.2f inches", distanceFromSideWall);
+            telemetry.addData("Side ", "%.2f inches", distanceFromSideWall);
             if (distanceFromSideWall < 13.75) {
 
                 telemetry.addLine("Move the robot farther away from the side wall.");
@@ -629,9 +629,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             // Back or Front functionality
             distanceFromBackWall = bot.getBackDistance();
             distanceFromFrontWall = bot.getFrontDistance();
-            telemetry.addData("mr_range_back ", "%.2f inches", distanceFromBackWall);
-            telemetry.addData("mr_range_front ", "%.2f inches", distanceFromFrontWall);
             if (allianceColor.equals("blue") && balancingStone.equals("close")) {
+
+                telemetry.addData("Back ", "%.2f inches", distanceFromBackWall);
 
                 if (distanceFromBackWall < 13.5) {
 
@@ -652,6 +652,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             }
             else if (allianceColor.equals("blue") && balancingStone.equals("far")) {
 
+                telemetry.addData("Front ", "%.2f inches", distanceFromFrontWall);
+
                 if (distanceFromFrontWall < 40.5) {
 
                     telemetry.addLine("Move the robot farther away from the front wall.");
@@ -671,6 +673,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             }
             else if (allianceColor.equals("red") && balancingStone.equals("close")) {
 
+                telemetry.addData("Front ", "%.2f inches", distanceFromFrontWall);
+
                 if (distanceFromFrontWall < 17) {
 
                     telemetry.addLine("Move the robot farther away from the front wall.");
@@ -689,6 +693,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 }
             }
             else if (allianceColor.equals("red") && balancingStone.equals("far")) {
+
+                telemetry.addData("Back ", "%.2f inches", distanceFromBackWall);
 
                 if (distanceFromBackWall < 37.5) {
 
@@ -710,7 +716,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             // Button functionality
             cur_Y_ButtonState = gamepad1.y;                           // get the current state of button "y"
-
             if (cur_Y_ButtonState) {                                  // when the "y" button on the gamepad is pushed
 
                 if (!prev_Y_ButtonState) {                            // when the previous "y" button was NOT pushed

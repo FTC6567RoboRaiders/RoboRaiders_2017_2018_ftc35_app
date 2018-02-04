@@ -21,7 +21,7 @@ public class CryptoboxRandomCloseBlue extends RoboRaidersAuto {
 
         robot.initialize(hardwareMap);
         robot.initializeServos();
-        alignRobot(robot);
+        alignRobot(robot, "blue", "close");
         telemetry.addData("Initialized", true);
         telemetry.update();
 
