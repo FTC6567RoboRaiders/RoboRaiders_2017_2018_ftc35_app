@@ -21,8 +21,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public boolean cur_Y_ButtonState = false;
     public boolean prev_Y_ButtonState = false;
     public double distanceFromSideWall = 0;
-    //public double distanceFromWallBack = 0;
-    //public double distanceFromWallFront = 0;
+    public double distanceFromBackWall = 0;
+    public double distanceFromFrontWall = 0;
 
     //                                                    +----------+----------+--------+
     //                                                    | Alliance | Balance  | Column |
@@ -597,50 +597,118 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      *
      * @param bot the bot currently being worked on
      */
-    public void alignRobot(Robot bot) {
+    public void alignRobot(Robot bot, String allianceColor, String balancingStone) {
 
         gamepad1.reset();
 
         while (!prev_Y_ButtonState) {
 
-            distanceFromSideWall = bot.getSideDistance();
-            //distanceFromWallBack = bot.getBackDistance();
-            //distanceFromWallFront = bot.getFrontDistance();
-
+            // Telemetry
             telemetry.addLine("Aligning Robot:");
-            telemetry.addData("mr_Range ", "%.2f inches", distanceFromSideWall /*distanceFromWallBack*/);
-            //telemetry.addData("mr_Range_Front ", "%.2f inches", distanceFromWall /*distanceFromWallFront*/);
 
-            if (distanceFromSideWall /*distanceFromWallBack*/ < 13.75) {
+            // Side functionality
+            distanceFromSideWall = bot.getSideDistance();
+            telemetry.addData("mr_range_side ", "%.2f inches", distanceFromSideWall);
+            if (distanceFromSideWall < 13.75) {
 
-                telemetry.addLine("Move the robot farther away from the wall.");
+                telemetry.addLine("Move the robot farther away from the side wall.");
             }
-            else if (distanceFromSideWall /*distanceFromWallBack*/ >= 13.75 && distanceFromSideWall /*distanceFromWallBack*/ <= 14.2) {
+            else if (distanceFromSideWall >= 13.75 && distanceFromSideWall <= 14.2) {
 
-                telemetry.addLine("The robot is the correct distance away.");
+                telemetry.addLine("The robot is the correct distance away from the side wall.");
             }
-            else if (distanceFromSideWall /*distanceFromWallBack*/ > 14.2) {
+            else if (distanceFromSideWall > 14.2) {
 
-                telemetry.addLine("Move the robot closer to the wall.");
+                telemetry.addLine("Move the robot closer to the side wall.");
             }
             else {
 
-                telemetry.addLine("Please place the robot in front of the wall.");
+                telemetry.addLine("Please place the robot on the field.");
             }
 
-            /*if (distanceFromWallBack > (distanceFromWallFront + 0.05)) {
+            // Back or Front functionality
+            distanceFromBackWall = bot.getBackDistance();
+            distanceFromFrontWall = bot.getFrontDistance();
+            telemetry.addData("mr_range_back ", "%.2f inches", distanceFromBackWall);
+            telemetry.addData("mr_range_front ", "%.2f inches", distanceFromFrontWall);
+            if (allianceColor.equals("blue") && balancingStone.equals("close")) {
 
-                telemetry.addLine("Turn the robot clockwise.");
+                if (distanceFromBackWall < 13.5) {
+
+                    telemetry.addLine("Move the robot farther away from the back wall.");
+                }
+                else if (distanceFromBackWall >= 13.5 && distanceFromBackWall <= 13.625) {
+
+                    telemetry.addLine("The robot is the correct distance away from the back wall.");
+                }
+                else if (distanceFromBackWall > 13.625) {
+
+                    telemetry.addLine("Move the robot closer to the back wall.");
+                }
+                else {
+
+                    telemetry.addLine("Please place the robot on the field.");
+                }
             }
-            else if (distanceFromWallBack > (distanceFromWallFront - 0.05) && distanceFromWallBack < (distanceFromWallFront + 0.05)) {
+            else if (allianceColor.equals("blue") && balancingStone.equals("far")) {
 
-                telemetry.addLine("The robot is correctly aligned.");
+                if (distanceFromFrontWall < 40.5) {
+
+                    telemetry.addLine("Move the robot farther away from the front wall.");
+                }
+                else if (distanceFromFrontWall >= 40.5 && distanceFromFrontWall <= 40.625) {
+
+                    telemetry.addLine("The robot is the correct distance away from the front wall.");
+                }
+                else if (distanceFromFrontWall > 40.625) {
+
+                    telemetry.addLine("Move the robot closer to the front wall.");
+                }
+                else {
+
+                    telemetry.addLine("Please place the robot on the field.");
+                }
             }
-            else if (distanceFromWallBack < (distanceFromWallFront - 0.05)) {
+            else if (allianceColor.equals("red") && balancingStone.equals("close")) {
 
-                telemetry.addLine("Turn the robot counterclockwise.");
-            }*/
+                if (distanceFromFrontWall < 17) {
 
+                    telemetry.addLine("Move the robot farther away from the front wall.");
+                }
+                else if (distanceFromFrontWall >= 17 && distanceFromFrontWall <= 17.125) {
+
+                    telemetry.addLine("The robot is the correct distance away from the front wall.");
+                }
+                else if (distanceFromFrontWall > 17.125) {
+
+                    telemetry.addLine("Move the robot closer to the front wall.");
+                }
+                else {
+
+                    telemetry.addLine("Please place the robot on the field.");
+                }
+            }
+            else if (allianceColor.equals("red") && balancingStone.equals("far")) {
+
+                if (distanceFromBackWall < 37.5) {
+
+                    telemetry.addLine("Move the robot farther away from the back wall.");
+                }
+                else if (distanceFromBackWall >= 37.5 && distanceFromBackWall <= 37.875) {
+
+                    telemetry.addLine("The robot is the correct distance away from the back wall.");
+                }
+                else if (distanceFromBackWall > 37.875) {
+
+                    telemetry.addLine("Move the robot closer to the back wall.");
+                }
+                else {
+
+                    telemetry.addLine("Please place the robot on the field.");
+                }
+            }
+
+            // Button functionality
             cur_Y_ButtonState = gamepad1.y;                           // get the current state of button "y"
 
             if (cur_Y_ButtonState) {                                  // when the "y" button on the gamepad is pushed
@@ -651,6 +719,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 }
             }
 
+            // More telemetry
             telemetry.addLine("Press Y when the robot is aligned.");
             telemetry.update();
         }

@@ -74,7 +74,7 @@ public class IndieAutonomousOptions extends RoboRaidersAuto {
         }
 
         robot.initialize(hardwareMap);
-        alignRobot(robot);
+        alignRobot(robot, selectedOptions[1][1], selectedOptions[2][1]);
 
         // Initializing
         telemetry.addLine("Robot is Aligned - Press B to Initialize and Wait for Start");

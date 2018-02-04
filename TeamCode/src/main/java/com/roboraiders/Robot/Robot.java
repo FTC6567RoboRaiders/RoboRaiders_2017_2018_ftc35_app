@@ -35,8 +35,8 @@ public class Robot {
 
     public ColorSensor colorSensor;
     public ModernRoboticsI2cRangeSensor mrRangeSide;     // Back side range sensor
-    // public ModernRoboticsI2cRangeSensor mrRangeBack;   // Back back range sensor
-    // public ModernRoboticsI2cRangeSensor mrRangeFront;  // Front forward range sensor
+    public ModernRoboticsI2cRangeSensor mrRangeBack;     // Back back range sensor
+    public ModernRoboticsI2cRangeSensor mrRangeFront;    // Front forward range sensor
     public BNO055IMU imu;
 
     /* Local OpMode Members */
@@ -106,8 +106,8 @@ public class Robot {
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
         mrRangeSide = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range_side");
-        //mrRangeBack = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range_back");
-        //mrRangeFront = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range_front");
+        mrRangeBack = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range_back");
+        mrRangeFront = hwMap.get(ModernRoboticsI2cRangeSensor.class, "mr_range_front");
         imu = hwMap.get(BNO055IMU.class, "imu");
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         parameters.mode = BNO055IMU.SensorMode.IMU;
@@ -346,10 +346,10 @@ public class Robot {
      * @return mrRangeBack.getDistance(DistanceUnit.INCH) - the current distance of the
      * back distance sensor from an object in inches
      */
-    /*public double getBackDistance() {
+    public double getBackDistance() {
 
         return mrRangeBack.getDistance(DistanceUnit.INCH);
-    }*/
+    }
 
     /**
      * This method will return the current distance of the front distance sensor from an object
@@ -358,10 +358,10 @@ public class Robot {
      * @return mrRangeFront.getDistance(DistanceUnit.INCH) - the current distance of the
      * front distance sensor from an object in inches
      */
-    /*public double getFrontDistance() {
+    public double getFrontDistance() {
 
         return mrRangeFront.getDistance(DistanceUnit.INCH);
-    }*/
+    }
 
     /**
      * This method will return the color sensor reading of the selected color
