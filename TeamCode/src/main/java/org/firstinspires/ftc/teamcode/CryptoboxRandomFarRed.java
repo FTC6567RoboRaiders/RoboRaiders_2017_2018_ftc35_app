@@ -43,7 +43,7 @@ public class CryptoboxRandomFarRed extends RoboRaidersAuto {
         imuTurn(robot, 90, 0.5, "right"); //turn right 90 degrees
         Thread.sleep(250);
 
-        placeGlyph(robot); //robot places glyph
+        placeGlyphFar(robot); //robot places glyph
         Thread.sleep(500);
     }
 }

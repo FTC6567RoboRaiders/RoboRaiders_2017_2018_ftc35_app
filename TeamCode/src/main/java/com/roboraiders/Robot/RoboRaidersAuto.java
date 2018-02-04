@@ -33,20 +33,20 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public double RED_CLOSE_RIGHT_DISTANCE = 21.0;     // |  Red     |  Close   |  Right |
     //                                                    +----------+----------+--------+
     public double RED_FAR_LEFT_DISTANCE = 10.75;       // |  Red     |   Far    |  Left  |
-    public double RED_FAR_CENTER_DISTANCE = 4.25;      // |  Red     |   Far    | Center |
+    public double RED_FAR_CENTER_DISTANCE = 4.5;       // |  Red     |   Far    | Center |
     public double RED_FAR_RIGHT_DISTANCE = 1.25;       // |  Red     |   Far    |  Right |
     //                                                    +----------+----------+--------+
     public double BLUE_CLOSE_LEFT_DISTANCE = 25.0;     // |  Blue    |  Close   |  Left  |
     public double BLUE_CLOSE_CENTER_DISTANCE = 32.0;   // |  Blue    |  Close   | Center |
     public double BLUE_CLOSE_RIGHT_DISTANCE = 40.0;    // |  Blue    |  Close   |  Right |
     //                                                    +----------+----------+--------+
-    public double BLUE_FAR_LEFT_DISTANCE = 1.0;        // |  Blue    |   Far    |  Left  |
-    public double BLUE_FAR_CENTER_DISTANCE = 5.0;      // |  Blue    |   Far    | Center |
-    public double BLUE_FAR_RIGHT_DISTANCE = 10.0;      // |  Blue    |   Far    |  Right |
+    public double BLUE_FAR_LEFT_DISTANCE = 2.5;        // |  Blue    |   Far    |  Left  |
+    public double BLUE_FAR_CENTER_DISTANCE = 7.0;      // |  Blue    |   Far    | Center |
+    public double BLUE_FAR_RIGHT_DISTANCE = 13.5;      // |  Blue    |   Far    |  Right |
     //                                                    +----------+----------+--------+
 
     public double RED_FAR_BACKWARD_DISTANCE = 17.0;    // Distance robot drives backwards off of the RED, Far balance stone
-    public double BLUE_FAR_FORWARD_DISTANCE = 20.0;    // Distance robot drives forward off of the BLUE, Far balance stone
+    public double BLUE_FAR_FORWARD_DISTANCE = 22.0;    // Distance robot drives forward off of the BLUE, Far balance stone
 
     /**
      * This method will initialize Vuforia in autonomous op modes
@@ -197,7 +197,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
                 Thread.sleep(250);
 
-                encodersMove(bot, 2, 0.5, "forward");
+                placeGlyphClose(bot);
                 Thread.sleep(250);
             }
 
@@ -232,6 +232,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
                 imuTurn(bot, 90, 0.5, "right"); //turn right 90 degrees
                 Thread.sleep(250);
+
+                placeGlyphFar(bot);
+                Thread.sleep(250);
             }
         }
         else if (allianceColor.equals("blue")) { //else if we are on the blue side
@@ -260,6 +263,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 }
 
                 imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
+                Thread.sleep(250);
+
+                placeGlyphClose(bot);
                 Thread.sleep(250);
             }
 
@@ -294,11 +300,11 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
                 imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
                 Thread.sleep(250);
+
+                placeGlyphFar(bot);
+                Thread.sleep(250);
             }
         }
-
-        placeGlyph(bot); //run the method placeGlyph
-        Thread.sleep(250);
     }
 
     /**
@@ -491,8 +497,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         double servoElbowPosition = bot.getElbowServoPosition(); //sets getPosition() to servoPosition
 
-        while (servoElbowPosition > 0.54 && opModeIsActive()) {  //while the op mode is active and while the servo position variable is less
-            //than 0.54
+        while (servoElbowPosition > 0.56 && opModeIsActive()) {  //while the op mode is active and while the servo position variable is greater
+            //than 0.56
 
             servoElbowPosition = servoElbowPosition - 0.05;      //add 0.05 to the current servoPosition variable
             bot.setElbowServoPosition(servoElbowPosition);
@@ -529,8 +535,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         double servoElbowPosition = bot.getElbowServoPosition(); //sets getPosition() to servoPosition
 
-        while (servoElbowPosition < 0.54 && opModeIsActive()) {  //while the op mode is active and while the servo position variable is less
-            //than 0.54
+        while (servoElbowPosition < 0.52 && opModeIsActive()) {  //while the op mode is active and while the servo position variable is less
+            //than 0.52
 
             servoElbowPosition = servoElbowPosition + 0.05;      //add 0.05 to the current servoPosition variable
             bot.setElbowServoPosition(servoElbowPosition);
@@ -539,26 +545,50 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     }
 
     /**
-     * This method places a glyph in the cryptobox. This is also steps 3-7
-     * of the pseudocode for Version 2 of autonomous we developed on Dec. 6th, 2017.
+     * This method places a glyph in the cryptobox for the two close balancing stones. This is
+     * also steps 3-7 of the pseudocode for Version 2 of autonomous we developed on Dec. 6th, 2017.
      *
      * @param bot - the bot currently being worked on
      * @throws InterruptedException
      */
-    public void placeGlyph(Robot bot) throws InterruptedException {
+    public void placeGlyphClose(Robot bot) throws InterruptedException {
 
         bot.lowerGlyph(); //lowers and releases the glyph
 
-        encodersMove(bot, 4, 0.5, "backward"); //moves two inches backward
+        encodersMove(bot, 4, 0.5, "backward"); //moves four inches backward
         Thread.sleep(500);
 
         imuTurn(bot, 180, 0.5, "right"); //turns 180 degrees right
         Thread.sleep(500);
 
-        encodersMove(bot, 10, 0.5, "backward"); //moves ten inches backward
+        encodersMove(bot, 12, 0.5, "backward"); //moves twelve inches backward
         Thread.sleep(500);
 
         encodersMove(bot, 1, 0.5, "forward"); //moves one inch forward
+        Thread.sleep(500);
+    }
+
+    /**
+     * This method places a glyph in the cryptobox for the two far balancing stones. This is
+     * also steps 3-7 of the pseudocode for Version 2 of autonomous we developed on Dec. 6th, 2017.
+     *
+     * @param bot - the bot currently being worked on
+     * @throws InterruptedException
+     */
+    public void placeGlyphFar(Robot bot) throws InterruptedException {
+
+        bot.lowerGlyph(); //lowers and releases the glyph
+
+        encodersMove(bot, 4, 0.5, "backward"); //moves four inches backward
+        Thread.sleep(500);
+
+        bot.glyphGrabberClose(); //closes the glyph arms
+        Thread.sleep(500);
+
+        encodersMove(bot, 7, 0.5, "forward"); //moves seven inches forward
+        Thread.sleep(500);
+
+        encodersMove(bot, 1, 0.5, "backward"); //moves one inch backward
         Thread.sleep(500);
     }
 
@@ -581,11 +611,11 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             telemetry.addData("mr_Range ", "%.2f inches", distanceFromSideWall /*distanceFromWallBack*/);
             //telemetry.addData("mr_Range_Front ", "%.2f inches", distanceFromWall /*distanceFromWallFront*/);
 
-            if (distanceFromSideWall /*distanceFromWallBack*/ < 13.8) {
+            if (distanceFromSideWall /*distanceFromWallBack*/ < 13.75) {
 
                 telemetry.addLine("Move the robot farther away from the wall.");
             }
-            else if (distanceFromSideWall /*distanceFromWallBack*/ >= 13.8 && distanceFromSideWall /*distanceFromWallBack*/ <= 14.2) {
+            else if (distanceFromSideWall /*distanceFromWallBack*/ >= 13.75 && distanceFromSideWall /*distanceFromWallBack*/ <= 14.2) {
 
                 telemetry.addLine("The robot is the correct distance away.");
             }

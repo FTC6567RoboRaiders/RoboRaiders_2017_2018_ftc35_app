@@ -37,7 +37,7 @@ public class CryptoboxRandomCloseBlue extends RoboRaidersAuto {
         imuTurn(robot, 90, 0.5, "left"); //robot turns so glyph collector faces cryptobox
         Thread.sleep(500);
 
-        placeGlyph(robot); //robot places glyph`
+        placeGlyphClose(robot); //robot places glyph`
         Thread.sleep(500);
     }
 }
