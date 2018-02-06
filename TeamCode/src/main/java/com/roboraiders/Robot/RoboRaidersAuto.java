@@ -633,15 +633,15 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
                 telemetry.addData("Back ", "%.2f inches", distanceFromBackWall);
 
-                if (distanceFromBackWall < 13.5) {
+                if (distanceFromBackWall < 13.0) {
 
                     telemetry.addLine("Move the robot farther away from the back wall.");
                 }
-                else if (distanceFromBackWall >= 13.5 && distanceFromBackWall <= 13.625) {
+                else if (distanceFromBackWall >= 13.0 && distanceFromBackWall <= 13.75) {
 
                     telemetry.addLine("The robot is the correct distance away from the back wall.");
                 }
-                else if (distanceFromBackWall > 13.625) {
+                else if (distanceFromBackWall > 13.75) {
 
                     telemetry.addLine("Move the robot closer to the back wall.");
                 }
@@ -654,15 +654,15 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
                 telemetry.addData("Front ", "%.2f inches", distanceFromFrontWall);
 
-                if (distanceFromFrontWall < 40.5) {
+                if (distanceFromFrontWall < 37.0) {
 
                     telemetry.addLine("Move the robot farther away from the front wall.");
                 }
-                else if (distanceFromFrontWall >= 40.5 && distanceFromFrontWall <= 40.625) {
+                else if (distanceFromFrontWall >= 37.0 && distanceFromFrontWall <= 37.42) {
 
                     telemetry.addLine("The robot is the correct distance away from the front wall.");
                 }
-                else if (distanceFromFrontWall > 40.625) {
+                else if (distanceFromFrontWall > 37.42) {
 
                     telemetry.addLine("Move the robot closer to the front wall.");
                 }
@@ -675,15 +675,15 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
                 telemetry.addData("Front ", "%.2f inches", distanceFromFrontWall);
 
-                if (distanceFromFrontWall < 17) {
+                if (distanceFromFrontWall < 16.0) {
 
                     telemetry.addLine("Move the robot farther away from the front wall.");
                 }
-                else if (distanceFromFrontWall >= 17 && distanceFromFrontWall <= 17.125) {
+                else if (distanceFromFrontWall >= 16.0 && distanceFromFrontWall <= 16.9) {
 
                     telemetry.addLine("The robot is the correct distance away from the front wall.");
                 }
-                else if (distanceFromFrontWall > 17.125) {
+                else if (distanceFromFrontWall > 16.9) {
 
                     telemetry.addLine("Move the robot closer to the front wall.");
                 }
@@ -696,15 +696,15 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
                 telemetry.addData("Back ", "%.2f inches", distanceFromBackWall);
 
-                if (distanceFromBackWall < 37.5) {
+                if (distanceFromBackWall < 34.3) {
 
                     telemetry.addLine("Move the robot farther away from the back wall.");
                 }
-                else if (distanceFromBackWall >= 37.5 && distanceFromBackWall <= 37.875) {
+                else if (distanceFromBackWall >= 34.3 && distanceFromBackWall <= 35.4) {
 
                     telemetry.addLine("The robot is the correct distance away from the back wall.");
                 }
-                else if (distanceFromBackWall > 37.875) {
+                else if (distanceFromBackWall > 35.4) {
 
                     telemetry.addLine("Move the robot closer to the back wall.");
                 }
