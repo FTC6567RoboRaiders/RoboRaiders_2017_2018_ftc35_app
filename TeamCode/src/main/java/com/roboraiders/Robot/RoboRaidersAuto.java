@@ -33,7 +33,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public double RED_CLOSE_RIGHT_DISTANCE = 21.0;     // |  Red     |  Close   |  Right |
     //                                                    +----------+----------+--------+
     public double RED_FAR_LEFT_DISTANCE = 10.75;       // |  Red     |   Far    |  Left  |
-    public double RED_FAR_CENTER_DISTANCE = 4.5;       // |  Red     |   Far    | Center |
+    public double RED_FAR_CENTER_DISTANCE = 4.75;      // |  Red     |   Far    | Center |
     public double RED_FAR_RIGHT_DISTANCE = 1.25;       // |  Red     |   Far    |  Right |
     //                                                    +----------+----------+--------+
     public double BLUE_CLOSE_LEFT_DISTANCE = 25.0;     // |  Blue    |  Close   |  Left  |
@@ -45,7 +45,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public double BLUE_FAR_RIGHT_DISTANCE = 13.5;      // |  Blue    |   Far    |  Right |
     //                                                    +----------+----------+--------+
 
-    public double RED_FAR_BACKWARD_DISTANCE = 17.0;    // Distance robot drives backwards off of the RED, Far balance stone
+    public double RED_FAR_BACKWARD_DISTANCE = 16.0;    // Distance robot drives backwards off of the RED, Far balance stone
     public double BLUE_FAR_FORWARD_DISTANCE = 22.0;    // Distance robot drives forward off of the BLUE, Far balance stone
 
     /**
