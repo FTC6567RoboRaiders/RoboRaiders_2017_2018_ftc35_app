@@ -36,7 +36,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public double RED_FAR_CENTER_DISTANCE = 4.75;      // |  Red     |   Far    | Center |
     public double RED_FAR_RIGHT_DISTANCE = 1.25;       // |  Red     |   Far    |  Right |
     //                                                    +----------+----------+--------+
-    public double BLUE_CLOSE_LEFT_DISTANCE = 25.0;     // |  Blue    |  Close   |  Left  |
+    public double BLUE_CLOSE_LEFT_DISTANCE = 25.25;    // |  Blue    |  Close   |  Left  |
     public double BLUE_CLOSE_CENTER_DISTANCE = 32.0;   // |  Blue    |  Close   | Center |
     public double BLUE_CLOSE_RIGHT_DISTANCE = 40.0;    // |  Blue    |  Close   |  Right |
     //                                                    +----------+----------+--------+
