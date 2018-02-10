@@ -2,12 +2,15 @@ package com.roboraiders.Robot;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.navigation.RelicRecoveryVuMark;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+
+import java.util.Locale;
 
 /**
  * Created by Alex Snyder on 10/8/17.
@@ -36,17 +39,19 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public double RED_FAR_CENTER_DISTANCE = 4.75;      // |  Red     |   Far    | Center |
     public double RED_FAR_RIGHT_DISTANCE = 1.25;       // |  Red     |   Far    |  Right |
     //                                                    +----------+----------+--------+
-    public double BLUE_CLOSE_LEFT_DISTANCE = 25.25;    // |  Blue    |  Close   |  Left  |
-    public double BLUE_CLOSE_CENTER_DISTANCE = 32.0;   // |  Blue    |  Close   | Center |
-    public double BLUE_CLOSE_RIGHT_DISTANCE = 40.0;    // |  Blue    |  Close   |  Right |
+    public double BLUE_CLOSE_LEFT_DISTANCE = 20.25;    // |  Blue    |  Close   |  Left  |
+    public double BLUE_CLOSE_CENTER_DISTANCE = 27.5;   // |  Blue    |  Close   | Center |
+    public double BLUE_CLOSE_RIGHT_DISTANCE = 41.0;    // |  Blue    |  Close   |  Right |
     //                                                    +----------+----------+--------+
-    public double BLUE_FAR_LEFT_DISTANCE = 2.5;        // |  Blue    |   Far    |  Left  |
+    public double BLUE_FAR_LEFT_DISTANCE = 3.5;        // |  Blue    |   Far    |  Left  |
     public double BLUE_FAR_CENTER_DISTANCE = 7.0;      // |  Blue    |   Far    | Center |
     public double BLUE_FAR_RIGHT_DISTANCE = 13.5;      // |  Blue    |   Far    |  Right |
     //                                                    +----------+----------+--------+
 
     public double RED_FAR_BACKWARD_DISTANCE = 14.0;    // Distance robot drives backwards off of the RED, Far balance stone
-    public double BLUE_FAR_FORWARD_DISTANCE = 22.0;    // Distance robot drives forward off of the BLUE, Far balance stone
+    public double BLUE_FAR_FORWARD_DISTANCE = 20.5;    // Distance robot drives forward off of the BLUE, Far balance stone
+
+    public double MAX_DISTANCE = 50.0;                 // The maximum from the wall, used to display alignment menu.
 
     /**
      * This method will initialize Vuforia in autonomous op modes
@@ -169,8 +174,14 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      */
     public void selectColumn(Robot bot, String allianceColor, String alliancePlacement, String pictograph) throws InterruptedException {
 
+        /*
+         Handle the RED alliance side
+         */
         if (allianceColor.equals("red")) { //if we are on the red side
 
+            /*
+             Positioned on the "CLOSE" balance stone
+             */
             if (alliancePlacement.equals("close")) { //if we are close to the audience
 
                 if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
@@ -201,6 +212,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 Thread.sleep(250);
             }
 
+            /*
+             Positioned on the "FAR" balance stone
+             */
             else if (alliancePlacement.equals("far")) { //if we are far from the audience
 
                 encodersMove(bot, RED_FAR_BACKWARD_DISTANCE, 0.5, "backward"); //drive backward
@@ -237,28 +251,57 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 Thread.sleep(250);
             }
         }
+
+        /*
+         Handle BLUE alliance
+         */
         else if (allianceColor.equals("blue")) { //else if we are on the blue side
 
+            /*
+             Positioned on the "CLOSE" balance stone
+             */
             if (alliancePlacement.equals("close")) {  //if we are close to the audience
 
                 if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
 
-                    encodersMove(bot, BLUE_CLOSE_LEFT_DISTANCE, 0.5, "forward"); //move forward until in front of the left column
+                    //  encodersMove(bot, BLUE_CLOSE_LEFT_DISTANCE, 0.5, "forward"); //move forward until in front of the left column
+                    encodersMoveWithGyro(bot,                        // The robot we are working on
+                            BLUE_CLOSE_LEFT_DISTANCE,   // The distance the robot is to travel
+                            0.6,                        // The left power - its more cause of the drift of the robot
+                            0.5,                        // The right power - its less cause of the drift of the robot
+                            "forward");                 // move "forward" until in front of the left column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("CENTER")) { //else if the pictograph 1says that the key column is the center column
 
-                    encodersMove(bot, BLUE_CLOSE_CENTER_DISTANCE, 0.5, "forward"); //move forward until in front of the center column
+                    //  encodersMove(bot, BLUE_CLOSE_CENTER_DISTANCE, 0.5, "forward"); //move forward until in front of the center column
+                    encodersMoveWithGyro(bot,                        // The robot we are working on
+                            BLUE_CLOSE_CENTER_DISTANCE, // The distance the robot is to travel
+                            0.6,                        // The left power - its more cause of the drift of the robot
+                            0.5,                        // The right power - its less cause of the drift of the robot
+                            "forward");                 // move "forward" until in front of the left column
+
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
 
-                    encodersMove(bot, BLUE_CLOSE_RIGHT_DISTANCE, 0.5, "forward"); //move forward until in front of the right column
+                    //  encodersMove(bot, BLUE_CLOSE_RIGHT_DISTANCE, 0.5, "forward"); //move forward until in front of the right column
+                    encodersMoveWithGyro(bot,                       // The robot we are working on
+                            BLUE_CLOSE_RIGHT_DISTANCE,  // The distance the robot is to travel
+                            0.4,                        // The left power - its more cause of the drift of the robot
+                            0.3,                        // The right power - its less cause of the drift of the robot
+                            "forward");                 // move "forward" until in front of the right column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
 
-                    encodersMove(bot, BLUE_CLOSE_CENTER_DISTANCE, 0.5, "forward"); //move forward until in front of the center column (default)
+                    //  encodersMove(bot, BLUE_CLOSE_CENTER_DISTANCE, 0.5, "forward"); //move forward until in front of the center column (default)
+                    encodersMoveWithGyro(bot,                        // The robot we are working on
+                            BLUE_CLOSE_CENTER_DISTANCE, // The distance the robot is to travel
+                            0.6,                        // The left power - its more cause of the drift of the robot
+                            0.5,                        // The right power - its less cause of the drift of the robot
+                            "forward");                 // move "forward" until in front of the left column
+
                     Thread.sleep(250);
                 }
 
@@ -269,9 +312,12 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 Thread.sleep(250);
             }
 
+            /*
+             Positioned on the "FAR" balance stone
+             */
             else if (alliancePlacement.equals("far")) { //if we are far from the audience
 
-                encodersMove(bot, BLUE_FAR_FORWARD_DISTANCE, 0.5, "forward"); //drive forward
+                encodersMove(bot, BLUE_FAR_FORWARD_DISTANCE, 0.4, "forward"); //drive forward
                 Thread.sleep(250);
 
                 imuTurn(bot, 90, 0.5, "right"); //turn right 90 degrees
@@ -417,6 +463,66 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         bot.runWithoutEncoders(); //sets the mode back to run without encoder
     }
+
+    /**
+     * This method is "like" encodersMove method in that it will run the motors with encoders, however, it will
+     * use the IMU in the REV hub to compensate the robot drift as it travels.
+     *
+     * @param bot - the robot we are working on
+     * @param distance - the distance the robot is to travel in inches
+     * @param leftPower - the left power that is to be applied the left motors on the robot
+     * @param rightPower - the right power that is to be applied the right motors on the robot motors
+     * @param direction - the direction to travel
+     */
+
+    public void encodersMoveWithGyro(Robot bot, double distance, double leftPower, double rightPower, String direction) {
+
+        double powerMultiplier;              // either -1 or 1 depending on the direction, -1 for backward and 1 for forward
+        double robotCurrentHeading;          // The current heading of the robot
+        double INTENDED_ROBOT_HEADING = 0.0; // The intended direction of the robot in this case 0 degrees
+
+        bot.resetEncoders();       //resets encoders
+        bot.runWithEncoders();     //sets the mode back to run with encoder
+
+        // determine the direction the motors will spin
+        if (direction.equals("forward"))
+            powerMultiplier = 1.0;      // Stay positive move forward
+        else
+            powerMultiplier = -1.0;     // Be negative move backward
+
+        double COUNTS = bot.calculateCOUNTS(distance); // convert distance to encoder counts
+
+        // Continue to move the robot until it reaches its destination or the opmode is stopped
+        while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) {
+
+            // Get the current heading, then adjust the powers on the left and right side to
+            // straighten the robot as it travels
+            robotCurrentHeading = bot.getIntegratedZAxis();
+            leftPower = leftPower + ((robotCurrentHeading - INTENDED_ROBOT_HEADING) / 100);
+            rightPower = rightPower - ((robotCurrentHeading - INTENDED_ROBOT_HEADING) / 100);
+
+            // Calculate the final power and direction
+            leftPower = powerMultiplier * Range.clip(leftPower, -1.0, 1.0);
+            rightPower = powerMultiplier * Range.clip(rightPower, -1.0, 1.0);
+
+            // Set the motor powers
+            bot.setDriveMotorPower(leftPower, rightPower, leftPower, rightPower);
+
+            // Tell the drivers what is going on
+            telemetry.addData("COUNTS", COUNTS);
+            telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
+            telemetry.addData("robotCurrentHeading", robotCurrentHeading);
+            telemetry.update();
+
+        } //while( bot.getSortedEncoderCount() < COUNTS && opModeIsActive() )
+
+        // Robot has travelled the distance so stop it.
+        bot.setDriveMotorPower(0, 0, 0, 0);
+
+        // Reset the motors to run with out encoders
+        bot.runWithoutEncoders();
+
+    } // encodersMoveWithGyro
 
     /**
      * This method will determine the name of the pictograph the robot sees
@@ -599,6 +705,18 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      */
     public void alignRobot(Robot bot, String allianceColor, String balancingStone) {
 
+        String sideHdrDistPrompt = "NADA";
+        String sideDistPrompt = "NADA";
+
+
+        String backHdr1DistPrompt = "NADA";
+        String backHdr2DistPrompt = "NADA";
+        String backDistPrompt = "NADA";
+
+        String frontHdr1DistPrompt = "NADA";
+        String frontHdr2DistPrompt = "NADA";
+        String frontDistPrompt = "NADA";
+
         gamepad1.reset();
 
         while (!prev_Y_ButtonState) {
@@ -606,112 +724,141 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             // Telemetry
             telemetry.addLine("Aligning Robot:");
 
-            // Side functionality
+            // Get distances from side, front, and back game perimeter wall
             distanceFromSideWall = bot.getSideDistance();
-            telemetry.addData("Side ", "%.2f inches", distanceFromSideWall);
-            if (distanceFromSideWall < 13.75) {
-
-                telemetry.addLine("Move the robot farther away from the side wall.");
-            }
-            else if (distanceFromSideWall >= 13.75 && distanceFromSideWall <= 14.2) {
-
-                telemetry.addLine("The robot is the correct distance away from the side wall.");
-            }
-            else if (distanceFromSideWall > 14.2) {
-
-                telemetry.addLine("Move the robot closer to the side wall.");
-            }
-            else {
-
-                telemetry.addLine("Please place the robot on the field.");
-            }
-
-            // Back or Front functionality
             distanceFromBackWall = bot.getBackDistance();
             distanceFromFrontWall = bot.getFrontDistance();
-            if (allianceColor.equals("blue") && balancingStone.equals("close")) {
 
-                telemetry.addData("Back ", "%.2f inches", distanceFromBackWall);
+            /*
+             Sometimes we get very large numbers displayed and it messes everything up on the display
+             for a second or two.  This makes it hard for the drive team to read what is going on.  So
+             if all of the distance values are less than 50.0, then display the messages.  Else skip the
+             message display this time and get new values.
+             */
 
-                if (distanceFromBackWall < 13.0) {
+            if ((distanceFromSideWall < MAX_DISTANCE) &&            // Distance from side wall less than max   -AND-
+                    (distanceFromBackWall < MAX_DISTANCE) &&            // Distance from back wall less then max   -AND-
+                    (distanceFromFrontWall < MAX_DISTANCE)) {           // Distance from front wall less than max
 
-                    telemetry.addLine("Move the robot farther away from the back wall.");
-                }
-                else if (distanceFromBackWall >= 13.0 && distanceFromBackWall <= 13.75) {
+                sideHdrDistPrompt = String.format(Locale.US, "Side %.2f inches", distanceFromSideWall);
+                if (distanceFromSideWall < 13.75) {
 
-                    telemetry.addLine("The robot is the correct distance away from the back wall.");
-                }
-                else if (distanceFromBackWall > 13.75) {
+                    sideDistPrompt = "Move the robot farther away from the side wall.";
+                } else if (distanceFromSideWall >= 13.75 && distanceFromSideWall <= 14.2) {
 
-                    telemetry.addLine("Move the robot closer to the back wall.");
+                    sideDistPrompt = "The robot is the correct distance away from the side wall.";
+                } else if (distanceFromSideWall > 14.2) {
+
+                    sideDistPrompt = "Move the robot closer to the side wall.";
                 }
                 else {
 
-                    telemetry.addLine("Please place the robot on the field.");
+                    sideDistPrompt = "Please place the robot on the field.";
+                }
+
+                /*
+                Alliance is BLUE and Balance Stone is CLOSE
+                */
+                if (allianceColor.equals("blue") && balancingStone.equals("close")) {
+
+                    frontHdr1DistPrompt = "IDEAL DISTANCE FROM FRONT WALL IS 13.39 INCHES";
+                    frontHdr2DistPrompt = String.format(Locale.US, "Front %.2f inches", distanceFromBackWall);
+
+                    if (distanceFromBackWall < 13.0) {
+
+                        frontDistPrompt = "Move the robot farther away from the front wall.";
+                    } else if (distanceFromBackWall >= 13.0 && distanceFromBackWall <= 13.75) {
+
+                        frontDistPrompt = "The robot is the correct distance away from the front wall.";
+                    } else if (distanceFromBackWall > 13.75) {
+
+                        frontDistPrompt = "Move the robot closer to the front wall.";
+                    } else {
+
+                        frontDistPrompt = "Please place the robot on the field.";
+                    }
+                }
+
+                /*
+                Alliance is BLUE and Balance Stone is FAR
+                */
+                else if (allianceColor.equals("blue") && balancingStone.equals("far")) {
+
+                    backHdr1DistPrompt = "IDEAL DISTANCE FROM BACK WALL IS 37.4 INCHES";
+                    backHdr2DistPrompt = String.format(Locale.US, "Back %.2f inches", distanceFromFrontWall);
+
+                    if (distanceFromFrontWall < 37.0) {
+
+                        backDistPrompt = "Move the robot farther away from the back wall.";
+                    } else if (distanceFromFrontWall >= 37.0 && distanceFromFrontWall <= 37.42) {
+
+                        backDistPrompt = "The robot is the correct distance away from the back wall.";
+                    } else if (distanceFromFrontWall > 37.42) {
+
+                        backDistPrompt = "Move the robot closer to the back wall.";
+                    } else {
+
+                        backDistPrompt = "Please place the robot on the field.";
+                    }
+                }
+                /*
+                Alliance is RED and Balance Stone is CLOSE
+                */
+                else if (allianceColor.equals("red") && balancingStone.equals("close")) {
+
+                    frontHdr1DistPrompt = "IDEAL DISTANCE FROM FRONT WALL IS 16.14 INCHES";
+                    frontHdr2DistPrompt = String.format(Locale.US, "Front %.2f inches", distanceFromFrontWall);
+
+                    if (distanceFromFrontWall < 16.0) {
+
+                        frontDistPrompt = "Move the robot farther away from the front wall.";
+                    } else if (distanceFromFrontWall >= 16.0 && distanceFromFrontWall <= 16.9) {
+
+                        frontDistPrompt = "The robot is the correct distance away from the front wall.";
+                    } else if (distanceFromFrontWall > 16.9) {
+
+                        frontDistPrompt = "Move the robot closer to the front wall.";
+                    } else {
+
+                        frontDistPrompt = "Please place the robot on the field.";
+                    }
+                }
+
+                /*
+                Alliance is RED and Balance Stone is FAR
+                */
+                else if (allianceColor.equals("red") && balancingStone.equals("far")) {
+
+                    backHdr1DistPrompt = "IDEAL DISTANCE FROM BACK WALL IS 35.43 INCHES";
+                    backHdr2DistPrompt = String.format(Locale.US, "Back %.2f inches", distanceFromBackWall);
+
+                    if (distanceFromBackWall < 34.3) {
+
+                        backDistPrompt = "Move the robot farther away from the back wall.";
+                    } else if (distanceFromBackWall >= 34.3 && distanceFromBackWall <= 35.43) {
+
+                        backDistPrompt = "The robot is the correct distance away from the back wall.";
+                    } else if (distanceFromBackWall > 35.4) {
+
+                        backDistPrompt = "Move the robot closer to the back wall.";
+                    } else {
+
+                        backDistPrompt = "Please place the robot on the field.";
+                    }
                 }
             }
-            else if (allianceColor.equals("blue") && balancingStone.equals("far")) {
 
-                telemetry.addData("Front ", "%.2f inches", distanceFromFrontWall);
+            telemetry.addLine(sideHdrDistPrompt);
+            telemetry.addLine(sideDistPrompt);
 
-                if (distanceFromFrontWall < 37.0) {
-
-                    telemetry.addLine("Move the robot farther away from the front wall.");
-                }
-                else if (distanceFromFrontWall >= 37.0 && distanceFromFrontWall <= 37.42) {
-
-                    telemetry.addLine("The robot is the correct distance away from the front wall.");
-                }
-                else if (distanceFromFrontWall > 37.42) {
-
-                    telemetry.addLine("Move the robot closer to the front wall.");
-                }
-                else {
-
-                    telemetry.addLine("Please place the robot on the field.");
-                }
-            }
-            else if (allianceColor.equals("red") && balancingStone.equals("close")) {
-
-                telemetry.addData("Front ", "%.2f inches", distanceFromFrontWall);
-
-                if (distanceFromFrontWall < 16.0) {
-
-                    telemetry.addLine("Move the robot farther away from the front wall.");
-                }
-                else if (distanceFromFrontWall >= 16.0 && distanceFromFrontWall <= 16.9) {
-
-                    telemetry.addLine("The robot is the correct distance away from the front wall.");
-                }
-                else if (distanceFromFrontWall > 16.9) {
-
-                    telemetry.addLine("Move the robot closer to the front wall.");
-                }
-                else {
-
-                    telemetry.addLine("Please place the robot on the field.");
-                }
-            }
-            else if (allianceColor.equals("red") && balancingStone.equals("far")) {
-
-                telemetry.addData("Back ", "%.2f inches", distanceFromBackWall);
-
-                if (distanceFromBackWall < 34.3) {
-
-                    telemetry.addLine("Move the robot farther away from the back wall.");
-                }
-                else if (distanceFromBackWall >= 34.3 && distanceFromBackWall <= 35.4) {
-
-                    telemetry.addLine("The robot is the correct distance away from the back wall.");
-                }
-                else if (distanceFromBackWall > 35.4) {
-
-                    telemetry.addLine("Move the robot closer to the back wall.");
-                }
-                else {
-
-                    telemetry.addLine("Please place the robot on the field.");
-                }
+            if (balancingStone.equals("far")) {
+                telemetry.addLine(backHdr1DistPrompt);
+                telemetry.addLine(backHdr2DistPrompt);
+                telemetry.addLine(backDistPrompt);
+            } else {
+                telemetry.addLine(frontHdr1DistPrompt);
+                telemetry.addLine(frontHdr2DistPrompt);
+                telemetry.addLine(frontDistPrompt);
             }
 
             // Button functionality
