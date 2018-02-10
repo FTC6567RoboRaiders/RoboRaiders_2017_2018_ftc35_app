@@ -63,7 +63,7 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
 
             currentTimeStamp = System.currentTimeMillis();   // get the current time stamp
 
-            robot.setDriveMotorPower(0.5, 0.5, 0.5, 0.5);    // run the motors at 1/2 speed, don't need fast and furious part 2
+            robot.setDriveMotorPower(0.25, 0.25, 0.25, 0.25);    // run the motors at 1/2 speed, don't need fast and furious part 2
 
             // store the current encoder counts (positions) for the drive motors
             encoderArray[0] = robot.motorFrontLeft.getCurrentPosition();

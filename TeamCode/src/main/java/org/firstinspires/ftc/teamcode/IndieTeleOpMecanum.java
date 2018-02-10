@@ -269,7 +269,7 @@ public class IndieTeleOpMecanum extends OpMode {
      * Stepping through the algorithm
      * <ol>
      * <li> -0.43*16 = -6.88, but because we cast the calculations as an integer (int)
-     * we lose the .88 so the value just is 12, variable index now contains -6.  <b>Note:</b>
+     * we lose the .88 so the value just is -6, variable index now contains -6.  <b>Note:</b>
      * the index variable will tell us which of the array entries in the scaleArray array to
      * use.</li>
      * <li> Check if the index is negative (less than zero), in this example the
