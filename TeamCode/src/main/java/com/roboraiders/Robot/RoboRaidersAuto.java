@@ -28,11 +28,11 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     //                                                    | Alliance | Balance  | Column |
     //                                                    |          |  Stone   |        |
     //                                                    +----------+----------+--------+
-    public double RED_CLOSE_LEFT_DISTANCE = 34.5;      // |  Red     |  Close   |  Left  |
-    public double RED_CLOSE_CENTER_DISTANCE = 26.5;    // |  Red     |  Close   | Center |
-    public double RED_CLOSE_RIGHT_DISTANCE = 21.0;     // |  Red     |  Close   |  Right |
+    public double RED_CLOSE_LEFT_DISTANCE = 33.0;      // |  Red     |  Close   |  Left  |
+    public double RED_CLOSE_CENTER_DISTANCE = 25.5;    // |  Red     |  Close   | Center |
+    public double RED_CLOSE_RIGHT_DISTANCE = 19.5;     // |  Red     |  Close   |  Right |
     //                                                    +----------+----------+--------+
-    public double RED_FAR_LEFT_DISTANCE = 10.75;       // |  Red     |   Far    |  Left  |
+    public double RED_FAR_LEFT_DISTANCE = 10.00;       // |  Red     |   Far    |  Left  |
     public double RED_FAR_CENTER_DISTANCE = 4.75;      // |  Red     |   Far    | Center |
     public double RED_FAR_RIGHT_DISTANCE = 1.25;       // |  Red     |   Far    |  Right |
     //                                                    +----------+----------+--------+
@@ -45,7 +45,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public double BLUE_FAR_RIGHT_DISTANCE = 13.5;      // |  Blue    |   Far    |  Right |
     //                                                    +----------+----------+--------+
 
-    public double RED_FAR_BACKWARD_DISTANCE = 16.0;    // Distance robot drives backwards off of the RED, Far balance stone
+    public double RED_FAR_BACKWARD_DISTANCE = 14.0;    // Distance robot drives backwards off of the RED, Far balance stone
     public double BLUE_FAR_FORWARD_DISTANCE = 22.0;    // Distance robot drives forward off of the BLUE, Far balance stone
 
     /**
@@ -555,7 +555,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         bot.lowerGlyph(); //lowers and releases the glyph
 
-        encodersMove(bot, 4, 0.5, "backward"); //moves four inches backward
+        encodersMove(bot, 3.25, 0.5, "backward"); //moves four inches backward was 3.25" backwards this ensures the jewel is in - no change
         Thread.sleep(500);
 
         imuTurn(bot, 180, 0.5, "right"); //turns 180 degrees right
