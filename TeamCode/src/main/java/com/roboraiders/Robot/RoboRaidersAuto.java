@@ -175,12 +175,12 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public void selectColumn(Robot bot, String allianceColor, String alliancePlacement, String pictograph) throws InterruptedException {
 
         /*
-         Handle the RED alliance side
+         Handle RED alliance
          */
         if (allianceColor.equals("red")) { //if we are on the red side
 
             /*
-             Positioned on the "CLOSE" balance stone
+             Positioned on the "CLOSE" balancing stone
              */
             if (alliancePlacement.equals("close")) { //if we are close to the audience
 
@@ -213,7 +213,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             }
 
             /*
-             Positioned on the "FAR" balance stone
+             Positioned on the "FAR" balancing stone
              */
             else if (alliancePlacement.equals("far")) { //if we are far from the audience
 
@@ -258,7 +258,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         else if (allianceColor.equals("blue")) { //else if we are on the blue side
 
             /*
-             Positioned on the "CLOSE" balance stone
+             Positioned on the "CLOSE" balancing stone
              */
             if (alliancePlacement.equals("close")) {  //if we are close to the audience
 
@@ -280,7 +280,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                             0.6,                        // The left power - its more cause of the drift of the robot
                             0.5,                        // The right power - its less cause of the drift of the robot
                             "forward");                 // move "forward" until in front of the left column
-
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
@@ -301,7 +300,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                             0.6,                        // The left power - its more cause of the drift of the robot
                             0.5,                        // The right power - its less cause of the drift of the robot
                             "forward");                 // move "forward" until in front of the left column
-
                     Thread.sleep(250);
                 }
 
@@ -313,7 +311,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             }
 
             /*
-             Positioned on the "FAR" balance stone
+             Positioned on the "FAR" balancing stone
              */
             else if (alliancePlacement.equals("far")) { //if we are far from the audience
 
@@ -474,25 +472,24 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      * @param rightPower - the right power that is to be applied the right motors on the robot motors
      * @param direction - the direction to travel
      */
-
     public void encodersMoveWithGyro(Robot bot, double distance, double leftPower, double rightPower, String direction) {
 
-        double powerMultiplier;              // either -1 or 1 depending on the direction, -1 for backward and 1 for forward
+        double powerMultiplier;              // Either -1 or 1 depending on the direction, -1 for backward and 1 for forward
         double robotCurrentHeading;          // The current heading of the robot
-        double INTENDED_ROBOT_HEADING = 0.0; // The intended direction of the robot in this case 0 degrees
+        double INTENDED_ROBOT_HEADING = 0.0; // The intended direction of the robot; in this case 0 degrees
 
         bot.resetEncoders();       //resets encoders
         bot.runWithEncoders();     //sets the mode back to run with encoder
 
-        // determine the direction the motors will spin
+        // Determine the direction the motors will spin
         if (direction.equals("forward"))
-            powerMultiplier = 1.0;      // Stay positive move forward
+            powerMultiplier = 1.0;      // Stay positive; move forward
         else
-            powerMultiplier = -1.0;     // Be negative move backward
+            powerMultiplier = -1.0;     // Be negative; move backward
 
-        double COUNTS = bot.calculateCOUNTS(distance); // convert distance to encoder counts
+        double COUNTS = bot.calculateCOUNTS(distance); // Convert distance to encoder counts
 
-        // Continue to move the robot until it reaches its destination or the opmode is stopped
+        // Continue to move the robot until it reaches its destination or the op mode is stopped
         while (bot.getSortedEncoderCount() < COUNTS && opModeIsActive()) {
 
             // Get the current heading, then adjust the powers on the left and right side to
@@ -513,16 +510,14 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             telemetry.addData("Encoder Count", bot.getSortedEncoderCount());
             telemetry.addData("robotCurrentHeading", robotCurrentHeading);
             telemetry.update();
+        }
 
-        } //while( bot.getSortedEncoderCount() < COUNTS && opModeIsActive() )
-
-        // Robot has travelled the distance so stop it.
+        // Robot has travelled the distance so stop it
         bot.setDriveMotorPower(0, 0, 0, 0);
 
         // Reset the motors to run with out encoders
         bot.runWithoutEncoders();
-
-    } // encodersMoveWithGyro
+    }
 
     /**
      * This method will determine the name of the pictograph the robot sees
@@ -708,7 +703,6 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         String sideHdrDistPrompt = "NADA";
         String sideDistPrompt = "NADA";
 
-
         String backHdr1DistPrompt = "NADA";
         String backHdr2DistPrompt = "NADA";
         String backDistPrompt = "NADA";
@@ -736,7 +730,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
              message display this time and get new values.
              */
 
-            if ((distanceFromSideWall < MAX_DISTANCE) &&            // Distance from side wall less than max   -AND-
+            if ((distanceFromSideWall < MAX_DISTANCE) &&                // Distance from side wall less than max   -AND-
                     (distanceFromBackWall < MAX_DISTANCE) &&            // Distance from back wall less then max   -AND-
                     (distanceFromFrontWall < MAX_DISTANCE)) {           // Distance from front wall less than max
 
