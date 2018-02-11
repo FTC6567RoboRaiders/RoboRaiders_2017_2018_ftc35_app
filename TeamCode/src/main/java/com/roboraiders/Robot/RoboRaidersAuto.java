@@ -267,9 +267,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                     //  encodersMove(bot, BLUE_CLOSE_LEFT_DISTANCE, 0.5, "forward"); //move forward until in front of the left column
                     encodersMoveWithGyro(bot,                        // The robot we are working on
                             BLUE_CLOSE_LEFT_DISTANCE,   // The distance the robot is to travel
-                            0.6,                        // The left power - its more cause of the drift of the robot
-                            0.5,                        // The right power - its less cause of the drift of the robot
-                            "forward");                 // move "forward" until in front of the left column
+                            0.6,                        // The left power - its more because of the drift of the robot
+                            0.5,                        // The right power - its less because of the drift of the robot
+                            "forward");                 // Move "forward" until in front of the left column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("CENTER")) { //else if the pictograph 1says that the key column is the center column
@@ -277,9 +277,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                     //  encodersMove(bot, BLUE_CLOSE_CENTER_DISTANCE, 0.5, "forward"); //move forward until in front of the center column
                     encodersMoveWithGyro(bot,                        // The robot we are working on
                             BLUE_CLOSE_CENTER_DISTANCE, // The distance the robot is to travel
-                            0.6,                        // The left power - its more cause of the drift of the robot
-                            0.5,                        // The right power - its less cause of the drift of the robot
-                            "forward");                 // move "forward" until in front of the left column
+                            0.6,                        // The left power - its more because of the drift of the robot
+                            0.5,                        // The right power - its less because of the drift of the robot
+                            "forward");                 // Move "forward" until in front of the left column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
@@ -287,9 +287,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                     //  encodersMove(bot, BLUE_CLOSE_RIGHT_DISTANCE, 0.5, "forward"); //move forward until in front of the right column
                     encodersMoveWithGyro(bot,                       // The robot we are working on
                             BLUE_CLOSE_RIGHT_DISTANCE,  // The distance the robot is to travel
-                            0.4,                        // The left power - its more cause of the drift of the robot
-                            0.3,                        // The right power - its less cause of the drift of the robot
-                            "forward");                 // move "forward" until in front of the right column
+                            0.4,                        // The left power - its more because of the drift of the robot
+                            0.3,                        // The right power - its less because of the drift of the robot
+                            "forward");                 // Move "forward" until in front of the right column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
@@ -297,9 +297,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                     //  encodersMove(bot, BLUE_CLOSE_CENTER_DISTANCE, 0.5, "forward"); //move forward until in front of the center column (default)
                     encodersMoveWithGyro(bot,                        // The robot we are working on
                             BLUE_CLOSE_CENTER_DISTANCE, // The distance the robot is to travel
-                            0.6,                        // The left power - its more cause of the drift of the robot
-                            0.5,                        // The right power - its less cause of the drift of the robot
-                            "forward");                 // move "forward" until in front of the left column
+                            0.6,                        // The left power - its more because of the drift of the robot
+                            0.5,                        // The right power - its less because of the drift of the robot
+                            "forward");                 // Move "forward" until in front of the left column
                     Thread.sleep(250);
                 }
 
