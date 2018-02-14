@@ -26,6 +26,7 @@ public class IndieTeleOpMecanum extends OpMode {
     double powerFactor = 1;
     boolean nudging = false;
     int nudgeCount = 0;
+    int timesFlipped = 0;  //times the glyph flipper has been flipped
     public boolean currStateRightBumper1 = false;
     public boolean prevStateRightBumper1 = false;
     public boolean currStateLeftBumper1 = false;
@@ -34,6 +35,10 @@ public class IndieTeleOpMecanum extends OpMode {
     public boolean prevStateRightBumper2 = false;
     public boolean currStateLeftBumper2 = false;
     public boolean prevStateLeftBumper2 = false;
+    public boolean currStateLeftTrigger = false;
+    public boolean prevStateLeftTrigger = false;
+    public boolean currStateRightTrigger = false;
+    public boolean prevStateRightTrigger = false;
     public boolean currStateY = false;
     public boolean prevStateY = false;
     public boolean currStateX = false;
@@ -82,6 +87,7 @@ public class IndieTeleOpMecanum extends OpMode {
         robot.setDriveMotorPower(LeftFront * 0.95 * powerFactor, RightFront * 0.95 * powerFactor,
                 LeftBack * 0.95 * powerFactor, RightBack * 0.95 * powerFactor);
 
+
         // "Power Factor" functionality
         currStateLeftBumper1 = gamepad1.left_bumper;
         if (currStateLeftBumper1 && currStateLeftBumper1 != prevStateLeftBumper1) {
@@ -103,6 +109,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
             prevStateRightBumper1 = currStateRightBumper1;
         }
+
 
         // "Nudging" functionality
         if (gamepad1.dpad_up || gamepad1.dpad_down || gamepad1.dpad_left || gamepad1.dpad_right) { // "If any
@@ -139,17 +146,39 @@ public class IndieTeleOpMecanum extends OpMode {
             nudgeCount = 0; // ...and nudgeCount is reset to 0."
         }
 
+
         // "Set Glyph Lift Motor Power" functionality
         glyphLift = -gamepad2.right_stick_y;
         glyphLift = Range.clip(glyphLift, -1, 1);
         glyphLift = (float) scaleInput(glyphLift);
         robot.setGlyphLiftMotorPower(glyphLift * 0.90);
 
+
         // "Glyph Grabber Open" functionality
+        if (gamepad2.left_trigger > 0.5) {
+
+            currStateLeftTrigger = true;
+        }
+        else {
+
+            currStateLeftTrigger = false;
+        }
+        if (currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
+
+            robot.glyphGrabberOpen();
+            prevStateLeftTrigger = currStateLeftTrigger;
+        }
+        else if (!currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
+
+            prevStateLeftTrigger = currStateLeftTrigger;
+        }
+
+
+        // "Glyph Grabber Upper Close" functionality
         currStateRightBumper2 = gamepad2.right_bumper;
         if (currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
 
-            robot.glyphGrabberOpen();
+            robot.glyphGrabberUpperClose();
             prevStateRightBumper2 = currStateRightBumper2;
         }
         else if (!currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
@@ -157,11 +186,12 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateRightBumper2 = currStateRightBumper2;
         }
 
-        // "Glyph Grabber Close" functionality
+
+        // "Glyph Grabber Lower Close" functionality
         currStateLeftBumper2 = gamepad2.left_bumper;
         if (currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
 
-            robot.glyphGrabberClose();
+            robot.glyphGrabberLowerClose();
             prevStateLeftBumper2 = currStateLeftBumper2;
         }
         else if (!currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
@@ -169,11 +199,44 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateLeftBumper2 = currStateLeftBumper2;
         }
 
+        // "Glyph Flip" functionality
+        if (gamepad2.right_trigger > 0.5) {
+
+            currStateRightTrigger = true;
+        }
+        else {
+
+            currStateRightTrigger = false;
+        }
+        if (currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
+
+            timesFlipped++;
+
+            if (timesFlipped % 2 == 1) {  //if timesFlipped is an odd number (it's been pressed once, three times, five times...)
+
+                robot.glyphFlip();
+            }
+
+            else if (timesFlipped % 2 == 0) { //if timesFlipped is an even number (it's been pressed twice, four times...)
+
+                robot.glyphFlipBack();
+            }
+
+            prevStateRightTrigger = currStateRightTrigger;
+
+        }
+        else if (!currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
+
+            prevStateRightTrigger = currStateRightTrigger;
+        }
+
+
         // "Set Relic Motor Power" functionality
         relic = gamepad2.left_stick_y;
         relic = Range.clip(relic, -1, 1);
         relic = (float) scaleInput(relic);
         robot.setRelicMotorPower(relic * 0.5);
+
 
         // "Relic Wrist Up" functionality
         currStateY = gamepad2.y;
@@ -187,6 +250,7 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateY = currStateY;
         }
 
+
         // "Relic Wrist Down" functionality
         currStateA = gamepad2.a;
         if (currStateA && currStateA != prevStateA) {
@@ -199,6 +263,7 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateA = currStateA;
         }
 
+
         // "Relic Gripper Open" functionality
         currStateX = gamepad2.x;
         if (currStateX && currStateX != prevStateX) {
@@ -210,6 +275,7 @@ public class IndieTeleOpMecanum extends OpMode {
 
             prevStateX = currStateX;
         }
+
 
         // "Relic Gripper Close" functionality
         currStateB = gamepad2.b;

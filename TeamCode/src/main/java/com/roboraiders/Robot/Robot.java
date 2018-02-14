@@ -164,18 +164,12 @@ public class Robot {
     /**
      * This method will set the position of the upper glyph grabber servo to an open position large enough to grab the glyph
      */
-    public void glyphGrabberUpperOpen() {
+    public void glyphGrabberOpen() {
 
         servoGlyphUpper.setPosition(1.0);
-    }
-
-    /**
-     * This method will set the position of the lower glyph grabber servo to an closed position, grabbing the glyph
-     */
-    public void glyphGrabberLowerOpen() {
-
         servoGlyphLower.setPosition(1.0);
     }
+
 
     /**
      * This method will set the position of the upper glyph grabber servo to an open position large enough to grab the glyph
@@ -495,7 +489,7 @@ public class Robot {
         motorGlyphLift.setPower(0.0);
         Thread.sleep(250);
 
-        glyphGrabberLowerOpen();
+        glyphGrabberOpen();
         Thread.sleep(500);
     }
 
