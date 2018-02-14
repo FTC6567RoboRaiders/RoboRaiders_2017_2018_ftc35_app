@@ -170,7 +170,6 @@ public class Robot {
         servoGlyphLower.setPosition(1.0);
     }
 
-
     /**
      * This method will set the position of the upper glyph grabber servo to an open position large enough to grab the glyph
      */
