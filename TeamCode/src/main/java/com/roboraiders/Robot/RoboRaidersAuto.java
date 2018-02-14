@@ -683,7 +683,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         encodersMove(bot, 4, 0.5, "backward"); //moves four inches backward
         Thread.sleep(500);
 
-        bot.glyphGrabberClose(); //closes the glyph arms
+        bot.glyphGrabberLowerClose(); //closes the glyph arms
+        bot.glyphGrabberUpperClose();
         Thread.sleep(500);
 
         encodersMove(bot, 7, 0.5, "forward"); //moves seven inches forward

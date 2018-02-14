@@ -31,7 +31,9 @@ public class Robot {
     public Servo servoElbow = null;
     public Servo servoRelicWrist = null;
     public Servo servoRelicGripper = null;
-    public Servo servoGlyphBoth = null;
+    public Servo servoGlyphUpper = null;
+    public Servo servoGlyphLower = null;
+    public Servo servoGlyphFlipper = null;
 
     public ColorSensor colorSensor;
     public ModernRoboticsI2cRangeSensor mrRangeSide;     // Back side range sensor
@@ -106,7 +108,9 @@ public class Robot {
         servoElbow = hwMap.get(Servo.class, "servo_Elbow");
         servoRelicWrist = hwMap.get(Servo.class, "servo_Relic_Wrist");
         servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
-        servoGlyphBoth = hwMap.get(Servo.class, "servo_Glyph_Both");
+        servoGlyphUpper = hwMap.get(Servo.class, "servo_Glyph_Upper");
+        servoGlyphLower = hwMap.get(Servo.class, "servo_Glyph_Lower");
+        servoGlyphFlipper = hwMap.get(Servo.class, "servo_Glyph_Flipper");
 
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
@@ -126,7 +130,9 @@ public class Robot {
 
         servoJewel.setPosition(0.1);
         servoElbow.setPosition(0.55);
-        servoGlyphBoth.setPosition(1.0);
+        servoGlyphUpper.setPosition(1.0);
+        servoGlyphLower.setPosition(1.0);
+        servoGlyphFlipper.setPosition(0.0);
     }
 
     /**
@@ -156,19 +162,51 @@ public class Robot {
     }
 
     /**
-     * This method will set the positions of the glyph grabber servos to an open positions large enough to grab the glyph
+     * This method will set the position of the upper glyph grabber servo to an open position large enough to grab the glyph
      */
-    public void glyphGrabberOpen() {
+    public void glyphGrabberUpperOpen() {
 
-        servoGlyphBoth.setPosition(1.0);
+        servoGlyphUpper.setPosition(1.0);
     }
 
     /**
-     * This method will set the positions of the glyph grabber to a closed position grabbing the glyph
+     * This method will set the position of the lower glyph grabber servo to an closed position, grabbing the glyph
      */
-    public void glyphGrabberClose() {
+    public void glyphGrabberLowerOpen() {
 
-        servoGlyphBoth.setPosition(0.0);
+        servoGlyphLower.setPosition(1.0);
+    }
+
+    /**
+     * This method will set the position of the upper glyph grabber servo to an open position large enough to grab the glyph
+     */
+    public void glyphGrabberUpperClose() {
+
+        servoGlyphUpper.setPosition(0.0);
+    }
+
+    /**
+     * This method will set the position of the lower glyph grabber servo to an closed position, grabbing the glyph
+     */
+    public void glyphGrabberLowerClose() {
+
+        servoGlyphLower.setPosition(0.0);
+    }
+
+    /**
+     * This method will flip the glyph flipper servo
+     */
+    public void glyphFlip() {
+
+        servoGlyphFlipper.setPosition(1.0);
+    }
+
+    /**
+     * This method will return the glyph flipper servo to its original position
+     */
+    public void glyphFlipBack() {
+
+        servoGlyphFlipper.setPosition(0.0);
     }
 
     /**
@@ -436,7 +474,7 @@ public class Robot {
      */
     public void liftGlyph() throws InterruptedException {
 
-        glyphGrabberClose();
+        glyphGrabberLowerClose();
         Thread.sleep(500);
 
         motorGlyphLift.setPower(0.5);
@@ -457,7 +495,7 @@ public class Robot {
         motorGlyphLift.setPower(0.0);
         Thread.sleep(250);
 
-        glyphGrabberOpen();
+        glyphGrabberLowerOpen();
         Thread.sleep(500);
     }
 
