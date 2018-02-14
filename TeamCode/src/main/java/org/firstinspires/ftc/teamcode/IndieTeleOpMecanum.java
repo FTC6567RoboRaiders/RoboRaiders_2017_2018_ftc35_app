@@ -26,7 +26,7 @@ public class IndieTeleOpMecanum extends OpMode {
     double powerFactor = 1;
     boolean nudging = false;
     int nudgeCount = 0;
-    int timesFlipped = 0;  //times the glyph flipper has been flipped
+    int timesFlipped = 0;  // Number of times the glyph flipper has been flipped
     public boolean currStateRightBumper1 = false;
     public boolean prevStateRightBumper1 = false;
     public boolean currStateLeftBumper1 = false;
@@ -199,6 +199,7 @@ public class IndieTeleOpMecanum extends OpMode {
             prevStateLeftBumper2 = currStateLeftBumper2;
         }
 
+
         // "Glyph Flip" functionality
         if (gamepad2.right_trigger > 0.5) {
 
@@ -212,18 +213,17 @@ public class IndieTeleOpMecanum extends OpMode {
 
             timesFlipped++;
 
-            if (timesFlipped % 2 == 1) {  //if timesFlipped is an odd number (it's been pressed once, three times, five times...)
+            if (timesFlipped % 2 == 1) {  // If timesFlipped is an odd number (it has been pressed once, three times, five times...)
 
                 robot.glyphFlip();
             }
 
-            else if (timesFlipped % 2 == 0) { //if timesFlipped is an even number (it's been pressed twice, four times...)
+            else if (timesFlipped % 2 == 0) { // If timesFlipped is an even number (it has been pressed twice, four times, six times...)
 
                 robot.glyphFlipBack();
             }
 
             prevStateRightTrigger = currStateRightTrigger;
-
         }
         else if (!currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
 
