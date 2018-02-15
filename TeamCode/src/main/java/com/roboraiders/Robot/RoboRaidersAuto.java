@@ -468,15 +468,17 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      *
      * @param bot - the robot we are working on
      * @param distance - the distance the robot is to travel in inches
-     * @param leftPower - the left power that is to be applied the left motors on the robot
-     * @param rightPower - the right power that is to be applied the right motors on the robot motors
+     * @param leftPower - the left power that is to be applied to the left motors on the robot
+     * @param rightPower - the right power that is to be applied to the right motors on the robot motors
      * @param direction - the direction to travel
      */
     public void encodersMoveWithGyro(Robot bot, double distance, double leftPower, double rightPower, String direction) {
 
         double powerMultiplier;              // Either -1 or 1 depending on the direction, -1 for backward and 1 for forward
         double robotCurrentHeading;          // The current heading of the robot
-        double INTENDED_ROBOT_HEADING = 0.0; // The intended direction of the robot; in this case 0 degrees
+        double INTENDED_ROBOT_HEADING = 0.0; // The intended direction of the robot in this case 0 degrees
+        double newLeftPower;
+        double newRightPower;
 
         bot.resetEncoders();       //resets encoders
         bot.runWithEncoders();     //sets the mode back to run with encoder
@@ -495,15 +497,15 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
             // Get the current heading, then adjust the powers on the left and right side to
             // straighten the robot as it travels
             robotCurrentHeading = bot.getIntegratedZAxis();
-            leftPower = leftPower + ((robotCurrentHeading - INTENDED_ROBOT_HEADING) / 100);
-            rightPower = rightPower - ((robotCurrentHeading - INTENDED_ROBOT_HEADING) / 100);
+            newLeftPower = leftPower + ((robotCurrentHeading - INTENDED_ROBOT_HEADING) / 100);
+            newRightPower = rightPower - ((robotCurrentHeading - INTENDED_ROBOT_HEADING) / 100);
 
             // Calculate the final power and direction
-            leftPower = powerMultiplier * Range.clip(leftPower, -1.0, 1.0);
-            rightPower = powerMultiplier * Range.clip(rightPower, -1.0, 1.0);
+            newLeftPower = powerMultiplier * Range.clip(newLeftPower, -(leftPower + 0.1), (leftPower + 0.1));
+            newRightPower = powerMultiplier * Range.clip(newRightPower, -(rightPower + 0.1), (rightPower + 0.1));
 
             // Set the motor powers
-            bot.setDriveMotorPower(leftPower, rightPower, leftPower, rightPower);
+            bot.setDriveMotorPower(newLeftPower, newRightPower, newLeftPower, newRightPower);
 
             // Tell the drivers what is going on
             telemetry.addData("COUNTS", COUNTS);
