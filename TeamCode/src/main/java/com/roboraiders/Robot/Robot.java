@@ -129,7 +129,7 @@ public class Robot {
     public void initializeServos() {
 
         servoJewel.setPosition(0.4);
-        servoElbow.setPosition(0.86);
+        servoElbow.setPosition(0.0);
         servoGlyphUpper.setPosition(1.0);
         servoGlyphLower.setPosition(1.0);
         servoGlyphFlipper.setPosition(0.0);
@@ -482,8 +482,6 @@ public class Robot {
      * This method will lift the glyph up slightly at the beginning of autonomous
      */
     public void liftGlyph() throws InterruptedException {
-
-        setElbowServoPosition(0.8);
 
         glyphGrabberLowerClose();
         Thread.sleep(500);
