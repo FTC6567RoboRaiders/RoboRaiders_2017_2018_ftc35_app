@@ -555,7 +555,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         double servoJewelPosition = bot.getJewelServoPosition(); //sets getPosition() to servoPosition
 
         while (servoJewelPosition < 0.85 && opModeIsActive()) {  //while the op mode is active and while the servo position variable is less
-            //than 0.90
+            //than 0.85
 
             servoJewelPosition = servoJewelPosition + 0.05;      //add 0.05 to the current servoPosition variable
             bot.setJewelServoPosition(servoJewelPosition);
