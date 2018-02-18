@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.roboraiders.Robot.RoboRaidersAuto;
 import com.roboraiders.Robot.Robot;
 
@@ -12,7 +11,7 @@ import com.roboraiders.Robot.Robot;
 @Autonomous
 
 
-public class JewelArmTest extends RoboRaidersAuto {
+public class JewelArmTest2 extends RoboRaidersAuto {
 
     public Robot robot = new Robot();
 
@@ -22,28 +21,33 @@ public class JewelArmTest extends RoboRaidersAuto {
         robot.initialize(hardwareMap);
 //        robot.initializeServos();
         robot.servoJewel.setPosition(0.4);
-//        robot.servoElbow.setPosition(0.0);
+        robot.servoElbow.setPosition(0.0);
 
         telemetry.addData("Initialized", true);
         telemetry.update();
 
         waitForStart();
-        //  robot.liftGlyph();
+
         double servoJewelPosition = robot.getJewelServoPosition();
-        telemetry.addData("Jewel Arm Pos: ", servoJewelPosition);
-        telemetry.update();
 
         while (servoJewelPosition < 0.85 && opModeIsActive()) {
+            telemetry.addData("Jewel Arm Pos: ", servoJewelPosition);
+
+            if (servoJewelPosition == 0.65) {
+                robot.servoElbow.setPosition(0.87);
+                Thread.sleep(500);
+            }
+
             servoJewelPosition = servoJewelPosition + 0.05;
             robot.setJewelServoPosition(servoJewelPosition);
-            telemetry.addData("Jewel Arm Pos: ", servoJewelPosition);
             telemetry.update();
             Thread.sleep(75);
         }
+
         robot.servoJewel.setPosition(0.87);
         telemetry.addData("Jewel Arm Pos: ", servoJewelPosition);
 
-        telemetry.update();
+
         Thread.sleep(1000);
 
     }
