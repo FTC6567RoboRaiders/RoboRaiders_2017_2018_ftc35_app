@@ -241,6 +241,15 @@ public class IndieTeleOpMecanum extends OpMode {
 
             currStateRightTrigger = false;
         }
+
+        robot.setGlyphLiftMotorPower(0.5);
+        Thread.sleep(2000);
+        robot.setGlyphLiftMotorPower(0.0);
+        Thread.sleep(500);
+        robot.setGlyphLiftMotorPower(-0.5);
+        Thread.sleep(2000);
+
+
         if (currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
 
             timesFlipped++;
