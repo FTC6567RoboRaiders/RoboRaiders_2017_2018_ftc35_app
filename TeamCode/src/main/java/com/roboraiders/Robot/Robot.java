@@ -128,8 +128,8 @@ public class Robot {
      */
     public void initializeServos() {
 
-        servoJewel.setPosition(0.5);
-        servoElbow.setPosition(0.0);
+        servoJewel.setPosition(0.4);
+        servoElbow.setPosition(0.86);
         servoGlyphUpper.setPosition(1.0);
         servoGlyphLower.setPosition(1.0);
         servoGlyphFlipper.setPosition(0.0);

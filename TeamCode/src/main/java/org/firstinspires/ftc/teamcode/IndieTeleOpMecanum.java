@@ -26,6 +26,8 @@ public class IndieTeleOpMecanum extends OpMode {
     double powerFactor = 1;
     boolean nudging = false;
     int nudgeCount = 0;
+    int glyphNudgeCountUp = 0;
+    int glyphNudgeCountDown = 0;
     int timesFlipped = 0;  // Number of times the glyph flipper has been flipped
     public boolean currStateRightBumper1 = false;
     public boolean prevStateRightBumper1 = false;
@@ -241,13 +243,6 @@ public class IndieTeleOpMecanum extends OpMode {
         }
         if (currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
 
-            // "Mega Nudge Up"
-            for (int glyphNudgeCountUp = 0; glyphNudgeCountUp < 15; glyphNudgeCountUp++) {
-
-                robot.setGlyphLiftMotorPower(0.5);
-            }
-
-            // "Flip"
             timesFlipped++;
             if (timesFlipped % 2 == 1) {  // If timesFlipped is an odd number (it has been pressed once, three times, five times...)
 
@@ -257,13 +252,6 @@ public class IndieTeleOpMecanum extends OpMode {
 
                 robot.glyphFlipBack();
             }
-
-            // "Mega Nudge Down"
-            for (int glyphNudgeCountDown = 0; glyphNudgeCountDown < 15; glyphNudgeCountDown++) {
-
-                robot.setGlyphLiftMotorPower(-0.5);
-            }
-
             prevStateRightTrigger = currStateRightTrigger;
         }
         else if (!currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {

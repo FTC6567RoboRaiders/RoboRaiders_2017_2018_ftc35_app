@@ -88,16 +88,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                bot.setJewelServoPosition(0.87);
-                Thread.sleep(500);
-
                 flickLeft(bot);
                 Thread.sleep(100);
 
                 returnFromLeft(bot);
                 Thread.sleep(500);
 
-                bot.setJewelServoPosition(0.1); //move arm back to initialization position
+                bot.setJewelServoPosition(0.4); //move arm back to initialization position
                 Thread.sleep(1000);
             }
             else { //the ball on the right is blue
@@ -106,16 +103,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                bot.setJewelServoPosition(0.87);
-                Thread.sleep(500);
-
                 flickRight(bot);
                 Thread.sleep(100);
 
                 returnFromRight(bot);
                 Thread.sleep(500);
 
-                bot.setJewelServoPosition(0.1); //move arm back to initialization position
+                bot.setJewelServoPosition(0.4); //move arm back to initialization position
                 Thread.sleep(1000);
             }
         }
@@ -128,16 +122,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                bot.setJewelServoPosition(0.87);
-                Thread.sleep(500);
-
                 flickLeft(bot);
                 Thread.sleep(100);
 
                 returnFromLeft(bot);
                 Thread.sleep(500);
 
-                bot.setJewelServoPosition(0.1); //move arm back to initialization position
+                bot.setJewelServoPosition(0.4); //move arm back to initialization position
                 Thread.sleep(1000);
             }
             else { //the ball on the left is blue
@@ -146,16 +137,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.addLine().addData("Blue", bot.getColorIntensity("blue"));
                 telemetry.update();
 
-                bot.setJewelServoPosition(0.87);
-                Thread.sleep(500);
-
                 flickRight(bot);
                 Thread.sleep(100);
 
                 returnFromRight(bot);
                 Thread.sleep(500);
 
-                bot.setJewelServoPosition(0.1); //move arm back to initialization position
+                bot.setJewelServoPosition(0.4); //move arm back to initialization position
                 Thread.sleep(1000);
             }
         }
@@ -560,14 +548,20 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
         double servoJewelPosition = bot.getJewelServoPosition(); //sets getPosition() to servoPosition
 
-        while (servoJewelPosition < 0.90 && opModeIsActive()) {  //while the op mode is active and while the servo position variable is less
+        while (servoJewelPosition < 0.85 && opModeIsActive()) {  //while the op mode is active and while the servo position variable is less
             //than 0.90
 
             servoJewelPosition = servoJewelPosition + 0.05;      //add 0.05 to the current servoPosition variable
             bot.setJewelServoPosition(servoJewelPosition);
             Thread.sleep(75);                                    //wait 0.075 seconds (75 milliseconds)
+
+            if (servoJewelPosition == 0.55) {
+
+                bot.setElbowServoPosition(0.86);
+            }
         }
 
+        bot.setJewelServoPosition(0.87);
         Thread.sleep(250);
     }
 
