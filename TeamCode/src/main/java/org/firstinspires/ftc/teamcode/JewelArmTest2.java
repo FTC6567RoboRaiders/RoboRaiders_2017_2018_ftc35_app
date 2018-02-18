@@ -27,7 +27,7 @@ public class JewelArmTest2 extends RoboRaidersAuto {
         telemetry.update();
 
         waitForStart();
-        //  robot.liftGlyph();
+
         double servoJewelPosition = robot.getJewelServoPosition();
 
         while (servoJewelPosition < 0.85 && opModeIsActive()) {
