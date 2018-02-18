@@ -469,14 +469,14 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
      * @param bot - the robot we are working on
      * @param distance - the distance the robot is to travel in inches
      * @param leftPower - the left power that is to be applied to the left motors on the robot
-     * @param rightPower - the right power that is to be applied to the right motors on the robot motors
+     * @param rightPower - the right power that is to be applied to the right motors on the robot
      * @param direction - the direction to travel
      */
     public void encodersMoveWithGyro(Robot bot, double distance, double leftPower, double rightPower, String direction) {
 
         double powerMultiplier;              // Either -1 or 1 depending on the direction, -1 for backward and 1 for forward
         double robotCurrentHeading;          // The current heading of the robot
-        double INTENDED_ROBOT_HEADING = 0.0; // The intended direction of the robot in this case 0 degrees
+        double INTENDED_ROBOT_HEADING = 0.0; // The intended direction of the robot, in this case 0 degrees
         double newLeftPower;
         double newRightPower;
 
