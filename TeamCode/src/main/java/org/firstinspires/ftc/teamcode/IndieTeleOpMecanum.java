@@ -39,6 +39,10 @@ public class IndieTeleOpMecanum extends OpMode {
     public boolean prevStateLeftTrigger = false;
     public boolean currStateRightTrigger = false;
     public boolean prevStateRightTrigger = false;
+    public boolean currStateDpadRight = false;
+    public boolean prevStateDpadRight = false;
+    public boolean currStateDpadLeft = false;
+    public boolean prevStateDpadLeft = false;
     public boolean currStateY = false;
     public boolean prevStateY = false;
     public boolean currStateX = false;
@@ -154,7 +158,7 @@ public class IndieTeleOpMecanum extends OpMode {
         robot.setGlyphLiftMotorPower(glyphLift * 0.90);
 
 
-        // "Glyph Grabber Open" functionality
+        // "Glyph Grabber Both Open" functionality
         if (gamepad2.left_trigger > 0.5) {
 
             currStateLeftTrigger = true;
@@ -165,12 +169,38 @@ public class IndieTeleOpMecanum extends OpMode {
         }
         if (currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
 
-            robot.glyphGrabberOpen();
+            robot.glyphGrabberBothOpen();
             prevStateLeftTrigger = currStateLeftTrigger;
         }
         else if (!currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
 
             prevStateLeftTrigger = currStateLeftTrigger;
+        }
+
+
+        // "Glyph Grabber Upper Open" functionality
+        currStateDpadRight = gamepad2.dpad_right;
+        if (currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
+
+            robot.glyphGrabberUpperOpen();
+            prevStateDpadRight = currStateDpadRight;
+        }
+        else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
+
+            prevStateDpadRight = currStateDpadRight;
+        }
+
+
+        // "Glyph Grabber Lower Open" functionality
+        currStateDpadLeft = gamepad2.dpad_left;
+        if (currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
+
+            robot.glyphGrabberLowerOpen();
+            prevStateDpadLeft = currStateDpadLeft;
+        }
+        else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
+
+            prevStateDpadLeft = currStateDpadLeft;
         }
 
 
@@ -211,16 +241,27 @@ public class IndieTeleOpMecanum extends OpMode {
         }
         if (currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
 
-            timesFlipped++;
+            // "Mega Nudge Up"
+            for (int glyphNudgeCountUp = 0; glyphNudgeCountUp < 15; glyphNudgeCountUp++) {
 
+                robot.setGlyphLiftMotorPower(0.5);
+            }
+
+            // "Flip"
+            timesFlipped++;
             if (timesFlipped % 2 == 1) {  // If timesFlipped is an odd number (it has been pressed once, three times, five times...)
 
                 robot.glyphFlip();
             }
-
             else if (timesFlipped % 2 == 0) { // If timesFlipped is an even number (it has been pressed twice, four times, six times...)
 
                 robot.glyphFlipBack();
+            }
+
+            // "Mega Nudge Down"
+            for (int glyphNudgeCountDown = 0; glyphNudgeCountDown < 15; glyphNudgeCountDown++) {
+
+                robot.setGlyphLiftMotorPower(-0.5);
             }
 
             prevStateRightTrigger = currStateRightTrigger;
