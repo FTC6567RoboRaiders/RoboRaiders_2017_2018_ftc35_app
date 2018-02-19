@@ -89,13 +89,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.update();
 
                 flickLeft(bot);
-                Thread.sleep(100);
+                Thread.sleep(250);
 
                 bot.setJewelServoPosition(0.4); //move arm back to initialization position
-                Thread.sleep(1000);
+                Thread.sleep(250);
 
                 returnFromLeft(bot);
-                Thread.sleep(500);
+                Thread.sleep(250);
             }
             else { //the ball on the right is blue
 
@@ -104,16 +104,15 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.update();
 
                 flickRight(bot);
-                Thread.sleep(100);
+                Thread.sleep(250);
 
                 bot.setJewelServoPosition(0.4); //move arm back to initialization position
-                Thread.sleep(1000);
+                Thread.sleep(250);
 
                 returnFromRight(bot);
-                Thread.sleep(500);
+                Thread.sleep(250);
             }
         }
-
         else if (allianceColor.equals("blue")) { //not red alliance (blue alliance)
 
             if (bot.getColorIntensity("blue") > bot.getColorIntensity("red")) { //if the ball on the right is blue
@@ -123,13 +122,13 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.update();
 
                 flickLeft(bot);
-                Thread.sleep(100);
+                Thread.sleep(250);
 
                 bot.setJewelServoPosition(0.4); //move arm back to initialization position
-                Thread.sleep(1000);
+                Thread.sleep(250);
 
                 returnFromLeft(bot);
-                Thread.sleep(500);
+                Thread.sleep(250);
             }
             else { //the ball on the left is blue
 
@@ -138,17 +137,17 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
                 telemetry.update();
 
                 flickRight(bot);
-                Thread.sleep(100);
+                Thread.sleep(250);
 
                 bot.setJewelServoPosition(0.4); //move arm back to initialization position
-                Thread.sleep(1000);
+                Thread.sleep(250);
 
                 returnFromRight(bot);
-                Thread.sleep(500);
+                Thread.sleep(250);
             }
         }
 
-        Thread.sleep(1000);
+        Thread.sleep(500);
     }
 
     /**
