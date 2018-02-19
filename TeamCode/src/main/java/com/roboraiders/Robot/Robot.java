@@ -542,4 +542,21 @@ public class Robot {
 
         return integratedZAxis;
     }
+
+    /**
+     * This method will allow for the use of Thread.sleep() in teleop
+     *
+     * @param milliseconds
+     */
+    public void sleep(long milliseconds) {
+
+        try {
+
+            Thread.sleep(milliseconds);
+        }
+        catch (InterruptedException e) {
+
+            Thread.currentThread().interrupt();
+        }
+    }
 }
