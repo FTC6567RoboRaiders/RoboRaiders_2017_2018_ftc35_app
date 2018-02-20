@@ -243,11 +243,6 @@ public class IndieTeleOpMecanum extends OpMode {
         }
         if (currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
 
-            robot.setGlyphLiftMotorPower(0.75);
-            robot.sleep(500);
-
-            robot.setGlyphLiftMotorPower(0.0);
-
             timesFlipped++;
             if (timesFlipped % 2 == 1) {  // If timesFlipped is an odd number (it has been pressed once, three times, five times...)
 
@@ -257,7 +252,6 @@ public class IndieTeleOpMecanum extends OpMode {
 
                 robot.glyphFlipBack();
             }
-
             prevStateRightTrigger = currStateRightTrigger;
         }
         else if (!currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
