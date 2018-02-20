@@ -244,7 +244,7 @@ public class IndieTeleOpMecanum extends OpMode {
         if (currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
 
             robot.setGlyphLiftMotorPower(0.75);
-            robot.sleep(750);
+            robot.sleep(500);
 
             robot.setGlyphLiftMotorPower(0.0);
 

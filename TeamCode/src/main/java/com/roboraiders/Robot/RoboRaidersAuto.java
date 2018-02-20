@@ -48,7 +48,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public double BLUE_FAR_RIGHT_DISTANCE = 13.5;      // |  Blue    |   Far    |  Right |
     //                                                    +----------+----------+--------+
 
-    public double RED_FAR_BACKWARD_DISTANCE = 14.0;    // Distance robot drives backwards off of the RED, Far balance stone
+    public double RED_FAR_BACKWARD_DISTANCE = 13.5;    // Distance robot drives backwards off of the RED, Far balance stone
     public double BLUE_FAR_FORWARD_DISTANCE = 20.5;    // Distance robot drives forward off of the BLUE, Far balance stone
 
     public double MAX_DISTANCE = 50.0;                 // The maximum from the wall, used to display alignment menu.

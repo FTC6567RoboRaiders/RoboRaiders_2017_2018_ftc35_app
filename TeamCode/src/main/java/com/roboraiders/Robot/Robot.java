@@ -130,7 +130,7 @@ public class Robot {
 
         servoJewel.setPosition(0.4);
         servoElbow.setPosition(0.0);
-        servoGlyphUpper.setPosition(1.0);
+        servoGlyphUpper.setPosition(0.95);
         servoGlyphLower.setPosition(1.0);
         servoGlyphFlipper.setPosition(0.0);
     }
@@ -166,7 +166,7 @@ public class Robot {
      */
     public void glyphGrabberBothOpen() {
 
-        servoGlyphUpper.setPosition(1.0);
+        servoGlyphUpper.setPosition(0.95);
         servoGlyphLower.setPosition(1.0);
     }
 
@@ -175,7 +175,7 @@ public class Robot {
      */
     public void glyphGrabberUpperOpen() {
 
-        servoGlyphUpper.setPosition(1.0);
+        servoGlyphUpper.setPosition(0.95);
     }
 
     /**
