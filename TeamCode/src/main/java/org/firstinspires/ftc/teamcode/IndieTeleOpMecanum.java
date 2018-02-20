@@ -26,8 +26,6 @@ public class IndieTeleOpMecanum extends OpMode {
     double powerFactor = 1;
     boolean nudging = false;
     int nudgeCount = 0;
-    int glyphNudgeCountUp = 0;
-    int glyphNudgeCountDown = 0;
     int timesFlipped = 0;  // Number of times the glyph flipper has been flipped
     public boolean currStateRightBumper1 = false;
     public boolean prevStateRightBumper1 = false;
