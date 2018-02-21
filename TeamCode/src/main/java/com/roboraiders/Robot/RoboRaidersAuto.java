@@ -28,7 +28,8 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public double distanceFrontSensor = 0;
 
     //                                                    +----------+----------+--------+
-    //                                                    | Alliance | Balance  | Column |
+    //
+    //                           | Alliance | Balance  | Column |
     //                                                    |          |  Stone   |        |
     //                                                    +----------+----------+--------+
     public double RED_CLOSE_LEFT_DISTANCE = 33.0;      // |  Red     |  Close   |  Left  |
