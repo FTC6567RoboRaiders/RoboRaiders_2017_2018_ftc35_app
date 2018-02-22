@@ -28,25 +28,25 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
     public double distanceFrontSensor = 0;
 
     //                                                    +----------+----------+--------+
-    //
-    //                           | Alliance | Balance  | Column |
+    //                                                    |          |          |        |
+    //                                                    | Alliance |Balancing | Column |
     //                                                    |          |  Stone   |        |
     //                                                    +----------+----------+--------+
     public double RED_CLOSE_LEFT_DISTANCE = 33.0;      // |  Red     |  Close   |  Left  |
     public double RED_CLOSE_CENTER_DISTANCE = 25.5;    // |  Red     |  Close   | Center |
     public double RED_CLOSE_RIGHT_DISTANCE = 20.5;     // |  Red     |  Close   |  Right |
     //                                                    +----------+----------+--------+
-    public double RED_FAR_LEFT_DISTANCE = 10.00;       // |  Red     |   Far    |  Left  |
+    public double RED_FAR_LEFT_DISTANCE = 11.00;       // |  Red     |   Far    |  Left  |
     public double RED_FAR_CENTER_DISTANCE = 4.75;      // |  Red     |   Far    | Center |
     public double RED_FAR_RIGHT_DISTANCE = 1.25;       // |  Red     |   Far    |  Right |
     //                                                    +----------+----------+--------+
-    public double BLUE_CLOSE_LEFT_DISTANCE = 20.25;    // |  Blue    |  Close   |  Left  |
+    public double BLUE_CLOSE_LEFT_DISTANCE = 22.25;    // |  Blue    |  Close   |  Left  |
     public double BLUE_CLOSE_CENTER_DISTANCE = 29.0;   // |  Blue    |  Close   | Center |
     public double BLUE_CLOSE_RIGHT_DISTANCE = 41.0;    // |  Blue    |  Close   |  Right |
     //                                                    +----------+----------+--------+
     public double BLUE_FAR_LEFT_DISTANCE = 3.5;        // |  Blue    |   Far    |  Left  |
     public double BLUE_FAR_CENTER_DISTANCE = 7.0;      // |  Blue    |   Far    | Center |
-    public double BLUE_FAR_RIGHT_DISTANCE = 13.5;      // |  Blue    |   Far    |  Right |
+    public double BLUE_FAR_RIGHT_DISTANCE = 11.5;      // |  Blue    |   Far    |  Right |
     //                                                    +----------+----------+--------+
 
     public double RED_FAR_BACKWARD_DISTANCE = 13.5;    // Distance robot drives backwards off of the RED, Far balance stone
@@ -529,7 +529,7 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
 
             pictograph = "RIGHT"; //pictograph is set equal to right
         }
-        else { //else if the robot cannot determine the name of the pictograph
+        else if (vuMark.equals(RelicRecoveryVuMark.UNKNOWN)) { //else if the robot cannot determine the name of the pictograph
 
             pictograph = "UNKNOWN"; //pictograph is set equal to unknown
         }
