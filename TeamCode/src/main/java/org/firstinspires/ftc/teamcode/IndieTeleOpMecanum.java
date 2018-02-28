@@ -291,7 +291,7 @@ public class IndieTeleOpMecanum extends OpMode {
         }
 
 
-        // "Relic Gripper Open" functionality
+        // "Relic Gripper Close" functionality
         currStateX = gamepad2.x;
         if (currStateX && currStateX != prevStateX) {
 
@@ -304,9 +304,9 @@ public class IndieTeleOpMecanum extends OpMode {
         }
 
 
-        // "Relic Gripper Close" functionality
+        // "Relic Gripper Open" functionality
         currStateB = gamepad2.b;
-        if (currStateB && currStateB != prevStateB) {
+        if (currStateB && currStateB != prevStateB && !gamepad2.start) {
 
             robot.gripperOpen();
             prevStateB = currStateB;
