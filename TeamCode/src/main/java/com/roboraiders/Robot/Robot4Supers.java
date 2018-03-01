@@ -4,6 +4,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -26,6 +27,9 @@ public class Robot4Supers {
     public DcMotor motorBackRight = null;
     public DcMotor motorRelic = null;
     public DcMotor motorGlyphLift = null;
+    public DcMotor motorGlyphIntakeLeft = null;
+    public DcMotor motorGlyphIntakeRight = null;
+
 
     public Servo servoJewel = null;
     public Servo servoElbow = null;
@@ -34,6 +38,8 @@ public class Robot4Supers {
     public Servo servoGlyphUpper = null;
     public Servo servoGlyphLower = null;
     public Servo servoGlyphFlipper = null;
+    public Servo servoGlyphPivot = null;
+    public Servo servoGlyphPusherOuter = null;
 
     public ColorSensor colorSensor;
     public ModernRoboticsI2cRangeSensor mrRangeSide;     // Back side range sensor
@@ -77,6 +83,8 @@ public class Robot4Supers {
         motorBackRight = hwMap.get(DcMotor.class, "right_Back");
         motorRelic = hwMap.get(DcMotor.class, "relic");
         motorGlyphLift = hwMap.get(DcMotor.class, "glyph_Lift");
+        motorGlyphIntakeLeft = hwMap.get(DcMotor.class, "glyph_Intake_Left");
+        motorGlyphIntakeRight = hwMap.get(DcMotor.class, "glyph_Intake_Right");
 
         // Defines the directions the motors will spin
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
@@ -85,6 +93,9 @@ public class Robot4Supers {
         motorBackRight.setDirection(DcMotor.Direction.FORWARD);
         motorRelic.setDirection(DcMotor.Direction.FORWARD);
         motorGlyphLift.setDirection(DcMotor.Direction.FORWARD);
+        motorGlyphIntakeLeft.setDirection(DcMotor.Direction.REVERSE);   //may need to be reversed
+        motorGlyphIntakeRight.setDirection(DcMotor.Direction.FORWARD);  //may need to be reversed
+
 
         // Set all motors to zero power
         motorFrontRight.setPower(0);
@@ -93,6 +104,8 @@ public class Robot4Supers {
         motorBackLeft.setPower(0);
         motorRelic.setPower(0);
         motorGlyphLift.setPower(0);
+        motorGlyphIntakeLeft.setPower(0);
+        motorGlyphIntakeRight.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODER if encoders are installed, and we wouldn't use encoders for teleop, even if we
@@ -102,6 +115,8 @@ public class Robot4Supers {
         motorBackRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorRelic.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         motorGlyphLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorGlyphIntakeLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        motorGlyphIntakeRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize servos
         servoJewel = hwMap.get(Servo.class, "servo_Jewel");
@@ -111,6 +126,8 @@ public class Robot4Supers {
         servoGlyphUpper = hwMap.get(Servo.class, "servo_Glyph_Upper");
         servoGlyphLower = hwMap.get(Servo.class, "servo_Glyph_Lower");
         servoGlyphFlipper = hwMap.get(Servo.class, "servo_Glyph_Flipper");
+        servoGlyphPivot = hwMap.get(Servo.class, "servo_Glyph_Pivot");
+        servoGlyphPusherOuter = hwMap.get(Servo.class, "servo_Glyph_Pusher_Outer");
 
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
@@ -133,6 +150,8 @@ public class Robot4Supers {
         servoGlyphUpper.setPosition(0.95);
         servoGlyphLower.setPosition(1.0);
         servoGlyphFlipper.setPosition(0.0);
+        servoGlyphPivot.setPosition(0.0);
+        servoGlyphPusherOuter.setPosition(0.0);
     }
 
     /**
