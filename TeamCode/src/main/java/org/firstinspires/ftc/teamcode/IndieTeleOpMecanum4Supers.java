@@ -27,23 +27,14 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
     double powerFactor = 1;
     boolean nudging = false;
     int nudgeCount = 0;
-    //int timesFlipped = 0;  // Number of times the glyph flipper has been flipped
     public boolean currStateRightBumper1 = false;
     public boolean prevStateRightBumper1 = false;
     public boolean currStateLeftBumper1 = false;
     public boolean prevStateLeftBumper1 = false;
-    public boolean currStateRightBumper2 = false;
-    public boolean prevStateRightBumper2 = false;
     public boolean currStateLeftBumper2 = false;
     public boolean prevStateLeftBumper2 = false;
     public boolean currStateLeftTrigger = false;
     public boolean prevStateLeftTrigger = false;
-    public boolean currStateRightTrigger = false;
-    public boolean prevStateRightTrigger = false;
-    public boolean currStateDpadRight = false;
-    public boolean prevStateDpadRight = false;
-    public boolean currStateDpadLeft = false;
-    public boolean prevStateDpadLeft = false;
     public boolean currStateY = false;
     public boolean prevStateY = false;
     public boolean currStateX = false;
@@ -158,6 +149,7 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
         glyphLift = (float) scaleInput(glyphLift);
         robot.setGlyphLiftMotorPower(glyphLift * 0.90);
 
+
         // "Set Glyph Intake Motor Power" functionality
         glyphIntake = -gamepad2.right_stick_x;
         glyphIntake = Range.clip(glyphIntake, -1, 1);
@@ -165,106 +157,7 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
         robot.setGlyphIntakeMotorPower(glyphIntake * 0.90);
 
 
-        /*// "Glyph Grabber Both Open" functionality
-        if (gamepad2.left_trigger > 0.5) {
-
-            currStateLeftTrigger = true;
-        }
-        else {
-
-            currStateLeftTrigger = false;
-        }
-        if (currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
-
-            robot.glyphGrabberBothOpen();
-            prevStateLeftTrigger = currStateLeftTrigger;
-        }
-        else if (!currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
-
-            prevStateLeftTrigger = currStateLeftTrigger;
-        }
-
-
-        // "Glyph Grabber Upper Open" functionality
-        currStateDpadRight = gamepad2.dpad_right;
-        if (currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
-
-            robot.glyphGrabberUpperOpen();
-            prevStateDpadRight = currStateDpadRight;
-        }
-        else if (!currStateDpadRight && currStateDpadRight != prevStateDpadRight) {
-
-            prevStateDpadRight = currStateDpadRight;
-        }
-
-
-        // "Glyph Grabber Lower Open" functionality
-        currStateDpadLeft = gamepad2.dpad_left;
-        if (currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
-
-            robot.glyphGrabberLowerOpen();
-            prevStateDpadLeft = currStateDpadLeft;
-        }
-        else if (!currStateDpadLeft && currStateDpadLeft != prevStateDpadLeft) {
-
-            prevStateDpadLeft = currStateDpadLeft;
-        }
-
-
-        // "Glyph Grabber Upper Close" functionality
-        currStateRightBumper2 = gamepad2.right_bumper;
-        if (currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
-
-            robot.glyphGrabberUpperClose();
-            prevStateRightBumper2 = currStateRightBumper2;
-        }
-        else if (!currStateRightBumper2 && currStateRightBumper2 != prevStateRightBumper2) {
-
-            prevStateRightBumper2 = currStateRightBumper2;
-        }
-
-
-        // "Glyph Grabber Lower Close" functionality
-        currStateLeftBumper2 = gamepad2.left_bumper;
-        if (currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
-
-            robot.glyphGrabberLowerClose();
-            prevStateLeftBumper2 = currStateLeftBumper2;
-        }
-        else if (!currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
-
-            prevStateLeftBumper2 = currStateLeftBumper2;
-        }
-
-
-        // "Glyph Flip" functionality
-        if (gamepad2.right_trigger > 0.5) {
-
-            currStateRightTrigger = true;
-        }
-        else {
-
-            currStateRightTrigger = false;
-        }
-        if (currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
-
-            timesFlipped++;
-            if (timesFlipped % 2 == 1) {  // If timesFlipped is an odd number (it has been pressed once, three times, five times...)
-
-                robot.glyphFlip();
-            }
-            else if (timesFlipped % 2 == 0) { // If timesFlipped is an even number (it has been pressed twice, four times, six times...)
-
-                robot.glyphFlipBack();
-            }
-            prevStateRightTrigger = currStateRightTrigger;
-        }
-        else if (!currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
-
-            prevStateRightTrigger = currStateRightTrigger;
-        }*/
-
-        //Glyph Pivot Up Functionality
+        // "Glyph Pivot Up" functionality
         currStateLeftBumper2 = gamepad2.left_bumper;
         if (currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
 
@@ -276,7 +169,8 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
             prevStateLeftBumper2 = currStateLeftBumper2;
         }
 
-        //Glyph Pivot Down Functionality
+
+        // "Glyph Pivot Down" functionality
         if (gamepad2.left_trigger > 0.5) {
 
             currStateLeftTrigger = true;
@@ -293,27 +187,6 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
         else if (!currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
 
             prevStateLeftTrigger = currStateLeftTrigger;
-        }
-
-        //Glyph Pusher-Outer Functionality
-        if (gamepad2.right_trigger > 0.5) {
-
-            currStateRightTrigger = true;
-        }
-        else {
-
-            currStateRightTrigger = false;
-        }
-        if (currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
-
-            robot.glyphPushOut();
-            robot.glyphPushBackIn();
-
-            prevStateRightTrigger = currStateRightTrigger;
-        }
-        else if (!currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
-
-            prevStateRightTrigger = currStateRightTrigger;
         }
 
 
