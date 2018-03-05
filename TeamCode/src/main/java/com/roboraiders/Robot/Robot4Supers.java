@@ -4,7 +4,6 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -30,16 +29,11 @@ public class Robot4Supers {
     public DcMotor motorGlyphIntakeLeft = null;
     public DcMotor motorGlyphIntakeRight = null;
 
-
     public Servo servoJewel = null;
     public Servo servoElbow = null;
     public Servo servoRelicWrist = null;
     public Servo servoRelicGripper = null;
-    public Servo servoGlyphUpper = null;
-    public Servo servoGlyphLower = null;
-    public Servo servoGlyphFlipper = null;
     public Servo servoGlyphPivot = null;
-    public Servo servoGlyphPusherOuter = null;
 
     public ColorSensor colorSensor;
     public ModernRoboticsI2cRangeSensor mrRangeSide;     // Back side range sensor
@@ -96,7 +90,6 @@ public class Robot4Supers {
         motorGlyphIntakeLeft.setDirection(DcMotor.Direction.REVERSE);   //may need to be reversed
         motorGlyphIntakeRight.setDirection(DcMotor.Direction.FORWARD);  //may need to be reversed
 
-
         // Set all motors to zero power
         motorFrontRight.setPower(0);
         motorFrontLeft.setPower(0);
@@ -123,11 +116,7 @@ public class Robot4Supers {
         servoElbow = hwMap.get(Servo.class, "servo_Elbow");
         servoRelicWrist = hwMap.get(Servo.class, "servo_Relic_Wrist");
         servoRelicGripper = hwMap.get(Servo.class, "servo_Relic_Gripper");
-        servoGlyphUpper = hwMap.get(Servo.class, "servo_Glyph_Upper");
-        servoGlyphLower = hwMap.get(Servo.class, "servo_Glyph_Lower");
-        servoGlyphFlipper = hwMap.get(Servo.class, "servo_Glyph_Flipper");
         servoGlyphPivot = hwMap.get(Servo.class, "servo_Glyph_Pivot");
-        servoGlyphPusherOuter = hwMap.get(Servo.class, "servo_Glyph_Pusher_Outer");
 
         // Define and initialize sensors
         colorSensor = hwMap.get(ColorSensor.class, "sensor_color");
@@ -147,11 +136,7 @@ public class Robot4Supers {
 
         servoJewel.setPosition(0.4);
         servoElbow.setPosition(0.0);
-        servoGlyphUpper.setPosition(0.95);
-        servoGlyphLower.setPosition(1.0);
-        servoGlyphFlipper.setPosition(0.0);
         servoGlyphPivot.setPosition(0.0);
-        servoGlyphPusherOuter.setPosition(0.0);
     }
 
     /**
@@ -180,68 +165,10 @@ public class Robot4Supers {
         motorGlyphLift.setPower(glyphLift);
     }
 
-    /*/**
-     * This method will set the position of both glyph grabber servos to an open position large enough to grab the glyph
-     */
-    /*public void glyphGrabberBothOpen() {
-
-        servoGlyphUpper.setPosition(0.95);
-        servoGlyphLower.setPosition(1.0);
-    }
-
     /**
-     * This method will set the position of the upper glyph grabber servo to an open position large enough to grab the glyph
-     */
-    /*public void glyphGrabberUpperOpen() {
-
-        servoGlyphUpper.setPosition(0.95);
-    }
-
-    /**
-     * This method will set the position of the lower glyph grabber servo to an open position large enough to grab the glyph
-     */
-    /*public void glyphGrabberLowerOpen() {
-
-        servoGlyphLower.setPosition(1.0);
-    }
-
-    /**
-     * This method will set the position of the upper glyph grabber servo to a closed position, grabbing the glyph
-     */
-    /*public void glyphGrabberUpperClose() {
-
-        servoGlyphUpper.setPosition(0.0);
-    }
-
-    /**
-     * This method will set the position of the lower glyph grabber servo to a closed position, grabbing the glyph
-     */
-    /*public void glyphGrabberLowerClose() {
-
-        servoGlyphLower.setPosition(0.0);
-    }
-
-    /**
-     * This method will flip the glyph flipper servo
-     */
-    /*public void glyphFlip() {
-
-        servoGlyphFlipper.setPosition(1.0);
-    }
-
-    /**
-     * This method will return the glyph flipper servo to its original position
-     */
-    /*public void glyphFlipBack() {
-
-        servoGlyphFlipper.setPosition(0.0);
-    }
-    */
-
-    /**
-     * This method will set the power for the glyph intake motors.
+     * This method will set the power for the glyph intake motors
      *
-     * @param glyph the power specified for the speed of the glyph intake motors.
+     * @param glyph the power specified for the speed of the glyph intake motors
      */
     public void setGlyphIntakeMotorPower(double glyph) {
 
@@ -250,8 +177,7 @@ public class Robot4Supers {
     }
 
     /**
-     * This method will set the glyph pivot servo to the "up" position (perpendicular to the floor).
-     *
+     * This method will set the glyph pivot servo to the "up" position (perpendicular to the floor)
      */
     public void glyphPivotUp() {
 
@@ -259,31 +185,12 @@ public class Robot4Supers {
     }
 
     /**
-     * This method will set the glyph pivot servo to the "down" position (parallel to the floor).
-     *
+     * This method will set the glyph pivot servo to the "down" position (parallel to the floor)
      */
 
     public void glyphPivotDown() {
 
         servoGlyphPivot.setPosition(0.0);
-    }
-
-    /**
-     * This method set the position of the glyph pusher outer servo to the "out" position.
-     *
-     */
-    public void glyphPushOut() {
-
-        servoGlyphPusherOuter.setPosition(0.3);
-    }
-
-    /**
-     * This method will set the position of the glyph pusher outer to the "in" position.
-     *
-     */
-    public void glyphPushBackIn() {
-
-        servoGlyphPusherOuter.setPosition(0.0);
     }
 
     /**
@@ -545,36 +452,6 @@ public class Robot4Supers {
 
         return servoElbow.getPosition();
     }
-
-    /*/**
-     * This method will lift the glyph up slightly at the beginning of autonomous
-     */
-    /*public void liftGlyph() throws InterruptedException {
-
-        glyphGrabberLowerClose();
-        Thread.sleep(500);
-
-        motorGlyphLift.setPower(0.5);
-        Thread.sleep(750);
-
-        motorGlyphLift.setPower(0.0);
-        Thread.sleep(250);
-    }*/
-
-    /*/**
-     * This method will lower the glyph down before placing in the cryptobox in autonomous
-     */
-    /*public void lowerGlyph() throws InterruptedException {
-
-        motorGlyphLift.setPower(-0.5);
-        Thread.sleep(500);
-
-        motorGlyphLift.setPower(0.0);
-        Thread.sleep(250);
-
-        glyphGrabberLowerOpen();
-        Thread.sleep(500);
-    }*/
 
     /**
      * This will mimic the Modern Robotics getIntegratedZAxis method
