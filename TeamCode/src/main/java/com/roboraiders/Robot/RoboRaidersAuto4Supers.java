@@ -79,7 +79,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param bot           the bot currently being worked on
      * @param allianceColor the color of your alliance
      */
-    public void selectJewel(Robot bot, String allianceColor) throws InterruptedException {
+    public void selectJewel(Robot4Supers bot, String allianceColor) throws InterruptedException {
 
         if (allianceColor.equals("red")) { //red alliance
 
@@ -160,7 +160,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param pictograph    the name of the pictograph as determined by getRelicRecoveryVuMark()
      * @throws InterruptedException
      */
-    public void selectColumn(Robot bot, String allianceColor, String alliancePlacement, String pictograph) throws InterruptedException {
+    public void selectColumn(Robot4Supers bot, String allianceColor, String alliancePlacement, String pictograph) throws InterruptedException {
 
         /*
          Handle RED alliance
@@ -196,7 +196,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                 imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
                 Thread.sleep(250);
 
-                placeGlyphClose(bot);
+                placeGlyph(bot);
                 Thread.sleep(250);
             }
 
@@ -235,7 +235,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                 imuTurn(bot, 90, 0.5, "right"); //turn right 90 degrees
                 Thread.sleep(250);
 
-                placeGlyphFar(bot);
+                placeGlyph(bot);
                 Thread.sleep(250);
             }
         }
@@ -294,7 +294,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                 imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
                 Thread.sleep(250);
 
-                placeGlyphClose(bot);
+                placeGlyph(bot);
                 Thread.sleep(250);
             }
 
@@ -333,7 +333,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                 imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
                 Thread.sleep(250);
 
-                placeGlyphFar(bot);
+                placeGlyph(bot);
                 Thread.sleep(250);
             }
         }
@@ -347,7 +347,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param power     the desired power the wheel motors will run at
      * @param direction the direction the robot is turning; either right or left
      */
-    public void imuTurn(Robot bot, float degrees, double power, String direction) { //gets hardware from
+    public void imuTurn(Robot4Supers bot, float degrees, double power, String direction) { //gets hardware from
         //Robot and defines degrees as a
         //float, power as a double, and direction as a string
 
@@ -383,7 +383,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param power     the speed the robot will travel at
      * @param direction the direction the robot will travel: either forward, backward, right, or left
      */
-    public void encodersMove(Robot bot, double distance, double power, String direction) { //sets the parameters
+    public void encodersMove(Robot4Supers bot, double distance, double power, String direction) { //sets the parameters
 
         bot.resetEncoders(); //resets encoders
         bot.runWithEncoders(); //sets the mode back to run with encoder
@@ -460,7 +460,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param rightPower - the right power that is to be applied to the right motors on the robot
      * @param direction - the direction to travel
      */
-    public void encodersMoveWithGyro(Robot bot, double distance, double leftPower, double rightPower, String direction) {
+    public void encodersMoveWithGyro(Robot4Supers bot, double distance, double leftPower, double rightPower, String direction) {
 
         double powerMultiplier;              // Either -1 or 1 depending on the direction, -1 for backward and 1 for forward
         double robotCurrentHeading;          // The current heading of the robot
@@ -544,7 +544,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param bot the robot currently being worked on
      * @throws InterruptedException
      */
-    public void lowerArm(Robot bot) throws InterruptedException {
+    public void lowerArm(Robot4Supers bot) throws InterruptedException {
 
         bot.setJewelServoPosition(0.5);
         Thread.sleep(250);
@@ -572,7 +572,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param bot the robot currently being worked on
      * @throws InterruptedException
      */
-    public void flickLeft(Robot bot) throws InterruptedException {
+    public void flickLeft(Robot4Supers bot) throws InterruptedException {
 
         double servoElbowPosition = bot.getElbowServoPosition(); //sets getPosition() to servoPosition
 
@@ -591,7 +591,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param bot the robot currently being worked on
      * @throws InterruptedException
      */
-    public void returnFromLeft(Robot bot) throws InterruptedException {
+    public void returnFromLeft(Robot4Supers bot) throws InterruptedException {
 
         double servoElbowPosition = bot.getElbowServoPosition(); //sets getPosition() to servoPosition
 
@@ -610,7 +610,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param bot the robot currently being worked on
      * @throws InterruptedException
      */
-    public void flickRight(Robot bot) throws InterruptedException {
+    public void flickRight(Robot4Supers bot) throws InterruptedException {
 
         double servoElbowPosition = bot.getElbowServoPosition(); //sets getPosition() to servoPosition
 
@@ -629,7 +629,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param bot the robot currently being worked on
      * @throws InterruptedException
      */
-    public void returnFromRight(Robot bot) throws InterruptedException {
+    public void returnFromRight(Robot4Supers bot) throws InterruptedException {
 
         double servoElbowPosition = bot.getElbowServoPosition(); //sets getPosition() to servoPosition
 
@@ -643,15 +643,14 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     }
 
     /**
-     * This method places a glyph in the cryptobox for the two close balancing stones. This is
-     * also steps 3-7 of the pseudocode for Version 2 of autonomous we developed on Dec. 6th, 2017.
+     * This method places a pre-loaded glyph in the cryptobox.
      *
      * @param bot - the bot currently being worked on
      * @throws InterruptedException
      */
-    public void placeGlyphClose(Robot bot) throws InterruptedException {
+    public void placeGlyph(Robot4Supers bot) throws InterruptedException {
 
-        bot.lowerGlyph(); //lowers and releases the glyph
+        bot.glyphPivotCarry(); //lowers and releases the glyph
 
         encodersMove(bot, 3.25, 0.5, "backward"); //moves four inches backward was 3.25" backwards this ensures the jewel is in - no change
         Thread.sleep(500);
@@ -666,37 +665,13 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
         Thread.sleep(500);
     }
 
-    /**
-     * This method places a glyph in the cryptobox for the two far balancing stones. This is
-     * also steps 3-7 of the pseudocode for Version 2 of autonomous we developed on Dec. 6th, 2017.
-     *
-     * @param bot - the bot currently being worked on
-     * @throws InterruptedException
-     */
-    public void placeGlyphFar(Robot bot) throws InterruptedException {
-
-        bot.lowerGlyph(); //lowers and releases the glyph
-
-        encodersMove(bot, 4, 0.5, "backward"); //moves four inches backward
-        Thread.sleep(500);
-
-        bot.glyphGrabberLowerClose(); //closes the glyph arms
-        bot.glyphGrabberUpperClose();
-        Thread.sleep(500);
-
-        encodersMove(bot, 7, 0.5, "forward"); //moves seven inches forward
-        Thread.sleep(500);
-
-        encodersMove(bot, 1, 0.5, "backward"); //moves one inch backward
-        Thread.sleep(500);
-    }
 
     /**
      * This method will help the drive team to align the robot prior to autonomous using the range sensor
      *
      * @param bot the bot currently being worked on
      */
-    public void alignRobot(Robot bot, String allianceColor, String balancingStone) {
+    public void alignRobot(Robot4Supers bot, String allianceColor, String balancingStone) {
 
         String sideHdrDistPrompt = "NADA";
         String sideDistPrompt = "NADA";
@@ -875,7 +850,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param bot the bot currently being worked on
      * @throws InterruptedException
      */
-    public void justParkCloseBlue(Robot bot) throws InterruptedException {
+    public void justParkCloseBlue(Robot4Supers bot) throws InterruptedException {
 
         encodersMove(bot, 32, 0.4, "forward");
         Thread.sleep(500);
@@ -893,7 +868,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param bot the bot currently being worked on
      * @throws InterruptedException
      */
-    public void justParkFarBlue(Robot bot) throws InterruptedException {
+    public void justParkFarBlue(Robot4Supers bot) throws InterruptedException {
 
         encodersMove(bot, 22, 0.4, "forward");
         Thread.sleep(500);
@@ -908,7 +883,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param bot the bot currently being worked on
      * @throws InterruptedException
      */
-    public void justParkCloseRed(Robot bot) throws InterruptedException {
+    public void justParkCloseRed(Robot4Supers bot) throws InterruptedException {
 
         encodersMove(bot, 32, 0.4, "backward");
         Thread.sleep(500);
@@ -926,7 +901,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      * @param bot the bot currently being worked on
      * @throws InterruptedException
      */
-    public void justParkFarRed(Robot bot) throws InterruptedException {
+    public void justParkFarRed(Robot4Supers bot) throws InterruptedException {
 
         encodersMove(bot, 22, 0.4, "backward");
         Thread.sleep(500);
