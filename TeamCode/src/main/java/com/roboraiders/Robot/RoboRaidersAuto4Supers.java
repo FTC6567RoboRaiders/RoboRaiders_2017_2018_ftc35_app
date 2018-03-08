@@ -663,6 +663,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
 
     }
 
+
     /**
      * This method gets two more glyphs and places them in the cryptobox.
      *
