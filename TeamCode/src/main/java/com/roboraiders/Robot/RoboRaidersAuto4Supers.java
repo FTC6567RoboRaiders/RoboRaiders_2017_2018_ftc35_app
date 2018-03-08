@@ -195,9 +195,6 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
 
                 imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
                 Thread.sleep(250);
-
-                placeGlyph(bot);
-                Thread.sleep(250);
             }
 
             /*
@@ -233,9 +230,6 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                 }
 
                 imuTurn(bot, 90, 0.5, "right"); //turn right 90 degrees
-                Thread.sleep(250);
-
-                placeGlyph(bot);
                 Thread.sleep(250);
             }
         }
@@ -293,9 +287,6 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
 
                 imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
                 Thread.sleep(250);
-
-                placeGlyph(bot);
-                Thread.sleep(250);
             }
 
             /*
@@ -332,11 +323,11 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
 
                 imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
                 Thread.sleep(250);
-
-                placeGlyph(bot);
-                Thread.sleep(250);
             }
         }
+
+        placeGlyph(bot);
+        Thread.sleep(250);
     }
 
     /**
@@ -668,6 +659,16 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
         Thread.sleep(500);
         bot.setGlyphLiftMotorPower(0.0);
         Thread.sleep(100);
+    }
+
+    /**
+     * This method gets two more glyphs and places them in the cryptobox
+     *
+     * @param bot - the bot currently being worked on
+     * @throws InterruptedException
+     */
+    public void getTwoMoreGlyphs(Robot4Supers bot) throws InterruptedException {
+
     }
 
     /**
