@@ -177,18 +177,25 @@ public class Robot4Supers {
     }
 
     /**
-     * This method will set the glyph pivot servo to the "up" position (perpendicular to the floor)
+     * This method will set the glyph pivot servo to the "deposit" position (perpendicular to the floor)
      */
-    public void glyphPivotUp() {
+    public void glyphPivotDeposit() {
 
-        servoGlyphPivot.setPosition(0.5);
+        servoGlyphPivot.setPosition(0.6);
     }
 
     /**
-     * This method will set the glyph pivot servo to the "down" position (parallel to the floor)
+     * This method will set the glyph pivot servo to the "carry" position (perpendicular to the floor)
      */
+    public void glyphPivotCarry() {
 
-    public void glyphPivotDown() {
+        servoGlyphPivot.setPosition(0.4);
+    }
+
+    /**
+     * This method will set the glyph pivot servo to the "rest" position (parallel to the floor)
+     */
+    public void glyphPivotRest() {
 
         servoGlyphPivot.setPosition(0.0);
     }
