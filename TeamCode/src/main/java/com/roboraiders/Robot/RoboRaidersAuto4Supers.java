@@ -643,14 +643,14 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     }
 
     /**
-     * This method places a pre-loaded glyph in the cryptobox.
+     * This method places the pre-loaded glyph in the cryptobox
      *
      * @param bot - the bot currently being worked on
      * @throws InterruptedException
      */
     public void placeGlyph(Robot4Supers bot) throws InterruptedException {
 
-        bot.glyphPivotCarry(); //lowers and releases the glyph
+        bot.glyphPivotCarry();
 
         encodersMove(bot, 3.25, 0.5, "backward"); //moves four inches backward was 3.25" backwards this ensures the jewel is in - no change
         Thread.sleep(500);
@@ -664,7 +664,6 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
         encodersMove(bot, 1, 0.5, "forward"); //moves one inch forward
         Thread.sleep(500);
     }
-
 
     /**
      * This method will help the drive team to align the robot prior to autonomous using the range sensor

@@ -21,7 +21,6 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
     float LeftFront;  // Power for left front motor
     float RightFront; // Power for right front motor
     float glyphLift;  // Power for the glyph lift motor
-    float glyphIntake; //Power for the glyph intake motors
     float relic;      // Power for relic motor
     float maxpwr;     // Maximum power of the four motors
     double powerFactor = 1;
@@ -151,17 +150,19 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
         robot.setGlyphLiftMotorPower(glyphLift * 0.90);
 
 
-        /// "Set Glyph Intake Motor Power" functionality
+        // "Set Glyph Intake Motor Power" functionality
         if (gamepad2.right_bumper) {
+
             robot.setGlyphIntakeMotorPower(0.8);
         }
-        else if(gamepad2.left_bumper){
+        else if (gamepad2.left_bumper){
+
             robot.setGlyphIntakeMotorPower(-0.8);
         }
         else {
+
             robot.setGlyphIntakeMotorPower(0.0);
         }
-
 
 
         // "Glyph Pivot Carry/Deposit" functionality
