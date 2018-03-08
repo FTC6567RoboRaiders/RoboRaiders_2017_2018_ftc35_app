@@ -27,12 +27,13 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
     double powerFactor = 1;
     boolean nudging = false;
     int nudgeCount = 0;
+    int timesPivoted = 0;
     public boolean currStateRightBumper1 = false;
     public boolean prevStateRightBumper1 = false;
     public boolean currStateLeftBumper1 = false;
     public boolean prevStateLeftBumper1 = false;
-    public boolean currStateLeftBumper2 = false;
-    public boolean prevStateLeftBumper2 = false;
+    public boolean currStateRightTrigger = false;
+    public boolean prevStateRightTrigger = false;
     public boolean currStateLeftTrigger = false;
     public boolean prevStateLeftTrigger = false;
     public boolean currStateY = false;
@@ -157,20 +158,35 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
         robot.setGlyphIntakeMotorPower(glyphIntake * 0.90);
 
 
-        // "Glyph Pivot Up" functionality
-        currStateLeftBumper2 = gamepad2.left_bumper;
-        if (currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
+        // "Glyph Pivot Carry/Deposit" functionality
+        if (gamepad2.right_trigger > 0.5) {
 
-            robot.glyphPivotUp();
-            prevStateLeftBumper2 = currStateLeftBumper2;
+            currStateRightTrigger = true;
         }
-        else if (!currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
+        else {
 
-            prevStateLeftBumper2 = currStateLeftBumper2;
+            currStateRightTrigger = false;
+        }
+        if (currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
+
+            timesPivoted++;
+            if (timesPivoted % 2 == 1) {  // If timesPivoted is an odd number (it has been pressed once, three times, five times...)
+
+                robot.glyphPivotCarry();
+            }
+            else if (timesPivoted % 2 == 0) { // If timesPivoted is an even number (it has been pressed twice, four times, six times...)
+
+                robot.glyphPivotDeposit();
+            }
+            prevStateRightTrigger = currStateRightTrigger;
+        }
+        else if (!currStateRightTrigger && currStateRightTrigger != prevStateRightTrigger) {
+
+            prevStateRightTrigger = currStateRightTrigger;
         }
 
 
-        // "Glyph Pivot Down" functionality
+        // "Glyph Pivot Rest" functionality
         if (gamepad2.left_trigger > 0.5) {
 
             currStateLeftTrigger = true;
@@ -181,7 +197,7 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
         }
         if (currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
 
-            robot.glyphPivotDown();
+            robot.glyphPivotRest();
             prevStateLeftTrigger = currStateLeftTrigger;
         }
         else if (!currStateLeftTrigger && currStateLeftTrigger != prevStateLeftTrigger) {
