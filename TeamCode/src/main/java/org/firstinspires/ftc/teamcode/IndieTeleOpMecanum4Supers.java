@@ -32,10 +32,8 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
     public boolean prevStateRightBumper1 = false;
     public boolean currStateLeftBumper1  = false;
     public boolean prevStateLeftBumper1  = false;
-    public boolean currStateRightBumper2 = false;
-    public boolean prevStateRightBumper2 = false;
-    public boolean currStateLeftBumper2  = false;
-    public boolean prevStateLeftBumper2  = false;
+    public boolean currStateRightTrigger = false;
+    public boolean prevStateRightTrigger = false;
     public boolean currStateLeftTrigger  = false;
     public boolean prevStateLeftTrigger  = false;
     public boolean currStateY = false;
