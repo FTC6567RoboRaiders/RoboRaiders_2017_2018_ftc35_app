@@ -29,12 +29,14 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
     int nudgeCount = 0;
     public boolean currStateRightBumper1 = false;
     public boolean prevStateRightBumper1 = false;
-    public boolean currStateLeftBumper1 = false;
-    public boolean prevStateLeftBumper1 = false;
-    public boolean currStateLeftBumper2 = false;
-    public boolean prevStateLeftBumper2 = false;
-    public boolean currStateLeftTrigger = false;
-    public boolean prevStateLeftTrigger = false;
+    public boolean currStateLeftBumper1  = false;
+    public boolean prevStateLeftBumper1  = false;
+    public boolean currStateRightBumper2 = false;
+    public boolean prevStateRightBumper2 = false;
+    public boolean currStateLeftBumper2  = false;
+    public boolean prevStateLeftBumper2  = false;
+    public boolean currStateLeftTrigger  = false;
+    public boolean prevStateLeftTrigger  = false;
     public boolean currStateY = false;
     public boolean prevStateY = false;
     public boolean currStateX = false;
@@ -151,14 +153,20 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
 
 
         // "Set Glyph Intake Motor Power" functionality
-        glyphIntake = -gamepad2.right_stick_x;
-        glyphIntake = Range.clip(glyphIntake, -1, 1);
-        glyphIntake = (float) scaleInput(glyphIntake);
-        robot.setGlyphIntakeMotorPower(glyphIntake * 0.90);
+        if (gamepad2.right_bumper) {
+            robot.setGlyphIntakeMotorPower(0.8);
+        }
+        else if(gamepad2.left_bumper){
+            robot.setGlyphIntakeMotorPower(-0.8);
+        }
+        else {
+            robot.setGlyphIntakeMotorPower(0.0);
+        }
+
 
 
         // "Glyph Pivot Up" functionality
-        currStateLeftBumper2 = gamepad2.left_bumper;
+       /* currStateLeftBumper2 = gamepad2.left_bumper;
         if (currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
 
             robot.glyphPivotUp();
@@ -167,7 +175,7 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
         else if (!currStateLeftBumper2 && currStateLeftBumper2 != prevStateLeftBumper2) {
 
             prevStateLeftBumper2 = currStateLeftBumper2;
-        }
+        }*/
 
 
         // "Glyph Pivot Down" functionality
