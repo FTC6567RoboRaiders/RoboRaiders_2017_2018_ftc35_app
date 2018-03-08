@@ -668,7 +668,6 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
         Thread.sleep(500);
         bot.setGlyphLiftMotorPower(0.0);
         Thread.sleep(100);
-
     }
 
     /**
