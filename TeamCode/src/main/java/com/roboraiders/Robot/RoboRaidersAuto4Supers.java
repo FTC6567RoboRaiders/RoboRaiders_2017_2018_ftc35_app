@@ -651,18 +651,24 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     public void placeGlyph(Robot4Supers bot) throws InterruptedException {
 
         bot.glyphPivotCarry();
+        Thread.sleep(250);
 
-        encodersMove(bot, 3.25, 0.5, "backward"); //moves four inches backward was 3.25" backwards this ensures the jewel is in - no change
+        bot.setGlyphLiftMotorPower(0.75);
         Thread.sleep(500);
+        bot.setGlyphLiftMotorPower(0.0);
+        Thread.sleep(100);
 
-        imuTurn(bot, 180, 0.5, "right"); //turns 180 degrees right
-        Thread.sleep(500);
+        bot.glyphPivotDeposit();
+        Thread.sleep(250);
 
-        encodersMove(bot, 12, 0.5, "backward"); //moves twelve inches backward
-        Thread.sleep(500);
+        bot.glyphPivotRest();
+        Thread.sleep(250);
 
-        encodersMove(bot, 1, 0.5, "forward"); //moves one inch forward
+        bot.setGlyphLiftMotorPower(-0.75);
         Thread.sleep(500);
+        bot.setGlyphLiftMotorPower(0.0);
+        Thread.sleep(100);
+
     }
 
     /**
