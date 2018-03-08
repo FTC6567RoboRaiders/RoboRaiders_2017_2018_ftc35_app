@@ -153,7 +153,7 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
         robot.setGlyphLiftMotorPower(glyphLift * 0.90);
 
 
-        // "Set Glyph Intake Motor Power" functionality
+        /// "Set Glyph Intake Motor Power" functionality
         if (gamepad2.right_bumper) {
             robot.setGlyphIntakeMotorPower(0.8);
         }
