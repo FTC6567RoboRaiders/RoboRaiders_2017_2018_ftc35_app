@@ -179,11 +179,11 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
             timesPivoted++;
             if (timesPivoted % 2 == 1) {  // If timesPivoted is an odd number (it has been pressed once, three times, five times...)
 
-                robot.glyphPivotCarry();
+                robot.glyphPivotDeposit();
             }
             else if (timesPivoted % 2 == 0) { // If timesPivoted is an even number (it has been pressed twice, four times, six times...)
 
-                robot.glyphPivotDeposit();
+                robot.glyphPivotCarry();
             }
             prevStateRightTrigger = currStateRightTrigger;
         }
