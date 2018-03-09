@@ -65,7 +65,14 @@ public class IndieAutonomousOptions4Supers extends RoboRaidersAuto4Supers {
             configForAuto2Options(bsSelPrompt, bsPosResps, 2, selectedOptions);                   // Balancing Stone Location selection
             configForAuto2Options(jewelSelPrompt, jewelPosResps, 3, selectedOptions);             // Jewel selection
             configForAuto2Options(parkCryptSelPrompt, parkCryptPosResps, 4, selectedOptions);     // Parking and/or Cryptobox selection
-            configForAuto2Options(extraGlyphsSelPrompt, extraGlyphsPosResps, 5, selectedOptions); // Extra Glyphs selection
+            if (selectedOptions[4][1].equals("yes")) {
+
+                configForAuto2Options(extraGlyphsSelPrompt, extraGlyphsPosResps, 5, selectedOptions); // Extra Glyphs selection
+            }
+            else {
+
+                selectedOptions[5][1] = "no";
+            }
 
             // Loop through all of the selections and tell user what s/he has selected
             for (int i = 1; i <= 4; i++) {
