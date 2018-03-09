@@ -193,7 +193,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                     Thread.sleep(250);
                 }
 
-                imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
+                imuTurn(bot, 90, 0.5, "right"); //turn left 90 degrees
                 Thread.sleep(250);
             }
 
@@ -229,7 +229,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                     Thread.sleep(250);
                 }
 
-                imuTurn(bot, 90, 0.5, "right"); //turn right 90 degrees
+                imuTurn(bot, 90, 0.5, "left"); //turn right 90 degrees
                 Thread.sleep(250);
             }
         }
@@ -285,7 +285,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                     Thread.sleep(250);
                 }
 
-                imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
+                imuTurn(bot, 90, 0.5, "right"); //turn left 90 degrees
                 Thread.sleep(250);
             }
 
@@ -321,14 +321,13 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                     Thread.sleep(250);
                 }
 
-                imuTurn(bot, 90, 0.5, "left"); //turn left 90 degrees
+                imuTurn(bot, 90, 0.5, "right"); //turn left 90 degrees
                 Thread.sleep(250);
             }
         }
 
         placeGlyph(bot);
         Thread.sleep(250);
-
     }
 
     /**
@@ -660,9 +659,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
         Thread.sleep(500);
         bot.setGlyphLiftMotorPower(0.0);
         Thread.sleep(100);
-
     }
-
 
     /**
      * This method gets two more glyphs and places them in the cryptobox.
@@ -672,12 +669,17 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      */
     public void getTwoMoreGlyphs(Robot4Supers bot) throws InterruptedException {
 
-        bot.setGlyphIntakeMotorPower(0.75);
-        Thread.sleep(4000);
+        bot.setGlyphIntakeMotorPower(1.0);
 
         encodersMove(bot, 50, 0.5, "forward");
+        Thread.sleep(250);
 
+        bot.setGlyphIntakeMotorPower(0.0);
 
+        encodersMove(bot, 50, 0.5, "backward");
+        Thread.sleep(250);
+
+        placeGlyph(bot);
     }
 
     /**
