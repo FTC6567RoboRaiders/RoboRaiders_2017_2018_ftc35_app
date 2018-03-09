@@ -85,7 +85,7 @@ public class Robot4Supers {
         motorFrontRight.setDirection(DcMotor.Direction.FORWARD);
         motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
         motorBackRight.setDirection(DcMotor.Direction.FORWARD);
-        motorRelic.setDirection(DcMotor.Direction.FORWARD);
+        motorRelic.setDirection(DcMotor.Direction.REVERSE);
         motorGlyphLift.setDirection(DcMotor.Direction.REVERSE);
         motorGlyphIntakeLeft.setDirection(DcMotor.Direction.FORWARD);
         motorGlyphIntakeRight.setDirection(DcMotor.Direction.REVERSE);
@@ -181,7 +181,7 @@ public class Robot4Supers {
      */
     public void glyphPivotDeposit() {
 
-        servoGlyphPivot.setPosition(0.1);
+        servoGlyphPivot.setPosition(0.15);
     }
 
     /**
@@ -223,7 +223,7 @@ public class Robot4Supers {
      */
     public void wristDown() {
 
-        servoRelicWrist.setPosition(0.2);
+        servoRelicWrist.setPosition(0.5);
     }
 
     /**

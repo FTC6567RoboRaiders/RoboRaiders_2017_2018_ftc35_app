@@ -153,11 +153,11 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
         // "Set Glyph Intake Motor Power" functionality
         if (gamepad2.right_bumper) {
 
-            robot.setGlyphIntakeMotorPower(0.8);
+            robot.setGlyphIntakeMotorPower(1.0);
         }
         else if (gamepad2.left_bumper){
 
-            robot.setGlyphIntakeMotorPower(-0.8);
+            robot.setGlyphIntakeMotorPower(-1.0);
         }
         else {
 
@@ -217,7 +217,7 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
         relic = gamepad2.left_stick_y;
         relic = Range.clip(relic, -1, 1);
         relic = (float) scaleInput(relic);
-        robot.setRelicMotorPower(relic * 0.5);
+        robot.setRelicMotorPower(relic * 0.75);
 
 
         // "Relic Wrist Up" functionality
