@@ -537,10 +537,10 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      */
     public void lowerArm(Robot4Supers bot) throws InterruptedException {
 
-        bot.setJewelServoPosition(0.5);
+        bot.setJewelServoPosition(0.65);
         Thread.sleep(250);
 
-        bot.setElbowServoPosition(0.87);
+        bot.setElbowServoPosition(0.21);
         Thread.sleep(250);
 
         double servoJewelPosition = bot.getJewelServoPosition(); //sets getPosition() to servoPosition
@@ -586,8 +586,8 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
 
         double servoElbowPosition = bot.getElbowServoPosition(); //sets getPosition() to servoPosition
 
-        while (servoElbowPosition > 0.2 && opModeIsActive()) {  //while the op mode is active and while the servo position variable is greater
-            //than 0.2
+        while (servoElbowPosition > 0.21 && opModeIsActive()) {  //while the op mode is active and while the servo position variable is greater
+            //than 0.21
 
             servoElbowPosition = servoElbowPosition - 0.05;      //add 0.05 to the current servoPosition variable
             bot.setElbowServoPosition(servoElbowPosition);
@@ -624,8 +624,8 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
 
         double servoElbowPosition = bot.getElbowServoPosition(); //sets getPosition() to servoPosition
 
-        while (servoElbowPosition < 0.2 && opModeIsActive()) {  //while the op mode is active and while the servo position variable is less
-            //than 0.2
+        while (servoElbowPosition < 0.21 && opModeIsActive()) {  //while the op mode is active and while the servo position variable is less
+            //than 0.21
 
             servoElbowPosition = servoElbowPosition + 0.05;      //add 0.05 to the current servoPosition variable
             bot.setElbowServoPosition(servoElbowPosition);

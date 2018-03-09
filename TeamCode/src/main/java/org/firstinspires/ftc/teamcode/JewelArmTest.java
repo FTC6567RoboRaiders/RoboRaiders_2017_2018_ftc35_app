@@ -10,7 +10,7 @@ import com.roboraiders.Robot.Robot;
  */
 
 @Autonomous
-
+@Disabled
 
 public class JewelArmTest extends RoboRaidersAuto {
 
