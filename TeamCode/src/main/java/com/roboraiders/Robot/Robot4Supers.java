@@ -135,7 +135,7 @@ public class Robot4Supers {
     public void initializeServos() {
 
         servoJewel.setPosition(0.4);
-        servoElbow.setPosition(0.0);
+        servoElbow.setPosition(1.0);
         servoGlyphPivot.setPosition(1.0);
     }
 

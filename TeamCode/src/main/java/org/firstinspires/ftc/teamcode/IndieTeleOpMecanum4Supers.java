@@ -157,7 +157,7 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
         }
         else if (gamepad2.left_bumper){
 
-            robot.setGlyphIntakeMotorPower(-1.0);
+            robot.setGlyphIntakeMotorPower(-0.75);
         }
         else {
 
