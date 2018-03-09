@@ -87,8 +87,8 @@ public class Robot4Supers {
         motorBackRight.setDirection(DcMotor.Direction.FORWARD);
         motorRelic.setDirection(DcMotor.Direction.FORWARD);
         motorGlyphLift.setDirection(DcMotor.Direction.FORWARD);
-        motorGlyphIntakeLeft.setDirection(DcMotor.Direction.REVERSE);   //may need to be reversed
-        motorGlyphIntakeRight.setDirection(DcMotor.Direction.FORWARD);  //may need to be reversed
+        motorGlyphIntakeLeft.setDirection(DcMotor.Direction.FORWARD);   //may need to be reversed
+        motorGlyphIntakeRight.setDirection(DcMotor.Direction.REVERSE);  //may need to be reversed
 
         // Set all motors to zero power
         motorFrontRight.setPower(0);
@@ -181,7 +181,7 @@ public class Robot4Supers {
      */
     public void glyphPivotDeposit() {
 
-        servoGlyphPivot.setPosition(0.6);
+        servoGlyphPivot.setPosition(0.0);
     }
 
     /**
@@ -189,7 +189,7 @@ public class Robot4Supers {
      */
     public void glyphPivotCarry() {
 
-        servoGlyphPivot.setPosition(0.4);
+        servoGlyphPivot.setPosition(0.7);
     }
 
     /**
@@ -197,7 +197,7 @@ public class Robot4Supers {
      */
     public void glyphPivotRest() {
 
-        servoGlyphPivot.setPosition(0.0);
+        servoGlyphPivot.setPosition(1.0);
     }
 
     /**
