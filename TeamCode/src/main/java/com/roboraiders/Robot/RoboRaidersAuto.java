@@ -934,4 +934,9 @@ public abstract class RoboRaidersAuto extends LinearOpMode {
         encodersMove(bot, 18, 0.4, "right");
         Thread.sleep(500);
     }
+
+
+    public void NickScrewingAroundWithTheNewCollectionDONTEDITTHIS (Robot bot) throws InterruptedException {
+
+    }
 }

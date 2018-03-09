@@ -26,6 +26,8 @@ public class Robot {
     public DcMotor motorBackRight = null;
     public DcMotor motorRelic = null;
     public DcMotor motorGlyphLift = null;
+    public DcMotor motorGlyphIntakeRight = null;
+    public DcMotor motorGlyphIntakeLeft = null;
 
     public Servo servoJewel = null;
     public Servo servoElbow = null;
@@ -34,6 +36,7 @@ public class Robot {
     public Servo servoGlyphUpper = null;
     public Servo servoGlyphLower = null;
     public Servo servoGlyphFlipper = null;
+    public Servo servoGlyphLiftFlipper = null;
 
     public ColorSensor colorSensor;
     public ModernRoboticsI2cRangeSensor mrRangeSide;     // Back side range sensor
@@ -77,6 +80,7 @@ public class Robot {
         motorBackRight = hwMap.get(DcMotor.class, "right_Back");
         motorRelic = hwMap.get(DcMotor.class, "relic");
         motorGlyphLift = hwMap.get(DcMotor.class, "glyph_Lift");
+        //gotta add the new Glyph intake motors and the
 
         // Defines the directions the motors will spin
         motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
