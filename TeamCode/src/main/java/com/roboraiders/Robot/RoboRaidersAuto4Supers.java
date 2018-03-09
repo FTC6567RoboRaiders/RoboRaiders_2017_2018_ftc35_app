@@ -40,9 +40,9 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     public double RED_FAR_CENTER_DISTANCE = 4.75;      // |  Red     |   Far    | Center |
     public double RED_FAR_RIGHT_DISTANCE = 1.25;       // |  Red     |   Far    |  Right |
     //                                                    +----------+----------+--------+
-    public double BLUE_CLOSE_LEFT_DISTANCE = 22.25;    // |  Blue    |  Close   |  Left  |
-    public double BLUE_CLOSE_CENTER_DISTANCE = 29.0;   // |  Blue    |  Close   | Center |
-    public double BLUE_CLOSE_RIGHT_DISTANCE = 41.0;    // |  Blue    |  Close   |  Right |
+    public double BLUE_CLOSE_LEFT_DISTANCE = 18.5;    // |  Blue    |  Close   |  Left  |
+    public double BLUE_CLOSE_CENTER_DISTANCE = 25.5;   // |  Blue    |  Close   | Center |
+    public double BLUE_CLOSE_RIGHT_DISTANCE = 37.5;    // |  Blue    |  Close   |  Right |
     //                                                    +----------+----------+--------+
     public double BLUE_FAR_LEFT_DISTANCE = 3.5;        // |  Blue    |   Far    |  Left  |
     public double BLUE_FAR_CENTER_DISTANCE = 7.0;      // |  Blue    |   Far    | Center |
@@ -246,43 +246,43 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
 
                 if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
 
-                    //  encodersMove(bot, BLUE_CLOSE_LEFT_DISTANCE, 0.5, "forward"); //move forward until in front of the left column
-                    encodersMoveWithGyro(bot,                        // The robot we are working on
+                    encodersMove(bot, BLUE_CLOSE_LEFT_DISTANCE, 0.5, "forward"); //move forward until in front of the left column
+                    /*encodersMoveWithGyro(bot,                        // The robot we are working on
                             BLUE_CLOSE_LEFT_DISTANCE,   // The distance the robot is to travel
                             0.6,                        // The left power - its more because of the drift of the robot
                             0.5,                        // The right power - its less because of the drift of the robot
                             "forward");                 // Move "forward" until in front of the left column
-                    Thread.sleep(250);
+                    Thread.sleep(250);*/
                 }
                 else if (pictograph.equals("CENTER")) { //else if the pictograph 1says that the key column is the center column
 
-                    //  encodersMove(bot, BLUE_CLOSE_CENTER_DISTANCE, 0.5, "forward"); //move forward until in front of the center column
-                    encodersMoveWithGyro(bot,                        // The robot we are working on
+                    encodersMove(bot, BLUE_CLOSE_CENTER_DISTANCE, 0.5, "forward"); //move forward until in front of the center column
+                    /*encodersMoveWithGyro(bot,                        // The robot we are working on
                             BLUE_CLOSE_CENTER_DISTANCE, // The distance the robot is to travel
                             0.6,                        // The left power - its more because of the drift of the robot
                             0.5,                        // The right power - its less because of the drift of the robot
                             "forward");                 // Move "forward" until in front of the left column
-                    Thread.sleep(250);
+                    Thread.sleep(250);*/
                 }
                 else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
 
-                    //  encodersMove(bot, BLUE_CLOSE_RIGHT_DISTANCE, 0.5, "forward"); //move forward until in front of the right column
-                    encodersMoveWithGyro(bot,                       // The robot we are working on
+                    encodersMove(bot, BLUE_CLOSE_RIGHT_DISTANCE, 0.5, "forward"); //move forward until in front of the right column
+                    /*encodersMoveWithGyro(bot,                       // The robot we are working on
                             BLUE_CLOSE_RIGHT_DISTANCE,  // The distance the robot is to travel
                             0.4,                        // The left power - its more because of the drift of the robot
                             0.3,                        // The right power - its less because of the drift of the robot
                             "forward");                 // Move "forward" until in front of the right column
-                    Thread.sleep(250);
+                    Thread.sleep(250);*/
                 }
                 else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
 
-                    //  encodersMove(bot, BLUE_CLOSE_CENTER_DISTANCE, 0.5, "forward"); //move forward until in front of the center column (default)
-                    encodersMoveWithGyro(bot,                        // The robot we are working on
+                    encodersMove(bot, BLUE_CLOSE_CENTER_DISTANCE, 0.5, "forward"); //move forward until in front of the center column (default)
+                    /*encodersMoveWithGyro(bot,                        // The robot we are working on
                             BLUE_CLOSE_CENTER_DISTANCE, // The distance the robot is to travel
                             0.6,                        // The left power - its more because of the drift of the robot
                             0.5,                        // The right power - its less because of the drift of the robot
                             "forward");                 // Move "forward" until in front of the left column
-                    Thread.sleep(250);
+                    Thread.sleep(250);*/
                 }
 
                 imuTurn(bot, 90, 0.5, "right"); //turn left 90 degrees
@@ -541,7 +541,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
         Thread.sleep(250);
 
         bot.setElbowServoPosition(0.21);
-        Thread.sleep(250);
+        Thread.sleep(500);
 
         double servoJewelPosition = bot.getJewelServoPosition(); //sets getPosition() to servoPosition
 
@@ -554,7 +554,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
         }
 
         bot.setJewelServoPosition(0.87);
-        Thread.sleep(250);
+        Thread.sleep(500);
     }
 
     /**
@@ -644,21 +644,27 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
         bot.glyphPivotCarry();
         Thread.sleep(250);
 
-        bot.setGlyphLiftMotorPower(0.75);
+        bot.setGlyphLiftMotorPower(-0.75);
         Thread.sleep(500);
         bot.setGlyphLiftMotorPower(0.0);
         Thread.sleep(100);
 
         bot.glyphPivotDeposit();
-        Thread.sleep(250);
+        Thread.sleep(500);
 
         bot.glyphPivotRest();
         Thread.sleep(250);
 
-        bot.setGlyphLiftMotorPower(-0.75);
+        bot.setGlyphLiftMotorPower(0.75);
         Thread.sleep(500);
         bot.setGlyphLiftMotorPower(0.0);
         Thread.sleep(100);
+
+        encodersMove(bot, 4, 0.5, "backward");
+        Thread.sleep(250);
+
+        encodersMove(bot, 1, 0.5, "forward");
+        Thread.sleep(250);
     }
 
     /**
@@ -671,13 +677,18 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
 
         bot.setGlyphIntakeMotorPower(1.0);
 
-        encodersMove(bot, 50, 0.5, "forward");
+        encodersMove(bot, 30, 0.5, "forward");
         Thread.sleep(250);
 
         bot.setGlyphIntakeMotorPower(0.0);
 
-        encodersMove(bot, 50, 0.5, "backward");
+        encodersMove(bot, 30, 0.5, "backward");
         Thread.sleep(250);
+
+        bot.setGlyphLiftMotorPower(-0.75);
+        Thread.sleep(750);
+        bot.setGlyphLiftMotorPower(0.0);
+        Thread.sleep(100);
 
         placeGlyph(bot);
     }
