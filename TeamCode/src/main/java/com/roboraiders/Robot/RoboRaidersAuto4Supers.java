@@ -35,7 +35,8 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     public double RED_CLOSE_LEFT_DISTANCE = 35.5;      // |  Red     |  Close   |  Left  |
     public double RED_CLOSE_CENTER_DISTANCE = 27.5;    // |  Red     |  Close   | Center |
     public double RED_CLOSE_RIGHT_DISTANCE = 22.5;     // |  Red     |  Close   |  Right |
-    //                                                    +----------+----------+--------+
+    //
+    //                                     +----------+----------+--------+
     public double RED_FAR_LEFT_DISTANCE = 11.00;       // |  Red     |   Far    |  Left  |
     public double RED_FAR_CENTER_DISTANCE = 6.75;      // |  Red     |   Far    | Center |
     public double RED_FAR_RIGHT_DISTANCE = 1.25;       // |  Red     |   Far    |  Right |
