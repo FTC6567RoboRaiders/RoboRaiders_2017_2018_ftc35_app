@@ -35,11 +35,10 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     public double RED_CLOSE_LEFT_DISTANCE = 35.5;      // |  Red     |  Close   |  Left  |
     public double RED_CLOSE_CENTER_DISTANCE = 27.5;    // |  Red     |  Close   | Center |
     public double RED_CLOSE_RIGHT_DISTANCE = 22.5;     // |  Red     |  Close   |  Right |
-    //
-    //                                     +----------+----------+--------+
-    public double RED_FAR_LEFT_DISTANCE = 11.00;       // |  Red     |   Far    |  Left  |
-    public double RED_FAR_CENTER_DISTANCE = 6.75;      // |  Red     |   Far    | Center |
-    public double RED_FAR_RIGHT_DISTANCE = 1.25;       // |  Red     |   Far    |  Right |
+    //                                                    +----------+----------+--------+
+    public double RED_FAR_LEFT_DISTANCE = 12.50;       // |  Red     |   Far    |  Left  |
+    public double RED_FAR_CENTER_DISTANCE = 5.25;      // |  Red     |   Far    | Center |
+    public double RED_FAR_RIGHT_DISTANCE = 1.75;       // |  Red     |   Far    |  Right |
     //                                                    +----------+----------+--------+
     public double BLUE_CLOSE_LEFT_DISTANCE = 18.5;    // |  Blue    |  Close   |  Left  |
     public double BLUE_CLOSE_CENTER_DISTANCE = 26.5;   // |  Blue    |  Close   | Center |
@@ -50,7 +49,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     public double BLUE_FAR_RIGHT_DISTANCE = 12.75;      // |  Blue    |   Far    |  Right |
     //                                                    +----------+----------+--------+
 
-    public double RED_FAR_BACKWARD_DISTANCE = 13.5;    // Distance robot drives backwards off of the RED, Far balance stone
+    public double RED_FAR_BACKWARD_DISTANCE = 21.5;    // Distance robot drives backwards off of the RED, Far balance stone
     public double BLUE_FAR_FORWARD_DISTANCE = 20.5;    // Distance robot drives forward off of the BLUE, Far balance stone
 
     public double MAX_DISTANCE = 50.0;                 // The maximum from the wall, used to display alignment menu.
@@ -204,7 +203,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
             else if (alliancePlacement.equals("far")) { //if we are far from the audience
 
                 encodersMove(bot, RED_FAR_BACKWARD_DISTANCE, 0.5, "backward"); //drive backward
-                Thread.sleep(250);
+                Thread.sleep(500);
 
                 imuTurn(bot, 90, 0.5, "right"); //turn right 90 degrees
                 Thread.sleep(250);
