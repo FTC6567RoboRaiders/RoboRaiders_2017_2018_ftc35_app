@@ -266,12 +266,12 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                 }
                 else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
 
-                    encodersMove(bot, BLUE_CLOSE_RIGHT_DISTANCE, 0.5, "forward"); //move forward until in front of the right column
-                    /*encodersMoveWithGyro(bot,                       // The robot we are working on
+                    // encodersMove(bot, BLUE_CLOSE_RIGHT_DISTANCE, 0.5, "forward"); //move forward until in front of the right column
+                    encodersMoveWithGyro(bot,                       // The robot we are working on
                             BLUE_CLOSE_RIGHT_DISTANCE,  // The distance the robot is to travel
-                            0.4,                        // The left power - its more because of the drift of the robot
-                            0.3,                        // The right power - its less because of the drift of the robot
-                            "forward"); */                // Move "forward" until in front of the right column
+                            0.5,                        // The left power - its more because of the drift of the robot
+                            0.5,                        // The right power - its less because of the drift of the robot
+                            "forward");                 // Move "forward" until in front of the right column
                     Thread.sleep(250);
                 }
                 else if (pictograph.equals("UNKNOWN")) { //else if the pictograph cannot determine which column is the key column
@@ -475,7 +475,8 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
 
             // Get the current heading, then adjust the powers on the left and right side to
             // straighten the robot as it travels
-            robotCurrentHeading = bot.getIntegratedZAxis();
+//            robotCurrentHeading = bot.getIntegratedZAxis();
+            robotCurrentHeading = bot.getRobotHeading();
             newLeftPower = leftPower + ((robotCurrentHeading - INTENDED_ROBOT_HEADING) / 100);
             newRightPower = rightPower - ((robotCurrentHeading - INTENDED_ROBOT_HEADING) / 100);
 

@@ -494,5 +494,20 @@ public class Robot4Supers {
 
         return integratedZAxis;
     }
+
+    /**
+     * This will get the heading the robot is travelling
+     *
+     * @return heading - the direction (in degress) the robot is travelling
+     */
+    public double getRobotHeading() {
+
+        // This sets up the how we want the IMU to report data
+        iza_angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
+        // return the heading (Z-Axis)
+        return iza_angles.firstAngle;
+    }
 }
+
 
