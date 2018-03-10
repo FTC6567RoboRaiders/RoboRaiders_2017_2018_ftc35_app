@@ -53,6 +53,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     public double BLUE_FAR_FORWARD_DISTANCE = 20.5;    // Distance robot drives forward off of the BLUE, Far balance stone
 
     public double MAX_DISTANCE = 50.0;                 // The maximum from the wall, used to display alignment menu.
+    public double FINAL_JEWEL_ARM_SERVO_POSITION = 0.87;    // Position where the jewel arm needs to be to read the jewel color.
 
     /**
      * This method will initialize Vuforia in autonomous op modes
@@ -538,23 +539,33 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      */
     public void lowerArm(Robot4Supers bot) throws InterruptedException {
 
+        double amountToMove = 0.0;
+
         bot.setJewelServoPosition(0.69);
         Thread.sleep(250);
 
         bot.setElbowServoPosition(0.21);
         Thread.sleep(500);
 
+
         double servoJewelPosition = bot.getJewelServoPosition(); //sets getPosition() to servoPosition
 
-        while (servoJewelPosition < 0.85 && opModeIsActive()) {  //while the op mode is active and while the servo position variable is less
-            //than 0.85
+        while (servoJewelPosition < FINAL_JEWEL_ARM_SERVO_POSITION && opModeIsActive()) {  //while the op mode is active and while the servo position variable is less
+            //than 0.87
+            amountToMove = FINAL_JEWEL_ARM_SERVO_POSITION - servoJewelPosition;            //calculate remaining distance to rotate servo
 
-            servoJewelPosition = servoJewelPosition + 0.05;      //add 0.05 to the current servoPosition variable
+            if (amountToMove < 0.05){
+                servoJewelPosition = servoJewelPosition + amountToMove;     //increment to final position
+            }
+            else {
+                servoJewelPosition = servoJewelPosition + 0.05;                 //add 0.05 to the current servoPosition variable
+            }
+
             bot.setJewelServoPosition(servoJewelPosition);
             Thread.sleep(75);                                    //wait 0.075 seconds (75 milliseconds)
         }
 
-        bot.setJewelServoPosition(0.87);
+        //bot.setJewelServoPosition(0.87);
         Thread.sleep(500);
     }
 
