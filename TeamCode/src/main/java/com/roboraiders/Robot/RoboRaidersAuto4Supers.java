@@ -32,9 +32,9 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     //                                                    | Alliance |Balancing | Column |
     //                                                    |          |  Stone   |        |
     //                                                    +----------+----------+--------+
-    public double RED_CLOSE_LEFT_DISTANCE = 35.0;      // |  Red     |  Close   |  Left  |
+    public double RED_CLOSE_LEFT_DISTANCE = 35.5;      // |  Red     |  Close   |  Left  |
     public double RED_CLOSE_CENTER_DISTANCE = 27.5;    // |  Red     |  Close   | Center |
-    public double RED_CLOSE_RIGHT_DISTANCE = 24.0;     // |  Red     |  Close   |  Right |
+    public double RED_CLOSE_RIGHT_DISTANCE = 22.5;     // |  Red     |  Close   |  Right |
     //                                                    +----------+----------+--------+
     public double RED_FAR_LEFT_DISTANCE = 11.00;       // |  Red     |   Far    |  Left  |
     public double RED_FAR_CENTER_DISTANCE = 6.75;      // |  Red     |   Far    | Center |
@@ -45,8 +45,8 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     public double BLUE_CLOSE_RIGHT_DISTANCE = 33.0;    // |  Blue    |  Close   |  Right |
     //                                                    +----------+----------+--------+
     public double BLUE_FAR_LEFT_DISTANCE = 3.5;        // |  Blue    |   Far    |  Left  |
-    public double BLUE_FAR_CENTER_DISTANCE = 9.0;      // |  Blue    |   Far    | Center |
-    public double BLUE_FAR_RIGHT_DISTANCE = 13.25;      // |  Blue    |   Far    |  Right |
+    public double BLUE_FAR_CENTER_DISTANCE = 7.5;      // |  Blue    |   Far    | Center |
+    public double BLUE_FAR_RIGHT_DISTANCE = 12.75;      // |  Blue    |   Far    |  Right |
     //                                                    +----------+----------+--------+
 
     public double RED_FAR_BACKWARD_DISTANCE = 13.5;    // Distance robot drives backwards off of the RED, Far balance stone
