@@ -10,7 +10,7 @@ import com.roboraiders.Robot.Robot;
  */
 
 @Autonomous
-@Disabled
+
 
 public class JewelArmTest2 extends RoboRaidersAuto {
 
@@ -31,11 +31,11 @@ public class JewelArmTest2 extends RoboRaidersAuto {
 
         double servoJewelPosition = robot.getJewelServoPosition();
 
-        while (servoJewelPosition < 0.85 && opModeIsActive()) {
+        while (servoJewelPosition < 0.8 && opModeIsActive()) {
             telemetry.addData("Jewel Arm Pos: ", servoJewelPosition);
 
-            if (servoJewelPosition == 0.65) {
-                robot.servoElbow.setPosition(0.87);
+            if (servoJewelPosition == 0.7) {
+                robot.servoElbow.setPosition(0.21);
                 Thread.sleep(500);
             }
 

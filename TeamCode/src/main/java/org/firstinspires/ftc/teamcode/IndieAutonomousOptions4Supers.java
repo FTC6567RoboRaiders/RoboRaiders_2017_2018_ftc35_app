@@ -104,6 +104,7 @@ public class IndieAutonomousOptions4Supers extends RoboRaidersAuto4Supers {
 
             lowerArm(robot);
             selectJewel(robot, selectedOptions[1][1]);
+            // raiseArm(robot);
         }
 
         // Parking and/or Cryptobox
