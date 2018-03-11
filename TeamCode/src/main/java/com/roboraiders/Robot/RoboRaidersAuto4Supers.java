@@ -40,7 +40,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     public double RED_FAR_CENTER_DISTANCE = 5.25;      // |  Red     |   Far    | Center |
     public double RED_FAR_RIGHT_DISTANCE = 1.75;       // |  Red     |   Far    |  Right |
     //                                                    +----------+----------+--------+
-    public double BLUE_CLOSE_LEFT_DISTANCE = 18.5;    // |  Blue    |  Close   |  Left  |
+    public double BLUE_CLOSE_LEFT_DISTANCE = 18.5;     // |  Blue    |  Close   |  Left  |
     public double BLUE_CLOSE_CENTER_DISTANCE = 26.5;   // |  Blue    |  Close   | Center |
     public double BLUE_CLOSE_RIGHT_DISTANCE = 33.0;    // |  Blue    |  Close   |  Right |
     //                                                    +----------+----------+--------+
@@ -52,8 +52,8 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     public double RED_FAR_BACKWARD_DISTANCE = 21.5;    // Distance robot drives backwards off of the RED, Far balance stone
     public double BLUE_FAR_FORWARD_DISTANCE = 20.5;    // Distance robot drives forward off of the BLUE, Far balance stone
 
-    public double MAX_DISTANCE = 50.0;                 // The maximum from the wall, used to display alignment menu.
-    public double FINAL_JEWEL_ARM_SERVO_POSITION = 0.87;    // Position where the jewel arm needs to be to read the jewel color.
+    public double MAX_DISTANCE = 50.0;                      // The maximum from the wall, used to display alignment menu
+    public double FINAL_JEWEL_ARM_SERVO_POSITION = 0.87;    // Position where the jewel arm needs to be to read the jewel color
 
     /**
      * This method will initialize Vuforia in autonomous op modes
@@ -267,7 +267,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                 }
                 else if (pictograph.equals("RIGHT")) { //else if the pictograph says that the key column is the right column
 
-                    // encodersMove(bot, BLUE_CLOSE_RIGHT_DISTANCE, 0.5, "forward"); //move forward until in front of the right column
+                    //encodersMove(bot, BLUE_CLOSE_RIGHT_DISTANCE, 0.5, "forward"); //move forward until in front of the right column
                     encodersMoveWithGyro(bot,                       // The robot we are working on
                             BLUE_CLOSE_RIGHT_DISTANCE,  // The distance the robot is to travel
                             0.5,                        // The left power - its more because of the drift of the robot
@@ -539,7 +539,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
      */
     public void lowerArm(Robot4Supers bot) throws InterruptedException {
 
-        double amountToMove = 0.0;
+        double amountToMove;
 
         bot.setJewelServoPosition(0.69);
         Thread.sleep(250);
@@ -547,25 +547,26 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
         bot.setElbowServoPosition(0.21);
         Thread.sleep(500);
 
-
         double servoJewelPosition = bot.getJewelServoPosition(); //sets getPosition() to servoPosition
 
-        while (servoJewelPosition < FINAL_JEWEL_ARM_SERVO_POSITION && opModeIsActive()) {  //while the op mode is active and while the servo position variable is less
-            //than 0.87
-            amountToMove = FINAL_JEWEL_ARM_SERVO_POSITION - servoJewelPosition;            //calculate remaining distance to rotate servo
+        while (servoJewelPosition < FINAL_JEWEL_ARM_SERVO_POSITION && opModeIsActive()) { //while the op mode is active and while the servo position variable is less
+            //than the final position
+
+            amountToMove = FINAL_JEWEL_ARM_SERVO_POSITION - servoJewelPosition; //calculate remaining distance to rotate servo
 
             if (amountToMove < 0.05){
-                servoJewelPosition = servoJewelPosition + amountToMove;     //increment to final position
+
+                servoJewelPosition = servoJewelPosition + amountToMove; //increment to final position
             }
             else {
-                servoJewelPosition = servoJewelPosition + 0.05;                 //add 0.05 to the current servoPosition variable
+
+                servoJewelPosition = servoJewelPosition + 0.05; //add 0.05 to the current servoPosition variable
             }
 
             bot.setJewelServoPosition(servoJewelPosition);
-            Thread.sleep(75);                                    //wait 0.075 seconds (75 milliseconds)
+            Thread.sleep(75); //wait 0.075 seconds (75 milliseconds)
         }
 
-        //bot.setJewelServoPosition(0.87);
         Thread.sleep(500);
     }
 
@@ -656,21 +657,11 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
         bot.glyphPivotCarry();
         Thread.sleep(250);
 
-        /*bot.setGlyphLiftMotorPower(-0.75);
-        Thread.sleep(500);
-        bot.setGlyphLiftMotorPower(0.0);
-        Thread.sleep(100);*/
-
         bot.glyphPivotDeposit();
         Thread.sleep(1000);
 
         bot.glyphPivotRest();
         Thread.sleep(250);
-
-        /*bot.setGlyphLiftMotorPower(0.75);
-        Thread.sleep(500);
-        bot.setGlyphLiftMotorPower(0.0);
-        Thread.sleep(100);*/
 
         encodersMove(bot, 4, 0.5, "backward");
         Thread.sleep(250);
