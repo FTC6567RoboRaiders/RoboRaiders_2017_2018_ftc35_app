@@ -43,10 +43,6 @@ public class IndieAutonomousOptions4Supers extends RoboRaidersAuto4Supers {
         final String[] parkCryptPosResps = new String[]                   // Possible Parking and/or Cryptobox selections
                 {"Just Park", "Cryptobox Vuforia"};
 
-        String extraGlyphsSelPrompt = "Extra Glyphs";                     // Extra Glyphs prompt
-        final String[] extraGlyphsPosResps = new String[]                 // Possible Extra Glyphs selections
-                {"no", "yes"};
-
         String selectionsOk = "Selections Great :)";                      // Finished Selections prompt
         final String[] finishedSelPosResps = new String[]                 // Possible Finished Selections responses
                 {"no", "yes"};
@@ -65,7 +61,6 @@ public class IndieAutonomousOptions4Supers extends RoboRaidersAuto4Supers {
             configForAuto2Options(bsSelPrompt, bsPosResps, 2, selectedOptions);                   // Balancing Stone Location selection
             configForAuto2Options(jewelSelPrompt, jewelPosResps, 3, selectedOptions);             // Jewel selection
             configForAuto2Options(parkCryptSelPrompt, parkCryptPosResps, 4, selectedOptions);     // Parking and/or Cryptobox selection
-            configForAuto2Options(extraGlyphsSelPrompt, extraGlyphsPosResps, 5, selectedOptions); // Extra Glyphs selection
 
             // Loop through all of the selections and tell user what s/he has selected
             for (int i = 1; i <= 4; i++) {
@@ -104,7 +99,6 @@ public class IndieAutonomousOptions4Supers extends RoboRaidersAuto4Supers {
 
             lowerArm(robot);
             selectJewel(robot, selectedOptions[1][1]);
-            // raiseArm(robot);
         }
 
         // Parking and/or Cryptobox
@@ -133,12 +127,6 @@ public class IndieAutonomousOptions4Supers extends RoboRaidersAuto4Supers {
             Thread.sleep(250);
 
             selectColumn(robot, selectedOptions[1][1], selectedOptions[2][1], pictograph);
-        }
-
-        // Extra Glyphs
-        if (selectedOptions[5][1].equals("yes")) {
-
-            getTwoMoreGlyphs(robot);
         }
     }
 
