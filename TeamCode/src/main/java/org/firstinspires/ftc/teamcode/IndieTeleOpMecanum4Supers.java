@@ -217,7 +217,14 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
         relic = gamepad2.left_stick_y;
         relic = Range.clip(relic, -1, 1);
         relic = (float) scaleInput(relic);
-        robot.setRelicMotorPower(relic * 0.75);
+
+        // If power is negative, then 1/2 the power for the arm coming back, else use 3/4 of the power.
+        if (relic > 0.0) {
+            robot.setRelicMotorPower(relic * 0.5);
+        } else {
+            robot.setRelicMotorPower(relic * 0.75);
+        }
+
 
 
         // "Relic Wrist Up" functionality
