@@ -40,13 +40,13 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     public double RED_FAR_CENTER_DISTANCE = 4.25;      // |  Red     |   Far    | Center |
     public double RED_FAR_RIGHT_DISTANCE = 1.75;       // |  Red     |   Far    |  Right |
     //                                                    +----------+----------+--------+
-    public double BLUE_CLOSE_LEFT_DISTANCE = 18.5;     // |  Blue    |  Close   |  Left  |
+    public double BLUE_CLOSE_LEFT_DISTANCE = 22.25;    // |  Blue    |  Close   |  Left  |
     public double BLUE_CLOSE_CENTER_DISTANCE = 26.5;   // |  Blue    |  Close   | Center |
-    public double BLUE_CLOSE_RIGHT_DISTANCE = 33.0;    // |  Blue    |  Close   |  Right |
+    public double BLUE_CLOSE_RIGHT_DISTANCE = 35.5;    // |  Blue    |  Close   |  Right |
     //                                                    +----------+----------+--------+
-    public double BLUE_FAR_LEFT_DISTANCE = 3.5;        // |  Blue    |   Far    |  Left  |
-    public double BLUE_FAR_CENTER_DISTANCE = 7.5;      // |  Blue    |   Far    | Center |
-    public double BLUE_FAR_RIGHT_DISTANCE = 12.75;     // |  Blue    |   Far    |  Right |
+    public double BLUE_FAR_LEFT_DISTANCE = 1.0;        // |  Blue    |   Far    |  Left  |
+    public double BLUE_FAR_CENTER_DISTANCE = 5.0;      // |  Blue    |   Far    | Center |
+    public double BLUE_FAR_RIGHT_DISTANCE = 10.75;     // |  Blue    |   Far    |  Right |
     //                                                    +----------+----------+--------+
 
     public double RED_FAR_BACKWARD_DISTANCE = 21.5;    // Distance robot drives backwards off of the RED, Far balance stone
@@ -250,7 +250,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                     //encodersMove(bot, BLUE_CLOSE_LEFT_DISTANCE, 0.5, "forward"); //move forward until in front of the left column
                     encodersMoveWithGyro(bot,                        // The robot we are working on
                             BLUE_CLOSE_LEFT_DISTANCE,   // The distance the robot is to travel
-                            0.6,                        // The left power - its more because of the drift of the robot
+                            0.5,                        // The left power - its more because of the drift of the robot
                             0.5,                        // The right power - its less because of the drift of the robot
                             "forward");                 // Move "forward" until in front of the left column
                     Thread.sleep(250);
@@ -298,7 +298,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                 encodersMove(bot, BLUE_FAR_FORWARD_DISTANCE, 0.4, "forward"); //drive forward
                 Thread.sleep(250);
 
-                imuTurn(bot, 90, 0.5, "right"); //turn right 90 degrees
+                imuTurn(bot, 85, 0.5, "right"); //turn right 90 degrees
                 Thread.sleep(250);
 
                 if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
