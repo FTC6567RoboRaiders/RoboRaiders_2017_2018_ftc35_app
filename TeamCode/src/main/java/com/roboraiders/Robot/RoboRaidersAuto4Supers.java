@@ -36,7 +36,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     public double RED_CLOSE_CENTER_DISTANCE = 27.5;    // |  Red     |  Close   | Center |
     public double RED_CLOSE_RIGHT_DISTANCE = 22.5;     // |  Red     |  Close   |  Right |
     //                                                    +----------+----------+--------+
-    public double RED_FAR_LEFT_DISTANCE = 12.50;       // |  Red     |   Far    |  Left  |
+    public double RED_FAR_LEFT_DISTANCE = 11.00;       // |  Red     |   Far    |  Left  |
     public double RED_FAR_CENTER_DISTANCE = 5.25;      // |  Red     |   Far    | Center |
     public double RED_FAR_RIGHT_DISTANCE = 1.75;       // |  Red     |   Far    |  Right |
     //                                                    +----------+----------+--------+
@@ -803,16 +803,16 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                 */
                 else if (allianceColor.equals("red") && balancingStone.equals("close")) {
 
-                    frontHdr1DistPrompt = "IDEAL DISTANCE FROM FRONT WALL IS 16.14 INCHES";
+                    frontHdr1DistPrompt = "IDEAL DISTANCE FROM FRONT WALL IS 14.57 INCHES";
                     frontHdr2DistPrompt = String.format(Locale.US, "Front %.2f inches", distanceFrontSensor);
 
-                    if (distanceFrontSensor < 15.74) {
+                    if (distanceFrontSensor < 14.47) {
 
                         frontDistPrompt = "Move the robot farther away from the front wall.";
-                    } else if (distanceFrontSensor >= 15.74 && distanceFrontSensor <= 16.55) {
+                    } else if (distanceFrontSensor >= 14.47 && distanceFrontSensor <= 14.67) {
 
                         frontDistPrompt = "The robot is the correct distance away from the front wall.";
-                    } else if (distanceFrontSensor > 16.55) {
+                    } else if (distanceFrontSensor > 14.67) {
 
                         frontDistPrompt = "Move the robot closer to the front wall.";
                     } else {
@@ -826,16 +826,16 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                 */
                 else if (allianceColor.equals("red") && balancingStone.equals("far")) {
 
-                    backHdr1DistPrompt = "IDEAL DISTANCE FROM BACK WALL IS 33.46 INCHES";
+                    backHdr1DistPrompt = "IDEAL DISTANCE FROM BACK WALL IS 36.22 INCHES";
                     backHdr2DistPrompt = String.format(Locale.US, "Back %.2f inches", distanceBackSensor);
 
-                    if (distanceBackSensor < 33.06) {
+                    if (distanceBackSensor < 36.12) {
 
                         backDistPrompt = "Move the robot farther away from the back wall.";
-                    } else if (distanceBackSensor >= 33.06 && distanceBackSensor <= 34.26) {
+                    } else if (distanceBackSensor >= 36.12 && distanceBackSensor <= 36.32) {
 
                         backDistPrompt = "The robot is the correct distance away from the back wall.";
-                    } else if (distanceBackSensor > 34.26) {
+                    } else if (distanceBackSensor > 36.32) {
 
                         backDistPrompt = "Move the robot closer to the back wall.";
                     } else {

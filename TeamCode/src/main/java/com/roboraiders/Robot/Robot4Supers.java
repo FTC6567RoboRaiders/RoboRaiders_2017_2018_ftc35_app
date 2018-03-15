@@ -189,7 +189,7 @@ public class Robot4Supers {
      */
     public void glyphPivotCarry() {
 
-        servoGlyphPivot.setPosition(0.65);
+        servoGlyphPivot.setPosition(0.62);
     }
 
     /**
