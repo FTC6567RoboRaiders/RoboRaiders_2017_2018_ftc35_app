@@ -647,6 +647,26 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     }
 
     /**
+     * This method raises the servoJewel arm
+     *
+     * @param bot the robot currently being worked on
+     * @throws InterruptedException
+     */
+
+    public void raiseArm(Robot4Supers bot) throws InterruptedException {
+
+
+        bot.setJewelServoPosition(0.69);
+        Thread.sleep(250);
+
+        bot.setElbowServoPosition(1.00);
+        Thread.sleep(500);
+
+        bot.setJewelServoPosition(0.4);
+        Thread.sleep(500);
+    }
+
+    /**
      * This method places the pre-loaded glyph in the cryptobox
      *
      * @param bot - the bot currently being worked on

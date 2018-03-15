@@ -2,8 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.roboraiders.Robot.RoboRaidersAuto;
-import com.roboraiders.Robot.Robot;
+import com.roboraiders.Robot.RoboRaidersAuto4Supers;
+import com.roboraiders.Robot.Robot4Supers;
 
 /**
  * Created by Alex (and a little bit J-Dawg) on 11/8/17.
@@ -12,9 +12,9 @@ import com.roboraiders.Robot.Robot;
 @Autonomous
 
 
-public class JewelArmTest2 extends RoboRaidersAuto {
+public class JewelArmTest2 extends RoboRaidersAuto4Supers {
 
-    public Robot robot = new Robot();
+    public Robot4Supers robot = new Robot4Supers();
 
     @Override
     public void runOpMode() throws InterruptedException {
