@@ -130,12 +130,22 @@ public class Robot4Supers {
     }
 
     /**
-     * This method will initialize all of the servos
+     * This method will initialize all of the servos in autonomous
      */
-    public void initializeServos() {
+    public void initializeServosAutonomous() {
 
         servoJewel.setPosition(0.4);
         servoElbow.setPosition(1.0);
+        servoGlyphPivot.setPosition(1.0);
+    }
+
+    /**
+     * This method will initialize all of the servos in teleop
+     */
+    public void initializeServosTeleOp() {
+
+        servoJewel.setPosition(0.4);
+        servoElbow.setPosition(0.21);
         servoGlyphPivot.setPosition(1.0);
     }
 

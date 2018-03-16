@@ -86,7 +86,7 @@ public class IndieAutonomousOptions4Supers extends RoboRaidersAuto4Supers {
 
         }
 
-        robot.initializeServos();
+        robot.initializeServosAutonomous();
         vuforiaInitialization(hardwareMap);
         telemetry.addLine("Initialized");
         telemetry.update();
@@ -99,7 +99,6 @@ public class IndieAutonomousOptions4Supers extends RoboRaidersAuto4Supers {
 
             lowerArm(robot);
             selectJewel(robot, selectedOptions[1][1]);
-            //   raiseArm(robot);
         }
 
         // Parking and/or Cryptobox

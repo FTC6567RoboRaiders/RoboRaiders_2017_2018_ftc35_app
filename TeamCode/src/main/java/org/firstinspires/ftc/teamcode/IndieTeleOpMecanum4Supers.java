@@ -56,10 +56,7 @@ public class IndieTeleOpMecanum4Supers extends OpMode {
     @Override
     public void start() {
 
-        //  robot.initializeServos();
-        robot.servoJewel.setPosition(0.4);
-        robot.servoElbow.setPosition(0.21);
-        robot.servoGlyphPivot.setPosition(1.0);
+        robot.initializeServosTeleOp();
     }
 
     @Override

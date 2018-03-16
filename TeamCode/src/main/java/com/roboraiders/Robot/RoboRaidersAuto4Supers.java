@@ -647,26 +647,6 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     }
 
     /**
-     * This method raises the servoJewel arm
-     *
-     * @param bot the robot currently being worked on
-     * @throws InterruptedException
-     */
-
-    public void raiseArm(Robot4Supers bot) throws InterruptedException {
-
-
-        bot.setJewelServoPosition(0.69);
-        Thread.sleep(250);
-
-        bot.setElbowServoPosition(1.00);
-        Thread.sleep(500);
-
-        bot.setJewelServoPosition(0.4);
-        Thread.sleep(500);
-    }
-
-    /**
      * This method places the pre-loaded glyph in the cryptobox
      *
      * @param bot - the bot currently being worked on
@@ -688,32 +668,6 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
 
         encodersMove(bot, 2, 0.5, "forward");
         Thread.sleep(250);
-    }
-
-    /**
-     * This method gets two more glyphs and places them in the cryptobox.
-     *
-     * @param bot
-     * @throws InterruptedException
-     */
-    public void getTwoMoreGlyphs(Robot4Supers bot) throws InterruptedException {
-
-        bot.setGlyphIntakeMotorPower(1.0);
-
-        encodersMove(bot, 30, 0.5, "forward");
-        Thread.sleep(250);
-
-        bot.setGlyphIntakeMotorPower(0.0);
-
-        encodersMove(bot, 30, 0.5, "backward");
-        Thread.sleep(250);
-
-        bot.setGlyphLiftMotorPower(-0.75);
-        Thread.sleep(750);
-        bot.setGlyphLiftMotorPower(0.0);
-        Thread.sleep(100);
-
-        placeGlyph(bot);
     }
 
     /**
