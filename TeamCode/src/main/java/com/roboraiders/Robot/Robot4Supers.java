@@ -233,7 +233,7 @@ public class Robot4Supers {
      */
     public void wristDown() {
 
-        servoRelicWrist.setPosition(0.5);
+        servoRelicWrist.setPosition(0.52);
     }
 
     /**

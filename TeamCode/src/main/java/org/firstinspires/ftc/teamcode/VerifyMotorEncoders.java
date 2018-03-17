@@ -5,8 +5,8 @@ import android.util.Log;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.roboraiders.Robot.RoboRaidersAuto;
-import com.roboraiders.Robot.Robot;
+import com.roboraiders.Robot.RoboRaidersAuto4Supers;
+import com.roboraiders.Robot.Robot4Supers;
 
 @Autonomous(name = "Verify the Motor Encoders", group = "Verify")
 //@Disabled
@@ -18,7 +18,7 @@ import com.roboraiders.Robot.Robot;
  * Created by SteveKocik on 11/20/2017.
  */
 
-public class VerifyMotorEncoders extends RoboRaidersAuto {
+public class VerifyMotorEncoders extends RoboRaidersAuto4Supers {
 
     // The following variables are used to control how often telemetry data is written to the log
     //
@@ -39,7 +39,7 @@ public class VerifyMotorEncoders extends RoboRaidersAuto {
     private DcMotor.RunMode[] modeArray = new DcMotor.RunMode[4];
 
 
-    public Robot robot = new Robot();
+    public Robot4Supers robot = new Robot4Supers();
 
 
     @Override

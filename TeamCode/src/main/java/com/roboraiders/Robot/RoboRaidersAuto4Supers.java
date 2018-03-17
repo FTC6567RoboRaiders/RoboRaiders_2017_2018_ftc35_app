@@ -53,7 +53,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
     public double BLUE_FAR_FORWARD_DISTANCE = 20.5;    // Distance robot drives forward off of the BLUE, Far balance stone
 
     public double MAX_DISTANCE = 50.0;                      // The maximum from the wall, used to display alignment menu
-    public double FINAL_JEWEL_ARM_SERVO_POSITION = 0.84;    // Position where the jewel arm needs to be to read the jewel color
+    public double FINAL_JEWEL_ARM_SERVO_POSITION = 0.85;    // Position where the jewel arm needs to be to read the jewel color
 
     /**
      * This method will initialize Vuforia in autonomous op modes
@@ -298,7 +298,7 @@ public abstract class RoboRaidersAuto4Supers extends LinearOpMode {
                 encodersMove(bot, BLUE_FAR_FORWARD_DISTANCE, 0.4, "forward"); //drive forward
                 Thread.sleep(250);
 
-                imuTurn(bot, 85, 0.5, "right"); //turn right 90 degrees
+                imuTurn(bot, 88, 0.5, "right"); //turn right 90 degrees
                 Thread.sleep(250);
 
                 if (pictograph.equals("LEFT")) { //if the pictograph says that the key column is the left column
