@@ -25,7 +25,7 @@ public abstract class RelishAutonomousHeader extends LinearOpMode { // This line
         // the names of the motors we set on
         // the phone.
 
-        motorRight.setDirection(DcMotor.Direction.REVERSE); // This line reverses the right motor
+        motorLeft.setDirection(DcMotor.Direction.REVERSE); // This line reverses the left motor
         // in order to negate the fact that the
         // motors are placed on the robot to
         // mirror each other.
