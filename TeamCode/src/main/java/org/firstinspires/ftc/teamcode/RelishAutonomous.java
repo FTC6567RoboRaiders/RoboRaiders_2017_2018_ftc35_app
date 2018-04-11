@@ -17,12 +17,5 @@ public class RelishAutonomous extends RelishAutonomousHeader {
 
         waitForStart();
 
-        // Start Code Here
-
-
-
-
-
-
     }
 }
